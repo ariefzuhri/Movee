@@ -55,4 +55,8 @@
         <item name="android:scrollbars">none</item>
         <item name="android:clipToPadding">false</item>
     </style>
+
+    <style name="TransparentText" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@android:color/transparent</item>
+    </style>
 </resources>
