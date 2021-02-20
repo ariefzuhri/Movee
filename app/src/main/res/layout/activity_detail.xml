@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".detail.DetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fitsSystemWindows="true"
+        android:theme="@style/Theme.BLU.AppBarOverlay"
+        android:background="@color/white">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/toolbar_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fitsSystemWindows="true"
+            app:contentScrim="?attr/colorPrimary"
+            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:expandedTitleTextAppearance="@style/TransparentText"
+            app:toolbarId="@+id/toolbar">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <ImageView
+                    android:id="@+id/img_cover"
+                    style="@style/ImageView"
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.makeramen.roundedimageview.RoundedImageView
+                    android:id="@+id/img_poster"
+                    style="@style/ImageView"
+                    android:layout_width="120dp"
+                    android:layout_height="180dp"
+                    app:riv_corner_radius="8dp"
+                    android:layout_marginHorizontal="@dimen/layout_margin"
+                    android:layout_marginStart="@dimen/layout_margin"
+                    android:layout_marginBottom="@dimen/layout_margin"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/guideline" />
+
+                <TextView
+                    android:id="@+id/tv_score"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/layout_margin"
+                    android:layout_marginTop="@dimen/layout_margin"
+                    android:layout_marginEnd="@dimen/layout_margin"
+                    android:drawablePadding="4dp"
+                    android:text="8.7"
+                    android:textColor="@color/black"
+                    app:drawableStartCompat="@drawable/ic_score"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/img_poster"
+                    app:layout_constraintTop_toBottomOf="@+id/img_cover" />
+
+                <TextView
+                    android:id="@+id/tv_type"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="Serial, 12 episode - Selesai tayang"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_score"
+                    app:layout_constraintStart_toStartOf="@+id/tv_score"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_score" />
+
+                <TextView
+                    android:id="@+id/tv_runtime"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="22 menit/episode"
+                    android:textColor="@color/gray"
+                    app:layout_constraintEnd_toEndOf="@+id/tv_score"
+                    app:layout_constraintStart_toStartOf="@+id/tv_score"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_type" />
+
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_begin="144dp" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar"
+                android:layout_width="match_parent"
+                android:layout_height="?attr/actionBarSize"
+                app:layout_collapseMode="pin"
+                app:popupTheme="@style/Theme.BLU.PopupOverlay" />
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".detail.DetailActivity"
+        tools:showIn="@layout/activity_detail"
+        style="@style/ScrollView">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_margin="@dimen/layout_margin">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_genre"
+                style="@style/RecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="The Promised Neverland"
+                android:layout_marginTop="@dimen/layout_margin"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_lg"
+                android:textStyle="bold"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/tv_release_year"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2019"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_lg"/>
+
+                <TextView
+                    android:id="@+id/tv_release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" | 10 Januari"
+                    android:textColor="@color/gray"
+                    android:textSize="@dimen/font_nm"/>
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_synopsis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sinopsis"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:textSize="@dimen/font_nm"/>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_trailer"
+            style="@style/Button.Primary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tonton trailer"
+            app:icon="@drawable/ic_play"
+            app:iconPadding="4dp"
+            app:iconGravity="textStart"
+            android:layout_alignParentBottom="true"
+            android:layout_marginVertical="0dp"/>
+    </RelativeLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

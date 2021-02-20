@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".movie.TVFragment"
+    android:orientation="vertical"
+    android:layout_marginTop="@dimen/layout_margin">
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie_1"
+        style="@style/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/layout_margin"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Acara pilihan"
+        android:textColor="@color/black"
+        android:textSize="@dimen/font_nm"
+        android:textStyle="bold"
+        android:layout_marginTop="@dimen/layout_margin"
+        android:layout_marginBottom="4dp"
+        android:layout_marginHorizontal="@dimen/layout_margin"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_movie_2"
+        style="@style/RecyclerView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/layout_margin"/>
+</LinearLayout>
