@@ -59,26 +59,26 @@ public class DummyMovie {
     };
 
     private static final String[] posters = {
-            "https://images-na.ssl-images-amazon.com/images/I/81dyG1SAbXL._SL1500_.jpg",
-            "https://m.media-amazon.com/images/M/MV5BZTlmYTJmMWEtNDRhNy00ODc1LTg2OTMtMjk2ODJhNTA4YTE1XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-            "https://upload.wikimedia.org/wikipedia/id/e/e4/The_Anthem_of_the_Heart_poster.jpeg",
-            "https://m.media-amazon.com/images/M/MV5BZGFlN2FhYTktZGYzNi00MzllLWFlOTAtY2ExNjRjZjhkZWM2XkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-            "https://m.media-amazon.com/images/M/MV5BZDg0MWNmNjktMGEwZC00ZDlmLWI1MTUtMDBmNjQzMWM2NjBjXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_.jpg",
-            "https://www.reelviews.net/resources/img/posters/thumbs/grave_poster.jpg",
-            "https://i1.wp.com/www.slaphappylarry.com/wp-content/uploads/2016/04/Wolf-Children-movie-poster.jpg",
-            "https://plentyofpopcorn.files.wordpress.com/2016/05/my-neighbor-totoro-poster.jpg",
-            "https://upload.wikimedia.org/wikipedia/id/thumb/3/30/Spirited_Away_poster.JPG/220px-Spirited_Away_poster.JPG",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx99457-PFq5dreQabIu.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20555-QGbWQC3Kfpok.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20968-0zFVsoFUYjeh.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx1829-DqhBRfDU7n6D.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx585-5uq7j2xNNVmN.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx578-V18FG7FSVQXy.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx12355-wNsvhEsXEgrH.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx523-gOsP34LWBXTn.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx199-ehguwq1mPvtN.jpg",
             "https://stat.ameba.jp/user_images/20200118/18/bz-125-norinori/00/fc/p/o0650036414698212647.png",
-            "https://m.media-amazon.com/images/M/MV5BMTYwYjYyZDgtMTQ3My00YTI4LThmZTUtZmU1MjllOWRlOTdhXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
-            "https://i.pinimg.com/474x/3b/35/d5/3b35d56421edc4700865ca789db576b0.jpg",
-            "https://metadata-static.plex.tv/5/gracenote/5137a8d493391e922824dde77e70bd93.jpg",
-            "https://d2y6mqrpjbqoe6.cloudfront.net/image/upload/f_auto,q_auto/media/library-400/155_637251360855603407Barakamon_Small_hq.jpg",
-            "https://picfiles.alphacoders.com/410/thumb-410435.jpg",
-            "https://images-na.ssl-images-amazon.com/images/I/81sClTCx9ML._SY445_.jpg",
-            "https://m.media-amazon.com/images/M/MV5BMGM1ODZmYjMtZThiNi00OTcwLWEyNmUtNGM4ZmU4MGQ5YmIzXkEyXkFqcGdeQXVyMzgxODM4NjM@._V1_.jpg",
-            "https://m.media-amazon.com/images/M/MV5BNDFmYjRkZWYtNjgyZS00YTY5LWIyMmQtZTI0OGRiOGM5NGY3L2ltYWdlL2ltYWdlXkEyXkFqcGdeQXVyNTAyODkwOQ@@._V1_.jpg",
-            "https://i.pinimg.com/originals/57/15/0d/57150d15b50015e6394781ba7fa5dd7a.jpg",
-            "https://m.media-amazon.com/images/M/MV5BN2E4ODk2MDctYTI0Yi00MTBhLWE5ZDMtNTNlZDRiZTM3ZjIzXkEyXkFqcGdeQXVyNjc3MjQzNTI@._V1_UY1200_CR109,0,630,1200_AL_.jpg"
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx101759-ONAwIKCFiNtE.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx98478-dF3mpSKiZkQu.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx21495-Xn1lHxRKDBXW.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx20722-mQQHyu4HXpCE.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx109019-xlrVQRdo1EQi.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx17549-n5m9PEt8SKIW.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx98444-zzhSw9o3LJSy.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx21234-v2NMgPyoVRoM.jpg",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/nx21827-10F6m50H4GJK.png",
+            "https://s4.anilist.co/file/anilistcdn/media/anime/cover/large/bx124845-7dRs0HgkFWgk.jpg"
     };
 
     private static final String[] covers = {
@@ -147,7 +147,7 @@ public class DummyMovie {
             TYPE_TV,
             TYPE_TV,
             TYPE_TV,
-            TYPE_TV,
+            TYPE_TV
     };
 
     private static final int[] episodes = {
@@ -160,8 +160,7 @@ public class DummyMovie {
             1,
             1,
             1,
-            1,
-            1,
+            0,
             12,
             22,
             12,
@@ -171,11 +170,10 @@ public class DummyMovie {
             12,
             12,
             13,
-            12,
+            12
     };
 
     private static final String[] statuses = {
-            STATUS_FINISHED,
             STATUS_FINISHED,
             STATUS_FINISHED,
             STATUS_FINISHED,
@@ -243,7 +241,7 @@ public class DummyMovie {
             "Komedi, Penggalan Kehidupan",
             "Drama, Misteri, Psikologis, Supranatural, Triler",
             "Drama, Fantasi, Penggalan Kehidupan",
-            "Laga, Drama, Fantasi, Misteri, Psikologis, Triler",
+            "Laga, Drama, Fantasi, Misteri, Psikologis, Triler"
     };
 
     private static final int[] runtimes = {
