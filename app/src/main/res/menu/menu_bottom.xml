@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/menu_movie"
         android:icon="@drawable/ic_movie"
         android:title="Film"
         android:iconTint="@color/blue"
-        android:checked="true"/>
+        android:checked="true"
+        tools:targetApi="o" />
 
     <item
         android:id="@+id/menu_tv"
         android:icon="@drawable/ic_tv"
         android:title="Acara TV"
-        android:iconTint="@color/blue"/>
+        android:iconTint="@color/blue"
+        tools:targetApi="o" />
 </menu>

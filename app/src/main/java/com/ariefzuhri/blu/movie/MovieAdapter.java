@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ariefzuhri.blu.databinding.ItemMovie2Binding;
+import com.ariefzuhri.blu.databinding.ItemMovieBinding;
 import com.ariefzuhri.blu.detail.DetailActivity;
 import com.ariefzuhri.blu.model.Movie;
 
@@ -17,10 +17,10 @@ import static com.ariefzuhri.blu.utils.AppUtils.loadImage;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_MOVIE;
 import static com.ariefzuhri.blu.utils.DateUtils.getYearOfDate;
 
-public class Movie2Adapter extends RecyclerView.Adapter<Movie2Adapter.ViewHolder> {
+public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> {
     private final ArrayList<Movie> movieList = new ArrayList<>();
 
-    public Movie2Adapter(){}
+    public MovieAdapter(){}
 
     public void setData(ArrayList<Movie> movieList){
         this.movieList.clear();
@@ -31,7 +31,7 @@ public class Movie2Adapter extends RecyclerView.Adapter<Movie2Adapter.ViewHolder
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        ItemMovie2Binding binding = ItemMovie2Binding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
+        ItemMovieBinding binding = ItemMovieBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         return new ViewHolder(binding);
     }
 
@@ -47,9 +47,9 @@ public class Movie2Adapter extends RecyclerView.Adapter<Movie2Adapter.ViewHolder
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder {
-        private final ItemMovie2Binding binding;
+        private final ItemMovieBinding binding;
 
-        public ViewHolder(@NonNull ItemMovie2Binding binding) {
+        public ViewHolder(@NonNull ItemMovieBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }
@@ -58,6 +58,8 @@ public class Movie2Adapter extends RecyclerView.Adapter<Movie2Adapter.ViewHolder
             loadImage(itemView.getContext(), movie.getPoster(), binding.imgPoster);
             binding.tvScore.setText(movie.getScore());
             binding.tvReleaseYear.setText(getYearOfDate(movie.getAiredDate().getStartDate()));
+            binding.tvTitle.setText(movie.getTitle());
+            binding.tvGenre.setText(movie.getGenres());
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), DetailActivity.class);

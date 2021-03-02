@@ -12,20 +12,21 @@ public class DateUtils {
     public static String getDateWithoutYear(String date){
         if (isValidDateFormat(date)){
             int[] arrayDate = getArrayDate(date);
-            String month = null;
+            String month;
             if (arrayDate != null) {
-                month = new DateFormatSymbols().getMonths()[(arrayDate[1])];
+                // Karena bulan di mulai dari 0, jadi dikurangi 1
+                month = new DateFormatSymbols().getMonths()[(arrayDate[1]-1)];
                 return arrayDate[2] + " " + month;
-            } else return "-1";
-        } else return "-1";
+            } else return date;
+        } else return date;
     }
 
     public static String getYearOfDate(String date){
         if (isValidDateFormat(date)){
             int[] arrayDate = getArrayDate(date);
             if (arrayDate != null) return String.valueOf(arrayDate[0]);
-            else return "-1";
-        } else return "-1";
+            else return date;
+        } else return date;
     }
 
     public static int[] getArrayDate(String date){
@@ -33,8 +34,7 @@ public class DateUtils {
             String[] stringArrayDate = date.split("/");
             int[] integerArrayDate = new int[3];
             for (int i = 0; i < 3; i++) integerArrayDate[i] = Integer.parseInt(stringArrayDate[i]);
-            // Karena bulan di mulai dari 0, jadi dikurangi 1
-            return new int[] {integerArrayDate[0], integerArrayDate[1]-1, integerArrayDate[2]};
+            return new int[] {integerArrayDate[0], integerArrayDate[1], integerArrayDate[2]};
         } else return null;
     }
 
