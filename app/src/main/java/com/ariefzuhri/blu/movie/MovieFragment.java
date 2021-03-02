@@ -13,9 +13,13 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ariefzuhri.blu.databinding.FragmentMovieBinding;
+import com.ariefzuhri.blu.model.Movie;
+
 import org.jetbrains.annotations.NotNull;
 
-import static com.ariefzuhri.blu.utils.Constants.TYPE_MOVIE;
+import java.util.ArrayList;
+
+import static com.ariefzuhri.blu.utils.Constants.EXTRA_MOVIE_TYPE;
 
 public class MovieFragment extends Fragment {
 
@@ -33,12 +37,23 @@ public class MovieFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
+
+        Bundle bundle = getArguments();
+        if (bundle != null){
+            String movieType = bundle.getString(EXTRA_MOVIE_TYPE);
+            if (movieType != null){
+                viewModel.setSelectedMovies(movieType);
+                populateRecyclerView(viewModel.getMovies());
+            }
+        }
+    }
+
+    private void populateRecyclerView(ArrayList<Movie> movieList){
         binding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
         binding.recyclerView.setHasFixedSize(true);
         MovieAdapter adapter = new MovieAdapter();
         binding.recyclerView.setAdapter(adapter);
-
-        MovieViewModel viewModel = new ViewModelProvider(this, new ViewModelProvider.NewInstanceFactory()).get(MovieViewModel.class);
-        adapter.setData(viewModel.getMovies(TYPE_MOVIE));
+        adapter.setData(movieList);
     }
 }

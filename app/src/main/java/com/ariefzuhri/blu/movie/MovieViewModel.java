@@ -9,7 +9,13 @@ import java.util.ArrayList;
 import static com.ariefzuhri.blu.utils.DummyMovie.generateMovies;
 
 public class MovieViewModel extends ViewModel {
-    public ArrayList<Movie> getMovies(String type) {
-        return generateMovies(type);
+    private String movieType;
+
+    public void setSelectedMovies(String movieType){
+        this.movieType = movieType;
+    }
+
+    public ArrayList<Movie> getMovies() {
+        return generateMovies(movieType);
     }
 }

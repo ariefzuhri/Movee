@@ -1,12 +1,17 @@
 package com.ariefzuhri.blu.home;
 
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
 import com.ariefzuhri.blu.movie.MovieFragment;
-import com.ariefzuhri.blu.movie.TVFragment;
+
+import static com.ariefzuhri.blu.utils.Constants.EXTRA_MOVIE_TYPE;
+import static com.ariefzuhri.blu.utils.Constants.TYPE_MOVIE;
+import static com.ariefzuhri.blu.utils.Constants.TYPE_TV;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {
     public MainPagerAdapter(@NonNull FragmentManager fm) {
@@ -16,16 +21,21 @@ public class MainPagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
+        Fragment fragment = new MovieFragment();
+        Bundle bundle = new Bundle();
+
         switch (position){
             case 0:
-                return new MovieFragment();
+                bundle.putString(EXTRA_MOVIE_TYPE, TYPE_MOVIE);
+                break;
 
             case 1:
-                return new TVFragment();
-
-            default:
-                return new Fragment();
+                bundle.putString(EXTRA_MOVIE_TYPE, TYPE_TV);
+                break;
         }
+
+        fragment.setArguments(bundle);
+        return fragment;
     }
 
     @Override

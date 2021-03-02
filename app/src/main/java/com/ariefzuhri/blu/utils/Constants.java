@@ -8,5 +8,6 @@ public interface Constants {
     String STATUS_CURRENTLY = "currently_airing";
     String STATUS_NOT_YET = "not_yet_airing";
 
-    String EXTRA_MOVIE = "extra_movie";
+    String EXTRA_MOVIE_ID = "extra_movie_id";
+    String EXTRA_MOVIE_TYPE = "extra_movie_type";
 }
