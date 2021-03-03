@@ -4,7 +4,7 @@
     <item
         android:id="@+id/menu_movie"
         android:icon="@drawable/ic_movie"
-        android:title="Film"
+        android:title="@string/movie"
         android:iconTint="@color/blue"
         android:checked="true"
         tools:targetApi="o" />
@@ -12,7 +12,7 @@
     <item
         android:id="@+id/menu_tv"
         android:icon="@drawable/ic_tv"
-        android:title="Acara TV"
+        android:title="@string/tv"
         android:iconTint="@color/blue"
         tools:targetApi="o" />
 </menu>

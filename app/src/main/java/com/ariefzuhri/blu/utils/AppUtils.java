@@ -11,7 +11,6 @@ import com.bumptech.glide.request.RequestOptions;
 import java.util.Locale;
 
 public class AppUtils {
-    public static final String LOG = "App log -> ";
     public static final Locale locale = new Locale("in", "ID");
 
     public static void showToast(Context context, String message){

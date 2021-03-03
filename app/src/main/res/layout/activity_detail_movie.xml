@@ -11,7 +11,7 @@
         style="@style/ImageView"
         android:layout_width="match_parent"
         android:layout_height="240dp"
-        android:contentDescription="Latar belakang" />
+        android:contentDescription="@string/cover" />
 
     <androidx.core.widget.NestedScrollView
         style="@style/ScrollView"
@@ -32,7 +32,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                android:contentDescription="Latar belakang" />
+                android:contentDescription="@string/cover" />
 
             <ImageView
                 android:id="@+id/img_background"
@@ -62,7 +62,7 @@
                     style="@style/ImageView"
                     android:layout_width="120dp"
                     android:layout_height="180dp"
-                    android:contentDescription="Poster" />
+                    android:contentDescription="@string/poster" />
             </androidx.cardview.widget.CardView>
 
             <TextView
@@ -71,7 +71,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginEnd="16dp"
-                android:text="The Promised Neverland"
+                android:text="@string/loading"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_md"
                 android:textStyle="bold"
@@ -95,7 +95,7 @@
                     android:id="@+id/tv_release_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="2019"
+                    android:text="@string/loading"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/font_md" />
 
@@ -103,9 +103,10 @@
                     android:id="@+id/tv_release_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text=" | 10 Januari"
+                    android:text="@string/release_date"
                     android:textColor="@color/gray_dark"
-                    android:textSize="@dimen/font_nm" />
+                    android:textSize="@dimen/font_nm"
+                    android:layout_marginStart="4dp"/>
             </LinearLayout>
 
             <LinearLayout
@@ -122,13 +123,13 @@
                     android:layout_width="24dp"
                     android:layout_height="24dp"
                     android:src="@drawable/ic_score"
-                    android:contentDescription="Rating" />
+                    android:contentDescription="@string/score" />
 
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="8.65"
+                    android:text="@string/loading"
                     android:textAlignment="center"
                     android:textColor="@color/orange"
                     android:textSize="@dimen/font_nm"
@@ -141,7 +142,7 @@
                     android:src="@drawable/ic_info"
                     android:background="@android:color/transparent"
                     android:layout_marginTop="8dp"
-                    android:contentDescription="Lihat judul lengkap" />
+                    android:contentDescription="@string/more_title" />
             </LinearLayout>
 
             <TextView
@@ -150,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="8dp"
                 android:layout_marginTop="16dp"
-                android:text="Serial, 12 episode - Selesai tayang"
+                android:text="@string/type"
                 android:textColor="@color/gray_dark"
                 app:layout_constraintEnd_toEndOf="@+id/layout_score"
                 app:layout_constraintStart_toEndOf="@+id/view"
@@ -160,7 +161,7 @@
                 android:id="@+id/tv_runtime"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:text="22 menit/episode"
+                android:text="@string/runtime_movie"
                 android:textColor="@color/gray_dark"
                 app:layout_constraintEnd_toEndOf="@+id/tv_type"
                 app:layout_constraintStart_toStartOf="@+id/tv_type"
@@ -183,7 +184,7 @@
                 android:layout_marginTop="16dp"
                 android:ellipsize="end"
                 android:maxLines="3"
-                android:text="Sinopsis"
+                android:text="@string/loading"
                 android:textColor="@color/black"
                 android:textSize="@dimen/font_nm"
                 app:layout_constraintEnd_toEndOf="@+id/layout_score"
@@ -196,7 +197,7 @@
                 android:layout_height="wrap_content"
                 android:clickable="true"
                 android:focusable="true"
-                android:text="selengkapnya"
+                android:text="@string/more"
                 android:textColor="@color/blue_dark"
                 android:textSize="@dimen/font_nm"
                 app:layout_constraintEnd_toEndOf="@+id/tv_synopsis"
@@ -208,7 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:text="Trailer"
+                android:text="@string/trailer"
                 android:paddingHorizontal="24dp"
                 app:icon="@drawable/ic_play"
                 app:iconGravity="textStart"

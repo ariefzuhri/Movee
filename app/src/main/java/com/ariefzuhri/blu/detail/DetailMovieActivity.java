@@ -31,7 +31,6 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
     private ActivityDetailMovieBinding binding;
     private Movie movie;
 
-    @SuppressLint("SetTextI18n")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -62,17 +61,17 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
         binding.tvScore.setText(movie.getScore());
         binding.tvTitle.setText(movie.getTitle());
         binding.tvReleaseYear.setText(getYearOfDate(movie.getAiredDate().getStartDate()));
-        binding.tvReleaseDate.setText(" | " + getDateWithoutYear(movie.getAiredDate().getStartDate()));
+        binding.tvReleaseDate.setText(getResources().getString(R.string.release_date, getDateWithoutYear(movie.getAiredDate().getStartDate())));
         binding.tvSynopsis.setText(movie.getSynopsis());
 
         String type = null;
         if (movie.getType().equals(TYPE_MOVIE)){
             type = "Film";
-            binding.tvRuntime.setText(movie.getRuntime() + " m");
+            binding.tvRuntime.setText(getResources().getString(R.string.runtime_movie, movie.getRuntime()));
         }
         else if (movie.getType().equals(TYPE_TV)) {
             type = "Serial";
-            binding.tvRuntime.setText(movie.getRuntime() + " m/eps");
+            binding.tvRuntime.setText(getResources().getString(R.string.runtime_tv, movie.getRuntime()));
         }
 
         String status = null;
@@ -82,7 +81,7 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
             case STATUS_NOT_YET: status = "Segera"; break;
         }
 
-        binding.tvType.setText(type + ", " + movie.getEpisodes() + " eps - " + status);
+        binding.tvType.setText(getResources().getString(R.string.type, type, movie.getEpisodes(), status));
 
         String[] genreList = movie.getGenres().split(", ");
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);

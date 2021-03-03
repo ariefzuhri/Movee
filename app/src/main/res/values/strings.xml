@@ -1,3 +1,16 @@
 <resources>
     <string name="app_name">BLU</string>
+    <string name="poster">Poster</string>
+    <string name="loading">Memuat…</string>
+    <string name="release_date">| %1$s</string>
+    <string name="score">Skor</string>
+    <string name="type">%1$s, %2$d eps - %3$s</string>
+    <string name="runtime_tv">%1$d m/eps</string>
+    <string name="runtime_movie">%1$d m</string>
+    <string name="more_title">Lihat judul lengkap</string>
+    <string name="more">Selengkapnya</string>
+    <string name="trailer">Trailer</string>
+    <string name="cover">Latar belakang</string>
+    <string name="movie">Film</string>
+    <string name="tv">Acara TV</string>
 </resources>

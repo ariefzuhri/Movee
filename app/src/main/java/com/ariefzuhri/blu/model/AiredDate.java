@@ -49,7 +49,7 @@ public class AiredDate implements Parcelable {
         return startDate;
     }
 
-    public String getEndDate() {
+    /*public String getEndDate() {
         return endDate;
-    }
+    }*/
 }
