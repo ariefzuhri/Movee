@@ -13,4 +13,8 @@
     <string name="cover">Latar belakang</string>
     <string name="movie">Film</string>
     <string name="tv">Acara TV</string>
+    <string name="series">Serial</string>
+    <string name="finished">Selesai</string>
+    <string name="currently">Tayang</string>
+    <string name="not_yet">Segera</string>
 </resources>

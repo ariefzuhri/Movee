@@ -145,11 +145,11 @@ public class Movie implements Parcelable {
         this.airedDate = airedDate;
     }
 
-    /*public String getStudio() {
+    public String getStudio() {
         return studio;
     }
 
-    public void setStudio(String studio) {
+    /*public void setStudio(String studio) {
         this.studio = studio;
     }*/
 

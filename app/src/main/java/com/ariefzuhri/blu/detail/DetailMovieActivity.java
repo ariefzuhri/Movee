@@ -66,19 +66,19 @@ public class DetailMovieActivity extends AppCompatActivity implements View.OnCli
 
         String type = null;
         if (movie.getType().equals(TYPE_MOVIE)){
-            type = "Film";
+            type = getResources().getString(R.string.movie);
             binding.tvRuntime.setText(getResources().getString(R.string.runtime_movie, movie.getRuntime()));
         }
         else if (movie.getType().equals(TYPE_TV)) {
-            type = "Serial";
+            type = getResources().getString(R.string.series);
             binding.tvRuntime.setText(getResources().getString(R.string.runtime_tv, movie.getRuntime()));
         }
 
         String status = null;
         switch (movie.getStatus()) {
-            case STATUS_FINISHED: status = "Selesai"; break;
-            case STATUS_CURRENTLY: status = "Tayang"; break;
-            case STATUS_NOT_YET: status = "Segera"; break;
+            case STATUS_FINISHED: status = getResources().getString(R.string.finished); break;
+            case STATUS_CURRENTLY: status = getResources().getString(R.string.currently); break;
+            case STATUS_NOT_YET: status = getResources().getString(R.string.not_yet); break;
         }
 
         binding.tvType.setText(getResources().getString(R.string.type, type, movie.getEpisodes(), status));
