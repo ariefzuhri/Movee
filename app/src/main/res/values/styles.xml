@@ -40,6 +40,13 @@
         <item name="android:clipToPadding">false</item>
     </style>
 
+    <style name="SearchView">
+        <item name="iconifiedByDefault">false</item>
+        <item name="queryBackground">@android:color/transparent</item>
+        <item name="submitBackground">@android:color/transparent</item>
+        <item name="android:background">@drawable/bg_search_view</item>
+    </style>
+
     <style name="Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>

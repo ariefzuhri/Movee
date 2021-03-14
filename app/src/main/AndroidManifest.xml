@@ -13,7 +13,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.BLU"
         tools:ignore="AllowBackup">
-        <activity android:name=".home.SplashActivity">
+        <activity android:name=".ui.search.SearchActivity"></activity>
+        <activity
+            android:name=".DummyScrollingActivity"
+            android:label="@string/title_activity_dummy_scrolling"
+            android:theme="@style/Theme.BLU.NoActionBar" />
+        <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -21,9 +26,9 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".detail.DetailMovieActivity"
+            android:name=".ui.detail.DetailMediaActivity"
             android:theme="@style/Theme.BLU.NoActionBar" />
-        <activity android:name=".home.MainActivity" />
+        <activity android:name=".ui.main.MainActivity" />
     </application>
 
 </manifest>

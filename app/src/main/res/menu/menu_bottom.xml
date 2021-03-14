@@ -15,4 +15,11 @@
         android:title="@string/tv"
         android:iconTint="@color/blue"
         tools:targetApi="o" />
+
+    <item
+        android:id="@+id/menu_discover"
+        android:icon="@drawable/ic_discover"
+        android:title="@string/discover"
+        android:iconTint="@color/blue"
+        tools:targetApi="o" />
 </menu>

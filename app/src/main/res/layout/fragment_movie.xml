@@ -4,14 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".movie.MovieFragment"
-    android:orientation="vertical"
-    android:layout_marginTop="@dimen/layout_margin">
+    tools:context=".ui.movie.MovieFragment"
+    android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_view"
-        style="@style/RecyclerView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/layout_margin"/>
+    <include layout="@layout/layout_media"/>
 </LinearLayout>

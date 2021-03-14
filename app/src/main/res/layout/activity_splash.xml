@@ -4,12 +4,36 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".home.SplashActivity">
+    tools:context=".ui.main.SplashActivity"
+    android:background="@drawable/bg_layout_main">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_centerInParent="true"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_name"
+            android:textColor="@color/white"
+            android:textSize="36sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/app_tagline"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_nm"/>
+    </LinearLayout>
 
     <ImageView
-        android:layout_width="128dp"
-        android:layout_height="128dp"
-        android:src="@drawable/ic_logo_no_bg"
-        android:layout_centerInParent="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:adjustViewBounds="true"
+        android:src="@drawable/bg_splash"
+        android:layout_alignParentBottom="true"
         tools:ignore="ContentDescription" />
 </RelativeLayout>
