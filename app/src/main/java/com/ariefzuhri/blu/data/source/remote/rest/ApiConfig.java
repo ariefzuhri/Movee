@@ -1,4 +1,4 @@
-package com.ariefzuhri.blu.data.source.remote;
+package com.ariefzuhri.blu.data.source.remote.rest;
 
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
