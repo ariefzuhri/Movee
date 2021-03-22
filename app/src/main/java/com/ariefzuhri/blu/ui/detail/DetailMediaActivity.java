@@ -9,8 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.ariefzuhri.blu.R;
-import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
-import com.ariefzuhri.blu.data.source.remote.entity.VideoEntity;
+import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.TrailerEntity;
 import com.ariefzuhri.blu.databinding.ActivityDetailMediaBinding;
 import com.ariefzuhri.blu.databinding.ContentDetailMediaBinding;
 import com.ariefzuhri.blu.data.MediaEntity;
@@ -30,10 +30,6 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.movieDetailsToMedia;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.movieEntitiesToMediaList;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.tvDetailsToMedia;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.tvEntitiesToMediaList;
 import static com.ariefzuhri.blu.utils.AppUtils.loadImage;
 import static com.ariefzuhri.blu.utils.AppUtils.showToast;
 import static com.ariefzuhri.blu.utils.Constants.BASE_URL_YOUTUBE;
@@ -117,35 +113,24 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             viewModel.setSelectedMedia(mediaType, mediaId);
 
             if (mediaType.equals(MEDIA_TYPE_MOVIE)){
-                viewModel.getMovieDetails().observe(this, movieDetailsResponse -> {
-                    MediaEntity media = movieDetailsToMedia(movieDetailsResponse);
-                    populateMedia(media);
-                });
+                viewModel.getMovieDetails().observe(this, this::populateMedia);
             } else if (mediaType.equals(MEDIA_TYPE_TV)){
-                viewModel.getTVDetails().observe(this, tvDetailsResponse -> {
-                    MediaEntity media = tvDetailsToMedia(tvDetailsResponse);
-                    populateMedia(media);
-                });
+                viewModel.getTVDetails().observe(this, this::populateMedia);
             }
 
             viewModel.getCredits().observe(this, creditsResponse -> {
 
             });
 
-            viewModel.getGenres().observe(this, genresResponse -> {
-                List<GenreEntity> genreList = genresResponse.getGenres();
+            viewModel.getGenres().observe(this, resultGenre -> {
                 if (mediaType.equals(MEDIA_TYPE_MOVIE)){
-                    viewModel.getMovieRecommendations().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaRecommendationList =
-                                movieEntitiesToMediaList(movieResponse.getResults());
-                        populateRecommendations(genreList, mediaRecommendationList);
+                    viewModel.getMovieRecommendations().observe(this, resultMovie -> {
+                        populateRecommendations(resultGenre, resultMovie);
                         shimmerRecommendation.hide();
                     });
                 } else if (mediaType.equals(MEDIA_TYPE_TV)){
-                    viewModel.getTVRecommendations().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaRecommendationList =
-                                tvEntitiesToMediaList(tvResponse.getResults());
-                        populateRecommendations(genreList, mediaRecommendationList);
+                    viewModel.getTVRecommendations().observe(this, resultTV -> {
+                        populateRecommendations(resultGenre, resultTV);
                         shimmerRecommendation.hide();
                     });
                 }
@@ -210,10 +195,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         }
         genreAdapter.setData(genreStringList);
 
-        viewModel.getVideos().observe(this, videosResponse -> {
-            List<VideoEntity> videoList = videosResponse.getResults();
-            media.setTrailer(videoList);
-        });
+        viewModel.getVideos().observe(this, media::setTrailer);
     }
 
     private void populateRecommendations(List<GenreEntity> genreList, List<MediaEntity> mediaList) {
@@ -240,11 +222,11 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         } else if (id == R.id.btn_trailer) {
             if (media != null && media.getTrailer() != null) {
                 if (!media.getTrailer().isEmpty()){
-                    for (VideoEntity video : media.getTrailer()){
-                        if ((video.getType().equals(VIDEO_TYPE_TRAILER) || video.getType().equals(VIDEO_TYPE_TEASER)) &&
-                                video.getSite().equals(VIDEO_SITE_YOUTUBE)){
+                    for (TrailerEntity trailer : media.getTrailer()){
+                        if ((trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)) &&
+                                trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
                             Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(BASE_URL_YOUTUBE + video.getKey()));
+                            intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
                             startActivity(intent);
                             break;
                         }

@@ -13,10 +13,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
 import com.ariefzuhri.blu.databinding.FragmentMovieBinding;
 import com.ariefzuhri.blu.databinding.LayoutMediaBinding;
-import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.ui.search.SearchActivity;
 import com.ariefzuhri.blu.utils.ShimmerHelper;
@@ -24,9 +22,6 @@ import com.ariefzuhri.blu.viewmodel.ViewModelFactory;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.List;
-
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.movieEntitiesToMediaList;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY_TYPE;
 import static com.ariefzuhri.blu.utils.Constants.ORIENTATION_TYPE_HORIZONTAL;
 import static com.ariefzuhri.blu.utils.Constants.ORIENTATION_TYPE_VERTICAL;
@@ -68,20 +63,17 @@ public class MovieFragment extends Fragment {
         ViewModelFactory factory = ViewModelFactory.getInstance();
         viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
         viewModel.setPage(1);
-        viewModel.getGenres().observe(getViewLifecycleOwner(), genresResponse -> {
-            List<GenreEntity> genreList = genresResponse.getGenres();
-            adapterHoriz.setGenreList(genreList);
-            adapterVert.setGenreList(genreList);
+        viewModel.getGenres().observe(getViewLifecycleOwner(), resultGenre -> {
+            adapterHoriz.setGenreList(resultGenre);
+            adapterVert.setGenreList(resultGenre);
 
-            viewModel.getNowPlaying().observe(getViewLifecycleOwner(), movieResponse -> {
-                List<MediaEntity> mediaList = movieEntitiesToMediaList(movieResponse.getResults());
-                adapterHoriz.setData(mediaList);
+            viewModel.getNowPlaying().observe(getViewLifecycleOwner(), resultMovie -> {
+                adapterHoriz.setData(resultMovie);
                 shimmerHoriz.hide();
             });
 
-            viewModel.getTrending().observe(getViewLifecycleOwner(), movieResponse -> {
-                List<MediaEntity> mediaList = movieEntitiesToMediaList(movieResponse.getResults());
-                adapterVert.setData(mediaList);
+            viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
+                adapterVert.setData(resultMovie);
                 shimmerVert.hide();
             });
         });

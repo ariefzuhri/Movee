@@ -1,9 +1,5 @@
 package com.ariefzuhri.blu.data;
 
-import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
-import com.ariefzuhri.blu.data.source.remote.entity.ProductionCompanyEntity;
-import com.ariefzuhri.blu.data.source.remote.entity.VideoEntity;
-
 import java.util.List;
 
 public class MediaEntity {
@@ -18,12 +14,12 @@ public class MediaEntity {
     private int episodes;
     private String status;
     private final AiredDate airedDate;
-    private List<ProductionCompanyEntity> studios;
+    private List<Studio> studios;
     private List<Integer> genreIds;
     private List<GenreEntity> genres;
     private int runtime;
     private final String synopsis;
-    private List<VideoEntity> trailer;
+    private List<TrailerEntity> trailer;
 
     public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, AiredDate airedDate, List<Integer> genreIds, String synopsis) {
         this.id = id;
@@ -39,7 +35,7 @@ public class MediaEntity {
         this.synopsis = synopsis;
     }
 
-    public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, int episodes, String status, AiredDate airedDate, List<ProductionCompanyEntity> studios, List<GenreEntity> genres, int runtime, String synopsis, List<VideoEntity> trailer) {
+    public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, int episodes, String status, AiredDate airedDate, List<Studio> studios, List<GenreEntity> genres, int runtime, String synopsis, List<TrailerEntity> trailer) {
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -102,7 +98,7 @@ public class MediaEntity {
         return airedDate;
     }
 
-    public List<ProductionCompanyEntity> getStudios() {
+    public List<Studio> getStudios() {
         return studios;
     }
 
@@ -122,11 +118,59 @@ public class MediaEntity {
         return synopsis;
     }
 
-    public List<VideoEntity> getTrailer() {
+    public List<TrailerEntity> getTrailer() {
         return trailer;
     }
 
-    public void setTrailer(List<VideoEntity> trailer) {
+    public void setTrailer(List<TrailerEntity> trailer) {
         this.trailer = trailer;
+    }
+
+    public static class AiredDate {
+        private final String startDate;
+        private final String endDate;
+
+        public AiredDate(String startDate, String endDate) {
+            this.startDate = startDate;
+            this.endDate = endDate;
+        }
+
+        public AiredDate(String date) {
+            this.startDate = date;
+            this.endDate = date;
+        }
+
+        public String getStartDate() {
+            return startDate;
+        }
+
+        public String getEndDate() {
+            return endDate;
+        }
+    }
+
+    public static class Studio {
+
+        private final int id;
+        private final String name;
+        private final String logo;
+
+        public Studio(int id, String name, String logo) {
+            this.id = id;
+            this.name = name;
+            this.logo = logo;
+        }
+
+        public int getId() {
+            return id;
+        }
+
+        public String getName() {
+            return name;
+        }
+
+        public String getLogo() {
+            return logo;
+        }
     }
 }

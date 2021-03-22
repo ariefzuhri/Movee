@@ -24,8 +24,6 @@ import com.google.android.material.chip.ChipGroup;
 
 import org.jetbrains.annotations.NotNull;
 
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.movieEntitiesToMediaList;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.tvEntitiesToMediaList;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY_TYPE;
 import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
@@ -77,9 +75,9 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         ViewModelFactory factory = ViewModelFactory.getInstance();
         viewModel = new ViewModelProvider(this, factory).get(DiscoverViewModel.class);
         viewModel.getGenres(MEDIA_TYPE_MOVIE).observe(getViewLifecycleOwner(),
-                genresResponse -> movieAdapter.setGenreList(genresResponse.getGenres()));
+                result -> movieAdapter.setGenreList(result));
         viewModel.getGenres(MEDIA_TYPE_TV).observe(getViewLifecycleOwner(),
-                genresResponse -> tvAdapter.setGenreList(genresResponse.getGenres()));
+                result -> tvAdapter.setGenreList(result));
 
         binding.cgCategory.setOnCheckedChangeListener(this);
         binding.chipPopular.setChecked(true);
@@ -97,21 +95,21 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             binding.tvTv.setText(R.string.popular);
 
             viewModel.getMoviePopular().observe(getViewLifecycleOwner(),
-                    movieResponse -> {
-                        movieAdapter.setData(movieEntitiesToMediaList(movieResponse.getResults()));
+                    result -> {
+                        movieAdapter.setData(result);
                         shimmerMovie.hide();
                     });
             viewModel.getTVPopular().observe(getViewLifecycleOwner(),
-                    tvResponse -> {
-                        tvAdapter.setData(tvEntitiesToMediaList(tvResponse.getResults()));
+                    result -> {
+                        tvAdapter.setData(result);
                         shimmerTV.hide();
                     });
         } else if (checkedId == R.id.chip_upcoming) {
             binding.tvMovie.setText(R.string.upcoming);
 
             viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(),
-                    movieResponse -> {
-                        movieAdapter.setData(movieEntitiesToMediaList(movieResponse.getResults()));
+                    result -> {
+                        movieAdapter.setData(result);
                         shimmerMovie.hide();
                     });
             binding.layoutTv.setVisibility(View.INVISIBLE);
@@ -120,13 +118,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             binding.tvTv.setText(R.string.latest_release);
 
             viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(),
-                    movieResponse -> {
-                        movieAdapter.setData(movieEntitiesToMediaList(movieResponse.getResults()));
+                    result -> {
+                        movieAdapter.setData(result);
                         shimmerMovie.hide();
                     });
             viewModel.getTVLatestRelease().observe(getViewLifecycleOwner(),
-                    tvResponse -> {
-                        tvAdapter.setData(tvEntitiesToMediaList(tvResponse.getResults()));
+                    result -> {
+                        tvAdapter.setData(result);
                         shimmerTV.hide();
                     });
         } else if (checkedId == R.id.chip_top_rated) {
@@ -134,13 +132,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             binding.tvTv.setText(R.string.top_rated);
 
             viewModel.getMovieTopRated().observe(getViewLifecycleOwner(),
-                    movieResponse -> {
-                        movieAdapter.setData(movieEntitiesToMediaList(movieResponse.getResults()));
+                    result -> {
+                        movieAdapter.setData(result);
                         shimmerMovie.hide();
                     });
             viewModel.getTVTopRated().observe(getViewLifecycleOwner(),
-                    tvResponse -> {
-                        tvAdapter.setData(tvEntitiesToMediaList(tvResponse.getResults()));
+                    result -> {
+                        tvAdapter.setData(result);
                         shimmerTV.hide();
                     });
         }

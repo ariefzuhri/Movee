@@ -2,7 +2,6 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.source.remote.entity.SearchResultEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class MultiSearchResponse{
@@ -14,7 +13,7 @@ public class MultiSearchResponse{
 	private int totalPages;
 
 	@SerializedName("results")
-	private List<SearchResultEntity> results;
+	private List<SearchResultItem> results;
 
 	@SerializedName("total_results")
 	private int totalResults;
@@ -27,7 +26,7 @@ public class MultiSearchResponse{
 		return totalPages;
 	}
 
-	public List<SearchResultEntity> getResults(){
+	public List<SearchResultItem> getResults(){
 		return results;
 	}
 

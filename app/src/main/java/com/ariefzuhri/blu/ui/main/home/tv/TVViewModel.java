@@ -3,9 +3,11 @@ package com.ariefzuhri.blu.ui.main.home.tv;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.data.source.CatalogRepository;
-import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
+
+import java.util.List;
 
 import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 
@@ -22,15 +24,15 @@ public class TVViewModel extends ViewModel {
         this.page = page;
     }
 
-    public LiveData<TVResponse> getOnTheAir() {
+    public LiveData<List<MediaEntity>> getOnTheAir() {
         return repository.getTVOnTheAir(1);
     }
 
-    public LiveData<TVResponse> getTrending(){
+    public LiveData<List<MediaEntity>> getTrending(){
         return repository.getTVTrending(page);
     }
 
-    public LiveData<GenresResponse> getGenres() {
+    public LiveData<List<GenreEntity>> getGenres() {
         return repository.getGenres(MEDIA_TYPE_TV);
     }
 }

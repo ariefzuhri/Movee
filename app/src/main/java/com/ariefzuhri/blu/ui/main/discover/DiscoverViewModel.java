@@ -3,10 +3,11 @@ package com.ariefzuhri.blu.ui.main.discover;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.data.source.CatalogRepository;
-import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.blu.data.source.remote.response.MovieResponse;
-import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
+
+import java.util.List;
 
 public class DiscoverViewModel extends ViewModel {
 
@@ -16,35 +17,35 @@ public class DiscoverViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public LiveData<MovieResponse> getMovieUpcoming(){
+    public LiveData<List<MediaEntity>> getMovieUpcoming(){
         return repository.getMovieUpcoming(1);
     }
 
-    public LiveData<MovieResponse> getMoviePopular(){
+    public LiveData<List<MediaEntity>> getMoviePopular(){
         return repository.getMoviePopular(1);
     }
 
-    public LiveData<TVResponse> getTVPopular(){
+    public LiveData<List<MediaEntity>> getTVPopular(){
         return repository.getTVPopular(1);
     }
 
-    public LiveData<MovieResponse> getMovieTopRated(){
+    public LiveData<List<MediaEntity>> getMovieTopRated(){
         return repository.getMovieTopRated(1);
     }
 
-    public LiveData<TVResponse> getTVTopRated(){
+    public LiveData<List<MediaEntity>> getTVTopRated(){
         return repository.getTVTopRated(1);
     }
 
-    public LiveData<MovieResponse> getMovieLatestRelease(){
+    public LiveData<List<MediaEntity>> getMovieLatestRelease(){
         return repository.getMovieLatestRelease(1);
     }
 
-    public LiveData<TVResponse> getTVLatestRelease(){
+    public LiveData<List<MediaEntity>> getTVLatestRelease(){
         return repository.getTVLatestRelease(1);
     }
 
-    public LiveData<GenresResponse> getGenres(String mediaType) {
+    public LiveData<List<GenreEntity>> getGenres(String mediaType) {
         return repository.getGenres(mediaType);
     }
 }

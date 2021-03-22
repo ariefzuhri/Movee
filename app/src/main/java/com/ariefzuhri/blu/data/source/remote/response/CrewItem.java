@@ -1,8 +1,8 @@
-package com.ariefzuhri.blu.data.source.remote.entity;
+package com.ariefzuhri.blu.data.source.remote.response;
 
 import com.google.gson.annotations.SerializedName;
 
-public class CrewEntity {
+public class CrewItem {
 
 	@SerializedName("credit_id")
 	private String creditId;

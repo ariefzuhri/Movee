@@ -2,8 +2,6 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
-import com.ariefzuhri.blu.data.source.remote.entity.ProductionCompanyEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class TVDetailsResponse{
@@ -15,7 +13,7 @@ public class TVDetailsResponse{
 	private String backdropPath;
 
 	@SerializedName("genres")
-	private List<GenreEntity> genres;
+	private List<GenreItem> genres;
 
 	@SerializedName("popularity")
 	private double popularity;
@@ -39,7 +37,7 @@ public class TVDetailsResponse{
 	private String posterPath;
 
 	@SerializedName("production_companies")
-	private List<ProductionCompanyEntity> productionCompanies;
+	private List<ProductionCompanyItem> productionCompanies;
 
 	@SerializedName("vote_average")
 	private double voteAverage;
@@ -64,7 +62,7 @@ public class TVDetailsResponse{
 		return backdropPath;
 	}
 
-	public List<GenreEntity> getGenres(){
+	public List<GenreItem> getGenres(){
 		return genres;
 	}
 
@@ -96,7 +94,7 @@ public class TVDetailsResponse{
 		return posterPath;
 	}
 
-	public List<ProductionCompanyEntity> getProductionCompanies(){
+	public List<ProductionCompanyItem> getProductionCompanies(){
 		return productionCompanies;
 	}
 

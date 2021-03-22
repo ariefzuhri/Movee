@@ -10,16 +10,10 @@ import android.os.Bundle;
 
 import com.ariefzuhri.blu.R;
 import com.ariefzuhri.blu.databinding.ActivitySearchBinding;
-import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.utils.ShimmerHelper;
 import com.ariefzuhri.blu.viewmodel.ViewModelFactory;
 
-import java.util.List;
-
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.movieEntitiesToMediaList;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.searchResultEntitiesToMediaList;
-import static com.ariefzuhri.blu.ui.main.home.MediaHelper.tvEntitiesToMediaList;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY_TYPE;
@@ -67,10 +61,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
         viewModel.setPage(1);
 
-        viewModel.getGenres(MEDIA_TYPE_MOVIE).observe(this, genresResponse ->
-                adapter.insertGenreList(genresResponse.getGenres()));
-        viewModel.getGenres(MEDIA_TYPE_TV).observe(this, genresResponse ->
-                adapter.insertGenreList(genresResponse.getGenres()));
+        viewModel.getGenres(MEDIA_TYPE_MOVIE).observe(this, result ->
+                adapter.insertGenreList(result));
+        viewModel.getGenres(MEDIA_TYPE_TV).observe(this, result ->
+                adapter.insertGenreList(result));
 
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_QUERY)){
@@ -84,130 +78,104 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             switch (type) {
                 case QUERY_TYPE_MOVIE_TRENDING:
                     header = getString(R.string.trending_movies);
-                    viewModel.getMovieTrending().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieTrending().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_LATEST_RELEASE:
                     header = getString(R.string.latest_release_movies);
-                    viewModel.getMovieLatestRelease().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieLatestRelease().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_NOW_PLAYING:
                     header = getString(R.string.now_playing_movies);
-                    viewModel.getMovieNowPlaying().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieNowPlaying().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_UPCOMING:
                     header = getString(R.string.upcoming_movies);
-                    viewModel.getMovieUpcoming().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieUpcoming().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_TOP_RATED:
                     header = getString(R.string.top_rated_movies);
-                    viewModel.getMovieTopRated().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieTopRated().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_POPULAR:
                     header = getString(R.string.popular_movies);
-                    viewModel.getMoviePopular().observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMoviePopular().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_MOVIE_RECOMMENDATIONS:
                     header = getString(R.string.recommendations_movies);
-                    viewModel.getMovieRecommendations(mediaId).observe(this, movieResponse -> {
-                        List<MediaEntity> mediaList = movieEntitiesToMediaList(
-                                movieResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getMovieRecommendations(mediaId).observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_TRENDING:
                     header = getString(R.string.trending_tv_shows);
-                    viewModel.getTVTrending().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVTrending().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_LATEST_RELEASE:
                     header = getString(R.string.latest_release_tv_shows);
-                    viewModel.getTVLatestRelease().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVLatestRelease().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_ON_THE_AIR:
                     header = getString(R.string.on_the_air_tv_shows);
-                    viewModel.getTVOnTheAir().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVOnTheAir().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_TOP_RATED:
                     header = getString(R.string.top_rated_tv_shows);
-                    viewModel.getTVTopRated().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVTopRated().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_POPULAR:
                     header = getString(R.string.popular_tv_shows);
-                    viewModel.getTVPopular().observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVPopular().observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
 
                 case QUERY_TYPE_TV_RECOMMENDATIONS:
                     header = getString(R.string.recommendations_tv_shows);
-                    viewModel.getTVRecommendations(mediaId).observe(this, tvResponse -> {
-                        List<MediaEntity> mediaList = tvEntitiesToMediaList(
-                                tvResponse.getResults());
-                        adapter.setData(mediaList);
+                    viewModel.getTVRecommendations(mediaId).observe(this, result -> {
+                        adapter.setData(result);
                         shimmer.hide();
                     });
                     break;
@@ -237,10 +205,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
     private void performQuery(String query){
         binding.tvHeader.setText(R.string.search);
         shimmer.show();
-        viewModel.getMultiSearch(query).observe(this, multiSearchResponse -> {
-            List<MediaEntity> mediaList = searchResultEntitiesToMediaList(
-                    multiSearchResponse.getResults());
-            adapter.setData(mediaList);
+        viewModel.getMultiSearch(query).observe(this, result -> {
+            adapter.setData(result);
             shimmer.hide();
         });
     }

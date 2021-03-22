@@ -1,22 +1,20 @@
 package com.ariefzuhri.blu.data.source.remote.response;
 
-import java.util.List;
-
 import com.google.gson.annotations.SerializedName;
 
-public class VideosResponse{
+public class GenreItem {
+
+	@SerializedName("name")
+	private String name;
 
 	@SerializedName("id")
 	private int id;
 
-	@SerializedName("results")
-	private List<VideoItem> results;
+	public String getName(){
+		return name;
+	}
 
 	public int getId(){
 		return id;
-	}
-
-	public List<VideoItem> getResults(){
-		return results;
 	}
 }

@@ -134,7 +134,7 @@ public interface ApiService {
             @Query("api_key") String apiKey
     );
 
-    /* VideoEntity */
+    /* VideoItem */
     @GET("{media_type}/{media_id}/videos")
     Call<VideosResponse> getVideos(
             @Path("media_type") String mediaType,

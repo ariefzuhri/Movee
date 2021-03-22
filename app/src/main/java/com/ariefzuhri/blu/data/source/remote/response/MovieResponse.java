@@ -2,7 +2,6 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.source.remote.entity.MovieEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class MovieResponse {
@@ -14,7 +13,7 @@ public class MovieResponse {
 	private int totalPages;
 
 	@SerializedName("results")
-	private List<MovieEntity> results;
+	private List<MovieItem> results;
 
 	@SerializedName("total_results")
 	private int totalResults;
@@ -27,7 +26,7 @@ public class MovieResponse {
 		return totalPages;
 	}
 
-	public List<MovieEntity> getResults(){
+	public List<MovieItem> getResults(){
 		return results;
 	}
 

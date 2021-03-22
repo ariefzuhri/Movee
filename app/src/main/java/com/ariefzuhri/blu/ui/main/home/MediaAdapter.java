@@ -11,7 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
+import com.ariefzuhri.blu.data.GenreEntity;
 import com.ariefzuhri.blu.databinding.ItemMediaHorizBinding;
 import com.ariefzuhri.blu.databinding.ItemMediaVertBinding;
 import com.ariefzuhri.blu.data.MediaEntity;

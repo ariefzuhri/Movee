@@ -1,9 +1,9 @@
-package com.ariefzuhri.blu.data.source.remote.entity;
+package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class MovieEntity {
+public class MovieItem {
 
 	@SerializedName("overview")
 	private String overview;

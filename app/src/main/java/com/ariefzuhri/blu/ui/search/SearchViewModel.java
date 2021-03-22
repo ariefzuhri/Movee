@@ -3,11 +3,11 @@ package com.ariefzuhri.blu.ui.search;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.data.source.CatalogRepository;
-import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.blu.data.source.remote.response.MovieResponse;
-import com.ariefzuhri.blu.data.source.remote.response.MultiSearchResponse;
-import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
+
+import java.util.List;
 
 public class SearchViewModel extends ViewModel {
 
@@ -23,63 +23,63 @@ public class SearchViewModel extends ViewModel {
         this.page = page;
     }
 
-    public LiveData<MultiSearchResponse> getMultiSearch(String query){
+    public LiveData<List<MediaEntity>> getMultiSearch(String query){
         return repository.getMultiSearch(query, page);
     }
 
-    public LiveData<GenresResponse> getGenres(String mediaType) {
+    public LiveData<List<GenreEntity>> getGenres(String mediaType) {
         return repository.getGenres(mediaType);
     }
 
-    public LiveData<MovieResponse> getMovieTrending(){
+    public LiveData<List<MediaEntity>> getMovieTrending(){
         return repository.getMovieTrending(page);
     }
 
-    public LiveData<TVResponse> getTVTrending(){
+    public LiveData<List<MediaEntity>> getTVTrending(){
         return repository.getTVTrending(page);
     }
 
-    public LiveData<MovieResponse> getMovieLatestRelease(){
+    public LiveData<List<MediaEntity>> getMovieLatestRelease(){
         return repository.getMovieLatestRelease(page);
     }
 
-    public LiveData<TVResponse> getTVLatestRelease(){
+    public LiveData<List<MediaEntity>> getTVLatestRelease(){
         return repository.getTVLatestRelease(page);
     }
 
-    public LiveData<MovieResponse> getMovieNowPlaying(){
+    public LiveData<List<MediaEntity>> getMovieNowPlaying(){
         return repository.getMovieNowPlaying(page);
     }
 
-    public LiveData<TVResponse> getTVOnTheAir(){
+    public LiveData<List<MediaEntity>> getTVOnTheAir(){
         return repository.getTVOnTheAir(page);
     }
 
-    public LiveData<MovieResponse> getMovieUpcoming(){
+    public LiveData<List<MediaEntity>> getMovieUpcoming(){
         return repository.getMovieUpcoming(page);
     }
 
-    public LiveData<MovieResponse> getMovieTopRated(){
+    public LiveData<List<MediaEntity>> getMovieTopRated(){
         return repository.getMovieTopRated(page);
     }
 
-    public LiveData<TVResponse> getTVTopRated(){
+    public LiveData<List<MediaEntity>> getTVTopRated(){
         return repository.getTVTopRated(page);
     }
 
-    public LiveData<MovieResponse> getMoviePopular(){
+    public LiveData<List<MediaEntity>> getMoviePopular(){
         return repository.getMoviePopular(page);
     }
 
-    public LiveData<TVResponse> getTVPopular(){
+    public LiveData<List<MediaEntity>> getTVPopular(){
         return repository.getTVPopular(page);
     }
 
-    public LiveData<MovieResponse> getMovieRecommendations(int movieId){
+    public LiveData<List<MediaEntity>> getMovieRecommendations(int movieId){
         return repository.getMovieRecommendations(movieId, page);
     }
 
-    public LiveData<TVResponse> getTVRecommendations(int tvId){
+    public LiveData<List<MediaEntity>> getTVRecommendations(int tvId){
         return repository.getTVRecommendations(tvId, page);
     }
 }

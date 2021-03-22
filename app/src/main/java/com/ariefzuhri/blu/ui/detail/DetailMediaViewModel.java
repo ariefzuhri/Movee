@@ -3,14 +3,13 @@ package com.ariefzuhri.blu.ui.detail;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.ariefzuhri.blu.data.CreditEntity;
+import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.TrailerEntity;
 import com.ariefzuhri.blu.data.source.CatalogRepository;
-import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
-import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.blu.data.source.remote.response.MovieDetailsResponse;
-import com.ariefzuhri.blu.data.source.remote.response.MovieResponse;
-import com.ariefzuhri.blu.data.source.remote.response.TVDetailsResponse;
-import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
-import com.ariefzuhri.blu.data.source.remote.response.VideosResponse;
+
+import java.util.List;
 
 public class DetailMediaViewModel extends ViewModel {
     private final CatalogRepository repository;
@@ -27,31 +26,31 @@ public class DetailMediaViewModel extends ViewModel {
         this.mediaId = mediaId;
     }
 
-    public LiveData<MovieDetailsResponse> getMovieDetails(){
+    public LiveData<MediaEntity> getMovieDetails(){
         return repository.getMovieDetails(mediaId);
     }
 
-    public LiveData<TVDetailsResponse> getTVDetails(){
+    public LiveData<MediaEntity> getTVDetails(){
         return repository.getTVDetails(mediaId);
     }
 
-    public LiveData<VideosResponse> getVideos(){
+    public LiveData<List<TrailerEntity>> getVideos(){
         return repository.getVideos(mediaType, mediaId);
     }
 
-    public LiveData<CreditsResponse> getCredits(){
+    public LiveData<CreditEntity> getCredits(){
         return repository.getCredits(mediaType, mediaId);
     }
 
-    public LiveData<MovieResponse> getMovieRecommendations(){
+    public LiveData<List<MediaEntity>> getMovieRecommendations(){
         return repository.getMovieRecommendations(mediaId, 1);
     }
 
-    public LiveData<TVResponse> getTVRecommendations(){
+    public LiveData<List<MediaEntity>> getTVRecommendations(){
         return repository.getTVRecommendations(mediaId, 1);
     }
 
-    public LiveData<GenresResponse> getGenres() {
+    public LiveData<List<GenreEntity>> getGenres() {
         return repository.getGenres(mediaType);
     }
 }
