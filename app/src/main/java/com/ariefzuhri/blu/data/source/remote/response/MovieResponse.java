@@ -2,7 +2,7 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.entity.MovieEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MovieEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class MovieResponse {

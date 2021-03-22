@@ -1,15 +1,15 @@
-package com.ariefzuhri.blu.data.entity;
+package com.ariefzuhri.blu.data.source.remote.entity;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;
 
-public class SearchResultEntity {
+public class TVEntity {
+
+	@SerializedName("first_air_date")
+	private String firstAirDate;
 
 	@SerializedName("overview")
 	private String overview;
-
-	@SerializedName("title")
-	private String title;
 
 	@SerializedName("genre_ids")
 	private List<Integer> genreIds;
@@ -20,17 +20,14 @@ public class SearchResultEntity {
 	@SerializedName("backdrop_path")
 	private String backdropPath;
 
-	@SerializedName("media_type")
-	private String mediaType;
-
-	@SerializedName("release_date")
-	private String releaseDate;
-
 	@SerializedName("popularity")
 	private double popularity;
 
 	@SerializedName("vote_average")
 	private double voteAverage;
+
+	@SerializedName("name")
+	private String name;
 
 	@SerializedName("id")
 	private int id;
@@ -38,20 +35,12 @@ public class SearchResultEntity {
 	@SerializedName("vote_count")
 	private int voteCount;
 
-	@SerializedName("first_air_date")
-	private String firstAirDate;
-
-	private String originalName;
-
-	@SerializedName("name")
-	private String name;
+	public String getFirstAirDate(){
+		return firstAirDate;
+	}
 
 	public String getOverview(){
 		return overview;
-	}
-
-	public String getTitle(){
-		return title;
 	}
 
 	public List<Integer> getGenreIds(){
@@ -66,14 +55,6 @@ public class SearchResultEntity {
 		return backdropPath;
 	}
 
-	public String getMediaType(){
-		return mediaType;
-	}
-
-	public String getReleaseDate(){
-		return releaseDate;
-	}
-
 	public double getPopularity(){
 		return popularity;
 	}
@@ -82,23 +63,15 @@ public class SearchResultEntity {
 		return voteAverage;
 	}
 
+	public String getName(){
+		return name;
+	}
+
 	public int getId(){
 		return id;
 	}
 
 	public int getVoteCount(){
 		return voteCount;
-	}
-
-	public String getFirstAirDate(){
-		return firstAirDate;
-	}
-
-	public String getOriginalName(){
-		return originalName;
-	}
-
-	public String getName(){
-		return name;
 	}
 }

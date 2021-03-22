@@ -61,8 +61,8 @@ public interface ApiService {
     @GET("discover/tv")
     Call<TVResponse> getTVLatestRelease(
             @Query("api_key") String apiKey,
-            @Query("primary_release_date.gte") String todaysDateGTE,
-            @Query("primary_release_date.lte") String todaysDateLTE,
+            @Query("first_air_date.gte") String todaysDateGTE,
+            @Query("first_air_date.lte") String todaysDateLTE,
             @Query("page") int page
     );
 
@@ -138,7 +138,7 @@ public interface ApiService {
     @GET("{media_type}/{media_id}/videos")
     Call<VideosResponse> getVideos(
             @Path("media_type") String mediaType,
-            @Path("id") int mediaId,
+            @Path("media_id") int mediaId,
             @Query("api_key") String apiKey
     );
 
@@ -146,7 +146,7 @@ public interface ApiService {
     @GET("{media_type}/{media_id}/credits")
     Call<CreditsResponse> getCredits(
             @Path("media_type") String mediaType,
-            @Path("id") int mediaId,
+            @Path("media_id") int mediaId,
             @Query("api_key") String apiKey
     );
 }

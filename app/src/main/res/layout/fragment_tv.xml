@@ -4,8 +4,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.tv.TVFragment"
+    tools:context=".ui.main.home.tv.TVFragment"
     android:orientation="vertical">
 
-    <include layout="@layout/layout_media"/>
+    <include
+        android:id="@+id/layout_media"
+        layout="@layout/layout_media"/>
 </LinearLayout>

@@ -14,11 +14,9 @@
         <!-- Customize your theme here. -->
         <item name="fontFamily">@font/poppins_regular</item>
         <item name="android:fontFamily">@font/poppins_regular</item>
-    </style>
-
-    <style name="Theme.BLU.NoActionBar">
-        <item name="windowActionBar">false</item>
-        <item name="windowNoTitle">true</item>
+        <item name="android:textColorPrimary">@color/black</item>
+        <item name="android:textColorSecondary">@color/gray_dark</item>
+        <item name="android:textSize">@dimen/font_nm</item>
     </style>
 
     <style name="Theme.BLU.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />

@@ -2,8 +2,8 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.entity.CastEntity;
-import com.ariefzuhri.blu.data.entity.CrewEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CastEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CrewEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class CreditsResponse{

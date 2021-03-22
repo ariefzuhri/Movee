@@ -7,13 +7,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".ui.main.MainActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        app:layout_collapseMode="pin"
+        app:popupTheme="@style/Theme.BLU.PopupOverlay"
+        app:title="@string/app_name"
+        app:titleTextColor="@color/white"
+        android:background="@color/blue"
+        android:layout_alignParentTop="true"/>
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/bottom_bar"
-        android:layout_alignParentTop="true"
-        android:overScrollMode="never"/>
+        android:overScrollMode="never"
+        android:layout_below="@+id/toolbar"/>
 
     <com.fxn.BubbleTabBar
         android:id="@+id/bottom_bar"

@@ -2,7 +2,7 @@ package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
 
-import com.ariefzuhri.blu.data.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.GenreEntity;
 import com.google.gson.annotations.SerializedName;
 
 public class GenresResponse{

@@ -18,7 +18,8 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-import static com.ariefzuhri.blu.utils.Constants.API_KEY;
+import static com.ariefzuhri.blu.BuildConfig.TMDB_API_KEY;
+import static com.ariefzuhri.blu.utils.DateUtils.getCurrentDate;
 
 public class RemoteDataSource {
 
@@ -35,7 +36,7 @@ public class RemoteDataSource {
     }
 
     public final void getMultiSearch(String query, int page, LoadMultiSearchCallback callback){
-        Call<MultiSearchResponse> client = ApiConfig.getApiService().getMultiSearch(API_KEY, query, page);
+        Call<MultiSearchResponse> client = ApiConfig.getApiService().getMultiSearch(TMDB_API_KEY, query, page);
         client.enqueue(new Callback<MultiSearchResponse>() {
             @Override
             public void onResponse(@NotNull Call<MultiSearchResponse> call, @NotNull Response<MultiSearchResponse> response) {
@@ -43,7 +44,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMultiSearchReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -54,7 +55,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieDetails(int movieId, LoadMovieDetailsCallback callback){
-        Call<MovieDetailsResponse> client = ApiConfig.getApiService().getMovieDetails(movieId, API_KEY);
+        Call<MovieDetailsResponse> client = ApiConfig.getApiService().getMovieDetails(movieId, TMDB_API_KEY);
         client.enqueue(new Callback<MovieDetailsResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieDetailsResponse> call, @NotNull Response<MovieDetailsResponse> response) {
@@ -62,7 +63,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieDetailsReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -73,7 +74,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVDetails(int tvId, LoadTVDetailsCallback callback){
-        Call<TVDetailsResponse> client = ApiConfig.getApiService().getTVDetails(tvId, API_KEY);
+        Call<TVDetailsResponse> client = ApiConfig.getApiService().getTVDetails(tvId, TMDB_API_KEY);
         client.enqueue(new Callback<TVDetailsResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVDetailsResponse> call, @NotNull Response<TVDetailsResponse> response) {
@@ -81,7 +82,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVDetailsReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -92,7 +93,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieTrending(int page, LoadMovieTrendingCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieTrending(API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieTrending(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -100,7 +101,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieTrendingReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -111,7 +112,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVTrending(int page, LoadTVTrendingCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVTrending(API_KEY, page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVTrending(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -119,7 +120,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVTrendingReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -130,7 +131,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieLatestRelease(int page, LoadMovieLatestReleaseCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieLatestRelease(API_KEY, "2021-03-16", "2021-03-16", page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieLatestRelease(TMDB_API_KEY, getCurrentDate(),  getCurrentDate(), page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -138,7 +139,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieLatestReleaseReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -149,7 +150,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVLatestRelease(int page, LoadTVLatestReleaseCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVLatestRelease(API_KEY, "2021-03-16", "2021-03-16", page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVLatestRelease(TMDB_API_KEY,  getCurrentDate(),  getCurrentDate(), page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -157,7 +158,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVLatestReleaseReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -168,7 +169,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieNowPlaying(int page, LoadMovieNowPlayingCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieNowPlaying(API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieNowPlaying(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -176,7 +177,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieNowPlayingReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -187,7 +188,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVOnTheAir(int page, LoadTVOnTheAirCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVOnTheAir(API_KEY, page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVOnTheAir(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -195,7 +196,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVOnTheAirReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -206,7 +207,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieUpcoming(int page, LoadMovieUpcomingCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieUpcoming(API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieUpcoming(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -214,7 +215,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieUpcomingReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -225,7 +226,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieTopRated(int page, LoadMovieTopRatedCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieTopRated(API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieTopRated(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -233,7 +234,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieTopRatedReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -244,7 +245,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVTopRated(int page, LoadTVTopRatedCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVTopRated(API_KEY, page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVTopRated(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -252,7 +253,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVTopRatedReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -263,7 +264,7 @@ public class RemoteDataSource {
     }
 
     public final void getMoviePopular(int page, LoadMoviePopularCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMoviePopular(API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMoviePopular(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -271,7 +272,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMoviePopularReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -282,7 +283,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVPopular(int page, LoadTVPopularCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVPopular(API_KEY, page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVPopular(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -290,7 +291,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVPopularReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -301,7 +302,7 @@ public class RemoteDataSource {
     }
 
     public final void getMovieRecommendations(int movieId, int page, LoadMovieRecommendationsCallback callback){
-        Call<MovieResponse> client = ApiConfig.getApiService().getMovieRecommendations(movieId, API_KEY, page);
+        Call<MovieResponse> client = ApiConfig.getApiService().getMovieRecommendations(movieId, TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
             @Override
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
@@ -309,7 +310,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onMovieRecommendationsReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -320,7 +321,7 @@ public class RemoteDataSource {
     }
 
     public final void getTVRecommendations(int tvId, int page, LoadTVRecommendationsCallback callback){
-        Call<TVResponse> client = ApiConfig.getApiService().getTVRecommendations(tvId, API_KEY, page);
+        Call<TVResponse> client = ApiConfig.getApiService().getTVRecommendations(tvId, TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
             @Override
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
@@ -328,7 +329,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onTVRecommendationsReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -339,7 +340,7 @@ public class RemoteDataSource {
     }
 
     public final void getGenres(String mediaType, LoadGenresCallback callback){
-        Call<GenresResponse> client = ApiConfig.getApiService().getGenres(mediaType, API_KEY);
+        Call<GenresResponse> client = ApiConfig.getApiService().getGenres(mediaType, TMDB_API_KEY);
         client.enqueue(new Callback<GenresResponse>() {
             @Override
             public void onResponse(@NotNull Call<GenresResponse> call, @NotNull Response<GenresResponse> response) {
@@ -347,7 +348,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onGenresReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -358,7 +359,7 @@ public class RemoteDataSource {
     }
 
     public final void getVideos(String mediaType, int mediaId, LoadVideosCallback callback){
-        Call<VideosResponse> client = ApiConfig.getApiService().getVideos(mediaType, mediaId, API_KEY);
+        Call<VideosResponse> client = ApiConfig.getApiService().getVideos(mediaType, mediaId, TMDB_API_KEY);
         client.enqueue(new Callback<VideosResponse>() {
             @Override
             public void onResponse(@NotNull Call<VideosResponse> call, @NotNull Response<VideosResponse> response) {
@@ -366,7 +367,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onVideosReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override
@@ -377,7 +378,7 @@ public class RemoteDataSource {
     }
 
     public final void getCredits(String mediaType, int mediaId, LoadCreditsCallback callback){
-        Call<CreditsResponse> client = ApiConfig.getApiService().getCredits(mediaType, mediaId, API_KEY);
+        Call<CreditsResponse> client = ApiConfig.getApiService().getCredits(mediaType, mediaId, TMDB_API_KEY);
         client.enqueue(new Callback<CreditsResponse>() {
             @Override
             public void onResponse(@NotNull Call<CreditsResponse> call, @NotNull Response<CreditsResponse> response) {
@@ -385,7 +386,7 @@ public class RemoteDataSource {
                     if (response.body() != null){
                         callback.onCreditsReceived(response.body());
                     }
-                } else Log.e(TAG, "onFailure: ${response.message()}");
+                } else Log.e(TAG, "onFailure: " + response.message());
             }
 
             @Override

@@ -1,4 +1,4 @@
-package com.ariefzuhri.blu.data.entity;
+package com.ariefzuhri.blu.data.source.remote.entity;
 
 import java.util.List;
 import com.google.gson.annotations.SerializedName;

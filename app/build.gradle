@@ -16,6 +16,8 @@ android {
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         vectorDrawables.useSupportLibrary = true
+
+        buildConfigField("String" , "TMDB_API_KEY" , '"***REMOVED***"')
     }
 
     buildTypes {

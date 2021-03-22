@@ -1,190 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
+<androidx.core.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:fitsSystemWindows="true"
-    tools:context=".ui.discover.DiscoverFragment"
-    android:background="@drawable/bg_layout_main">
+    tools:context=".ui.main.discover.DiscoverFragment">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:id="@+id/app_bar"
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fitsSystemWindows="true"
-        android:theme="@style/Theme.BLU.AppBarOverlay"
-        android:background="@android:color/transparent">
-
-        <com.google.android.material.appbar.CollapsingToolbarLayout
-            android:id="@+id/toolbar_layout"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:fitsSystemWindows="true"
-            app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
-            app:toolbarId="@+id/toolbar">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="220dp">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:orientation="vertical"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_margin="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/discover_tagline"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/font_md"
-                        android:textStyle="bold"
-                        android:layout_marginBottom="16dp"/>
-
-                    <androidx.appcompat.widget.SearchView
-                        android:id="@+id/search_view"
-                        style="@style/SearchView"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        app:queryHint="Search movies or tv shows..." />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </com.google.android.material.appbar.CollapsingToolbarLayout>
-    </com.google.android.material.appbar.AppBarLayout>
-
-    <androidx.core.widget.NestedScrollView
-        style="@style/ScrollView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:fillViewport="true"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior">
+        android:orientation="vertical"
+        android:background="@color/white">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="180dp"
             android:orientation="vertical"
-            android:background="@color/white">
+            android:background="@color/blue"
+            android:paddingHorizontal="16dp"
+            android:paddingTop="24dp">
 
-            <com.google.android.material.chip.ChipGroup
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
+                android:text="@string/discover_tagline"
+                android:textColor="@color/white"
+                android:textSize="@dimen/font_md"
+                android:textStyle="bold"
+                android:layout_marginBottom="16dp"
+                android:textAlignment="center"
+                android:layout_gravity="center_horizontal"/>
+
+            <androidx.appcompat.widget.SearchView
+                android:id="@+id/search_view"
+                style="@style/SearchView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:queryHint="Search movies or tv shows..."
+                android:inputType="textCapWords"/>
+        </LinearLayout>
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none">
+
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/cg_category"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:paddingHorizontal="16dp"
                 app:chipSpacingHorizontal="8dp"
                 app:singleLine="true"
-                android:scrollbars="none"
-                android:clipToPadding="true">
+                android:clipToPadding="false"
+                app:singleSelection="true"
+                app:selectionRequired="true">
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_popular"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/popular" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_upcoming"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/upcoming" />
 
                 <com.google.android.material.chip.Chip
-                    android:id="@+id/chip_top_rated"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/top_rated" />
-
-                <com.google.android.material.chip.Chip
                     android:id="@+id/chip_latest_release"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/latest_release" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip_top_rated"
+                    style="@style/Widget.MaterialComponents.Chip.Choice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/top_rated" />
             </com.google.android.material.chip.ChipGroup>
+        </HorizontalScrollView>
 
-            <LinearLayout
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="4dp">
+
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical">
+                android:paddingHorizontal="16dp">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
+                <TextView
+                    android:id="@+id/tv_movie"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="16dp">
+                    android:layout_alignParentStart="true"
+                    android:drawablePadding="8dp"
+                    android:text="@string/loading"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/font_nm"
+                    app:drawableStartCompat="@drawable/ic_movie_tag"
+                    android:layout_toStartOf="@+id/tv_view_more_movie"
+                    android:layout_marginEnd="8dp" />
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:drawablePadding="8dp"
-                        android:text="@string/loading"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/font_nm"
-                        app:drawableStartCompat="@drawable/ic_movie_tag" />
+                <TextView
+                    android:id="@+id/tv_view_more_movie"
+                    style="@style/ClickableTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/view_more"
+                    android:textSize="@dimen/font_sm"/>
+            </RelativeLayout>
 
-                    <TextView
-                        android:id="@+id/view_more_movie"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@string/view_more"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/font_sm" />
-                </RelativeLayout>
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_movie"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/shimmer_layout_media_horiz"/>
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_movie"
+                    android:id="@+id/rv_movie"
                     style="@style/RecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:paddingHorizontal="16dp" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/layout_tv"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical">
-
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentStart="true"
-                        android:drawablePadding="8dp"
-                        android:text="@string/loading"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/font_nm"
-                        app:drawableStartCompat="@drawable/ic_tv_tag" />
-
-                    <TextView
-                        android:id="@+id/view_more_tv"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:text="@string/view_more"
-                        android:textColor="@color/blue"
-                        android:textSize="@dimen/font_sm" />
-                </RelativeLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/recycler_view_tv"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp" />
-            </LinearLayout>
+            </FrameLayout>
         </LinearLayout>
-    </androidx.core.widget.NestedScrollView>
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+        <LinearLayout
+            android:id="@+id/layout_tv"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginVertical="4dp">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="16dp">
+
+                <TextView
+                    android:id="@+id/tv_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:drawablePadding="8dp"
+                    android:text="@string/loading"
+                    android:textColor="@color/blue"
+                    android:textSize="@dimen/font_nm"
+                    app:drawableStartCompat="@drawable/ic_tv_tag"
+                    android:layout_toStartOf="@+id/tv_view_more_tv"
+                    android:layout_marginEnd="8dp"/>
+
+                <TextView
+                    android:id="@+id/tv_view_more_tv"
+                    style="@style/ClickableTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:text="@string/view_more"
+                    android:textSize="@dimen/font_sm"/>
+            </RelativeLayout>
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_tv"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+                    <include layout="@layout/shimmer_layout_media_horiz"/>
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rv_tv"
+                    style="@style/RecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="16dp" />
+            </FrameLayout>
+        </LinearLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

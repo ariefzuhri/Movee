@@ -1,6 +1,5 @@
 package com.ariefzuhri.blu.ui.detail;
 
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
@@ -10,19 +9,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.ariefzuhri.blu.databinding.ItemGenreBinding;
 
 import java.util.ArrayList;
-import java.util.Arrays;
+import java.util.List;
 
 public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> {
     private final ArrayList<String> genreList = new ArrayList<>();
-    private final int textSize;
 
-    public GenreAdapter(int textSize){
-        this.textSize = textSize;
-    }
-
-    public void setData(String[] genreList){
+    public void setData(List<String> genreList){
         this.genreList.clear();
-        this.genreList.addAll(Arrays.asList(genreList));
+        this.genreList.addAll(genreList);
         notifyDataSetChanged();
     }
 
@@ -44,7 +38,7 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
         return genreList.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder {
         private final ItemGenreBinding binding;
 
         public ViewHolder(@NonNull ItemGenreBinding binding) {
@@ -54,8 +48,6 @@ public class GenreAdapter extends RecyclerView.Adapter<GenreAdapter.ViewHolder> 
 
         public void bind(String genre) {
             binding.tvName.setText(genre);
-                binding.tvName.setTextSize(TypedValue.COMPLEX_UNIT_PX, itemView.getContext()
-                    .getResources().getDimension(textSize));
         }
     }
 }

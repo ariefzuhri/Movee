@@ -13,14 +13,35 @@
     <string name="movie">Movie</string>
     <string name="tv">TV Show</string>
     <string name="series">Series</string>
-    <string name="finished">Finished</string>
-    <string name="currently">Currently</string>
-    <string name="not_yet">Not yet</string>
     <string name="app_tagline">Movie Catalog</string>
     <string name="loading_number">0</string>
-    <string name="action_settings">Settings</string>
-    <string name="view_more">View more</string>
+    <string name="view_more">View more&#160;</string>
+    <string name="recommendation">Recommendation</string>
+    <string name="discover_tagline">Discover your new shows</string>
+    <string name="popular">Popular</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="top_rated">Top rated</string>
+    <string name="latest_release">Latest release</string>
+    <string name="now_playing">Watch now</string>
+    <string name="trending">Trends today</string>
+    <string name="discover">Discover</string>
+    <string name="hint_empty_trailer">No trailer available yet</string>
+    <string name="trending_movies">Trending movies</string>
+    <string name="latest_release_movies">Latest release movies</string>
+    <string name="now_playing_movies">Watch now</string>
+    <string name="upcoming_movies">Upcoming movies</string>
+    <string name="top_rated_movies">Top rated movies</string>
+    <string name="popular_movies">Popular movies</string>
+    <string name="recommendations_movies">Recommendations</string>
+    <string name="trending_tv_shows">Trending tv shows</string>
+    <string name="latest_release_tv_shows">Latest release tv shows</string>
+    <string name="on_the_air_tv_shows">On the air tv shows</string>
+    <string name="top_rated_tv_shows">Top rated tv shows</string>
+    <string name="popular_tv_shows">Popular tv shows</string>
+    <string name="recommendations_tv_shows">Recommendations</string>
+    <string name="search">Search</string>
 
+    <string name="action_settings">Settings</string>
     <string name="title_activity_dummy_scrolling">ScrollingActivity</string>
     <string name="large_text">
         "Material is the metaphor.\n\n"
@@ -111,13 +132,4 @@
         "For example, position the FAB to one side of stream of a cards so the FAB won’t interfere "
         "when a user tries to pick up one of cards.\n\n"
     </string>
-    <string name="recommendation">Recommendation</string>
-    <string name="discover_tagline">Discover your favorite shows</string>
-    <string name="popular">Popular</string>
-    <string name="upcoming">Upcoming</string>
-    <string name="top_rated">Top rated</string>
-    <string name="latest_release">Latest release</string>
-    <string name="watch_now">Watch now</string>
-    <string name="trending">Trends today</string>
-    <string name="discover">Discover</string>
 </resources>
