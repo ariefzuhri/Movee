@@ -4,22 +4,37 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
-import com.ariefzuhri.blu.data.CreditEntity;
+import com.ariefzuhri.blu.data.AiredDateEntity;
+import com.ariefzuhri.blu.data.CastEntity;
+import com.ariefzuhri.blu.data.CreditsEntity;
+import com.ariefzuhri.blu.data.CrewEntity;
 import com.ariefzuhri.blu.data.GenreEntity;
 import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.StudioEntity;
 import com.ariefzuhri.blu.data.TrailerEntity;
 import com.ariefzuhri.blu.data.source.remote.RemoteDataSource;
+import com.ariefzuhri.blu.data.source.remote.response.CastItem;
+import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
+import com.ariefzuhri.blu.data.source.remote.response.CrewItem;
+import com.ariefzuhri.blu.data.source.remote.response.GenreItem;
+import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
+import com.ariefzuhri.blu.data.source.remote.response.MovieDetailsResponse;
+import com.ariefzuhri.blu.data.source.remote.response.MovieItem;
+import com.ariefzuhri.blu.data.source.remote.response.MovieResponse;
+import com.ariefzuhri.blu.data.source.remote.response.MultiSearchResponse;
+import com.ariefzuhri.blu.data.source.remote.response.ProductionCompanyItem;
+import com.ariefzuhri.blu.data.source.remote.response.SearchResultItem;
+import com.ariefzuhri.blu.data.source.remote.response.TVDetailsResponse;
+import com.ariefzuhri.blu.data.source.remote.response.TVItem;
+import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
+import com.ariefzuhri.blu.data.source.remote.response.VideoItem;
+import com.ariefzuhri.blu.data.source.remote.response.VideosResponse;
 
+import java.util.ArrayList;
 import java.util.List;
 
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.creditsResponseToCredit;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.genreResponseToGenreList;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.movieDetailsResponseToMedia;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.movieResponseToMediaList;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.multiSearchResponseToMediaList;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.tvDetailsResponseToMedia;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.tvResponsesToMediaList;
-import static com.ariefzuhri.blu.data.source.CatalogRepositoryHelper.videosResponseToTrailerList;
+import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
+import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 
 public class CatalogRepository implements CatalogDataSource {
 
@@ -223,12 +238,199 @@ public class CatalogRepository implements CatalogDataSource {
     }
 
     @Override
-    public LiveData<CreditEntity> getCredits(String mediaType, int mediaId) {
-        MutableLiveData<CreditEntity> result = new MutableLiveData<>();
+    public LiveData<CreditsEntity> getCredits(String mediaType, int mediaId) {
+        MutableLiveData<CreditsEntity> result = new MutableLiveData<>();
         remoteDataSource.getCredits(mediaType, mediaId, response -> {
-            CreditEntity credit = creditsResponseToCredit(response);
+            CreditsEntity credit = creditsResponseToCredit(response);
             result.postValue(credit);
         });
         return result;
+    }
+
+    /* Untuk konversi */
+    private MediaEntity movieItemToMedia(MovieItem item){
+        return new MediaEntity(item.getId(),
+                item.getTitle(),
+                item.getPosterPath(),
+                item.getBackdropPath(),
+                item.getVoteAverage(),
+                item.getVoteCount(),
+                item.getPopularity(),
+                MEDIA_TYPE_MOVIE,
+                new AiredDateEntity(item.getReleaseDate()),
+                item.getGenreIds(),
+                item.getOverview());
+    }
+
+    private MediaEntity tvItemToMedia(TVItem item){
+        return new MediaEntity(item.getId(),
+                item.getName(),
+                item.getPosterPath(),
+                item.getBackdropPath(),
+                item.getVoteAverage(),
+                item.getVoteCount(),
+                item.getPopularity(),
+                MEDIA_TYPE_TV,
+                new AiredDateEntity(item.getFirstAirDate(), null),
+                item.getGenreIds(),
+                item.getOverview());
+    }
+
+    private List<MediaEntity> movieResponseToMediaList(MovieResponse response){
+        List<MediaEntity> mediaList = new ArrayList<>();
+        for (MovieItem movie : response.getResults()){
+            mediaList.add(movieItemToMedia(movie));
+        }
+        return mediaList;
+    }
+
+    private List<MediaEntity> tvResponsesToMediaList(TVResponse response){
+        List<MediaEntity> mediaList = new ArrayList<>();
+        for (TVItem tv : response.getResults()){
+            mediaList.add(tvItemToMedia(tv));
+        }
+        return mediaList;
+    }
+
+    private List<MediaEntity> multiSearchResponseToMediaList(MultiSearchResponse response){
+        List<MediaEntity> mediaList = new ArrayList<>();
+        for (SearchResultItem searchResult : response.getResults()){
+            if (searchResult.getMediaType().equals(MEDIA_TYPE_MOVIE)){
+                mediaList.add(new MediaEntity(searchResult.getId(),
+                        searchResult.getTitle(),
+                        searchResult.getPosterPath(),
+                        searchResult.getBackdropPath(),
+                        searchResult.getVoteAverage(),
+                        searchResult.getVoteCount(),
+                        searchResult.getPopularity(),
+                        MEDIA_TYPE_MOVIE,
+                        new AiredDateEntity(searchResult.getReleaseDate()),
+                        searchResult.getGenreIds(),
+                        searchResult.getOverview()));
+            } else if (searchResult.getMediaType().equals(MEDIA_TYPE_TV)){
+                mediaList.add(new MediaEntity(searchResult.getId(),
+                        searchResult.getName(),
+                        searchResult.getPosterPath(),
+                        searchResult.getBackdropPath(),
+                        searchResult.getVoteAverage(),
+                        searchResult.getVoteCount(),
+                        searchResult.getPopularity(),
+                        MEDIA_TYPE_TV,
+                        new AiredDateEntity(searchResult.getFirstAirDate(), null),
+                        searchResult.getGenreIds(),
+                        searchResult.getOverview()));
+            }
+        }
+        return mediaList;
+    }
+
+    private MediaEntity movieDetailsResponseToMedia(MovieDetailsResponse response){
+        List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
+        List<StudioEntity> studioList = productionCompaniesItemToStudioList(
+                response.getProductionCompanies()
+        );
+
+        return new MediaEntity(response.getId(),
+                response.getTitle(),
+                response.getPosterPath(),
+                response.getBackdropPath(),
+                response.getVoteAverage(),
+                response.getVoteCount(),
+                response.getPopularity(),
+                MEDIA_TYPE_MOVIE,
+                1,
+                response.getStatus(),
+                new AiredDateEntity(response.getReleaseDate()),
+                studioList,
+                genreList,
+                response.getRuntime(),
+                response.getOverview(),
+                null);
+    }
+
+    private MediaEntity tvDetailsResponseToMedia(TVDetailsResponse response){
+        List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
+        List<StudioEntity> studioList = productionCompaniesItemToStudioList(
+                response.getProductionCompanies()
+        );
+
+        return new MediaEntity(response.getId(),
+                response.getName(),
+                response.getPosterPath(),
+                response.getBackdropPath(),
+                response.getVoteAverage(),
+                response.getVoteCount(),
+                response.getPopularity(),
+                MEDIA_TYPE_TV,
+                response.getNumberOfEpisodes(),
+                response.getStatus(),
+                new AiredDateEntity(response.getFirstAirDate(), response.getLastAirDate()),
+                studioList,
+                genreList,
+                (response.getEpisodeRunTime().isEmpty()) ? 0 : response.getEpisodeRunTime().get(0),
+                response.getOverview(),
+                null);
+    }
+
+    private List<StudioEntity> productionCompaniesItemToStudioList(List<ProductionCompanyItem> items){
+        List<StudioEntity> studioList = new ArrayList<>();
+        for (ProductionCompanyItem studio : items){
+            studioList.add(new StudioEntity(studio.getId(), studio.getName(), studio.getLogoPath()));
+        }
+        return studioList;
+    }
+
+    private List<GenreEntity> genresItemToGenreList(List<GenreItem> items){
+        List<GenreEntity> genreList = new ArrayList<>();
+        for (GenreItem genre : items){
+            genreList.add(new GenreEntity(genre.getId(), genre.getName()));
+        }
+        return genreList;
+    }
+
+    private List<GenreEntity> genreResponseToGenreList(GenresResponse response){
+        List<GenreEntity> genreList = new ArrayList<>();
+        for (GenreItem genre : response.getGenres()) {
+            genreList.add(new GenreEntity(genre.getId(), genre.getName()));
+        }
+        return genreList;
+    }
+
+    private List<TrailerEntity> videosResponseToTrailerList(VideosResponse response){
+        List<TrailerEntity> trailerList = new ArrayList<>();
+        for (VideoItem video : response.getResults()) {
+            trailerList.add(new TrailerEntity(video.getId(),
+                    video.getName(),
+                    video.getSite(),
+                    video.getType(),
+                    video.getKey())
+            );
+        }
+        return trailerList;
+    }
+
+    private CreditsEntity creditsResponseToCredit(CreditsResponse response){
+        List<CastEntity> castList = new ArrayList<>();
+        for (CastItem cast : response.getCast()) {
+            castList.add(new CastEntity(cast.getId(),
+                    cast.getName(),
+                    cast.getCreditId(),
+                    cast.getProfilePath(),
+                    cast.getKnownForDepartment(),
+                    cast.getCharacter())
+            );
+        }
+
+        List<CrewEntity> crewList = new ArrayList<>();
+        for (CrewItem crew : response.getCrew()) {
+            crewList.add(new CrewEntity(crew.getId(),
+                    crew.getName(),
+                    crew.getCreditId(),
+                    crew.getProfilePath(),
+                    crew.getJob())
+            );
+        }
+
+        return new CreditsEntity(response.getId(), castList, crewList);
     }
 }

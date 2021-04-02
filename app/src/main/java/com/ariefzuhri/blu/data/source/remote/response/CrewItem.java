@@ -5,19 +5,27 @@ import com.google.gson.annotations.SerializedName;
 public class CrewItem {
 
 	@SerializedName("credit_id")
-	private String creditId;
+	private final String creditId;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("profile_path")
-	private Object profilePath;
+	private final Object profilePath;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("job")
-	private String job;
+	private final String job;
+
+	public CrewItem(int id, String name, String creditId, Object profilePath, String job) {
+		this.creditId = creditId;
+		this.name = name;
+		this.profilePath = profilePath;
+		this.id = id;
+		this.job = job;
+	}
 
 	public String getCreditId(){
 		return creditId;

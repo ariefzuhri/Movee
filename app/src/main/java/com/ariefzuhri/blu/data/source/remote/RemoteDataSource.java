@@ -10,7 +10,7 @@ import com.ariefzuhri.blu.data.source.remote.response.MultiSearchResponse;
 import com.ariefzuhri.blu.data.source.remote.response.TVDetailsResponse;
 import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
 import com.ariefzuhri.blu.data.source.remote.response.VideosResponse;
-import com.ariefzuhri.blu.data.source.remote.rest.ApiConfig;
+import com.ariefzuhri.blu.data.source.remote.network.ApiConfig;
 import com.ariefzuhri.blu.utils.EspressoIdlingResource;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,10 +24,8 @@ import static com.ariefzuhri.blu.utils.DateUtils.getCurrentDate;
 
 public class RemoteDataSource {
 
-    private static final String TAG = getInstance().getClass().getSimpleName();
+    private final String TAG = getClass().getSimpleName();
     private static RemoteDataSource INSTANCE;
-
-    private RemoteDataSource(){}
 
     public static RemoteDataSource getInstance(){
         if (INSTANCE == null){
@@ -36,7 +34,7 @@ public class RemoteDataSource {
         return INSTANCE;
     }
 
-    public final void getMultiSearch(String query, int page, LoadMultiSearchCallback callback){
+    public void getMultiSearch(String query, int page, LoadMultiSearchCallback callback){
         EspressoIdlingResource.increment();
         Call<MultiSearchResponse> client = ApiConfig.getApiService().getMultiSearch(TMDB_API_KEY, query, page);
         client.enqueue(new Callback<MultiSearchResponse>() {
@@ -57,7 +55,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieDetails(int movieId, LoadMovieDetailsCallback callback){
+    public void getMovieDetails(int movieId, LoadMovieDetailsCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieDetailsResponse> client = ApiConfig.getApiService().getMovieDetails(movieId, TMDB_API_KEY);
         client.enqueue(new Callback<MovieDetailsResponse>() {
@@ -78,7 +76,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVDetails(int tvId, LoadTVDetailsCallback callback){
+    public void getTVDetails(int tvId, LoadTVDetailsCallback callback){
         EspressoIdlingResource.increment();
         Call<TVDetailsResponse> client = ApiConfig.getApiService().getTVDetails(tvId, TMDB_API_KEY);
         client.enqueue(new Callback<TVDetailsResponse>() {
@@ -99,7 +97,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieTrending(int page, LoadMovieTrendingCallback callback){
+    public void getMovieTrending(int page, LoadMovieTrendingCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieTrending(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -120,7 +118,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVTrending(int page, LoadTVTrendingCallback callback){
+    public void getTVTrending(int page, LoadTVTrendingCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVTrending(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
@@ -141,7 +139,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieLatestRelease(int page, LoadMovieLatestReleaseCallback callback){
+    public void getMovieLatestRelease(int page, LoadMovieLatestReleaseCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieLatestRelease(TMDB_API_KEY, getCurrentDate(),  getCurrentDate(), page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -162,7 +160,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVLatestRelease(int page, LoadTVLatestReleaseCallback callback){
+    public void getTVLatestRelease(int page, LoadTVLatestReleaseCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVLatestRelease(TMDB_API_KEY,  getCurrentDate(),  getCurrentDate(), page);
         client.enqueue(new Callback<TVResponse>() {
@@ -183,7 +181,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieNowPlaying(int page, LoadMovieNowPlayingCallback callback){
+    public void getMovieNowPlaying(int page, LoadMovieNowPlayingCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieNowPlaying(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -204,7 +202,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVOnTheAir(int page, LoadTVOnTheAirCallback callback){
+    public void getTVOnTheAir(int page, LoadTVOnTheAirCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVOnTheAir(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
@@ -225,7 +223,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieUpcoming(int page, LoadMovieUpcomingCallback callback){
+    public void getMovieUpcoming(int page, LoadMovieUpcomingCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieUpcoming(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -246,7 +244,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieTopRated(int page, LoadMovieTopRatedCallback callback){
+    public void getMovieTopRated(int page, LoadMovieTopRatedCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieTopRated(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -267,7 +265,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVTopRated(int page, LoadTVTopRatedCallback callback){
+    public void getTVTopRated(int page, LoadTVTopRatedCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVTopRated(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
@@ -288,7 +286,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMoviePopular(int page, LoadMoviePopularCallback callback){
+    public void getMoviePopular(int page, LoadMoviePopularCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMoviePopular(TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -309,7 +307,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVPopular(int page, LoadTVPopularCallback callback){
+    public void getTVPopular(int page, LoadTVPopularCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVPopular(TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
@@ -330,7 +328,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getMovieRecommendations(int movieId, int page, LoadMovieRecommendationsCallback callback){
+    public void getMovieRecommendations(int movieId, int page, LoadMovieRecommendationsCallback callback){
         EspressoIdlingResource.increment();
         Call<MovieResponse> client = ApiConfig.getApiService().getMovieRecommendations(movieId, TMDB_API_KEY, page);
         client.enqueue(new Callback<MovieResponse>() {
@@ -351,7 +349,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getTVRecommendations(int tvId, int page, LoadTVRecommendationsCallback callback){
+    public void getTVRecommendations(int tvId, int page, LoadTVRecommendationsCallback callback){
         EspressoIdlingResource.increment();
         Call<TVResponse> client = ApiConfig.getApiService().getTVRecommendations(tvId, TMDB_API_KEY, page);
         client.enqueue(new Callback<TVResponse>() {
@@ -372,7 +370,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getGenres(String mediaType, LoadGenresCallback callback){
+    public void getGenres(String mediaType, LoadGenresCallback callback){
         EspressoIdlingResource.increment();
         Call<GenresResponse> client = ApiConfig.getApiService().getGenres(mediaType, TMDB_API_KEY);
         client.enqueue(new Callback<GenresResponse>() {
@@ -393,7 +391,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getVideos(String mediaType, int mediaId, LoadVideosCallback callback){
+    public void getVideos(String mediaType, int mediaId, LoadVideosCallback callback){
         EspressoIdlingResource.increment();
         Call<VideosResponse> client = ApiConfig.getApiService().getVideos(mediaType, mediaId, TMDB_API_KEY);
         client.enqueue(new Callback<VideosResponse>() {
@@ -414,7 +412,7 @@ public class RemoteDataSource {
         });
     }
 
-    public final void getCredits(String mediaType, int mediaId, LoadCreditsCallback callback){
+    public void getCredits(String mediaType, int mediaId, LoadCreditsCallback callback){
         EspressoIdlingResource.increment();
         Call<CreditsResponse> client = ApiConfig.getApiService().getCredits(mediaType, mediaId, TMDB_API_KEY);
         client.enqueue(new Callback<CreditsResponse>() {

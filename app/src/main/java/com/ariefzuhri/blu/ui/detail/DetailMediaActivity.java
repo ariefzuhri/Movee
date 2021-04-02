@@ -111,17 +111,12 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             String mediaType = bundle.getString(EXTRA_MEDIA_TYPE);
             int mediaId = bundle.getInt(EXTRA_MEDIA_ID);
             viewModel.setSelectedMedia(mediaType, mediaId);
-
             if (mediaType.equals(MEDIA_TYPE_MOVIE)){
                 viewModel.getMovieDetails().observe(this, this::populateMedia);
             } else if (mediaType.equals(MEDIA_TYPE_TV)){
                 viewModel.getTVDetails().observe(this, this::populateMedia);
             }
-
-            viewModel.getCredits().observe(this, creditsResponse -> {
-
-            });
-
+            viewModel.getCredits().observe(this, creditsResponse -> {});
             viewModel.getGenres().observe(this, resultGenre -> {
                 if (mediaType.equals(MEDIA_TYPE_MOVIE)){
                     viewModel.getMovieRecommendations().observe(this, resultMovie -> {
@@ -178,8 +173,12 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             case TV_STATUS_ENDED: status = TV_STATUS_ENDED; break;
             default: status = media.getStatus();
         }
+
         contentBinding.tvType.setText(getResources().getString(R.string.type, type,
-                media.getEpisodes(), status));
+                media.getEpisodes(),
+                getResources().getQuantityString(R.plurals.number_of_episodes, media.getEpisodes()),
+                status)
+        );
 
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexDirection(FlexDirection.ROW);
@@ -221,19 +220,34 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             if (media != null) showToast(this, media.getTitle());
         } else if (id == R.id.btn_trailer) {
             if (media != null && media.getTrailer() != null) {
+                Intent intent = new Intent(Intent.ACTION_VIEW);
+                String backupKey = "";
+
                 if (!media.getTrailer().isEmpty()){
                     for (TrailerEntity trailer : media.getTrailer()){
-                        if ((trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)) &&
-                                trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
-                            Intent intent = new Intent(Intent.ACTION_VIEW);
-                            intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
-                            startActivity(intent);
-                            break;
+                        if (trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
+                            if (trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)){
+                                intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
+                                break;
+                            } else if (backupKey.isEmpty()){
+                                backupKey = trailer.getKey();
+                            }
                         }
                     }
-                } else {
-                    showToast(this, getString(R.string.hint_empty_trailer));
                 }
+
+                if (intent.getData() == null){
+                    if (!backupKey.isEmpty()) {
+                        intent.setData(Uri.parse(BASE_URL_YOUTUBE + backupKey));
+                    } else {
+                        intent.setData(Uri.parse(getResources().getString(
+                                R.string.youtube_search_query, media.getTitle(),
+                                getYearOfDate(media.getAiredDate().getStartDate()))
+                        ));
+                    }
+                }
+
+                startActivity(intent);
             }
         } else if (id == R.id.tv_view_more_synopsis) {
             contentBinding.tvSynopsis.setMaxLines(Integer.MAX_VALUE);

@@ -1,4 +1,4 @@
-package com.ariefzuhri.blu.data.source.remote.rest;
+package com.ariefzuhri.blu.data.source.remote.network;
 
 import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
 import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;

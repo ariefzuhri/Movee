@@ -1,39 +1,53 @@
 package com.ariefzuhri.blu.data.source.remote.response;
 
 import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 public class MovieItem {
 
 	@SerializedName("overview")
-	private String overview;
+	private final String overview;
 
 	@SerializedName("title")
-	private String title;
+	private final String title;
 
 	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
+	private final List<Integer> genreIds;
 
 	@SerializedName("poster_path")
-	private String posterPath;
+	private final String posterPath;
 
 	@SerializedName("backdrop_path")
-	private String backdropPath;
+	private final String backdropPath;
 
 	@SerializedName("release_date")
-	private String releaseDate;
+	private final String releaseDate;
 
 	@SerializedName("popularity")
-	private double popularity;
+	private final double popularity;
 
 	@SerializedName("vote_average")
-	private double voteAverage;
+	private final double voteAverage;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("vote_count")
-	private int voteCount;
+	private final int voteCount;
+
+	public MovieItem(int id, String title, String posterPath, String backdropPath, double voteAverage, int voteCount, double popularity, String releaseDate, List<Integer> genreIds, String overview) {
+		this.overview = overview;
+		this.title = title;
+		this.genreIds = genreIds;
+		this.posterPath = posterPath;
+		this.backdropPath = backdropPath;
+		this.releaseDate = releaseDate;
+		this.popularity = popularity;
+		this.voteAverage = voteAverage;
+		this.id = id;
+		this.voteCount = voteCount;
+	}
 
 	public String getOverview(){
 		return overview;

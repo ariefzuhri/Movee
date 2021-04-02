@@ -6,34 +6,47 @@ import com.google.gson.annotations.SerializedName;
 public class TVItem {
 
 	@SerializedName("first_air_date")
-	private String firstAirDate;
+	private final String firstAirDate;
 
 	@SerializedName("overview")
-	private String overview;
+	private final String overview;
 
 	@SerializedName("genre_ids")
-	private List<Integer> genreIds;
+	private final List<Integer> genreIds;
 
 	@SerializedName("poster_path")
-	private String posterPath;
+	private final String posterPath;
 
 	@SerializedName("backdrop_path")
-	private String backdropPath;
+	private final String backdropPath;
 
 	@SerializedName("popularity")
-	private double popularity;
+	private final double popularity;
 
 	@SerializedName("vote_average")
-	private double voteAverage;
+	private final double voteAverage;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("vote_count")
-	private int voteCount;
+	private final int voteCount;
+
+	public TVItem(int id, String name, String posterPath, String backdropPath, double voteAverage, int voteCount, double popularity, String firstAirDate, List<Integer> genreIds, String overview) {
+		this.name = name;
+		this.backdropPath = backdropPath;
+		this.genreIds = genreIds;
+		this.popularity = popularity;
+		this.id = id;
+		this.voteCount = voteCount;
+		this.overview = overview;
+		this.posterPath = posterPath;
+		this.firstAirDate = firstAirDate;
+		this.voteAverage = voteAverage;
+	}
 
 	public String getFirstAirDate(){
 		return firstAirDate;

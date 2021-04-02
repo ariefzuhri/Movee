@@ -5,19 +5,27 @@ import com.google.gson.annotations.SerializedName;
 public class VideoItem {
 
 	@SerializedName("site")
-	private String site;
+	private final String site;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("id")
-	private String id;
+	private final String id;
 
 	@SerializedName("type")
-	private String type;
+	private final String type;
 
 	@SerializedName("key")
-	private String key;
+	private final String key;
+
+	public VideoItem(String id, String name, String site, String type, String key) {
+		this.site = site;
+		this.name = name;
+		this.id = id;
+		this.type = type;
+		this.key = key;
+	}
 
 	public String getSite(){
 		return site;

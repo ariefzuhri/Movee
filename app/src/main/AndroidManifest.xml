@@ -14,7 +14,6 @@
         android:theme="@style/Theme.BLU"
         tools:ignore="AllowBackup">
         <activity android:name=".ui.search.SearchActivity"/>
-        <activity android:name=".DummyScrollingActivity" />
         <activity android:name=".ui.main.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

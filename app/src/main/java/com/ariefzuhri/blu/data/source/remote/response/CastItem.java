@@ -5,22 +5,31 @@ import com.google.gson.annotations.SerializedName;
 public class CastItem {
 
 	@SerializedName("character")
-	private String character;
+	private final String character;
 
 	@SerializedName("credit_id")
-	private String creditId;
+	private final String creditId;
 
 	@SerializedName("known_for_department")
-	private String knownForDepartment;
+	private final String knownForDepartment;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("profile_path")
-	private String profilePath;
+	private final String profilePath;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
+
+	public CastItem(int id, String name, String creditId, String profilePath, String knownForDepartment, String character) {
+		this.character = character;
+		this.creditId = creditId;
+		this.knownForDepartment = knownForDepartment;
+		this.name = name;
+		this.profilePath = profilePath;
+		this.id = id;
+	}
 
 	public String getCharacter(){
 		return character;

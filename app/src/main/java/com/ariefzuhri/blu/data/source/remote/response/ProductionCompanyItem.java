@@ -5,16 +5,19 @@ import com.google.gson.annotations.SerializedName;
 public class ProductionCompanyItem {
 
 	@SerializedName("logo_path")
-	private String logoPath;
+	private final String logoPath;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
-	@SerializedName("origin_country")
-	private String originCountry;
+	public ProductionCompanyItem(int id, String name, String logoPath) {
+		this.logoPath = logoPath;
+		this.name = name;
+		this.id = id;
+	}
 
 	public String getLogoPath(){
 		return logoPath;
@@ -26,9 +29,5 @@ public class ProductionCompanyItem {
 
 	public int getId(){
 		return id;
-	}
-
-	public String getOriginCountry(){
-		return originCountry;
 	}
 }

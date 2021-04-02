@@ -7,16 +7,23 @@ import com.google.gson.annotations.SerializedName;
 public class MovieResponse {
 
 	@SerializedName("page")
-	private int page;
+	private final int page;
 
 	@SerializedName("total_pages")
-	private int totalPages;
+	private final int totalPages;
 
 	@SerializedName("results")
-	private List<MovieItem> results;
+	private final List<MovieItem> results;
 
 	@SerializedName("total_results")
-	private int totalResults;
+	private final int totalResults;
+
+	public MovieResponse(int page, int totalPages, List<MovieItem> results, int totalResults) {
+		this.page = page;
+		this.totalPages = totalPages;
+		this.results = results;
+		this.totalResults = totalResults;
+	}
 
 	public int getPage(){
 		return page;

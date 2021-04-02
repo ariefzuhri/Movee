@@ -5,10 +5,15 @@ import com.google.gson.annotations.SerializedName;
 public class GenreItem {
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
+
+	public GenreItem(int id, String name) {
+		this.name = name;
+		this.id = id;
+	}
 
 	public String getName(){
 		return name;

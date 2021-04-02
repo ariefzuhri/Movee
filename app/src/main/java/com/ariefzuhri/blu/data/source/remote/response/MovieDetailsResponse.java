@@ -7,43 +7,59 @@ import com.google.gson.annotations.SerializedName;
 public class MovieDetailsResponse{
 
 	@SerializedName("title")
-	private String title;
+	private final String title;
 
 	@SerializedName("backdrop_path")
-	private String backdropPath;
+	private final String backdropPath;
 
 	@SerializedName("genres")
-	private List<GenreItem> genres;
+	private final List<GenreItem> genres;
 
 	@SerializedName("popularity")
-	private double popularity;
+	private final double popularity;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("vote_count")
-	private int voteCount;
+	private final int voteCount;
 
 	@SerializedName("overview")
-	private String overview;
+	private final String overview;
 
 	@SerializedName("runtime")
-	private int runtime;
+	private final int runtime;
 
 	@SerializedName("poster_path")
-	private String posterPath;
+	private final String posterPath;
 
 	@SerializedName("production_companies")
-	private List<ProductionCompanyItem> productionCompanies;
+	private final List<ProductionCompanyItem> productionCompanies;
 
 	@SerializedName("release_date")
-	private String releaseDate;
+	private final String releaseDate;
 
 	@SerializedName("vote_average")
-	private double voteAverage;
+	private final double voteAverage;
 
 	@SerializedName("status")
-	private String status;
+	private final String status;
+
+	public MovieDetailsResponse(int id, String title, String posterPath, String backdropPath, double voteAverage, int voteCount, double popularity, String status, String releaseDate, List<ProductionCompanyItem> productionCompanies, List<GenreItem> genres, int runtime, String overview) {
+		this.title = title;
+		this.backdropPath = backdropPath;
+		this.genres = genres;
+		this.popularity = popularity;
+		this.id = id;
+		this.voteCount = voteCount;
+		this.overview = overview;
+		this.runtime = runtime;
+		this.posterPath = posterPath;
+		this.productionCompanies = productionCompanies;
+		this.releaseDate = releaseDate;
+		this.voteAverage = voteAverage;
+		this.status = status;
+	}
 
 	public String getTitle(){
 		return title;

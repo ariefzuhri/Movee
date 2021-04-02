@@ -3,7 +3,7 @@ package com.ariefzuhri.blu.ui.detail;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ariefzuhri.blu.data.CreditEntity;
+import com.ariefzuhri.blu.data.CreditsEntity;
 import com.ariefzuhri.blu.data.GenreEntity;
 import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.data.TrailerEntity;
@@ -38,7 +38,7 @@ public class DetailMediaViewModel extends ViewModel {
         return repository.getVideos(mediaType, mediaId);
     }
 
-    public LiveData<CreditEntity> getCredits(){
+    public LiveData<CreditsEntity> getCredits(){
         return repository.getCredits(mediaType, mediaId);
     }
 

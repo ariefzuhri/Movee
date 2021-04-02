@@ -2,7 +2,7 @@ package com.ariefzuhri.blu.data.source;
 
 import androidx.lifecycle.LiveData;
 
-import com.ariefzuhri.blu.data.CreditEntity;
+import com.ariefzuhri.blu.data.CreditsEntity;
 import com.ariefzuhri.blu.data.GenreEntity;
 import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.data.TrailerEntity;
@@ -46,5 +46,5 @@ public interface CatalogDataSource {
 
     LiveData<List<TrailerEntity>> getVideos(String mediaType, int mediaId);
 
-    LiveData<CreditEntity> getCredits(String mediaType, int mediaId);
+    LiveData<CreditsEntity> getCredits(String mediaType, int mediaId);
 }

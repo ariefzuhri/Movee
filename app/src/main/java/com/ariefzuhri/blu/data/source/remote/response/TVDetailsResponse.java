@@ -7,52 +7,71 @@ import com.google.gson.annotations.SerializedName;
 public class TVDetailsResponse{
 
 	@SerializedName("number_of_episodes")
-	private int numberOfEpisodes;
+	private final int numberOfEpisodes;
 
 	@SerializedName("backdrop_path")
-	private String backdropPath;
+	private final String backdropPath;
 
 	@SerializedName("genres")
-	private List<GenreItem> genres;
+	private final List<GenreItem> genres;
 
 	@SerializedName("popularity")
-	private double popularity;
+	private final double popularity;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("number_of_seasons")
-	private int numberOfSeasons;
+	private final int numberOfSeasons;
 
 	@SerializedName("vote_count")
-	private int voteCount;
+	private final int voteCount;
 
 	@SerializedName("first_air_date")
-	private String firstAirDate;
+	private final String firstAirDate;
 
 	@SerializedName("overview")
-	private String overview;
+	private final String overview;
 
 	@SerializedName("poster_path")
-	private String posterPath;
+	private final String posterPath;
 
 	@SerializedName("production_companies")
-	private List<ProductionCompanyItem> productionCompanies;
+	private final List<ProductionCompanyItem> productionCompanies;
 
 	@SerializedName("vote_average")
-	private double voteAverage;
+	private final double voteAverage;
 
 	@SerializedName("name")
-	private String name;
+	private final String name;
 
 	@SerializedName("episode_run_time")
-	private List<Integer> episodeRunTime;
+	private final List<Integer> episodeRunTime;
 
 	@SerializedName("last_air_date")
-	private String lastAirDate;
+	private final String lastAirDate;
 
 	@SerializedName("status")
-	private String status;
+	private final String status;
+
+	public TVDetailsResponse(int id, String name, String posterPath, String backdropPath, double voteAverage, int voteCount, double popularity, int numberOfSeasons, int numberOfEpisodes, String status, String firstAirDate, String lastAirDate, List<ProductionCompanyItem> productionCompanies, List<GenreItem> genres, List<Integer> episodeRunTime, String overview) {
+		this.name = name;
+		this.backdropPath = backdropPath;
+		this.genres = genres;
+		this.popularity = popularity;
+		this.numberOfSeasons = numberOfSeasons;
+		this.numberOfEpisodes = numberOfEpisodes;
+		this.id = id;
+		this.voteCount = voteCount;
+		this.overview = overview;
+		this.episodeRunTime = episodeRunTime;
+		this.posterPath = posterPath;
+		this.productionCompanies = productionCompanies;
+		this.firstAirDate = firstAirDate;
+		this.lastAirDate = lastAirDate;
+		this.voteAverage = voteAverage;
+		this.status = status;
+	}
 
 	public int getNumberOfEpisodes(){
 		return numberOfEpisodes;

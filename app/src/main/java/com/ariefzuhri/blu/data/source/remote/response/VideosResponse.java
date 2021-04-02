@@ -7,10 +7,15 @@ import com.google.gson.annotations.SerializedName;
 public class VideosResponse{
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("results")
-	private List<VideoItem> results;
+	private final List<VideoItem> results;
+
+	public VideosResponse(int id, List<VideoItem> results) {
+		this.id = id;
+		this.results = results;
+	}
 
 	public int getId(){
 		return id;

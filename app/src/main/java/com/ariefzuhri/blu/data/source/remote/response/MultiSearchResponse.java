@@ -7,16 +7,23 @@ import com.google.gson.annotations.SerializedName;
 public class MultiSearchResponse{
 
 	@SerializedName("page")
-	private int page;
+	private final int page;
 
 	@SerializedName("total_pages")
-	private int totalPages;
+	private final int totalPages;
 
 	@SerializedName("results")
-	private List<SearchResultItem> results;
+	private final List<SearchResultItem> results;
 
 	@SerializedName("total_results")
-	private int totalResults;
+	private final int totalResults;
+
+	public MultiSearchResponse(int page, int totalPages, List<SearchResultItem> results, int totalResults) {
+		this.page = page;
+		this.totalPages = totalPages;
+		this.results = results;
+		this.totalResults = totalResults;
+	}
 
 	public int getPage(){
 		return page;

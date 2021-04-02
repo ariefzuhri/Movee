@@ -7,13 +7,19 @@ import com.google.gson.annotations.SerializedName;
 public class CreditsResponse{
 
 	@SerializedName("cast")
-	private List<CastItem> cast;
+	private final List<CastItem> cast;
 
 	@SerializedName("id")
-	private int id;
+	private final int id;
 
 	@SerializedName("crew")
-	private List<CrewItem> crew;
+	private final List<CrewItem> crew;
+
+	public CreditsResponse(int id, List<CastItem> cast, List<CrewItem> crew) {
+		this.cast = cast;
+		this.id = id;
+		this.crew = crew;
+	}
 
 	public List<CastItem> getCast(){
 		return cast;
