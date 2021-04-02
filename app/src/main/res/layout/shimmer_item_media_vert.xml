@@ -48,7 +48,6 @@
                 android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/font_nm"
@@ -56,7 +55,6 @@
                     android:paddingHorizontal="16dp"/>
 
                 <TextView
-                    android:id="@+id/tv_release_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="@dimen/font_nm"
@@ -66,7 +64,6 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tv_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_nm"
@@ -74,7 +71,6 @@
                 android:layout_marginTop="2dp"/>
 
             <TextView
-                android:id="@+id/tv_genre"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:textSize="@dimen/font_sm"

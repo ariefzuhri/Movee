@@ -1,0 +1,425 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "backdrop_path": null,
+            "first_air_date": "2004-05-10",
+            "genre_ids": [
+                16,
+                35
+            ],
+            "id": 100,
+            "name": "I Am Not an Animal",
+            "origin_country": [
+                "GB"
+            ],
+            "original_language": "en",
+            "original_name": "I Am Not an Animal",
+            "overview": "I Am Not An Animal is an animated comedy series about the only six talking animals in the world, whose cosseted existence in a vivisection unit is turned upside down when they are liberated by animal rights activists.",
+            "popularity": 12.223,
+            "poster_path": "/qG59J1Q7rpBc1dvku4azbzcqo8h.jpg",
+            "vote_average": 9.4,
+            "vote_count": 604
+        },
+        {
+            "backdrop_path": "/7gbmM2NWcqZONbp65HUWDf4wr0Q.jpg",
+            "first_air_date": "2019-07-12",
+            "genre_ids": [
+                16,
+                18
+            ],
+            "id": 88040,
+            "name": "Given",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ギヴン",
+            "overview": "Tightly clutching his Gibson guitar, Mafuyu Satou steps out of his dark apartment to begin another day of his high school life. While taking a nap in a quiet spot on the gymnasium staircase, he has a chance encounter with fellow student Ritsuka Uenoyama, who berates him for letting his guitar's strings rust and break. Noticing Uenoyama's knowledge of the instrument, Satou pleads for him to fix it and to teach him how to play. Uenoyama eventually agrees and invites him to sit in on a jam session with his two band mates: bassist Haruki Nakayama and drummer Akihiko Kaji.",
+            "popularity": 30.967,
+            "poster_path": "/pdDCcAq8RNSZNk81PXYoHNUPHjn.jpg",
+            "vote_average": 9.2,
+            "vote_count": 412
+        },
+        {
+            "backdrop_path": "/uAjMQlbPkVHmUahhCouANlHSDW2.jpg",
+            "first_air_date": "2019-01-11",
+            "genre_ids": [
+                16,
+                9648,
+                10765,
+                10759,
+                18
+            ],
+            "id": 83097,
+            "name": "The Promised Neverland",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "約束のネバーランド",
+            "overview": "Surrounded by a forest and a gated entrance, the Grace Field House is inhabited by orphans happily living together as one big family, looked after by their \"Mama,\" Isabella. Although they are required to take tests daily, the children are free to spend their time as they see fit, usually playing outside, as long as they do not venture too far from the orphanage — a rule they are expected to follow no matter what. However, all good times must come to an end, as every few months, a child is adopted and sent to live with their new family... never to be heard from again.\n\nHowever, the three oldest siblings have their suspicions about what is actually happening at the orphanage, and they are about to discover the cruel fate that awaits the children living at Grace Field, including the twisted nature of their beloved Mama.",
+            "popularity": 137.103,
+            "poster_path": "/oBgRCpAbtMpk1v8wfdsIph7lPQE.jpg",
+            "vote_average": 9.2,
+            "vote_count": 559
+        },
+        {
+            "backdrop_path": "/qSgBzXdu6QwVVeqOYOlHolkLRxZ.jpg",
+            "first_air_date": "2019-01-09",
+            "genre_ids": [
+                16,
+                10759,
+                10765,
+                18
+            ],
+            "id": 83095,
+            "name": "The Rising of the Shield Hero",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "盾の勇者の成り上がり",
+            "overview": "Iwatani Naofumi was summoned into a parallel world along with 3 other people to become the world's Heroes. Each of the heroes respectively equipped with their own legendary equipment when summoned, Naofumi received the Legendary Shield as his weapon. Due to Naofumi's lack of charisma and experience he's labeled as the weakest, only to end up betrayed, falsely accused, and robbed by on the third day of adventure. Shunned by everyone from the king to peasants, Naofumi's thoughts were filled with nothing but vengeance and hatred. Thus, his destiny in a parallel World begins...",
+            "popularity": 30.944,
+            "poster_path": "/6cXf5EDwVhsRv8GlBzUTVnWuk8Z.jpg",
+            "vote_average": 9.1,
+            "vote_count": 480
+        },
+        {
+            "backdrop_path": "/e30T3teKp6VZlIXhI0AhTDksvoy.jpg",
+            "first_air_date": "2021-01-13",
+            "genre_ids": [
+                16,
+                10759,
+                10765
+            ],
+            "id": 99071,
+            "name": "Redo of Healer",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "回復術士のやり直し",
+            "overview": "In a world of monsters, adventurers and magic, some of the most gifted healers are subjugated to brute force. Keyaru gains the ability to rewind time and turns the tables on those who’ve exploited him in this dark fantasy tale of vengeance and fury.",
+            "popularity": 84.231,
+            "poster_path": "/hynFI7MltF1BBvroh3iJplnBZyc.jpg",
+            "vote_average": 9.1,
+            "vote_count": 242
+        },
+        {
+            "backdrop_path": "/ci7jTekDFEx6U48XUCl3vBMdrns.jpg",
+            "first_air_date": "2018-07-06",
+            "genre_ids": [
+                10759,
+                18,
+                9648,
+                16
+            ],
+            "id": 80564,
+            "name": "Banana Fish",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "BANANA FISH",
+            "overview": "Nature made Ash Lynx beautiful; nurture made him a cold ruthless killer. A runaway brought up as the adopted heir and sex toy of \"Papa\" Dino Golzine, Ash, now at the rebellious age of seventeen, forsakes the kingdom held out by the devil who raised him. But the hideous secret that drove Ash's older brother mad in Vietnam has suddenly fallen into Papa's insatiably ambitious hands—and it's exactly the wrong time for Eiji Okamura, a pure-hearted young photographer from Japan, to make Ash Lynx's acquaintance...",
+            "popularity": 43.178,
+            "poster_path": "/1UV5di9UIXwrpCW3xQ4RNli5hEV.jpg",
+            "vote_average": 9.1,
+            "vote_count": 424
+        },
+        {
+            "backdrop_path": "/lHcScx9Qpj6OkTmnzPRGIRhn3FR.jpg",
+            "first_air_date": "2019-10-03",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 93019,
+            "name": "ORESUKI: Are you the only one who loves me?",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "俺を好きなのはお前だけかよ",
+            "overview": "Kisaragi Amatsuyu is invited out alone by the cool beauty upperclassman Cosmos and his childhood friend Himawari. Expecting to hear their confessions, he triumphantly goes to meet each of them in turn. But Cosmos and Himawari both instead confess to Amatsuyu that they like his friend. Amatsuyu fights this lonely battle, but there is another girl who is looking at him. She is a gloomy girl with glasses and braids. Amatsuyu finds that he hates her, because she's always turning her sharp tongue only on him and finding enjoyment in his troubles. But it turns out that she's the only one who actually does like him.",
+            "popularity": 34.572,
+            "poster_path": "/4MojZik5N62IShd2BFVEHyaRBLP.jpg",
+            "vote_average": 9,
+            "vote_count": 177
+        },
+        {
+            "backdrop_path": "/iJlztXhWfHZH0VVGPMMl5oZS1RJ.jpg",
+            "first_air_date": "2014-10-10",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 61663,
+            "name": "Your Lie in April",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "四月は君の嘘",
+            "overview": "Kousei Arima was a genius pianist until his mother's sudden death took away his ability to play. Each day was dull for Kousei. But, then he meets a violinist named Kaori Miyazono who has an eccentric playing style. Can the heartfelt sounds of the girl's violin lead the boy to play the piano again?",
+            "popularity": 40.676,
+            "poster_path": "/nksFLYTydth9OYVpMuMbtOBkvMO.jpg",
+            "vote_average": 9,
+            "vote_count": 408
+        },
+        {
+            "backdrop_path": "/ftpjln5qa8xAqnDGamIHtYweRHY.jpg",
+            "first_air_date": "2020-07-11",
+            "genre_ids": [
+                35,
+                16
+            ],
+            "id": 96316,
+            "name": "Rent-a-Girlfriend",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "彼女、お借りします",
+            "overview": "In today’s Japan, \"rental\" services can deliver an afternoon with a \"friend,\" a \"parent,\" even a fake girlfriend! Kinoshita Kazuya is a 20-year-old failure of a college student. He managed to kiss his girlfriend once, but was dumped after a month.  Completely spiteful, Kazuya gets just desperate enough to give it a try. But he quickly discovers how complicated it can be to \"rent\" an emotional connection… and his new \"girlfriend,\" Mizuhara Chizuru, who’s trying to keep her side hustle secret, will panic when she finds out her real life and Kazuya’s are intertwined in surprising ways! A reckless rom-com filled with love and excitement is about to begin!",
+            "popularity": 117.556,
+            "poster_path": "/4rqyyM0R3a0EeSlEvdpxDKbjiKB.jpg",
+            "vote_average": 9,
+            "vote_count": 463
+        },
+        {
+            "backdrop_path": "/bPySXNfMaBhjwSlCaqQxIcDUqOm.jpg",
+            "first_air_date": "2019-04-05",
+            "genre_ids": [
+                99
+            ],
+            "id": 83880,
+            "name": "Our Planet",
+            "origin_country": [
+                "GB"
+            ],
+            "original_language": "en",
+            "original_name": "Our Planet",
+            "overview": "Experience our planet's natural beauty and examine how climate change impacts all living creatures in this ambitious documentary of spectacular scope.",
+            "popularity": 17.379,
+            "poster_path": "/wRSnArnQBmeUYb5GWDU595bGsBr.jpg",
+            "vote_average": 9,
+            "vote_count": 103
+        },
+        {
+            "backdrop_path": "/rnf2BDKeF1sxPEPhAcdvL0auuxr.jpg",
+            "first_air_date": "2020-10-03",
+            "genre_ids": [
+                16,
+                35
+            ],
+            "id": 100049,
+            "name": "TONIKAWA: Over the Moon for You",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "トニカクカワイイ",
+            "overview": "First comes marriage, then comes an earthbound love that is out of this world!\n\nFrom the day his parents named him, Nasa Yuzaki has been destined for outer space...or so he believes. But while trying to join the space program, he is thrown for a loop when an accident introduces him to Tsukasa, a mysterious girl with strange powers. Is she an alien, a moon goddess or something else? Since she insists on marrying him, Nasa has plenty of chances to find out!",
+            "popularity": 85.442,
+            "poster_path": "/n1oOuXlcHF1brgcgyiwmnIODXso.jpg",
+            "vote_average": 8.9,
+            "vote_count": 235
+        },
+        {
+            "backdrop_path": "/rXXC22YUo31QfOsavy0jUbqdxFc.jpg",
+            "first_air_date": "2014-12-09",
+            "genre_ids": [
+                10765,
+                10759,
+                16
+            ],
+            "id": 73055,
+            "name": "Attack on Titan: No Regrets",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "進撃の巨人 悔いなき選択",
+            "overview": "Many years before becoming the famed captain of the Survey Corps, a young Levi struggles to survive in the capital's garbage dump, the Underground. As the boss of his own criminal operation, Levi attempts to get by with meager earnings while aided by fellow criminals, Isabel Magnolia and Farlan Church. With little hope for the future, Levi accepts a deal from the anti-expedition faction leader Nicholas Lobov, who promises the trio citizenship aboveground if they are able to successfully assassinate Erwin Smith, a squad leader of the Survey Corps.\n\nAs Levi and Erwin cross paths, Erwin acknowledges Levi's agility and skill and gives him the option to either become part of the expedition team, or be turned over to the Military Police, to atone for his crimes. Now closer to the man they are tasked to kill, the group plans to complete their mission and save themselves from a grim demise in the dim recesses of their past home. However, they are about to learn that the surface world is not as liberating as they had thought and that sometimes, freedom can come at a heavy price.\n\nBased on the popular spin-off manga of the same name, Attack on Titan: No Regrets illustrates the encounter between two of Attack on Titan's pivotal characters, as well as the events of the 23rd expedition beyond the walls.",
+            "popularity": 214.165,
+            "poster_path": "/xGdz67d5WHIU7kIqVHO2TxIpmhZ.jpg",
+            "vote_average": 8.9,
+            "vote_count": 1054
+        },
+        {
+            "backdrop_path": "/2f8OLO6UYp78dIQMs0oi7ja15Bl.jpg",
+            "first_air_date": "2010-04-02",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 65648,
+            "name": "Maid Sama!",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "会長はメイド様！",
+            "overview": "Misaki Ayuzawa is the first female student council president at a once all-boys school turned co-ed. She rules the school with strict discipline demeanor. But she has a secret—she works at a maid cafe due to her families circumstances. One day the popular A-student and notorious heart breaker Takumi Usui finds out her secret and makes a deal with her to keep it hush from the school in exchange for spending some time with him.",
+            "popularity": 24.653,
+            "poster_path": "/igkn0M1bgMeATz59LShvVxZNdVd.jpg",
+            "vote_average": 8.9,
+            "vote_count": 342
+        },
+        {
+            "backdrop_path": "/qCPusV7wkA2PkwSeFNYgIgda5yc.jpg",
+            "first_air_date": "2020-01-07",
+            "genre_ids": [
+                16,
+                35
+            ],
+            "id": 96150,
+            "name": "Seton Academy: Join the Pack!",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "群れなせ！シートン学園",
+            "overview": "Seton Academy, a school full of animals where, thanks to population decline, there are fewer humans than any other creature. Mazama Jin, an animal hater and the only human male in his class, falls in love with Hino Hitomi, the only female human, the moment he lays eyes her. However he soon finds himself entangled with various other creatures after he reluctantly joins the 'pack' of Lanka the wolf, the only other member of her pack. After getting to know each other, the two decide to create a cooking club, and after a few bad-blooded misunderstandings, Ranka soon joins the club as well.\n\nThus begins the howl-some and howl-arious story of two normal humans; an adorable wolf; a cheerful koala; a sluggish, blonde sloth; and a feline with cattitude in their newfound club—in a story that teaches that friendship can be forged by creatures of different kinds.",
+            "popularity": 35.852,
+            "poster_path": "/yXSH5BYOhYt26S5x7Aqz2VXj6P1.jpg",
+            "vote_average": 8.9,
+            "vote_count": 175
+        },
+        {
+            "backdrop_path": "/6tbyZtMYtiNzBy200VXku8jO9ws.jpg",
+            "first_air_date": "2019-04-07",
+            "genre_ids": [
+                16,
+                35
+            ],
+            "id": 87432,
+            "name": "We Never Learn: BOKUBEN",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ぼくたちは勉強ができない",
+            "overview": "Nariyuki Yuiga is in his last and most painful year of high school. In order to gain the “special VIP recommendation” which would grant him a full scholarship to college, he must now tutor his classmates as they struggle to prepare for entrance exams.\n\nAmong his pupils are “the sleeping beauty of the literary forest,” Fumino Furuhashi, and “the Thumbelina supercomputer,” Rizu Ogata–two of the most beautiful super-geniuses at the school! While these two were thought to be academically flawless, it turns out that they’re completely clueless outside of their pet subjects…!?\n\nAs Nariyuki’s life is turned upside down by these quirky girls who just never learn, he must do everything he can to get them accepted into college! The stage is set for this romantic comedy featuring prodigies who never learn when it comes to studying and love!",
+            "popularity": 36.736,
+            "poster_path": "/fG3VClLXTvE6MpR0x8fv2q4cpGD.jpg",
+            "vote_average": 8.9,
+            "vote_count": 159
+        },
+        {
+            "backdrop_path": "/dJ8yrSokdTMnhKJw06MllSfCegb.jpg",
+            "first_air_date": "2019-01-12",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 83121,
+            "name": "Kaguya-sama: Love is War",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+            "overview": "Considered a genius due to having the highest grades in the country, Miyuki Shirogane leads the prestigious Shuchiin Academy's student council as its president, working alongside the beautiful and wealthy vice president Kaguya Shinomiya. The two are often regarded as the perfect couple by students despite them not being in any sort of romantic relationship.",
+            "popularity": 60.544,
+            "poster_path": "/dA93MnalfNLHMMlDcTCfX4QJb5Q.jpg",
+            "vote_average": 8.9,
+            "vote_count": 304
+        },
+        {
+            "backdrop_path": "/mWwWhDiQWONiSS4Go12TTjNw0E5.jpg",
+            "first_air_date": "2016-10-06",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 68129,
+            "name": "Yuri!!! on Ice",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ユーリ!!! on ICE",
+            "overview": "Yūri Katsuki carried all of Japan's hopes on his shoulders to win at the Gran Prix Finale ice skating competition, but suffered a crushing defeat. He returns home to Kyushu and half feels like he wants to retire, and half feels like he wants to continue ice skating. Suddenly the five-time consecutive world championship ice skater Victor Nikiforov appears before him with Yuri Plisetsky, a young Russian figure skater who is already defeating his seniors. Victor and both Yuris take up the challenge on an unprecedented Gran Prix series.",
+            "popularity": 44.165,
+            "poster_path": "/oKVFf2uNCLMsovWBxAW14MmhHUm.jpg",
+            "vote_average": 8.9,
+            "vote_count": 364
+        },
+        {
+            "backdrop_path": "/3ILMlmC30QUnYkY3XEBOyJ82Dqu.jpg",
+            "first_air_date": "2016-04-03",
+            "genre_ids": [
+                10765,
+                10759,
+                35,
+                16
+            ],
+            "id": 65930,
+            "name": "My Hero Academia",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "僕のヒーローアカデミア",
+            "overview": "In a world where eighty percent of the population has some kind of super-powered Quirk, Izuku was unlucky enough to be born completely normal. But that won’t stop him from enrolling in a prestigious hero academy. Now, he’ll get his first taste of brutal rivalry from other schools as he braves the cutthroat, no-holds-barred provisional license exam.",
+            "popularity": 53.707,
+            "poster_path": "/phuYuzqWW9ru8EA3HVjE9W2Rr3M.jpg",
+            "vote_average": 8.9,
+            "vote_count": 2624
+        },
+        {
+            "backdrop_path": "/uzp513qTcHsAavlCJ58x5d73bzy.jpg",
+            "first_air_date": "2017-07-07",
+            "genre_ids": [
+                16,
+                18,
+                10759,
+                10765
+            ],
+            "id": 72636,
+            "name": "Made In Abyss",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "メイドインアビス",
+            "overview": "Located in the center of a remote island, the Abyss is the last unexplored region, a huge and treacherous fathomless hole inhabited by strange creatures where only the bravest adventurers descend in search of ancient relics. In the upper levels of the Abyss, Riko, a girl who dreams of becoming an explorer, stumbles upon a mysterious little boy.",
+            "popularity": 50.823,
+            "poster_path": "/5ICCEOKdqHFGp03zNMZmi95q9WB.jpg",
+            "vote_average": 8.9,
+            "vote_count": 186
+        },
+        {
+            "backdrop_path": "/jwAUfgwFEzMYUh3lUht8VBB1SU7.jpg",
+            "first_air_date": "2018-04-04",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 77721,
+            "name": "Real Girl",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "３Ｄ彼女　リアルガール",
+            "overview": "Tsutsui Hikari (a.k.a \"Tsuttsun\") is a high school student who is content with his virtual life of anime and video games. One day, he gets stuck cleaning the pool with Iroha, a real live girl who is stylish, sassy and known to be easy with boys ... and she aggressively approaches him! Tsuttsun, who has few friends and lives in his own world, finds himself smitten by the confident and wild Iroha ... and his whole world is turned upside down!! It's the awkward and pure love story of a boy who experiences relationship for the first time.",
+            "popularity": 35.116,
+            "poster_path": "/3UmNynM1YXkYylyontGXPHncjOC.jpg",
+            "vote_average": 8.9,
+            "vote_count": 305
+        }
+    ],
+    "total_pages": 86,
+    "total_results": 1712
+}

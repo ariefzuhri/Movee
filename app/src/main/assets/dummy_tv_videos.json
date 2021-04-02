@@ -1,0 +1,35 @@
+{
+    "id": 83097,
+    "results": [
+        {
+            "id": "5c3224cec3a3680b8ca6c045",
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "key": "ApLudqucq-s",
+            "name": "The Promised Neverland Trailer 1",
+            "site": "YouTube",
+            "size": 1080,
+            "type": "Trailer"
+        },
+        {
+            "id": "5c3224e1c3a3680b8ca6c0b6",
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "key": "JIcjo7XVlOY",
+            "name": "The Promised Neverland Trailer 2",
+            "site": "YouTube",
+            "size": 1080,
+            "type": "Trailer"
+        },
+        {
+            "id": "601d79837314a1003b007e1b",
+            "iso_639_1": "en",
+            "iso_3166_1": "US",
+            "key": "4GDVEl3qw2M",
+            "name": "The Promised Neverland OP Opening HD",
+            "site": "YouTube",
+            "size": 1080,
+            "type": "Opening Credits"
+        }
+    ]
+}

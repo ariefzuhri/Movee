@@ -17,14 +17,12 @@
         android:orientation="vertical">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cv_poster"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:cardCornerRadius="2dp"
             app:cardElevation="0dp">
 
             <ImageView
-                android:id="@+id/img_poster"
                 android:layout_width="120dp"
                 android:layout_height="180dp"
                 android:src="@color/gray"
@@ -36,7 +34,6 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv_title"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_sm"
@@ -44,7 +41,6 @@
             android:background="@color/gray"/>
 
         <TextView
-            android:id="@+id/tv_genre"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textSize="@dimen/font_xs"

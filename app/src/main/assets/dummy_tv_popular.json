@@ -1,0 +1,407 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "backdrop_path": "/JB17sIsU53NuWVUecOwrCA0CUp.jpg",
+            "first_air_date": "2021-03-19",
+            "genre_ids": [
+                10765,
+                10759,
+                18
+            ],
+            "id": 88396,
+            "name": "The Falcon and the Winter Soldier",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Falcon and the Winter Soldier",
+            "overview": "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+            "popularity": 2593.349,
+            "poster_path": "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+            "vote_average": 7.7,
+            "vote_count": 1366
+        },
+        {
+            "backdrop_path": "/z59kJfcElR9eHO9rJbWp4qWMuee.jpg",
+            "first_air_date": "2014-10-07",
+            "genre_ids": [
+                18,
+                10765
+            ],
+            "id": 60735,
+            "name": "The Flash",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Flash",
+            "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+            "popularity": 1430.029,
+            "poster_path": "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
+            "vote_average": 7.7,
+            "vote_count": 7086
+        },
+        {
+            "backdrop_path": "/qZtAf4Z1lazGQoYVXiHOrvLr5lI.jpg",
+            "first_air_date": "2017-01-26",
+            "genre_ids": [
+                9648,
+                18,
+                80
+            ],
+            "id": 69050,
+            "name": "Riverdale",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Riverdale",
+            "overview": "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
+            "popularity": 1306.76,
+            "poster_path": "/wRbjVBdDo5qHAEOVYoMWpM58FSA.jpg",
+            "vote_average": 8.6,
+            "vote_count": 10613
+        },
+        {
+            "backdrop_path": "/57vVjteucIF3bGnZj6PmaoJRScw.jpg",
+            "first_air_date": "2021-01-15",
+            "genre_ids": [
+                10765,
+                9648,
+                18
+            ],
+            "id": 85271,
+            "name": "WandaVision",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "WandaVision",
+            "overview": "Wanda Maximoff and Vision—two super-powered beings living idealized suburban lives—begin to suspect that everything is not as it seems.",
+            "popularity": 1231.291,
+            "poster_path": "/glKDfE6btIRcVB5zrjspRIs4r52.jpg",
+            "vote_average": 8.5,
+            "vote_count": 7568
+        },
+        {
+            "backdrop_path": "/gmbsR4SvYhhj4SvLAlTKxIkFxp9.jpg",
+            "first_air_date": "2021-02-23",
+            "genre_ids": [
+                10759,
+                10765
+            ],
+            "id": 95057,
+            "name": "Superman & Lois",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Superman & Lois",
+            "overview": "After years of facing megalomaniacal supervillains, monsters wreaking havoc on Metropolis, and alien invaders intent on wiping out the human race, The Man of Steel aka Clark Kent and Lois Lane come face to face with one of their greatest challenges ever: dealing with all the stress, pressures and complexities that come with being working parents in today's society.",
+            "popularity": 984.878,
+            "poster_path": "/6SJppowm7cdQgLkvoTlnTUSbjr9.jpg",
+            "vote_average": 8.3,
+            "vote_count": 553
+        },
+        {
+            "backdrop_path": "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
+            "first_air_date": "2005-03-27",
+            "genre_ids": [
+                18
+            ],
+            "id": 1416,
+            "name": "Grey's Anatomy",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Grey's Anatomy",
+            "overview": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+            "popularity": 946.414,
+            "poster_path": "/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
+            "vote_average": 8.2,
+            "vote_count": 5567
+        },
+        {
+            "backdrop_path": "/uro2Khv7JxlzXtLb8tCIbRhkb9E.jpg",
+            "first_air_date": "2010-10-31",
+            "genre_ids": [
+                10759,
+                18,
+                10765
+            ],
+            "id": 1402,
+            "name": "The Walking Dead",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Walking Dead",
+            "overview": "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+            "popularity": 949.83,
+            "poster_path": "/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg",
+            "vote_average": 8,
+            "vote_count": 10232
+        },
+        {
+            "backdrop_path": "/mZjZgY6ObiKtVuKVDrnS9VnuNlE.jpg",
+            "first_air_date": "2017-09-25",
+            "genre_ids": [
+                18
+            ],
+            "id": 71712,
+            "name": "The Good Doctor",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Good Doctor",
+            "overview": "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+            "popularity": 788.79,
+            "poster_path": "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+            "vote_average": 8.6,
+            "vote_count": 7128
+        },
+        {
+            "backdrop_path": "/ta5oblpMlEcIPIS2YGcq9XEkWK2.jpg",
+            "first_air_date": "2016-01-25",
+            "genre_ids": [
+                80,
+                10765
+            ],
+            "id": 63174,
+            "name": "Lucifer",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Lucifer",
+            "overview": "Bored and unhappy as the Lord of Hell, Lucifer Morningstar abandoned his throne and retired to Los Angeles, where he has teamed up with LAPD detective Chloe Decker to take down criminals. But the longer he's away from the underworld, the greater the threat that the worst of humanity could escape.",
+            "popularity": 755.907,
+            "poster_path": "/4EYPN5mVIhKLfxGruy7Dy41dTVn.jpg",
+            "vote_average": 8.5,
+            "vote_count": 7934
+        },
+        {
+            "backdrop_path": "/wAEWZm2pSopAbqE5dQWE0ET8aR5.jpg",
+            "first_air_date": "2021-01-08",
+            "genre_ids": [
+                99
+            ],
+            "id": 114695,
+            "name": "Marvel Studios: Legends",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Marvel Studios: Legends",
+            "overview": "Revisit the epic heroes, villains and moments from across the MCU in preparation for the stories still to come. Each dynamic segment feeds directly into the upcoming series — setting the stage for future events. This series weaves together the many threads that constitute the unparalleled Marvel Cinematic Universe.",
+            "popularity": 529.922,
+            "poster_path": "/EpDuYIK81YtCUT3gH2JDpyj8Qk.jpg",
+            "vote_average": 7.7,
+            "vote_count": 345
+        },
+        {
+            "backdrop_path": "/fRYwdeNjMqC30EhofPx5PlDpdun.jpg",
+            "first_air_date": "2018-10-25",
+            "genre_ids": [
+                10765,
+                18
+            ],
+            "id": 79460,
+            "name": "Legacies",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Legacies",
+            "overview": "In a place where young witches, vampires, and werewolves are nurtured to be their best selves in spite of their worst impulses, Klaus Mikaelson’s daughter, 17-year-old Hope Mikaelson, Alaric Saltzman’s twins, Lizzie and Josie Saltzman, among others, come of age into heroes and villains at The Salvatore School for the Young and Gifted.",
+            "popularity": 600.397,
+            "poster_path": "/qTZIgXrBKURBK1KrsT7fe3qwtl9.jpg",
+            "vote_average": 8.6,
+            "vote_count": 1698
+        },
+        {
+            "backdrop_path": "/gL8myjGc2qrmqVosyGm5CWTir9A.jpg",
+            "first_air_date": "2018-05-02",
+            "genre_ids": [
+                10759,
+                18
+            ],
+            "id": 77169,
+            "name": "Cobra Kai",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Cobra Kai",
+            "overview": "This Karate Kid sequel series picks up 30 years after the events of the 1984 All Valley Karate Tournament and finds Johnny Lawrence on the hunt for redemption by reopening the infamous Cobra Kai karate dojo. This reignites his old rivalry with the successful Daniel LaRusso, who has been working to maintain the balance in his life without mentor Mr. Miyagi.",
+            "popularity": 472.868,
+            "poster_path": "/obLBdhLxheKg8Li1qO11r2SwmYO.jpg",
+            "vote_average": 8.1,
+            "vote_count": 2785
+        },
+        {
+            "backdrop_path": "/fPF6h8LLtZ40NRqkHfx2DvFbmkW.jpg",
+            "first_air_date": "2021-01-27",
+            "genre_ids": [
+                10765
+            ],
+            "id": 96580,
+            "name": "Resident Alien",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Resident Alien",
+            "overview": "Crash-landed alien Harry takes on the identity of a small-town Colorado doctor. Arriving with a secret mission, he starts off living a simple life…but things get a bit rocky when he’s roped into solving a local murder and realizes he needs to assimilate into his new world. As he does, he begins to wrestle with the moral dilemma of his mission and asking the big life questions like: “Are human beings worth saving?” and “Why do they fold their pizza before eating it?”",
+            "popularity": 492.102,
+            "poster_path": "/bG5aqfT5lTHuSbcQofNHtH0RyyP.jpg",
+            "vote_average": 8.8,
+            "vote_count": 70
+        },
+        {
+            "backdrop_path": "/8OrceoLR3ARlthFw0daqW7saXit.jpg",
+            "first_air_date": "2021-02-19",
+            "genre_ids": [
+                18,
+                9648
+            ],
+            "id": 97513,
+            "name": "The Boarding School: Las Cumbres",
+            "origin_country": [
+                "ES"
+            ],
+            "original_language": "es",
+            "original_name": "El internado: Las Cumbres",
+            "overview": "In an inaccessible place between the mountains and isolated from the world, a school is located next to an old monastery. The students are rebellious and problematic young people who live under the strict and severe discipline imposed by the center to reintegrate them into society. The surrounding forest is home to ancient legends, threats that are still valid and that will immerse them in terrifying adventures.",
+            "popularity": 446.334,
+            "poster_path": "/kl07N07l4XNjXF48oujzWXs40Dw.jpg",
+            "vote_average": 7.5,
+            "vote_count": 467
+        },
+        {
+            "backdrop_path": "/aq2yEMgRQBPfRkrO0Repo2qhUAT.jpg",
+            "first_air_date": "2013-03-03",
+            "genre_ids": [
+                10759,
+                18
+            ],
+            "id": 44217,
+            "name": "Vikings",
+            "origin_country": [
+                "CA"
+            ],
+            "original_language": "en",
+            "original_name": "Vikings",
+            "overview": "The adventures of Ragnar Lothbrok, the greatest hero of his age. The series tells the sagas of Ragnar's band of Viking brothers and his family, as he rises to become King of the Viking tribes. As well as being a fearless warrior, Ragnar embodies the Norse traditions of devotion to the gods. Legend has it that he was a direct descendant of Odin, the god of war and warriors.",
+            "popularity": 453.467,
+            "poster_path": "/bQLrHIRNEkE3PdIWQrZHynQZazu.jpg",
+            "vote_average": 8,
+            "vote_count": 4211
+        },
+        {
+            "backdrop_path": "/mleEJUPlGvckJWHMNZVjpPGMSL8.jpg",
+            "first_air_date": "2019-11-12",
+            "genre_ids": [
+                10765,
+                10759,
+                37,
+                18
+            ],
+            "id": 82856,
+            "name": "The Mandalorian",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Mandalorian",
+            "overview": "After the fall of the Galactic Empire, lawlessness has spread throughout the galaxy. A lone gunfighter makes his way through the outer reaches, earning his keep as a bounty hunter.",
+            "popularity": 417.284,
+            "poster_path": "/sWgBv7LV2PRoQgkxwlibdGXKz1S.jpg",
+            "vote_average": 8.5,
+            "vote_count": 6078
+        },
+        {
+            "backdrop_path": "/wgEWTYAAY7F04o4F20j0L1DGB8i.jpg",
+            "first_air_date": "2019-07-23",
+            "genre_ids": [
+                18
+            ],
+            "id": 91605,
+            "name": "I Am...",
+            "origin_country": [],
+            "original_language": "en",
+            "original_name": "I Am...",
+            "overview": "Each hour-long film follows a different women as they experience “moments that are emotionally raw, thought-provoking and utterly personal”.",
+            "popularity": 384.728,
+            "poster_path": "/oogunE22HDTcTxFakKQbwqfw1qo.jpg",
+            "vote_average": 5.7,
+            "vote_count": 14
+        },
+        {
+            "backdrop_path": "/suopoADq0k8YZr4dQXcU6pToj6s.jpg",
+            "first_air_date": "2011-04-17",
+            "genre_ids": [
+                10765,
+                18,
+                10759
+            ],
+            "id": 1399,
+            "name": "Game of Thrones",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Game of Thrones",
+            "overview": "Seven noble families fight for control of the mythical land of Westeros. Friction between the houses leads to full-scale war. All while a very ancient evil awakens in the farthest north. Amidst the war, a neglected military order of misfits, the Night's Watch, is all that stands between the realms of men and icy horrors beyond.",
+            "popularity": 417.065,
+            "poster_path": "/u3bZgnGQ9T01sWNhyveQz0wH0Hl.jpg",
+            "vote_average": 8.4,
+            "vote_count": 13561
+        },
+        {
+            "backdrop_path": "/9XUIsRUB7V3iEoLSKxZCqPvbKKW.jpg",
+            "first_air_date": "2018-09-04",
+            "genre_ids": [
+                80,
+                18
+            ],
+            "id": 76231,
+            "name": "Mayans M.C.",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Mayans M.C.",
+            "overview": "Set in the aftermath of Jax Teller’s death, Ezekiel \"EZ\" Reyes is fresh out of prison and a prospect in the Mayans M.C. charter on the Cali/Mexi border. Now, EZ must carve out his new identity in a town where he was once the golden boy with the American Dream in his grasp.",
+            "popularity": 412.586,
+            "poster_path": "/gaKhfksFK24N19bjlFpJxamYZ02.jpg",
+            "vote_average": 7.8,
+            "vote_count": 126
+        },
+        {
+            "backdrop_path": "/1bztL5ZgA9m8OSxO51TBYyoVO8P.jpg",
+            "first_air_date": "2021-02-19",
+            "genre_ids": [
+                10765,
+                18
+            ],
+            "id": 93808,
+            "name": "Tribes of Europa",
+            "origin_country": [
+                "DE"
+            ],
+            "original_language": "de",
+            "original_name": "Tribes of Europa",
+            "overview": "2074. In the wake of a mysterious global disaster, war rages between the Tribes that have emerged from the wreckage of Europe. Three siblings from the peaceful Origine tribe are separated and forced to forge their own paths in an action-packed fight for the future of this new Europa.",
+            "popularity": 383.559,
+            "poster_path": "/6zZxAFOtNwHCtTgSc2hU7pVIvDl.jpg",
+            "vote_average": 7.1,
+            "vote_count": 117
+        }
+    ],
+    "total_pages": 500,
+    "total_results": 10000
+}

@@ -1,0 +1,85 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "backdrop_path": "/v6FrR1oc2e4xcrsx2mC1bDmukws.jpg",
+            "first_air_date": "2021-03-23",
+            "genre_ids": [
+                99
+            ],
+            "id": 120424,
+            "name": "Demi Lovato: Dancing with the Devil",
+            "origin_country": [],
+            "original_language": "en",
+            "original_name": "Demi Lovato: Dancing with the Devil",
+            "overview": "Demi Lovato holds nothing back in this powerful four part documentary series exploring every aspect that led to her nearly fatal overdose in 2018, and her awakenings in the aftermath. Director Michael D. Ratner is granted unprecedented access to the superstar’s personal and musical journey during the most trying time of her life as she unearths her prior traumas and discovers the importance of her physical, emotional, and mental health. Far deeper than an inside look beyond the celebrity surface, this is an intimate portrait of addiction, and the process of healing and empowerment.",
+            "popularity": 29.102,
+            "poster_path": "/sSxWljZhNAOsmyzvnLGHhEOnSb9.jpg",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "backdrop_path": "/qYISMdsqRthRZY8BHUAis44RS4F.jpg",
+            "first_air_date": "2021-03-23",
+            "genre_ids": [
+                18,
+                80
+            ],
+            "id": 96230,
+            "name": "Leonardo",
+            "origin_country": [
+                "GB",
+                "ES",
+                "IT",
+                "US",
+                "FR"
+            ],
+            "original_language": "en",
+            "original_name": "Leonardo",
+            "overview": "A fresh look at the life and legacy of the iconic artist Leonardo da Vinci, positing that he was a gay outsider who used his work as a way of hiding his true self. Each episode will examine one of da Vinci’s artworks for hidden clues about a tortured artist struggling for perfection.",
+            "popularity": 27.097,
+            "poster_path": "/lZSPtpb4QwfxDHpgbT7OJwDgjS2.jpg",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "backdrop_path": "/80qyHI9tUDEBkmWME4ejAMaQSQo.jpg",
+            "first_air_date": "2021-03-23",
+            "genre_ids": [],
+            "id": 105347,
+            "name": "La fièvre des encans : nouvelle génération",
+            "origin_country": [
+                "CA"
+            ],
+            "original_language": "fr",
+            "original_name": "La fièvre des encans : nouvelle génération",
+            "overview": "",
+            "popularity": 20.174,
+            "poster_path": "/820SvFuTB2GvwY69TAELTTA4yHT.jpg",
+            "vote_average": 0,
+            "vote_count": 0
+        },
+        {
+            "backdrop_path": null,
+            "first_air_date": "2021-03-23",
+            "genre_ids": [
+                99,
+                80
+            ],
+            "id": 121032,
+            "name": "The Detectives: Fighting Organised Crime",
+            "origin_country": [
+                "GB"
+            ],
+            "original_language": "en",
+            "original_name": "The Detectives: Fighting Organised Crime",
+            "overview": "Behind the scenes access to Greater Manchester Police and their efforts to tackle organised crime. Offering insight into the frontline battle one police force to battle against organised crime including kidnapping and drug and people smuggling.",
+            "popularity": 7.531,
+            "poster_path": null,
+            "vote_average": 0,
+            "vote_count": 0
+        }
+    ],
+    "total_pages": 1,
+    "total_results": 4
+}

@@ -1,0 +1,411 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "backdrop_path": "/JB17sIsU53NuWVUecOwrCA0CUp.jpg",
+            "first_air_date": "2021-03-19",
+            "genre_ids": [
+                10765,
+                10759,
+                18
+            ],
+            "id": 88396,
+            "name": "The Falcon and the Winter Soldier",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Falcon and the Winter Soldier",
+            "overview": "Following the events of “Avengers: Endgame”, the Falcon, Sam Wilson and the Winter Soldier, Bucky Barnes team up in a global adventure that tests their abilities, and their patience.",
+            "popularity": 2593.349,
+            "poster_path": "/6kbAMLteGO8yyewYau6bJ683sw7.jpg",
+            "vote_average": 7.7,
+            "vote_count": 1366
+        },
+        {
+            "backdrop_path": "/z59kJfcElR9eHO9rJbWp4qWMuee.jpg",
+            "first_air_date": "2014-10-07",
+            "genre_ids": [
+                18,
+                10765
+            ],
+            "id": 60735,
+            "name": "The Flash",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Flash",
+            "overview": "After a particle accelerator causes a freak storm, CSI Investigator Barry Allen is struck by lightning and falls into a coma. Months later he awakens with the power of super speed, granting him the ability to move through Central City like an unseen guardian angel. Though initially excited by his newfound powers, Barry is shocked to discover he is not the only \"meta-human\" who was created in the wake of the accelerator explosion -- and not everyone is using their new powers for good. Barry partners with S.T.A.R. Labs and dedicates his life to protect the innocent. For now, only a few close friends and associates know that Barry is literally the fastest man alive, but it won't be long before the world learns what Barry Allen has become...The Flash.",
+            "popularity": 1430.029,
+            "poster_path": "/lJA2RCMfsWoskqlQhXPSLFQGXEJ.jpg",
+            "vote_average": 7.7,
+            "vote_count": 7086
+        },
+        {
+            "backdrop_path": "/qZtAf4Z1lazGQoYVXiHOrvLr5lI.jpg",
+            "first_air_date": "2017-01-26",
+            "genre_ids": [
+                9648,
+                18,
+                80
+            ],
+            "id": 69050,
+            "name": "Riverdale",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Riverdale",
+            "overview": "Set in the present, the series offers a bold, subversive take on Archie, Betty, Veronica and their friends, exploring the surreality of small-town life, the darkness and weirdness bubbling beneath Riverdale’s wholesome facade.",
+            "popularity": 1306.76,
+            "poster_path": "/wRbjVBdDo5qHAEOVYoMWpM58FSA.jpg",
+            "vote_average": 8.6,
+            "vote_count": 10613
+        },
+        {
+            "backdrop_path": "/gmbsR4SvYhhj4SvLAlTKxIkFxp9.jpg",
+            "first_air_date": "2021-02-23",
+            "genre_ids": [
+                10759,
+                10765
+            ],
+            "id": 95057,
+            "name": "Superman & Lois",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Superman & Lois",
+            "overview": "After years of facing megalomaniacal supervillains, monsters wreaking havoc on Metropolis, and alien invaders intent on wiping out the human race, The Man of Steel aka Clark Kent and Lois Lane come face to face with one of their greatest challenges ever: dealing with all the stress, pressures and complexities that come with being working parents in today's society.",
+            "popularity": 984.878,
+            "poster_path": "/6SJppowm7cdQgLkvoTlnTUSbjr9.jpg",
+            "vote_average": 8.3,
+            "vote_count": 553
+        },
+        {
+            "backdrop_path": "/edmk8xjGBsYVIf4QtLY9WMaMcXZ.jpg",
+            "first_air_date": "2005-03-27",
+            "genre_ids": [
+                18
+            ],
+            "id": 1416,
+            "name": "Grey's Anatomy",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Grey's Anatomy",
+            "overview": "Follows the personal and professional lives of a group of doctors at Seattle’s Grey Sloan Memorial Hospital.",
+            "popularity": 946.414,
+            "poster_path": "/clnyhPqj1SNgpAdeSS6a6fwE6Bo.jpg",
+            "vote_average": 8.2,
+            "vote_count": 5567
+        },
+        {
+            "backdrop_path": "/uro2Khv7JxlzXtLb8tCIbRhkb9E.jpg",
+            "first_air_date": "2010-10-31",
+            "genre_ids": [
+                10759,
+                18,
+                10765
+            ],
+            "id": 1402,
+            "name": "The Walking Dead",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Walking Dead",
+            "overview": "Sheriff's deputy Rick Grimes awakens from a coma to find a post-apocalyptic world dominated by flesh-eating zombies. He sets out to find his family and encounters many other survivors along the way.",
+            "popularity": 949.83,
+            "poster_path": "/rqeYMLryjcawh2JeRpCVUDXYM5b.jpg",
+            "vote_average": 8,
+            "vote_count": 10232
+        },
+        {
+            "backdrop_path": "/mZjZgY6ObiKtVuKVDrnS9VnuNlE.jpg",
+            "first_air_date": "2017-09-25",
+            "genre_ids": [
+                18
+            ],
+            "id": 71712,
+            "name": "The Good Doctor",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Good Doctor",
+            "overview": "A young surgeon with Savant syndrome is recruited into the surgical unit of a prestigious hospital. The question will arise: can a person who doesn't have the ability to relate to people actually save their lives",
+            "popularity": 788.79,
+            "poster_path": "/6tfT03sGp9k4c0J3dypjrI8TSAI.jpg",
+            "vote_average": 8.6,
+            "vote_count": 7128
+        },
+        {
+            "backdrop_path": "/fRYwdeNjMqC30EhofPx5PlDpdun.jpg",
+            "first_air_date": "2018-10-25",
+            "genre_ids": [
+                10765,
+                18
+            ],
+            "id": 79460,
+            "name": "Legacies",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Legacies",
+            "overview": "In a place where young witches, vampires, and werewolves are nurtured to be their best selves in spite of their worst impulses, Klaus Mikaelson’s daughter, 17-year-old Hope Mikaelson, Alaric Saltzman’s twins, Lizzie and Josie Saltzman, among others, come of age into heroes and villains at The Salvatore School for the Young and Gifted.",
+            "popularity": 600.397,
+            "poster_path": "/qTZIgXrBKURBK1KrsT7fe3qwtl9.jpg",
+            "vote_average": 8.6,
+            "vote_count": 1698
+        },
+        {
+            "backdrop_path": "/fPF6h8LLtZ40NRqkHfx2DvFbmkW.jpg",
+            "first_air_date": "2021-01-27",
+            "genre_ids": [
+                10765
+            ],
+            "id": 96580,
+            "name": "Resident Alien",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Resident Alien",
+            "overview": "Crash-landed alien Harry takes on the identity of a small-town Colorado doctor. Arriving with a secret mission, he starts off living a simple life…but things get a bit rocky when he’s roped into solving a local murder and realizes he needs to assimilate into his new world. As he does, he begins to wrestle with the moral dilemma of his mission and asking the big life questions like: “Are human beings worth saving?” and “Why do they fold their pizza before eating it?”",
+            "popularity": 492.102,
+            "poster_path": "/bG5aqfT5lTHuSbcQofNHtH0RyyP.jpg",
+            "vote_average": 8.8,
+            "vote_count": 70
+        },
+        {
+            "backdrop_path": "/9XUIsRUB7V3iEoLSKxZCqPvbKKW.jpg",
+            "first_air_date": "2018-09-04",
+            "genre_ids": [
+                80,
+                18
+            ],
+            "id": 76231,
+            "name": "Mayans M.C.",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Mayans M.C.",
+            "overview": "Set in the aftermath of Jax Teller’s death, Ezekiel \"EZ\" Reyes is fresh out of prison and a prospect in the Mayans M.C. charter on the Cali/Mexi border. Now, EZ must carve out his new identity in a town where he was once the golden boy with the American Dream in his grasp.",
+            "popularity": 412.586,
+            "poster_path": "/gaKhfksFK24N19bjlFpJxamYZ02.jpg",
+            "vote_average": 7.8,
+            "vote_count": 126
+        },
+        {
+            "backdrop_path": "/Aof7R1if9jKhHCk6M7UGyEQWQSk.jpg",
+            "first_air_date": "2018-10-16",
+            "genre_ids": [
+                80,
+                18
+            ],
+            "id": 79744,
+            "name": "The Rookie",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Rookie",
+            "overview": "Starting over isn’t easy, especially for small-town guy John Nolan who, after a life-altering incident, is pursuing his dream of being an LAPD officer. As the force’s oldest rookie, he’s met with skepticism from some higher-ups who see him as just a walking midlife crisis.",
+            "popularity": 400.197,
+            "poster_path": "/6hChiX0vIjWY4y2kz1WndHVMsDu.jpg",
+            "vote_average": 7.9,
+            "vote_count": 404
+        },
+        {
+            "backdrop_path": "/hpU2cHC9tk90hswCFEpf5AtbqoL.jpg",
+            "first_air_date": "1989-12-17",
+            "genre_ids": [
+                10751,
+                16,
+                35
+            ],
+            "id": 456,
+            "name": "The Simpsons",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Simpsons",
+            "overview": "Set in Springfield, the average American town, the show focuses on the antics and everyday adventures of the Simpson family; Homer, Marge, Bart, Lisa and Maggie, as well as a virtual cast of thousands. Since the beginning, the series has been a pop culture icon, attracting hundreds of celebrities to guest star. The show has also made name for itself in its fearless satirical take on politics, media and American life in general.",
+            "popularity": 336.627,
+            "poster_path": "/2IWouZK4gkgHhJa3oyYuSWfSqbG.jpg",
+            "vote_average": 7.8,
+            "vote_count": 6246
+        },
+        {
+            "backdrop_path": "/lthkKBLe1rX6iThgVFg22O02sJw.jpg",
+            "first_air_date": "2020-10-03",
+            "genre_ids": [
+                16,
+                10759,
+                10765
+            ],
+            "id": 95479,
+            "name": "Jujutsu Kaisen",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "呪術廻戦",
+            "overview": "With his days numbered, high schooler Yuji decides to hunt down and consume the remaining 19 fingers of a deadly curse so it can die with him.",
+            "popularity": 332.104,
+            "poster_path": "/g1rK2nRXSidcMwNliWDIroWWGTn.jpg",
+            "vote_average": 8.5,
+            "vote_count": 729
+        },
+        {
+            "backdrop_path": "/8vNQ3i2Xa3mrCKn6eq2ce5hhegT.jpg",
+            "first_air_date": "2019-10-06",
+            "genre_ids": [
+                10765,
+                10759,
+                9648,
+                80
+            ],
+            "id": 89247,
+            "name": "Batwoman",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Batwoman",
+            "overview": "Kate Kane, armed with a passion for social justice and a flair for speaking her mind, soars onto the streets of Gotham as Batwoman, an out lesbian and highly trained street fighter primed to snuff out the failing city's criminal resurgence. But don't call her a hero yet. In a city desperate for a savior, Kate must overcome her own demons before embracing the call to be Gotham's symbol of hope",
+            "popularity": 311.856,
+            "poster_path": "/xjyEpcuDbB1jy0ehNQMBiO8KOdr.jpg",
+            "vote_average": 7.3,
+            "vote_count": 976
+        },
+        {
+            "backdrop_path": "/yvKrycViRMQcIgdnjsM5JGNWU4Q.jpg",
+            "first_air_date": "2013-04-07",
+            "genre_ids": [
+                10765,
+                16,
+                10759
+            ],
+            "id": 1429,
+            "name": "Attack on Titan",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "進撃の巨人",
+            "overview": "Several hundred years ago, humans were nearly exterminated by Titans. Titans are typically several stories tall, seem to have no intelligence, devour human beings and, worst of all, seem to do it for the pleasure rather than as a food source. A small percentage of humanity survived by walling themselves in a city protected by extremely high walls, even taller than the biggest Titans. Flash forward to the present and the city has not seen a Titan in over 100 years. Teenage boy Eren and his foster sister Mikasa witness something horrific as the city walls are destroyed by a Colossal Titan that appears out of thin air. As the smaller Titans flood the city, the two kids watch in horror as their mother is eaten alive. Eren vows that he will murder every single Titan and take revenge for all of mankind.",
+            "popularity": 321.731,
+            "poster_path": "/aiy35Evcofzl7hASZZvsFgltHTX.jpg",
+            "vote_average": 8.7,
+            "vote_count": 3039
+        },
+        {
+            "backdrop_path": "/v2moumGovVAmDASYkjakIl2WrOM.jpg",
+            "first_air_date": "2016-09-23",
+            "genre_ids": [
+                18,
+                10759
+            ],
+            "id": 67133,
+            "name": "MacGyver",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "MacGyver",
+            "overview": "20-something Angus MacGyver creates a clandestine organization where he uses his knack for solving problems in unconventional ways to help prevent disasters from happening.",
+            "popularity": 286.912,
+            "poster_path": "/2zAogx9dmSAu2HYxbWzHe4ZaNY5.jpg",
+            "vote_average": 7.2,
+            "vote_count": 583
+        },
+        {
+            "backdrop_path": "/qPO43E0tnw9Gjh9EzkNmc3AKlE3.jpg",
+            "first_air_date": "2018-03-22",
+            "genre_ids": [
+                10759,
+                18
+            ],
+            "id": 76773,
+            "name": "Station 19",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Station 19",
+            "overview": "A group of heroic firefighters at Seattle Fire Station 19—from captain to newest recruit—risk their lives and hearts both in the line of duty and off the clock. These brave men and women are like family, literally and figuratively, and together they put their own lives in jeopardy as first responders to save the lives of others.",
+            "popularity": 236.749,
+            "poster_path": "/lcuCED5Ky2uM5VE6wILOwt5FEb0.jpg",
+            "vote_average": 8.2,
+            "vote_count": 714
+        },
+        {
+            "backdrop_path": "/2fhU42I8pPdvEKfrZtuJ8KrzdeF.jpg",
+            "first_air_date": "2020-05-17",
+            "genre_ids": [
+                10765
+            ],
+            "id": 79680,
+            "name": "Snowpiercer",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "Snowpiercer",
+            "overview": "Set more than seven years after the world has become a frozen wasteland, the remnants of humanity inhabit a gigantic, perpetually-moving train that circles the globe as class warfare, social injustice and the politics of survival play out.",
+            "popularity": 228.782,
+            "poster_path": "/95xQPSqwvQDRoB3rXUn4lRyJrBW.jpg",
+            "vote_average": 7.4,
+            "vote_count": 556
+        },
+        {
+            "backdrop_path": "/kXdfhKazlnRhnyc687DDdZJPaoJ.jpg",
+            "first_air_date": "2018-09-25",
+            "genre_ids": [
+                18
+            ],
+            "id": 80350,
+            "name": "New Amsterdam",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "New Amsterdam",
+            "overview": "Dr. Max Goodwin, the hospital's newest medical director, sets out to tear up the bureaucracy and provide exceptional care.",
+            "popularity": 215.481,
+            "poster_path": "/wKTAz8fkoXJoHqPpi4ArAUGDtco.jpg",
+            "vote_average": 8.3,
+            "vote_count": 204
+        },
+        {
+            "backdrop_path": "/zXpSJLcczUt6EfbdULZanguzy87.jpg",
+            "first_air_date": "2013-09-23",
+            "genre_ids": [
+                18,
+                80,
+                9648
+            ],
+            "id": 46952,
+            "name": "The Blacklist",
+            "origin_country": [
+                "US"
+            ],
+            "original_language": "en",
+            "original_name": "The Blacklist",
+            "overview": "Raymond \"Red\" Reddington, one of the FBI's most wanted fugitives, surrenders in person at FBI Headquarters in Washington, D.C. He claims that he and the FBI have the same interests: bringing down dangerous criminals and terrorists. In the last two decades, he's made a list of criminals and terrorists that matter the most but the FBI cannot find because it does not know they exist. Reddington calls this \"The Blacklist\". Reddington will co-operate, but insists that he will speak only to Elizabeth Keen, a rookie FBI profiler.",
+            "popularity": 219.606,
+            "poster_path": "/htJzeRcYI2ewMm4PTrg98UMXShe.jpg",
+            "vote_average": 7.4,
+            "vote_count": 1895
+        }
+    ],
+    "total_pages": 42,
+    "total_results": 821
+}

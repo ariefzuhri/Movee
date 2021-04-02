@@ -1,0 +1,696 @@
+{
+    "page": 1,
+    "results": [
+        {
+            "backdrop_path": "/uzp513qTcHsAavlCJ58x5d73bzy.jpg",
+            "first_air_date": "2017-07-07",
+            "genre_ids": [
+                16,
+                18,
+                10759,
+                10765
+            ],
+            "id": 72636,
+            "name": "Made In Abyss",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "メイドインアビス",
+            "overview": "Located in the center of a remote island, the Abyss is the last unexplored region, a huge and treacherous fathomless hole inhabited by strange creatures where only the bravest adventurers descend in search of ancient relics. In the upper levels of the Abyss, Riko, a girl who dreams of becoming an explorer, stumbles upon a mysterious little boy.",
+            "poster_path": "/5ICCEOKdqHFGp03zNMZmi95q9WB.jpg",
+            "vote_average": 8.9,
+            "vote_count": 186,
+            "networks": [
+                {
+                    "id": 173,
+                    "logo": {
+                        "path": "/fERjndErEpveJmQZccJbJDi93rj.png",
+                        "aspect_ratio": 1.595744680851064
+                    },
+                    "name": "AT-X",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 50.823
+        },
+        {
+            "backdrop_path": "/rRGnjRCHdDl3m3oCVSvo5z2E5c5.jpg",
+            "first_air_date": "2016-01-08",
+            "genre_ids": [
+                16,
+                18,
+                9648
+            ],
+            "id": 65249,
+            "name": "ERASED",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "僕だけがいない街",
+            "overview": "Satoru Fujinuma is a struggling manga artist who has the ability to turn back time and prevent deaths. When his mother is killed he turns back time to solve the mystery, but ends up back in elementary school, just before the disappearance of his classmate Kayo.",
+            "poster_path": "/EljUwZJhpuYfVuSfqY8Pt1xxpH.jpg",
+            "vote_average": 8.8,
+            "vote_count": 562,
+            "networks": [
+                {
+                    "id": 1,
+                    "logo": {
+                        "path": "/yS5UJjsSdZXML0YikWTYYHLPKhQ.png",
+                        "aspect_ratio": 1.024096385542169
+                    },
+                    "name": "Fuji TV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 59.21
+        },
+        {
+            "backdrop_path": "/7ZruEnSnHD6Jx5mF0hBt1E306Vt.jpg",
+            "first_air_date": "2016-04-04",
+            "genre_ids": [
+                16,
+                35,
+                18,
+                10765,
+                10759
+            ],
+            "id": 65942,
+            "name": "Re:ZERO -Starting Life in Another World-",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "Re：ゼロから始める異世界生活",
+            "overview": "Natsuki Subaru, an ordinary high school  student, is on his way home from the convenience store when he finds  himself transported to another world. As he's lost and confused in a new  world where he doesn't even know left from right, the only person to  reach out to him was a beautiful girl with silver hair. Determined to  repay her somehow for saving him from his own despair, Subaru agrees to  help the girl find something she's looking for.",
+            "poster_path": "/5DZa4aDH5MZGcZDf8ouTxm2kH2Y.jpg",
+            "vote_average": 7.7,
+            "vote_count": 160,
+            "networks": [
+                {
+                    "id": 98,
+                    "logo": {
+                        "path": "/kGRavMqgyx4p2X4C96bjRCj50oI.png",
+                        "aspect_ratio": 1.910828025477707
+                    },
+                    "name": "TV Tokyo",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 74.786
+        },
+        {
+            "backdrop_path": "/xYedDZLJ3lUpNvoC8hdVpXiz5lJ.jpg",
+            "first_air_date": "2015-01-10",
+            "genre_ids": [
+                16,
+                18,
+                9648
+            ],
+            "id": 61901,
+            "name": "Death Parade",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "デス・パレード",
+            "overview": "There is a place after death that’s neither heaven nor hell. A bar that serves you one chance to win. You cannot leave until the game is over, and when it is, your life may be too. From Studio Madhouse (Death Note, Black Lagoon) comes a thrilling new series where the stakes are high and the rules are simple: your life is on the line.",
+            "poster_path": "/rBoJhqTxJUINuFAa2rL9E8Aj7eB.jpg",
+            "vote_average": 8.3,
+            "vote_count": 208,
+            "networks": [
+                {
+                    "id": 57,
+                    "logo": {
+                        "path": "/uxaXSoT8K0S2NE5PWsBpHUl3GGU.png",
+                        "aspect_ratio": 1.484780994803266
+                    },
+                    "name": "NTV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 23.872
+        },
+        {
+            "backdrop_path": "/u6vrhhCaL7OchdrfupGgv70K12p.jpg",
+            "first_air_date": "2016-10-07",
+            "genre_ids": [
+                16,
+                10765,
+                10759,
+                9648
+            ],
+            "id": 68103,
+            "name": "Drifters",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ドリフターズ",
+            "overview": "Shimazu Toyohisa is a real-life samurai who fought in the pivotal Battle of Sekigahara. In his dying moments, Shimazu is transported to a world of magic with other famous warriors throughout history. These warriors are forced to fight each other in an endless battle.",
+            "poster_path": "/yGv5dpnNuX2JDjHpKjYDtCAQzpi.jpg",
+            "vote_average": 7.2,
+            "vote_count": 36,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 18.982
+        },
+        {
+            "backdrop_path": "/dJ8yrSokdTMnhKJw06MllSfCegb.jpg",
+            "first_air_date": "2019-01-12",
+            "genre_ids": [
+                16,
+                35,
+                18
+            ],
+            "id": 83121,
+            "name": "Kaguya-sama: Love is War",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "かぐや様は告らせたい～天才たちの恋愛頭脳戦～",
+            "overview": "Considered a genius due to having the highest grades in the country, Miyuki Shirogane leads the prestigious Shuchiin Academy's student council as its president, working alongside the beautiful and wealthy vice president Kaguya Shinomiya. The two are often regarded as the perfect couple by students despite them not being in any sort of romantic relationship.",
+            "poster_path": "/dA93MnalfNLHMMlDcTCfX4QJb5Q.jpg",
+            "vote_average": 8.9,
+            "vote_count": 304,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 2975,
+                    "logo": {
+                        "path": "/aA74agiTaAoFrGmOfSDyBlpZocE.png",
+                        "aspect_ratio": 2.590809628008753
+                    },
+                    "name": "Animax Korea",
+                    "origin_country": "KR"
+                }
+            ],
+            "popularity": 60.544
+        },
+        {
+            "backdrop_path": "/epeKkcetNXp6s4J4iRHpe92ahCN.jpg",
+            "first_air_date": "2019-07-08",
+            "genre_ids": [
+                16,
+                10759,
+                18
+            ],
+            "id": 88803,
+            "name": "Vinland Saga",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ヴィンランド・サガ",
+            "overview": "For a thousand years, the Vikings have made quite a name and reputation for themselves as the strongest families with a thirst for violence. Thorfinn, the son of one of the Vikings' greatest warriors, spends his boyhood in a battlefield enhancing his skills in his adventure to redeem his most-desired revenge after his father was murdered.",
+            "poster_path": "/vUHlpA5c1NXkds59reY3HMb4Abs.jpg",
+            "vote_average": 8.5,
+            "vote_count": 196,
+            "networks": [
+                {
+                    "id": 2334,
+                    "logo": {
+                        "path": "/rioX0zGJHGnuEm9iGMVL6N9guA0.png",
+                        "aspect_ratio": 3.625
+                    },
+                    "name": "NHK",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 21.174
+        },
+        {
+            "backdrop_path": "/sOslKAoi1eBZ0MzfunCra0gACZk.jpg",
+            "first_air_date": "2011-04-15",
+            "genre_ids": [
+                16,
+                18,
+                9648
+            ],
+            "id": 39434,
+            "name": "Anohana: The Flower We Saw That Day",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "あの日見た花の名前を僕達はまだ知らない。",
+            "overview": "When Yadomi Jinta was a child, he was a central piece in a group of close friends. In time, however, these childhood friends drifted apart, and when they became high school students, they had long ceased to think of each other as friends.\n\nOne of the friends from that group, Honma Meiko, now has a wish she asks Jinta to fulfil. The problem is, she can't remember what her wish is anymore. As Meiko won't cease to bother Jinta about it, he gives in and decides to try to grant this wish he knows nothing of; for that, however, the help of his other former friends, now all very estranged from himself and from each other, may turn out to be necessary. He hasn't spoken to Anjou Naruko, Matsuyuki Atsumu, Tsurumi Chiriko, or Hisakawa Tetsudou in a long time; as he struggles to grant Meiko's wish and gathers his old friends together in the process, all the old feelings that still exist between them and have long been stashed away are bound to come up again.",
+            "poster_path": "/2tgOAvOttp7rak3r2U5vIAaeyDt.jpg",
+            "vote_average": 8.6,
+            "vote_count": 178,
+            "networks": [
+                {
+                    "id": 1,
+                    "logo": {
+                        "path": "/yS5UJjsSdZXML0YikWTYYHLPKhQ.png",
+                        "aspect_ratio": 1.024096385542169
+                    },
+                    "name": "Fuji TV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 27.58
+        },
+        {
+            "backdrop_path": "/vLJEAxGqvVAJlRsIfeo6kfOrNmC.jpg",
+            "first_air_date": "2013-04-04",
+            "genre_ids": [
+                10759,
+                16,
+                35,
+                10765
+            ],
+            "id": 45997,
+            "name": "The Devil Is a Part-Timer!",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "はたらく魔王さま！",
+            "overview": "Foiled by a hero when he’s inches away from conquering the world, the devil finds himself in modern-day Tokyo. With no real-world skills to speak of, the devil is forced to make ends meet flipping burgers at a fast food joint! To stall any further plans of world domination, the hero tracks the devil’s trail and takes on the lowly tasks of a telemarketer.",
+            "poster_path": "/nPrxXjFRPhIhVd3aOjm8fsSCBXy.jpg",
+            "vote_average": 7.3,
+            "vote_count": 72,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 22.933
+        },
+        {
+            "backdrop_path": "/oWTIyBl75HwxOA4c8hNmxPpueyI.jpg",
+            "first_air_date": "2011-10-09",
+            "genre_ids": [
+                10759,
+                16,
+                18,
+                9648
+            ],
+            "id": 46671,
+            "name": "The Future Diary",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "未来日記",
+            "overview": "Reality quickly unravels when antisocial Yukiteru is called into a death match against 11 other mentally scarred individuals. Each player has a prophetic device tuned to their personality, giving them control over their future—and the fate of their foes.",
+            "poster_path": "/lQ466CW06VQ30SbHupdLLfxF234.jpg",
+            "vote_average": 7.0,
+            "vote_count": 96,
+            "networks": [
+                {
+                    "id": 663,
+                    "logo": {
+                        "path": "/8XNtModCxAwtvLy86b3phkE1jge.png",
+                        "aspect_ratio": 5.263157894736842
+                    },
+                    "name": "Chiba TV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 25.789
+        },
+        {
+            "backdrop_path": "/1Ep6YHL5QcrNC1JN6RYalWRPopi.jpg",
+            "first_air_date": "2019-07-05",
+            "genre_ids": [
+                10759,
+                16
+            ],
+            "id": 86031,
+            "name": "Dr. Stone",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ドクターストーン",
+            "overview": "One fateful day, all of humanity was petrified by a blinding flash of light. After several millennia, high schooler Taiju awakens and finds himself lost in a world of statues. However, he's not alone! His science-loving friend Senku's been up and running for a few months and he's got a grand plan in mind, to kickstart civilization with the power of science!",
+            "poster_path": "/dLlnzbDCblBXcJqFLXyvN43NIwp.jpg",
+            "vote_average": 8.8,
+            "vote_count": 699,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 1137,
+                    "logo": {
+                        "path": "/j12pSWPsDBxE1mmIpB7M8VRzk78.png",
+                        "aspect_ratio": 4.102803738317757
+                    },
+                    "name": "KBS Kyoto",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 33.377
+        },
+        {
+            "backdrop_path": "/lV5n3E6GkHHEIBClkett0hSyqo.jpg",
+            "first_air_date": "2010-04-03",
+            "genre_ids": [
+                16,
+                35,
+                18,
+                10765,
+                10759
+            ],
+            "id": 42942,
+            "name": "Angel Beats!",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "エンジェルビーツ!",
+            "overview": "Angel Beats takes place in the afterlife and focuses on Otonashi, a boy who lost his memories of his life after dying. He is enrolled into the afterlife school and meets a girl named Yuri who invites him to join the Afterlife Battlefront — an organization she leads which fights against God. The Battlefront fight against the student council president Angel, a girl with supernatural powers.",
+            "poster_path": "/d7j2KtAh88wEcQCIVQ7SKz2T5So.jpg",
+            "vote_average": 7.8,
+            "vote_count": 185,
+            "networks": [
+                {
+                    "id": 94,
+                    "logo": {
+                        "path": "/7RNXnyiMbjgqtPAjja13wchcrGI.png",
+                        "aspect_ratio": 3.043478260869565
+                    },
+                    "name": "MBS",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 160,
+                    "logo": {
+                        "path": "/frMsfc7igYUd90lQXpxuasiN5x4.png",
+                        "aspect_ratio": 3.471264367816092
+                    },
+                    "name": "TBS",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 201,
+                    "logo": {
+                        "path": "/qNooLje0YQh1y3y9LUM2Y5QCtiF.png",
+                        "aspect_ratio": 3.937007874015748
+                    },
+                    "name": "CBC",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 861,
+                    "logo": {
+                        "path": "/JQ5bx6n7Qmdmyqz6sqjo5Fz2iR.png",
+                        "aspect_ratio": 2.181818181818182
+                    },
+                    "name": "BS11",
+                    "origin_country": "JP"
+                },
+                {
+                    "id": 896,
+                    "logo": {
+                        "path": "/qfUzYnpnN5bnd2bqGUH0OlAMell.png",
+                        "aspect_ratio": 4.784090909090909
+                    },
+                    "name": "Tulip Television",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 24.131
+        },
+        {
+            "backdrop_path": "/6qwbib8digp121qA9xj3STeq2KC.jpg",
+            "first_air_date": "2018-04-09",
+            "genre_ids": [
+                10759,
+                16,
+                35
+            ],
+            "id": 76757,
+            "name": "Golden Kamuy",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "ゴールデンカムイ",
+            "overview": "The story takes place in the mighty Northern field of Hokkaido, the time is in the turbulent late Meiji Era. A post war soldier Sugimoto, aka, “Immortal Sugimoto” was in need of large sums of money for a particular purpose…. What awaited Sugimoto, who stepped into Hokkaido’s Gold Rush with dreams of making a fortune, was a tattoo map leading to a hidden treasure based on hints inscribed on the bodies of convicts in Abashiri Prison?! The magnificent nature of Hokkaido vs vicious convicts and the meeting with a pure Ainu girl, Ashiripa!! A survival battle for a hidden treasure hunt begins!",
+            "poster_path": "/eeA3EYLNM10an6L6Qizv2VrcgII.jpg",
+            "vote_average": 7.3,
+            "vote_count": 23,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 63.838
+        },
+        {
+            "backdrop_path": "/rl3cHVMuHXr6XJ7jKDoXJamoqPI.jpg",
+            "first_air_date": "2016-04-08",
+            "genre_ids": [
+                10759,
+                16,
+                10765
+            ],
+            "id": 65945,
+            "name": "Kabaneri of the Iron Fortress",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "甲鉄城のカバネリ",
+            "overview": "As the world is in the middle of an industrial revolution, a monster appears that cannot be defeated unless its heart, which is protected by a layer of iron, is pierced. By infecting humans with its bite, the monster can create aggressive and undead creatures known as Kabane. On the island Hinomoto, located in the far east, people have built stations to shelter themselves from these creatures. People access the station, as well as transport wares between them, with the help of a locomotive running on steam, called Hayajiro. Ikoma, a boy who lives in the Aragane station and helps to build Hayajiro, creates his own weapon called Tsuranukizutsu in order to defeat the creatures. One day, as he waits for an opportunity to use his weapon, he meets a girl named Mumei, who is excused from the mandatory Kabane inspection. During the night, Ikuma meets Mumei again as he sees Hayajiro going out of control. The staff on the locomotive has turned into the creatures. The station, now under attack by Kabane, is the opportunity Ikoma has been looking for.",
+            "poster_path": "/uBmcAZ7BRfVzb9nMPYm1MqpvNme.jpg",
+            "vote_average": 6.6,
+            "vote_count": 60,
+            "networks": [
+                {
+                    "id": 1,
+                    "logo": {
+                        "path": "/yS5UJjsSdZXML0YikWTYYHLPKhQ.png",
+                        "aspect_ratio": 1.024096385542169
+                    },
+                    "name": "Fuji TV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 40.563
+        },
+        {
+            "backdrop_path": "/kP5duNJEbTfXpBs6CITsaZ88pQi.jpg",
+            "first_air_date": "2016-07-12",
+            "genre_ids": [
+                10759,
+                16,
+                35
+            ],
+            "id": 67075,
+            "name": "Mob Psycho 100",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "モブサイコ100",
+            "overview": "Shigeo Kageyama, a.k.a. \"Mob,\" is a boy who has trouble expressing himself, but who happens to be a powerful esper. Mob is determined to live a normal life and keeps his ESP suppressed, but when his emotions surge to a level of 100%, something terrible happens to him! As he's surrounded by false espers, evil spirits, and mysterious organizations, what will Mob think? What choices will he make?",
+            "poster_path": "/5Wf9Y6gucbu1LMe1FyqD8TQjaNM.jpg",
+            "vote_average": 8.5,
+            "vote_count": 472,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 53.965
+        },
+        {
+            "backdrop_path": "/nTvM4mhqNlHIvUkI1gVnW6XP7GG.jpg",
+            "first_air_date": "2019-04-06",
+            "genre_ids": [
+                16,
+                10759,
+                10765
+            ],
+            "id": 85937,
+            "name": "Demon Slayer: Kimetsu no Yaiba",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "鬼滅の刃",
+            "overview": "It is the Taishō period in Japan. Tanjirō, a kindhearted boy who sells charcoal for a living, finds his family slaughtered by a demon. To make matters worse, his younger sister Nezuko, the sole survivor, has been transformed into a demon herself. Though devastated by this grim reality, Tanjirō resolves to become a “demon slayer” so that he can turn his sister back into a human, and kill the demon that massacred his family.",
+            "poster_path": "/wrCVHdkBlBWdJUZPvnJWcBRuhSY.jpg",
+            "vote_average": 8.9,
+            "vote_count": 2032,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 37.379
+        },
+        {
+            "backdrop_path": "/kzZIyIhUl7vHePVTvtINasLyUnz.jpg",
+            "first_air_date": "2017-01-21",
+            "genre_ids": [
+                10759,
+                16,
+                10765
+            ],
+            "id": 69820,
+            "name": "Granblue Fantasy: The Animation",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "グランブルーファンタジー The Animation",
+            "overview": "This is a world of the skies, where many islands drift in the sky. A boy named Gran and a talking winged lizard named Vyrn lived in Zinkenstill, an island which yields mysteries. One day, they come across a girl named Lyria. Lyria had escaped from the Erste Empire, a military government that is trying to rule over this world using powerful military prowess. In order to escape from the Empire, Gran and Lyria head out into the vast skies, holding the letter Gran's father left behind - which said, \"I will be waiting at Estalucia, Island of Stars\".",
+            "poster_path": "/405yUDIn3rRy5U4UkcS8gv1UozF.jpg",
+            "vote_average": 7.0,
+            "vote_count": 14,
+            "networks": [],
+            "popularity": 16.125
+        },
+        {
+            "backdrop_path": "/zrW7b4AQnX7KeZUYsmpdV3z5qlp.jpg",
+            "first_air_date": "2012-10-12",
+            "genre_ids": [
+                10765,
+                16,
+                10759
+            ],
+            "id": 43865,
+            "name": "Psycho-Pass",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "サイコパス",
+            "overview": "Psycho-Pass is set in a futuristic era in Japan where the Sibyl System, a powerful network of psychometric scanners, actively measures the biometrics of its citizens' minds. The resulting assessment is called a Psycho-Pass. When the calculated likelihood of an individual committing a crime, measured by the Crime Coefficient index, exceeds an accepted threshold, he or she is pursued, apprehended, and either arrested or decomposed by the field officers of the Crime Investigation Department of the Public Safety Bureau.",
+            "poster_path": "/c48oUhxNb01uAnKhAbgM0dovLJg.jpg",
+            "vote_average": 7.9,
+            "vote_count": 164,
+            "networks": [
+                {
+                    "id": 1,
+                    "logo": {
+                        "path": "/yS5UJjsSdZXML0YikWTYYHLPKhQ.png",
+                        "aspect_ratio": 1.024096385542169
+                    },
+                    "name": "Fuji TV",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 33.018
+        },
+        {
+            "backdrop_path": "/7B4PGxWt9NrcFCEAegLSEuSyAeS.jpg",
+            "first_air_date": "2018-04-12",
+            "genre_ids": [
+                10765,
+                16
+            ],
+            "id": 78102,
+            "name": "Steins;Gate 0",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "シュタインズ・ゲート ゼロ",
+            "overview": "The dark untold story of Steins;Gate that leads with the eccentric mad scientist Okabe, struggling to recover from a failed attempt at rescuing Kurisu. He decides to give up and abandons his lively scientist alter ego, in pursuit to forget the past. When all seems to be normal, he is seemingly pulled back into the past by meeting an acquaintance of Kurisu, who tells him that they have begun testing a device that stores the memory of a human and creates a simulation of them with their characteristics and personalities. Okabe begins testing and finds out that the simulation of Kurisu has brought back anguish and some new unexpected tragedies.\n\nZero is a side story that explores events from the Beta Attractor Field's future that contribute in making the end of the original story possible.",
+            "poster_path": "/75w7GE9K7T5wvy3OGN9gauSoBOZ.jpg",
+            "vote_average": 7.8,
+            "vote_count": 61,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 14.026
+        },
+        {
+            "backdrop_path": "/vc3GVrH46tZPUk7RxRpQO6wH3ny.jpg",
+            "first_air_date": "2017-01-12",
+            "genre_ids": [
+                16,
+                35
+            ],
+            "id": 69291,
+            "name": "Miss Kobayashi's Dragon Maid",
+            "origin_country": [
+                "JP"
+            ],
+            "original_language": "ja",
+            "original_name": "小林さんちのメイドラゴン",
+            "overview": "Kobayashi lives alone in an apartment, until one day, Tooru appeared and they ended up living together. Tooru looks down on humans as inferior and foolish, but having been saved by Kobayashi-san, she does everything she can to repay the debt and help her with various things, although not everything goes according to plan.\n\nA mythical everyday life comedy about a hard working office lady living with a dragon girl.",
+            "poster_path": "/o2Sn4Zfnk3XjQ8qeykZayKzHuhr.jpg",
+            "vote_average": 7.4,
+            "vote_count": 70,
+            "networks": [
+                {
+                    "id": 614,
+                    "logo": {
+                        "path": "/3qFArHw6nrFIdkH2tPht701sNhs.png",
+                        "aspect_ratio": 7.8
+                    },
+                    "name": "Tokyo MX",
+                    "origin_country": "JP"
+                }
+            ],
+            "popularity": 40.409
+        }
+    ],
+    "total_pages": 2,
+    "total_results": 40
+}
