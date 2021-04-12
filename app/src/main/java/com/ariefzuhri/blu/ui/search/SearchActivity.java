@@ -2,6 +2,7 @@ package com.ariefzuhri.blu.ui.search;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -9,30 +10,19 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ariefzuhri.blu.R;
+import com.ariefzuhri.blu.data.MediaEntity;
 import com.ariefzuhri.blu.databinding.ActivitySearchBinding;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.utils.ShimmerHelper;
 import com.ariefzuhri.blu.viewmodel.ViewModelFactory;
 
+import java.util.List;
+
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY_TYPE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 import static com.ariefzuhri.blu.utils.Constants.ORIENTATION_TYPE_VERTICAL;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_LATEST_RELEASE;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_NOW_PLAYING;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_POPULAR;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_RECOMMENDATIONS;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_TOP_RATED;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_TRENDING;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_UPCOMING;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_LATEST_RELEASE;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_ON_THE_AIR;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_POPULAR;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_RECOMMENDATIONS;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_TOP_RATED;
-import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_TV_TRENDING;
+import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MULTI_SEARCH;
 
 public class SearchActivity extends AppCompatActivity implements SearchView.OnQueryTextListener {
 
@@ -54,17 +44,16 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         adapter = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.recyclerView.setAdapter(adapter);
 
-        shimmer = new ShimmerHelper(binding.shimmer, binding.recyclerView);
+        shimmer = new ShimmerHelper(this, binding.shimmer, binding.recyclerView);
         shimmer.show();
 
-        ViewModelFactory factory = ViewModelFactory.getInstance();
+        ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
         viewModel.setPage(1);
 
-        viewModel.getGenres(MEDIA_TYPE_MOVIE).observe(this, result ->
-                adapter.insertGenreList(result));
-        viewModel.getGenres(MEDIA_TYPE_TV).observe(this, result ->
-                adapter.insertGenreList(result));
+        viewModel.getHeader().observe(this, header -> binding.tvHeader.setText(header));
+        viewModel.getMovieGenres().observe(this, result -> adapter.insertGenreList(result));
+        viewModel.getTVGenres().observe(this, result -> adapter.insertGenreList(result));
 
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_QUERY)){
@@ -72,128 +61,33 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             binding.searchView.setQuery(query, true);
             performQuery(query);
         } else if (intent.hasExtra(EXTRA_QUERY_TYPE)){
-            String header = null;
             int type = intent.getIntExtra(EXTRA_QUERY_TYPE, 0);
-            int mediaId = intent.getIntExtra(EXTRA_MEDIA_ID, 0);
-            switch (type) {
-                case QUERY_TYPE_MOVIE_TRENDING:
-                    header = getString(R.string.trending_movies);
-                    viewModel.getMovieTrending().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_LATEST_RELEASE:
-                    header = getString(R.string.latest_release_movies);
-                    viewModel.getMovieLatestRelease().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_NOW_PLAYING:
-                    header = getString(R.string.now_playing_movies);
-                    viewModel.getMovieNowPlaying().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_UPCOMING:
-                    header = getString(R.string.upcoming_movies);
-                    viewModel.getMovieUpcoming().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_TOP_RATED:
-                    header = getString(R.string.top_rated_movies);
-                    viewModel.getMovieTopRated().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_POPULAR:
-                    header = getString(R.string.popular_movies);
-                    viewModel.getMoviePopular().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_MOVIE_RECOMMENDATIONS:
-                    header = getString(R.string.recommendations_movies);
-                    viewModel.getMovieRecommendations(mediaId).observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_TRENDING:
-                    header = getString(R.string.trending_tv_shows);
-                    viewModel.getTVTrending().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_LATEST_RELEASE:
-                    header = getString(R.string.latest_release_tv_shows);
-                    viewModel.getTVLatestRelease().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_ON_THE_AIR:
-                    header = getString(R.string.on_the_air_tv_shows);
-                    viewModel.getTVOnTheAir().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_TOP_RATED:
-                    header = getString(R.string.top_rated_tv_shows);
-                    viewModel.getTVTopRated().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_POPULAR:
-                    header = getString(R.string.popular_tv_shows);
-                    viewModel.getTVPopular().observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
-
-                case QUERY_TYPE_TV_RECOMMENDATIONS:
-                    header = getString(R.string.recommendations_tv_shows);
-                    viewModel.getTVRecommendations(mediaId).observe(this, result -> {
-                        adapter.setData(result);
-                        shimmer.hide();
-                    });
-                    break;
+            viewModel.setQueryType(type);
+            if (intent.hasExtra(EXTRA_MEDIA_ID)){ // Untuk rekomendasi
+                int mediaId = intent.getIntExtra(EXTRA_MEDIA_ID, 0);
+                viewModel.setMediaId(mediaId);
             }
-            binding.tvHeader.setText(header);
+            viewModel.getSearchResult().observe(this, observer);
         }
 
         binding.searchView.setOnQueryTextListener(this);
-
-        binding.swipeRefreshLayout.setOnRefreshListener(() -> binding.swipeRefreshLayout.setRefreshing(false));
+        binding.swipeRefreshLayout.setOnRefreshListener(() ->
+                viewModel.getSearchResult().observe(this, observer));
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        binding.scrollView.scrollTo(0, 0);
-        binding.appBar.setExpanded(true);
-        performQuery(query);
+        //boolean hasSubmittedQuery = binding.tvHeader.getText().toString().equals(getString(R.string.search));
         binding.searchView.clearFocus();
+        if (adapter.getItemCount() == 0){
+            binding.scrollView.scrollTo(0, 0);
+            binding.appBar.setExpanded(true);
+            performQuery(query);
+        } else {
+            Intent intent = new Intent(this, SearchActivity.class);
+            intent.putExtra(EXTRA_QUERY, query);
+            startActivity(intent);
+        }
         return false;
     }
 
@@ -204,10 +98,17 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     private void performQuery(String query){
         binding.tvHeader.setText(R.string.search);
-        shimmer.show();
-        viewModel.getMultiSearch(query).observe(this, result -> {
+        viewModel.setQueryType(QUERY_TYPE_MULTI_SEARCH);
+        viewModel.setQuery(query);
+        viewModel.getSearchResult().observe(this, observer);
+    }
+
+    private final Observer<List<MediaEntity>> observer = new Observer<List<MediaEntity>>() {
+        @Override
+        public void onChanged(List<MediaEntity> result) {
             adapter.setData(result);
             shimmer.hide();
-        });
-    }
+            binding.swipeRefreshLayout.setRefreshing(false);
+        }
+    };
 }

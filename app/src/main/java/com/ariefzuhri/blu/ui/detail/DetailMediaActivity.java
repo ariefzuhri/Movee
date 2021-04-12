@@ -1,8 +1,6 @@
 package com.ariefzuhri.blu.ui.detail;
 
 import android.content.Intent;
-import android.content.res.ColorStateList;
-import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,6 +21,7 @@ import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -61,6 +60,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private ContentDetailMediaBinding contentBinding;
 
     private DetailMediaViewModel viewModel;
+    private Intent trailerIntent;
     private MediaEntity media;
 
     @Override
@@ -73,14 +73,14 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         setSupportActionBar(activityBinding.toolbar);
         activityBinding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
             if (Math.abs(verticalOffset) - appBarLayout.getTotalScrollRange() == 0) { // Collapsed
-                activityBinding.appBar.setBackground(new ColorDrawable(getResources().getColor(R.color.blue)));
+                activityBinding.appBar.setBackground(new ColorDrawable(ContextCompat.getColor(this, R.color.blue)));
                 activityBinding.tvToolbarTitle.setVisibility(View.VISIBLE);
-                activityBinding.fabBack.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
+                activityBinding.fabBack.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.transparent));
                 activityBinding.fabBack.setElevation(0);
             } else { //Expanded
-                activityBinding.appBar.setBackground(new ColorDrawable(getResources().getColor(R.color.white)));
+                activityBinding.appBar.setBackground(new ColorDrawable(ContextCompat.getColor(this, R.color.white)));
                 activityBinding.tvToolbarTitle.setVisibility(View.INVISIBLE);
-                activityBinding.fabBack.setBackgroundTintList(ColorStateList.valueOf(getResources().getColor(R.color.white)));
+                activityBinding.fabBack.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.white));
                 activityBinding.fabBack.setElevation(8);
             }
         });
@@ -100,36 +100,26 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         contentBinding.tvViewMoreSynopsis.setOnClickListener(this);
         contentBinding.tvViewMoreRecommendation.setOnClickListener(this);
 
-        ShimmerHelper shimmerRecommendation = new ShimmerHelper(contentBinding.shimmerRecommendation, contentBinding.rvRecommendation);
+        ShimmerHelper shimmerRecommendation = new ShimmerHelper(this, contentBinding.shimmerRecommendation, contentBinding.rvRecommendation);
         shimmerRecommendation.show();
 
-        ViewModelFactory factory = ViewModelFactory.getInstance();
+        ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(DetailMediaViewModel.class);
+        viewModel.setPage(1);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             String mediaType = bundle.getString(EXTRA_MEDIA_TYPE);
             int mediaId = bundle.getInt(EXTRA_MEDIA_ID);
-            viewModel.setSelectedMedia(mediaType, mediaId);
-            if (mediaType.equals(MEDIA_TYPE_MOVIE)){
-                viewModel.getMovieDetails().observe(this, this::populateMedia);
-            } else if (mediaType.equals(MEDIA_TYPE_TV)){
-                viewModel.getTVDetails().observe(this, this::populateMedia);
-            }
-            viewModel.getCredits().observe(this, creditsResponse -> {});
-            viewModel.getGenres().observe(this, resultGenre -> {
-                if (mediaType.equals(MEDIA_TYPE_MOVIE)){
-                    viewModel.getMovieRecommendations().observe(this, resultMovie -> {
-                        populateRecommendations(resultGenre, resultMovie);
+            viewModel.setMediaType(mediaType);
+            viewModel.setMediaId(mediaId);
+            viewModel.getMediaDetails().observe(this, this::populateMedia);
+            viewModel.getCredits().observe(this, result -> {});
+            viewModel.getGenres().observe(this, resultGenre ->
+                    viewModel.getRecommendations().observe(this, resultMedia -> {
+                        populateRecommendations(resultGenre, resultMedia);
                         shimmerRecommendation.hide();
-                    });
-                } else if (mediaType.equals(MEDIA_TYPE_TV)){
-                    viewModel.getTVRecommendations().observe(this, resultTV -> {
-                        populateRecommendations(resultGenre, resultTV);
-                        shimmerRecommendation.hide();
-                    });
-                }
-            });
+                    }));
         }
     }
 
@@ -177,8 +167,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         contentBinding.tvType.setText(getResources().getString(R.string.type, type,
                 media.getEpisodes(),
                 getResources().getQuantityString(R.plurals.number_of_episodes, media.getEpisodes()),
-                status)
-        );
+                status));
 
         FlexboxLayoutManager layoutManager = new FlexboxLayoutManager(this);
         layoutManager.setFlexDirection(FlexDirection.ROW);
@@ -194,7 +183,40 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         }
         genreAdapter.setData(genreStringList);
 
-        viewModel.getVideos().observe(this, media::setTrailer);
+        viewModel.getTrailers().observe(this, result -> {
+            media.setTrailer(result);
+            initTrailerIntent();
+        });
+    }
+
+    private void initTrailerIntent() {
+        Intent intent = new Intent(Intent.ACTION_VIEW);
+        String backupKey = "";
+
+        if (!media.getTrailer().isEmpty()){
+            for (TrailerEntity trailer : media.getTrailer()){
+                if (trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
+                    if (trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)){
+                        intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
+                        break;
+                    } else if (backupKey.isEmpty()){
+                        backupKey = trailer.getKey();
+                    }
+                }
+            }
+        }
+
+        if (intent.getData() == null){
+            if (!backupKey.isEmpty()) {
+                intent.setData(Uri.parse(BASE_URL_YOUTUBE + backupKey));
+            } else {
+                intent.setData(Uri.parse(getResources().getString(
+                        R.string.youtube_search_query, media.getTitle(),
+                        getYearOfDate(media.getAiredDate().getStartDate()))));
+            }
+        }
+
+        trailerIntent = intent;
     }
 
     private void populateRecommendations(List<GenreEntity> genreList, List<MediaEntity> mediaList) {
@@ -218,51 +240,28 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             onBackPressed();
         } else if (id == R.id.ib_more_title) {
             if (media != null) showToast(this, media.getTitle());
+            else showToast(this, getString(R.string.toast_data_loading));
         } else if (id == R.id.btn_trailer) {
-            if (media != null && media.getTrailer() != null) {
-                Intent intent = new Intent(Intent.ACTION_VIEW);
-                String backupKey = "";
-
-                if (!media.getTrailer().isEmpty()){
-                    for (TrailerEntity trailer : media.getTrailer()){
-                        if (trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
-                            if (trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)){
-                                intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
-                                break;
-                            } else if (backupKey.isEmpty()){
-                                backupKey = trailer.getKey();
-                            }
-                        }
-                    }
-                }
-
-                if (intent.getData() == null){
-                    if (!backupKey.isEmpty()) {
-                        intent.setData(Uri.parse(BASE_URL_YOUTUBE + backupKey));
-                    } else {
-                        intent.setData(Uri.parse(getResources().getString(
-                                R.string.youtube_search_query, media.getTitle(),
-                                getYearOfDate(media.getAiredDate().getStartDate()))
-                        ));
-                    }
-                }
-
-                startActivity(intent);
-            }
+            if (trailerIntent != null) startActivity(trailerIntent);
+            else showToast(this, getString(R.string.toast_data_loading));
         } else if (id == R.id.tv_view_more_synopsis) {
             contentBinding.tvSynopsis.setMaxLines(Integer.MAX_VALUE);
             contentBinding.tvViewMoreSynopsis.setVisibility(View.GONE);
         } else if (id == R.id.tv_view_more_recommendation) {
-            if (media != null) {
-                Intent intent = new Intent(this, SearchActivity.class);
-                intent.putExtra(EXTRA_MEDIA_ID, media.getId());
-                if (media.getType().equals(MEDIA_TYPE_MOVIE)){
-                    intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_MOVIE_RECOMMENDATIONS);
-                } else if (media.getType().equals(MEDIA_TYPE_TV)){
-                    intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_TV_RECOMMENDATIONS);
-                }
-                startActivity(intent);
+            viewMoreRecommendations();
+        }
+    }
+
+    private void viewMoreRecommendations(){
+        if (media != null) {
+            Intent intent = new Intent(this, SearchActivity.class);
+            intent.putExtra(EXTRA_MEDIA_ID, media.getId());
+            if (media.getType().equals(MEDIA_TYPE_MOVIE)){
+                intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_MOVIE_RECOMMENDATIONS);
+            } else if (media.getType().equals(MEDIA_TYPE_TV)){
+                intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_TV_RECOMMENDATIONS);
             }
+            startActivity(intent);
         }
     }
 }

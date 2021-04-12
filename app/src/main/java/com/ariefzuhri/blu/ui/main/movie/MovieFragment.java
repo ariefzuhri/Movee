@@ -55,30 +55,32 @@ public class MovieFragment extends Fragment {
         MediaAdapter adapterVert = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.rvVert.setAdapter(adapterVert);
 
-        ShimmerHelper shimmerHoriz = new ShimmerHelper(binding.shimmerHoriz, binding.rvHoriz);
-        ShimmerHelper shimmerVert = new ShimmerHelper(binding.shimmerVert, binding.rvVert);
+        ShimmerHelper shimmerHoriz = new ShimmerHelper(getContext(), binding.shimmerHoriz, binding.rvHoriz);
+        ShimmerHelper shimmerVert = new ShimmerHelper(getContext(), binding.shimmerVert, binding.rvVert);
         shimmerHoriz.show();
         shimmerVert.show();
 
-        ViewModelFactory factory = ViewModelFactory.getInstance();
-        viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
-        viewModel.setPage(1);
-        viewModel.getGenres().observe(getViewLifecycleOwner(), resultGenre -> {
-            adapterHoriz.setGenreList(resultGenre);
-            adapterVert.setGenreList(resultGenre);
+        if (getActivity() != null){
+            ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
+            viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
+            viewModel.setPage(1);
+            viewModel.getGenres().observe(getViewLifecycleOwner(), resultGenre -> {
+                adapterHoriz.setGenreList(resultGenre);
+                adapterVert.setGenreList(resultGenre);
 
-            viewModel.getNowPlaying().observe(getViewLifecycleOwner(), resultMovie -> {
-                adapterHoriz.setData(resultMovie);
-                shimmerHoriz.hide();
+                viewModel.getNowPlaying().observe(getViewLifecycleOwner(), resultMovie -> {
+                    adapterHoriz.setData(resultMovie);
+                    shimmerHoriz.hide();
+                });
+
+                viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
+                    adapterVert.setData(resultMovie);
+                    shimmerVert.hide();
+                });
             });
+        }
 
-            viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
-                adapterVert.setData(resultMovie);
-                shimmerVert.hide();
-            });
-        });
-
-        binding.tvViewMore.setOnClickListener(v -> {
+        binding.tvViewMoreHoriz.setOnClickListener(v -> {
             Intent intent = new Intent(getContext(), SearchActivity.class);
             intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_MOVIE_NOW_PLAYING);
             startActivity(intent);

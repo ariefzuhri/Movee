@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <dimen name="layout_margin">16dp</dimen>
-
     <dimen name="font_xxs">8sp</dimen>
     <dimen name="font_xs">10sp</dimen>
     <dimen name="font_sm">12sp</dimen>
@@ -9,7 +7,4 @@
     <dimen name="font_md">18sp</dimen>
     <dimen name="font_lg">24sp</dimen>
     <dimen name="font_xl">32sp</dimen>
-    <dimen name="app_bar_height">180dp</dimen>
-    <dimen name="fab_margin">16dp</dimen>
-    <dimen name="text_margin">16dp</dimen>
 </resources>

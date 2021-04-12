@@ -1,6 +1,7 @@
 package com.ariefzuhri.blu.ui.main.movie;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.ariefzuhri.blu.data.GenreEntity;
@@ -12,6 +13,7 @@ import java.util.List;
 import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
 
 public class MovieViewModel extends ViewModel {
+
     private final CatalogRepository repository;
 
     private int page;
@@ -24,15 +26,22 @@ public class MovieViewModel extends ViewModel {
         this.page = page;
     }
 
+    private MutableLiveData<List<MediaEntity>> nowPlaying;
+    private MutableLiveData<List<MediaEntity>> trending;
+    private MutableLiveData<List<GenreEntity>> genres;
+
     public LiveData<List<MediaEntity>> getNowPlaying() {
-        return repository.getMovieNowPlaying(1);
+        if (nowPlaying == null) nowPlaying = repository.getMovieNowPlaying(page);
+        return nowPlaying;
     }
 
     public LiveData<List<MediaEntity>> getTrending(){
-        return repository.getMovieTrending(page);
+        if (trending == null) trending = repository.getMovieTrending(page);
+        return trending;
     }
 
     public LiveData<List<GenreEntity>> getGenres() {
-        return repository.getGenres(MEDIA_TYPE_MOVIE);
+        if (genres == null) genres = repository.getGenres(MEDIA_TYPE_MOVIE);
+        return genres;
     }
 }

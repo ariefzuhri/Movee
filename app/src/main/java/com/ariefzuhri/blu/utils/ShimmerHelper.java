@@ -1,26 +1,39 @@
 package com.ariefzuhri.blu.utils;
 
+import android.content.Context;
 import android.view.View;
 import android.widget.ImageView;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.ariefzuhri.blu.R;
 import com.facebook.shimmer.ShimmerFrameLayout;
 
+import static com.ariefzuhri.blu.utils.AppUtils.showToast;
+
 public class ShimmerHelper {
+    private final Context context;
     private final ShimmerFrameLayout shimmer;
     private final RecyclerView recyclerView;
     private ImageView imgEmpty;
 
-    public ShimmerHelper(ShimmerFrameLayout shimmer, RecyclerView recyclerView){
+    public ShimmerHelper(Context context, ShimmerFrameLayout shimmer, RecyclerView recyclerView){
+        this.context = context;
         this.shimmer = shimmer;
         this.recyclerView = recyclerView;
+        initOnClickListener();
     }
 
-    public ShimmerHelper(ShimmerFrameLayout shimmer, RecyclerView recyclerView, ImageView imgEmpty){
+    public ShimmerHelper(Context context, ShimmerFrameLayout shimmer, RecyclerView recyclerView, ImageView imgEmpty){
+        this.context = context;
         this.shimmer = shimmer;
         this.recyclerView = recyclerView;
         this.imgEmpty = imgEmpty;
+        initOnClickListener();
+    }
+
+    private void initOnClickListener(){
+        shimmer.setOnClickListener(view -> showToast(context, context.getString(R.string.toast_data_loading)));
     }
 
     public void show(){

@@ -26,6 +26,7 @@ public class RecyclerViewItemCountAssertion implements ViewAssertion {
         this.matcher = matcher;
     }
 
+    @SuppressWarnings("rawtypes")
     @Override
     public void check(View view, NoMatchingViewException noViewFoundException) {
         if (noViewFoundException != null) throw noViewFoundException;

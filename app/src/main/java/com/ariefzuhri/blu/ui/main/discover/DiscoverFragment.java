@@ -7,7 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.SearchView;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -30,8 +29,6 @@ import java.util.List;
 
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_QUERY_TYPE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 import static com.ariefzuhri.blu.utils.Constants.ORIENTATION_TYPE_HORIZONTAL;
 import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_LATEST_RELEASE;
 import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_POPULAR;
@@ -73,20 +70,22 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         tvAdapter = new MediaAdapter(ORIENTATION_TYPE_HORIZONTAL);
         binding.rvTv.setAdapter(tvAdapter);
 
-        shimmerMovie = new ShimmerHelper(binding.shimmerMovie, binding.rvMovie);
-        shimmerTV = new ShimmerHelper(binding.shimmerTv, binding.rvTv);
+        shimmerMovie = new ShimmerHelper(getContext(), binding.shimmerMovie, binding.rvMovie);
+        shimmerTV = new ShimmerHelper(getContext(), binding.shimmerTv, binding.rvTv);
 
-        ViewModelFactory factory = ViewModelFactory.getInstance();
-        viewModel = new ViewModelProvider(this, factory).get(DiscoverViewModel.class);
-        viewModel.getGenres(MEDIA_TYPE_MOVIE).observe(getViewLifecycleOwner(),
-                result -> movieAdapter.setGenreList(result));
-        viewModel.getGenres(MEDIA_TYPE_TV).observe(getViewLifecycleOwner(),
-                result -> tvAdapter.setGenreList(result));
+        if (getActivity() != null){
+            ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
+            viewModel = new ViewModelProvider(this, factory).get(DiscoverViewModel.class);
+            viewModel.setPage(1);
+            viewModel.getMovieGenres().observe(getViewLifecycleOwner(),
+                    result -> movieAdapter.setGenreList(result));
+            viewModel.getTVGenres().observe(getViewLifecycleOwner(),
+                    result -> tvAdapter.setGenreList(result));
 
-        binding.chipGroup.setOnCheckedChangeListener(this);
-        binding.chipPopular.setChecked(true);
-
-        binding.searchView.setOnQueryTextListener(this);
+            binding.chipGroup.setOnCheckedChangeListener(this);
+            binding.chipPopular.setChecked(true);
+            binding.searchView.setOnQueryTextListener(this);
+        }
     }
 
     @Override
@@ -97,22 +96,22 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         if (checkedId == R.id.chip_popular) {
             binding.tvMovie.setText(R.string.popular);
             binding.tvTv.setText(R.string.popular);
-            viewModel.getMoviePopular().observe(getViewLifecycleOwner(), moviesObserver);
-            viewModel.getTVPopular().observe(getViewLifecycleOwner(), tvsObserver);
+            viewModel.getMoviePopular().observe(getViewLifecycleOwner(), this::setMovieList);
+            viewModel.getTVPopular().observe(getViewLifecycleOwner(), this::setTVList);
         } else if (checkedId == R.id.chip_upcoming) {
             binding.tvMovie.setText(R.string.upcoming);
-            viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(), moviesObserver);
+            viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(), this::setMovieList);
             binding.layoutTv.setVisibility(View.INVISIBLE);
         } else if (checkedId == R.id.chip_latest_release) {
             binding.tvMovie.setText(R.string.latest_release);
             binding.tvTv.setText(R.string.latest_release);
-            viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(), moviesObserver);
-            viewModel.getTVLatestRelease().observe(getViewLifecycleOwner(), tvsObserver);
+            viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(), this::setMovieList);
+            viewModel.getTVLatestRelease().observe(getViewLifecycleOwner(), this::setTVList);
         } else if (checkedId == R.id.chip_top_rated) {
             binding.tvMovie.setText(R.string.top_rated);
             binding.tvTv.setText(R.string.top_rated);
-            viewModel.getMovieTopRated().observe(getViewLifecycleOwner(), moviesObserver);
-            viewModel.getTVTopRated().observe(getViewLifecycleOwner(), tvsObserver);
+            viewModel.getMovieTopRated().observe(getViewLifecycleOwner(), this::setMovieList);
+            viewModel.getTVTopRated().observe(getViewLifecycleOwner(), this::setTVList);
         }
     }
 
@@ -156,13 +155,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         startActivity(intent);
     }
 
-    private final Observer<List<MediaEntity>> moviesObserver = result -> {
+    private void setMovieList(List<MediaEntity> result){
         movieAdapter.setData(result);
         shimmerMovie.hide();
-    };
+    }
 
-    private final Observer<List<MediaEntity>> tvsObserver = result -> {
+    private void setTVList(List<MediaEntity> result){
         tvAdapter.setData(result);
         shimmerTV.hide();
-    };
+    }
 }

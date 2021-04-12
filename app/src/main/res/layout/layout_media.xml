@@ -20,105 +20,98 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <LinearLayout
-            android:id="@+id/layout_horiz"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tv_title_horiz"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="16dp"
             android:layout_marginTop="16dp"
-            android:orientation="vertical"
+            android:drawablePadding="8dp"
+            android:text="@string/now_playing"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_nm"
+            app:drawableStartCompat="@drawable/ic_airing"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv_view_more_horiz"
+            style="@style/ClickableTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="16dp"
+            android:text="@string/view_more"
+            android:textColor="@color/white"
+            android:textSize="@dimen/font_sm"
+            app:layout_constraintBottom_toBottomOf="@+id/tv_title_horiz"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_horiz"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_horiz">
 
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp">
+            <include layout="@layout/shimmer_layout_media_horiz" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:drawablePadding="8dp"
-                    android:text="@string/now_playing"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_nm"
-                    app:drawableStartCompat="@drawable/ic_airing"
-                    android:layout_toStartOf="@+id/tv_view_more"
-                    android:layout_marginEnd="8dp"/>
-
-                <TextView
-                    android:id="@+id/tv_view_more"
-                    style="@style/ClickableTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:text="@string/view_more"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/font_sm" />
-            </RelativeLayout>
-
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_horiz"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <include layout="@layout/shimmer_layout_media_horiz"/>
-                </com.facebook.shimmer.ShimmerFrameLayout>
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_horiz"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp" />
-            </FrameLayout>
-        </LinearLayout>
-
-        <LinearLayout
-            android:id="@+id/layout_vert"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_horiz"
+            style="@style/RecyclerView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:orientation="vertical"
+            android:paddingHorizontal="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/layout_horiz">
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_horiz" />
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingHorizontal="16dp"
-                android:drawablePadding="8dp"
-                android:text="@string/trending"
-                android:textColor="@color/blue"
-                android:textSize="@dimen/font_nm"
-                app:drawableStartCompat="@drawable/ic_trending" />
+        <TextView
+            android:id="@+id/tv_title_vert"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:drawablePadding="8dp"
+            android:text="@string/trending"
+            android:textColor="@color/blue"
+            android:textSize="@dimen/font_nm"
+            app:drawableStartCompat="@drawable/ic_trending"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline" />
 
-            <FrameLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+        <com.facebook.shimmer.ShimmerFrameLayout
+            android:id="@+id/shimmer_vert"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_vert">
 
-                <com.facebook.shimmer.ShimmerFrameLayout
-                    android:id="@+id/shimmer_vert"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:paddingHorizontal="16dp"
-                    android:paddingBottom="16dp">
-                    <include layout="@layout/shimmer_layout_media_vert"/>
-                </com.facebook.shimmer.ShimmerFrameLayout>
+            <include layout="@layout/shimmer_layout_media_vert" />
+        </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_vert"
-                    style="@style/RecyclerView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp"
-                    android:paddingBottom="16dp" />
-            </FrameLayout>
-        </LinearLayout>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_vert"
+            style="@style/RecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="16dp"
+            android:paddingBottom="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv_title_vert" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="285dp" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.core.widget.NestedScrollView>

@@ -84,13 +84,4 @@
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:tint">@color/white</item>
     </style>
-
-    <style name="TransparentText">
-        <item name="android:textColor">@android:color/transparent</item>
-        <item name="android:textSize">0sp</item>
-    </style>
-
-    <style name="BoldTextStyle">
-        <item name="android:textStyle">bold</item>
-    </style>
 </resources>

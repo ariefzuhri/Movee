@@ -23,7 +23,7 @@
  * - Memastikan TextView untuk runtime tampil
  * - Memastikan rv_genre dalam keadaan tampil
  * - Memastikan TextView untuk synopsis tampil
- * - Memastikan rv_recommendation dalam keadaan tampil
+ * - Memastikan rv_recommendation berisi lebih dari atau sama dengan 0 item
  * - Memastikan Button untuk trailer dalam keadaan tampil
  * - Memastikan Button untuk trailer dapat diklik
  *
@@ -40,7 +40,7 @@
  * - Memastikan TextView untuk runtime tampil
  * - Memastikan rv_genre dalam keadaan tampil
  * - Memastikan TextView untuk synopsis tampil
- * - Memastikan rv_recommendation dalam keadaan tampil
+ * - Memastikan rv_recommendation berisi lebih dari atau sama dengan 0 item
  * - Memastikan Button untuk trailer dalam keadaan tampil
  * - Memastikan Button untuk trailer dapat diklik
  *
@@ -61,9 +61,9 @@
  * - Memastikan chip_latest_release dalam keadaan tampil
  * - Memberi tindakan klik pada chip_latest_release
  * - Memastikan visibilitas rv_movie dalam keadaan terlihat
- * - Memastikan rv_movie berisi 20 item
+ * - Memastikan rv_movie berisi lebih dari atau sama dengan 0 item
  * - Memastikan visibilitas rv_tv dalam keadaan terlihat
- * - Memastikan rv_tv berisi 20 item
+ * - Memastikan rv_tv berisi lebih dari atau sama dengan 0 item
  * - Memastikan chip_top_rated dalam keadaan tampil
  * - Memberi tindakan klik pada chip_top_rated
  * - Memastikan visibilitas rv_movie dalam keadaan terlihat

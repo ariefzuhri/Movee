@@ -1,5 +1,7 @@
 package com.ariefzuhri.blu.viewmodel;
 
+import android.app.Application;
+
 import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,17 +17,19 @@ import com.ariefzuhri.blu.ui.search.SearchViewModel;
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     private static volatile ViewModelFactory INSTANCE;
 
+    private final Application mApplication;
     private final CatalogRepository mCatalogRepository;
 
-    private ViewModelFactory(CatalogRepository catalogRepository){
+    private ViewModelFactory(Application application, CatalogRepository catalogRepository){
+        mApplication = application;
         mCatalogRepository = catalogRepository;
     }
 
-    public static ViewModelFactory getInstance(){
+    public static ViewModelFactory getInstance(Application application){
         if (INSTANCE == null){
             synchronized (ViewModelFactory.class){
                 if (INSTANCE == null){
-                    INSTANCE = new ViewModelFactory(Injection.provideRepository());
+                    INSTANCE = new ViewModelFactory(application, Injection.provideRepository());
                 }
             }
         }
@@ -45,7 +49,7 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
         } else if (modelClass.isAssignableFrom(DetailMediaViewModel.class)){
             return (T) new DetailMediaViewModel(mCatalogRepository);
         } else if (modelClass.isAssignableFrom(SearchViewModel.class)){
-            return (T) new SearchViewModel(mCatalogRepository);
+            return (T) new SearchViewModel(mApplication, mCatalogRepository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());
