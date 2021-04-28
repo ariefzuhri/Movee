@@ -64,9 +64,17 @@ public class TVFragment extends Fragment {
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
             viewModel = new ViewModelProvider(this, factory).get(TVViewModel.class);
             viewModel.setPage(1);
-            viewModel.getGenres().observe(getViewLifecycleOwner(), resultGenre -> {
-                adapterHoriz.setGenreList(resultGenre);
-                adapterVert.setGenreList(resultGenre);
+            viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
+                if (result != null) {
+                    switch (result.status) {
+                        case LOADING: break;
+                        case SUCCESS:
+                            adapterHoriz.setGenreList(result.data);
+                            adapterVert.setGenreList(result.data);
+                            break;
+                        case ERROR: break;
+                    }
+                }
 
                 viewModel.getOnTheAir().observe(getViewLifecycleOwner(), resultTV -> {
                     adapterHoriz.setData(resultTV);

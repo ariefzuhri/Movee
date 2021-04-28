@@ -7,14 +7,13 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 
 import com.ariefzuhri.blu.R;
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.MediaEntity;
-import com.ariefzuhri.blu.data.source.CatalogRepository;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.blu.data.CatalogRepository;
+import com.ariefzuhri.blu.vo.Resource;
 
 import java.util.List;
 
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_LATEST_RELEASE;
 import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_NOW_PLAYING;
 import static com.ariefzuhri.blu.utils.Constants.QUERY_TYPE_MOVIE_POPULAR;
@@ -62,8 +61,7 @@ public class SearchViewModel extends AndroidViewModel {
 
     private MutableLiveData<String> header;
     private MutableLiveData<List<MediaEntity>> searchResult;
-    private MutableLiveData<List<GenreEntity>> movieGenres;
-    private MutableLiveData<List<GenreEntity>> tvGenres;
+    private LiveData<Resource<List<GenreEntity>>> genres;
 
     public LiveData<String> getHeader(){
         if (header == null) header = new MutableLiveData<>();
@@ -147,13 +145,8 @@ public class SearchViewModel extends AndroidViewModel {
         return searchResult;
     }
 
-    public LiveData<List<GenreEntity>> getMovieGenres(){
-        if (movieGenres == null) movieGenres = repository.getGenres(MEDIA_TYPE_MOVIE);
-        return movieGenres;
-    }
-
-    public LiveData<List<GenreEntity>> getTVGenres(){
-        if (tvGenres == null) tvGenres = repository.getGenres(MEDIA_TYPE_TV);
-        return tvGenres;
+    public LiveData<Resource<List<GenreEntity>>> getGenres(){
+        if (genres == null)genres = repository.getGenres();
+        return genres;
     }
 }

@@ -48,6 +48,7 @@
                     android:text="@string/loading_number"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_sm"
+                    android:maxLines="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -61,6 +62,7 @@
                     android:text="@string/loading_number"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_sm"
+                    android:maxLines="1"
                     app:layout_constraintEnd_toStartOf="@+id/tv_score"
                     app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>

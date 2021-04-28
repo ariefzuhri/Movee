@@ -1,13 +1,13 @@
 package com.ariefzuhri.blu.utils;
 
-import com.ariefzuhri.blu.data.AiredDateEntity;
-import com.ariefzuhri.blu.data.CastEntity;
-import com.ariefzuhri.blu.data.CreditsEntity;
-import com.ariefzuhri.blu.data.CrewEntity;
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.MediaEntity;
-import com.ariefzuhri.blu.data.StudioEntity;
-import com.ariefzuhri.blu.data.TrailerEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.AiredDateEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CastEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CrewEntity;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.StudioEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.TrailerEntity;
 import com.ariefzuhri.blu.data.source.remote.response.CastItem;
 import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
 import com.ariefzuhri.blu.data.source.remote.response.CrewItem;

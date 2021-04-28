@@ -10,7 +10,7 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import com.ariefzuhri.blu.R;
-import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.blu.databinding.ActivitySearchBinding;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.utils.ShimmerHelper;
@@ -52,8 +52,15 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         viewModel.setPage(1);
 
         viewModel.getHeader().observe(this, header -> binding.tvHeader.setText(header));
-        viewModel.getMovieGenres().observe(this, result -> adapter.insertGenreList(result));
-        viewModel.getTVGenres().observe(this, result -> adapter.insertGenreList(result));
+        viewModel.getGenres().observe(this, result -> {
+            if (result != null) {
+                switch (result.status) {
+                    case LOADING: break;
+                    case SUCCESS: adapter.setGenreList(result.data); break;
+                    case ERROR: break;
+                }
+            }
+        });
 
         Intent intent = getIntent();
         if (intent.hasExtra(EXTRA_QUERY)){

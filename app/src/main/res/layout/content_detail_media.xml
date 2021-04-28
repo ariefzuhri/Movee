@@ -7,7 +7,8 @@
     android:layout_height="match_parent"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.detail.DetailMediaActivity"
-    android:layout_marginBottom="60dp">
+    android:layout_marginBottom="60dp"
+    android:background="@color/white">
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scroll_view"

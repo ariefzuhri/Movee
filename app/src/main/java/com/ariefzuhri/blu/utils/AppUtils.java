@@ -8,6 +8,8 @@ import com.ariefzuhri.blu.R;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import static com.ariefzuhri.blu.utils.Constants.BASE_URL_TMDB_IMAGE;
+
 public class AppUtils {
 
     public static void showToast(Context context, String message){
@@ -17,7 +19,7 @@ public class AppUtils {
     public static void loadImage(Context context, String size, Object source, ImageView imageView) {
         Glide.with(context)
                 .asBitmap()
-                .load("https://image.tmdb.org/t/p/" + size + source)
+                .load(BASE_URL_TMDB_IMAGE + size + source)
                 .apply(getGlideOptions())
                 .centerCrop()
                 .into(imageView);

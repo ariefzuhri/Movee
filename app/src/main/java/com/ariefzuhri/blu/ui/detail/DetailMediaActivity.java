@@ -5,13 +5,15 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 
 import com.ariefzuhri.blu.R;
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.TrailerEntity;
+import com.ariefzuhri.blu.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.TrailerEntity;
 import com.ariefzuhri.blu.databinding.ActivityDetailMediaBinding;
 import com.ariefzuhri.blu.databinding.ContentDetailMediaBinding;
-import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.ui.search.SearchActivity;
 import com.ariefzuhri.blu.utils.ShimmerHelper;
@@ -52,8 +54,8 @@ import static com.ariefzuhri.blu.utils.Constants.TV_STATUS_RETURNING_SERIES;
 import static com.ariefzuhri.blu.utils.Constants.VIDEO_SITE_YOUTUBE;
 import static com.ariefzuhri.blu.utils.Constants.VIDEO_TYPE_TEASER;
 import static com.ariefzuhri.blu.utils.Constants.VIDEO_TYPE_TRAILER;
-import static com.ariefzuhri.blu.utils.DateUtils.getDateWithoutYear;
-import static com.ariefzuhri.blu.utils.DateUtils.getYearOfDate;
+import static com.ariefzuhri.blu.utils.DateHelper.getDateWithoutYear;
+import static com.ariefzuhri.blu.utils.DateHelper.getYearOfDate;
 
 public class DetailMediaActivity extends AppCompatActivity implements View.OnClickListener {
     private ActivityDetailMediaBinding activityBinding;
@@ -63,12 +65,15 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private Intent trailerIntent;
     private MediaEntity media;
 
+    private boolean isFavorite;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         activityBinding = ActivityDetailMediaBinding.inflate(getLayoutInflater());
         setContentView(activityBinding.getRoot());
         contentBinding = activityBinding.contentDetailMedia;
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
         setSupportActionBar(activityBinding.toolbar);
         activityBinding.appBar.addOnOffsetChangedListener((appBarLayout, verticalOffset) -> {
@@ -77,11 +82,15 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                 activityBinding.tvToolbarTitle.setVisibility(View.VISIBLE);
                 activityBinding.fabBack.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.transparent));
                 activityBinding.fabBack.setElevation(0);
+                activityBinding.fabFavorite.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.transparent));
+                activityBinding.fabFavorite.setElevation(0);
             } else { //Expanded
                 activityBinding.appBar.setBackground(new ColorDrawable(ContextCompat.getColor(this, R.color.white)));
                 activityBinding.tvToolbarTitle.setVisibility(View.INVISIBLE);
                 activityBinding.fabBack.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.white));
                 activityBinding.fabBack.setElevation(8);
+                activityBinding.fabFavorite.setBackgroundTintList(ContextCompat.getColorStateList(this, R.color.white));
+                activityBinding.fabFavorite.setElevation(8);
             }
         });
 
@@ -95,6 +104,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                 });
 
         activityBinding.fabBack.setOnClickListener(this);
+        activityBinding.fabFavorite.setOnClickListener(this);
         contentBinding.ibMoreTitle.setOnClickListener(this);
         activityBinding.btnTrailer.setOnClickListener(this);
         contentBinding.tvViewMoreSynopsis.setOnClickListener(this);
@@ -115,16 +125,39 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             viewModel.setMediaId(mediaId);
             viewModel.getMediaDetails().observe(this, this::populateMedia);
             viewModel.getCredits().observe(this, result -> {});
-            viewModel.getGenres().observe(this, resultGenre ->
-                    viewModel.getRecommendations().observe(this, resultMedia -> {
-                        populateRecommendations(resultGenre, resultMedia);
-                        shimmerRecommendation.hide();
-                    }));
+            viewModel.getGenres().observe(this, resultGenre -> {
+                if (resultGenre != null) {
+                    switch (resultGenre.status) {
+                        case LOADING: break;
+                        case SUCCESS:
+                            viewModel.getRecommendations().observe(this, resultMedia -> {
+                                populateRecommendations(resultGenre.data, resultMedia);
+                                shimmerRecommendation.hide();
+                            });
+                            break;
+                        case ERROR: break;
+                    }
+                }
+            });
         }
     }
 
     private void populateMedia(MediaEntity media){
         this.media = media;
+
+        viewModel.getFavoriteWithGenres().observe(this, result -> {
+            isFavorite = result != null;
+            setFavoriteState(isFavorite);
+
+            // Update favorit di database jika data satu nilai atribut yang tidak sama
+            if (result != null){ // = favorit
+                FavoriteEntity favoriteInDb = result.favorite;
+                favoriteInDb.setGenres(result.genres);
+                FavoriteEntity updatedFavorite = createFavoriteObject(media);
+                boolean equalsObjects = equalsFavoriteObjects(favoriteInDb, updatedFavorite);
+                if (!equalsObjects) viewModel.updateFavorite(updatedFavorite);
+            }
+        });
 
         activityBinding.tvToolbarTitle.setText(media.getTitle());
         loadImage(this, IMAGE_SIZE_HIGH, media.getCover() == null ? media.getPoster() : media.getCover(), activityBinding.imgCover);
@@ -192,7 +225,6 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private void initTrailerIntent() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String backupKey = "";
-
         if (!media.getTrailer().isEmpty()){
             for (TrailerEntity trailer : media.getTrailer()){
                 if (trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
@@ -205,7 +237,6 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                 }
             }
         }
-
         if (intent.getData() == null){
             if (!backupKey.isEmpty()) {
                 intent.setData(Uri.parse(BASE_URL_YOUTUBE + backupKey));
@@ -215,7 +246,6 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                         getYearOfDate(media.getAiredDate().getStartDate()))));
             }
         }
-
         trailerIntent = intent;
     }
 
@@ -238,6 +268,9 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         int id = view.getId();
         if (id == R.id.fab_back) {
             onBackPressed();
+        } else if (id == R.id.fab_favorite) {
+            if (media != null) setFavorite(media, isFavorite);
+            else showToast(this, getString(R.string.toast_data_loading));
         } else if (id == R.id.ib_more_title) {
             if (media != null) showToast(this, media.getTitle());
             else showToast(this, getString(R.string.toast_data_loading));
@@ -248,11 +281,11 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             contentBinding.tvSynopsis.setMaxLines(Integer.MAX_VALUE);
             contentBinding.tvViewMoreSynopsis.setVisibility(View.GONE);
         } else if (id == R.id.tv_view_more_recommendation) {
-            viewMoreRecommendations();
+            viewMoreRecommendations(media);
         }
     }
 
-    private void viewMoreRecommendations(){
+    private void viewMoreRecommendations(MediaEntity media){
         if (media != null) {
             Intent intent = new Intent(this, SearchActivity.class);
             intent.putExtra(EXTRA_MEDIA_ID, media.getId());
@@ -263,5 +296,55 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             }
             startActivity(intent);
         }
+    }
+
+    private void setFavorite(MediaEntity media, boolean isFavorite) {
+        FavoriteEntity favorite = createFavoriteObject(media);
+
+        boolean addFavorite = !isFavorite;
+        if (addFavorite) viewModel.insertFavorite(favorite);
+        else viewModel.deleteFavorite(favorite);
+        setFavoriteState(isFavorite);
+    }
+
+    private void setFavoriteState(boolean state){
+        if (state) {
+            activityBinding.fabFavorite.setImageDrawable(ContextCompat
+                    .getDrawable(this, R.drawable.ic_bookmark));
+        } else {
+            activityBinding.fabFavorite.setImageDrawable(ContextCompat
+                    .getDrawable(this, R.drawable.ic_bookmark_outline));
+        }
+    }
+
+    private FavoriteEntity createFavoriteObject(MediaEntity media){
+        return new FavoriteEntity(media.getId(),
+                media.getType(),
+                media.getTitle(),
+                media.getPoster(),
+                media.getScoreAverage(),
+                media.getAiredDate().getStartDate(),
+                media.getGenres());
+    }
+
+    private boolean equalsFavoriteObjects(FavoriteEntity o1, FavoriteEntity o2){
+        boolean equals = o1.getId().equals(o2.getId()) &&
+                o1.getType().equals(o2.getType()) &&
+                o1.getTitle().equals(o2.getTitle()) &&
+                o1.getPoster().equals(o2.getPoster()) &&
+                o1.getScoreAverage() == o2.getScoreAverage() &&
+                o1.getStartDate().equals(o2.getStartDate()) &&
+                o1.getGenres().size() == o2.getGenres().size();
+
+        if (equals) {
+            for (int i = 0; i < o1.getGenres().size(); i++){
+                if (!o1.getGenres().get(i).getId().equals(o2.getGenres().get(i).getId())) {
+                    equals = false;
+                    break;
+                }
+            }
+        }
+
+        return equals;
     }
 }

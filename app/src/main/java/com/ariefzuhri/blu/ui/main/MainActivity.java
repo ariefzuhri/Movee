@@ -29,6 +29,8 @@ public class MainActivity extends AppCompatActivity {
                 binding.viewPager.setCurrentItem(1);
             } else if (id == R.id.menu_discover) {
                 binding.viewPager.setCurrentItem(2);
+            } else if (id == R.id.menu_favorite) {
+                binding.viewPager.setCurrentItem(3);
             }
         });
     }

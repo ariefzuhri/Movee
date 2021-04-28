@@ -4,11 +4,14 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ariefzuhri.blu.data.CreditsEntity;
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.MediaEntity;
-import com.ariefzuhri.blu.data.TrailerEntity;
-import com.ariefzuhri.blu.data.source.CatalogRepository;
+import com.ariefzuhri.blu.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.blu.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.blu.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.TrailerEntity;
+import com.ariefzuhri.blu.data.CatalogRepository;
+import com.ariefzuhri.blu.vo.Resource;
 
 import java.util.List;
 
@@ -43,7 +46,8 @@ public class DetailMediaViewModel extends ViewModel {
     private MutableLiveData<List<TrailerEntity>> trailers;
     private MutableLiveData<CreditsEntity> credits;
     private MutableLiveData<List<MediaEntity>> recommendations;
-    private MutableLiveData<List<GenreEntity>> genres;
+    private LiveData<Resource<List<GenreEntity>>> genres;
+    private LiveData<FavoriteWithGenres> favoriteWithGenres;
 
     public LiveData<MediaEntity> getMediaDetails(){
         if (mediaDetails == null) {
@@ -77,8 +81,26 @@ public class DetailMediaViewModel extends ViewModel {
         return recommendations;
     }
 
-    public LiveData<List<GenreEntity>> getGenres() {
-        if (genres == null) genres = repository.getGenres(mediaType);
+    public LiveData<Resource<List<GenreEntity>>> getGenres() {
+        if (genres == null) genres = repository.getGenres();
         return genres;
+    }
+
+    public void insertFavorite(FavoriteEntity favorite){
+        repository.insertFavorite(favorite);
+    }
+
+    public void updateFavorite(FavoriteEntity favorite){
+        repository.updateFavorite(favorite);
+    }
+
+    public void deleteFavorite(FavoriteEntity favorite) {
+        repository.deleteFavorite(favorite);
+    }
+
+    public LiveData<FavoriteWithGenres> getFavoriteWithGenres(){
+        if (favoriteWithGenres == null) favoriteWithGenres =
+                repository.getFavoriteWithGenresById(mediaId, mediaType);
+        return favoriteWithGenres;
     }
 }

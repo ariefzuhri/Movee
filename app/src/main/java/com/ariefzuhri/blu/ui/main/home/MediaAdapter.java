@@ -2,7 +2,6 @@ package com.ariefzuhri.blu.ui.main.home;
 
 import android.content.Intent;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -11,10 +10,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.ariefzuhri.blu.data.GenreEntity;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
 import com.ariefzuhri.blu.databinding.ItemMediaHorizBinding;
 import com.ariefzuhri.blu.databinding.ItemMediaVertBinding;
-import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.blu.ui.detail.DetailMediaActivity;
 
 import java.util.ArrayList;
@@ -25,10 +24,9 @@ import static com.ariefzuhri.blu.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.blu.utils.Constants.EXTRA_MEDIA_TYPE;
 import static com.ariefzuhri.blu.utils.Constants.IMAGE_SIZE_NORMAL;
 import static com.ariefzuhri.blu.utils.Constants.ORIENTATION_TYPE_VERTICAL;
-import static com.ariefzuhri.blu.utils.DateUtils.getYearOfDate;
+import static com.ariefzuhri.blu.utils.DateHelper.getYearOfDate;
 
 public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> {
-    private final String TAG = getClass().getSimpleName();
 
     private final ArrayList<MediaEntity> mediaList = new ArrayList<>();
     private final ArrayList<GenreEntity> genreList = new ArrayList<>();
@@ -41,15 +39,6 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
     public void setGenreList(List<GenreEntity> genreList){
         this.genreList.clear();
         this.genreList.addAll(genreList);
-    }
-
-    public void insertGenreList(List<GenreEntity> genreList){
-        for (GenreEntity insertedGenre : genreList){
-            if (!this.genreList.contains(insertedGenre)) {
-                this.genreList.add(insertedGenre);
-            }
-        }
-        Log.d(TAG, this.genreList.toString());
     }
 
     public void setData(List<MediaEntity> mediaList){

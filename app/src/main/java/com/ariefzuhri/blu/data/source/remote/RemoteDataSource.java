@@ -2,6 +2,10 @@ package com.ariefzuhri.blu.data.source.remote;
 
 import android.util.Log;
 
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.MutableLiveData;
+
 import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
 import com.ariefzuhri.blu.data.source.remote.response.GenresResponse;
 import com.ariefzuhri.blu.data.source.remote.response.MovieDetailsResponse;
@@ -20,7 +24,9 @@ import retrofit2.Callback;
 import retrofit2.Response;
 
 import static com.ariefzuhri.blu.BuildConfig.TMDB_API_KEY;
-import static com.ariefzuhri.blu.utils.DateUtils.getCurrentDate;
+import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
+import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
+import static com.ariefzuhri.blu.utils.DateHelper.getCurrentDate;
 
 public class RemoteDataSource {
 
@@ -370,15 +376,19 @@ public class RemoteDataSource {
         });
     }
 
-    public void getGenres(String mediaType, LoadGenresCallback callback){
+    public LiveData<ApiResponse<GenresResponse>> getGenres(){
+        MediatorLiveData<ApiResponse<GenresResponse>> resultMerger = new MediatorLiveData<>();
+
         EspressoIdlingResource.increment();
-        Call<GenresResponse> client = ApiConfig.getApiService().getGenres(mediaType, TMDB_API_KEY);
-        client.enqueue(new Callback<GenresResponse>() {
+        MutableLiveData<ApiResponse<GenresResponse>> resultMovie = new MutableLiveData<>();
+        Call<GenresResponse> clientMovie = ApiConfig.getApiService().getGenres(MEDIA_TYPE_MOVIE, TMDB_API_KEY);
+        clientMovie.enqueue(new Callback<GenresResponse>() {
             @Override
             public void onResponse(@NotNull Call<GenresResponse> call, @NotNull Response<GenresResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onGenresReceived(response.body());
+                        resultMovie.setValue(ApiResponse.success(response.body()));
+                        resultMerger.addSource(resultMovie, resultMerger::setValue);
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -389,6 +399,29 @@ public class RemoteDataSource {
                 Log.e(TAG, "onFailure: " + t.getMessage());
             }
         });
+
+        EspressoIdlingResource.increment();
+        MutableLiveData<ApiResponse<GenresResponse>> resultTV = new MutableLiveData<>();
+        Call<GenresResponse> clientTV = ApiConfig.getApiService().getGenres(MEDIA_TYPE_TV, TMDB_API_KEY);
+        clientTV.enqueue(new Callback<GenresResponse>() {
+            @Override
+            public void onResponse(@NotNull Call<GenresResponse> call, @NotNull Response<GenresResponse> response) {
+                if (response.isSuccessful()){
+                    if (response.body() != null){
+                        resultTV.setValue(ApiResponse.success(response.body()));
+                        resultMerger.addSource(resultTV, resultMerger::setValue);
+                        EspressoIdlingResource.decrement();
+                    }
+                } else Log.e(TAG, "onFailure: " + response.message());
+            }
+
+            @Override
+            public void onFailure(@NotNull Call<GenresResponse> call, @NotNull Throwable t) {
+                Log.e(TAG, "onFailure: " + t.getMessage());
+            }
+        });
+
+        return resultMerger;
     }
 
     public void getVideos(String mediaType, int mediaId, LoadVideosCallback callback){
@@ -495,10 +528,6 @@ public class RemoteDataSource {
 
     public interface LoadTVRecommendationsCallback{
         void onTVRecommendationsReceived(TVResponse tvResponse);
-    }
-
-    public interface LoadGenresCallback{
-        void onGenresReceived(GenresResponse genresResponse);
     }
 
     public interface LoadVideosCallback{

@@ -1,8 +1,14 @@
-package com.ariefzuhri.blu.data;
+package com.ariefzuhri.blu.data.source.remote.entity;
+
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
 
 import java.util.List;
 
-public class MediaEntity {
+public class MediaEntity implements Parcelable {
+
     private final int id;
     private final String title;
     private final String poster;
@@ -13,7 +19,7 @@ public class MediaEntity {
     private final String type;
     private int episodes;
     private String status;
-    private final AiredDateEntity airedDate;
+    private AiredDateEntity airedDate;
     private List<StudioEntity> studios;
     private List<Integer> genreIds;
     private List<GenreEntity> genres;
@@ -53,6 +59,54 @@ public class MediaEntity {
         this.synopsis = synopsis;
         this.trailer = trailer;
     }
+
+    protected MediaEntity(Parcel in) {
+        id = in.readInt();
+        title = in.readString();
+        poster = in.readString();
+        cover = in.readString();
+        scoreAverage = in.readDouble();
+        scoreCount = in.readInt();
+        popularity = in.readDouble();
+        type = in.readString();
+        episodes = in.readInt();
+        status = in.readString();
+        runtime = in.readInt();
+        synopsis = in.readString();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeInt(id);
+        dest.writeString(title);
+        dest.writeString(poster);
+        dest.writeString(cover);
+        dest.writeDouble(scoreAverage);
+        dest.writeInt(scoreCount);
+        dest.writeDouble(popularity);
+        dest.writeString(type);
+        dest.writeInt(episodes);
+        dest.writeString(status);
+        dest.writeInt(runtime);
+        dest.writeString(synopsis);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<MediaEntity> CREATOR = new Creator<MediaEntity>() {
+        @Override
+        public MediaEntity createFromParcel(Parcel in) {
+            return new MediaEntity(in);
+        }
+
+        @Override
+        public MediaEntity[] newArray(int size) {
+            return new MediaEntity[size];
+        }
+    };
 
     public int getId() {
         return id;

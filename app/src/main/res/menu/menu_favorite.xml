@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/fab_edit"
+        android:icon="@drawable/ic_edit"
+        android:title="@string/edit"/>
+
+    <item
+        android:id="@+id/fab_filter"
+        android:icon="@drawable/ic_filter"
+        android:title="@string/filter"/>
+</menu>

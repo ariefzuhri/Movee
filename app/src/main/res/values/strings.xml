@@ -44,4 +44,8 @@
     <string name="search">Search</string>
     <string name="youtube_search_query">https://www.youtube.com/results?search_query=%1$s %2$s Trailer</string>
     <string name="toast_data_loading">Please wait, data is being loaded…</string>
+    <string name="favorite">Favorite</string>
+    <string name="all">All</string>
+    <string name="edit">Edit</string>
+    <string name="filter">Filter</string>
 </resources>

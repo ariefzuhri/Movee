@@ -22,4 +22,10 @@
         android:icon="@drawable/ic_discover"
         android:title="@string/discover"
         android:iconTint="@color/blue" />
+
+    <item
+        android:id="@+id/menu_favorite"
+        android:icon="@drawable/ic_bookmark"
+        android:title="@string/favorite"
+        android:iconTint="@color/blue" />
 </menu>

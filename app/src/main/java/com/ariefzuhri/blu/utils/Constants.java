@@ -2,7 +2,9 @@ package com.ariefzuhri.blu.utils;
 
 public interface Constants {
     String BASE_URL_YOUTUBE = "https://youtu.be/";
+    String BASE_URL_TMDB_IMAGE = "https://image.tmdb.org/t/p/";
 
+    String EXTRA_BOOKMARK_FILTER = "extra_favorite_filter";
     String EXTRA_MEDIA_TYPE = "extra_media_type";
     String EXTRA_MEDIA_ID = "extra_movie_id";
     String EXTRA_QUERY = "extra_query";

@@ -4,14 +4,12 @@ import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.MediaEntity;
-import com.ariefzuhri.blu.data.source.CatalogRepository;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.blu.data.CatalogRepository;
+import com.ariefzuhri.blu.vo.Resource;
 
 import java.util.List;
-
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.blu.utils.Constants.MEDIA_TYPE_TV;
 
 public class DiscoverViewModel extends ViewModel {
 
@@ -34,8 +32,7 @@ public class DiscoverViewModel extends ViewModel {
     private MutableLiveData<List<MediaEntity>> tvLatestRelease;
     private MutableLiveData<List<MediaEntity>> movieTopRated;
     private MutableLiveData<List<MediaEntity>> tvTopRated;
-    private MutableLiveData<List<GenreEntity>> movieGenres;
-    private MutableLiveData<List<GenreEntity>> tvGenres;
+    private LiveData<Resource<List<GenreEntity>>> genres;
 
     public LiveData<List<MediaEntity>> getMoviePopular(){
         if (moviePopular == null) moviePopular = repository.getMoviePopular(page);
@@ -72,13 +69,8 @@ public class DiscoverViewModel extends ViewModel {
         return tvTopRated;
     }
 
-    public LiveData<List<GenreEntity>> getMovieGenres() {
-        if (movieGenres == null) movieGenres = repository.getGenres(MEDIA_TYPE_MOVIE);
-        return movieGenres;
-    }
-
-    public LiveData<List<GenreEntity>> getTVGenres() {
-        if (tvGenres == null) tvGenres = repository.getGenres(MEDIA_TYPE_TV);
-        return tvGenres;
+    public LiveData<Resource<List<GenreEntity>>> getGenres() {
+        if (genres == null) genres = repository.getGenres();
+        return genres;
     }
 }

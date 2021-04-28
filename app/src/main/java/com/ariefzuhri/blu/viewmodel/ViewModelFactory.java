@@ -6,15 +6,17 @@ import androidx.annotation.NonNull;
 import androidx.lifecycle.ViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-import com.ariefzuhri.blu.data.source.CatalogRepository;
+import com.ariefzuhri.blu.data.CatalogRepository;
 import com.ariefzuhri.blu.di.Injection;
 import com.ariefzuhri.blu.ui.detail.DetailMediaViewModel;
+import com.ariefzuhri.blu.ui.main.favorite.FavoriteViewModel;
 import com.ariefzuhri.blu.ui.main.discover.DiscoverViewModel;
 import com.ariefzuhri.blu.ui.main.movie.MovieViewModel;
 import com.ariefzuhri.blu.ui.main.home.tv.TVViewModel;
 import com.ariefzuhri.blu.ui.search.SearchViewModel;
 
 public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
+
     private static volatile ViewModelFactory INSTANCE;
 
     private final Application mApplication;
@@ -28,9 +30,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
     public static ViewModelFactory getInstance(Application application){
         if (INSTANCE == null){
             synchronized (ViewModelFactory.class){
-                if (INSTANCE == null){
-                    INSTANCE = new ViewModelFactory(application, Injection.provideRepository());
-                }
+                INSTANCE = new ViewModelFactory(application,
+                        Injection.provideRepository(application.getApplicationContext()));
             }
         }
         return INSTANCE;
@@ -50,6 +51,8 @@ public class ViewModelFactory extends ViewModelProvider.NewInstanceFactory {
             return (T) new DetailMediaViewModel(mCatalogRepository);
         } else if (modelClass.isAssignableFrom(SearchViewModel.class)){
             return (T) new SearchViewModel(mApplication, mCatalogRepository);
+        } else if (modelClass.isAssignableFrom(FavoriteViewModel.class)){
+            return (T) new FavoriteViewModel(mCatalogRepository);
         }
 
         throw new IllegalArgumentException("Unknown ViewModel class: " + modelClass.getName());

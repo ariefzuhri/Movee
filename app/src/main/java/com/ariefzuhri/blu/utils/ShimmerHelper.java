@@ -12,6 +12,7 @@ import com.facebook.shimmer.ShimmerFrameLayout;
 import static com.ariefzuhri.blu.utils.AppUtils.showToast;
 
 public class ShimmerHelper {
+
     private final Context context;
     private final ShimmerFrameLayout shimmer;
     private final RecyclerView recyclerView;

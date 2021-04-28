@@ -1,17 +1,24 @@
-package com.ariefzuhri.blu.data.source;
+package com.ariefzuhri.blu.data;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
-import com.ariefzuhri.blu.data.AiredDateEntity;
-import com.ariefzuhri.blu.data.CastEntity;
-import com.ariefzuhri.blu.data.CreditsEntity;
-import com.ariefzuhri.blu.data.CrewEntity;
-import com.ariefzuhri.blu.data.GenreEntity;
-import com.ariefzuhri.blu.data.MediaEntity;
-import com.ariefzuhri.blu.data.StudioEntity;
-import com.ariefzuhri.blu.data.TrailerEntity;
+import com.ariefzuhri.blu.data.source.local.LocalDataSource;
+import com.ariefzuhri.blu.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.blu.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.blu.data.source.remote.ApiResponse;
 import com.ariefzuhri.blu.data.source.remote.RemoteDataSource;
+import com.ariefzuhri.blu.data.source.remote.entity.AiredDateEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CastEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.CrewEntity;
+import com.ariefzuhri.blu.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.StudioEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.TrailerEntity;
 import com.ariefzuhri.blu.data.source.remote.response.CastItem;
 import com.ariefzuhri.blu.data.source.remote.response.CreditsResponse;
 import com.ariefzuhri.blu.data.source.remote.response.CrewItem;
@@ -28,6 +35,9 @@ import com.ariefzuhri.blu.data.source.remote.response.TVItem;
 import com.ariefzuhri.blu.data.source.remote.response.TVResponse;
 import com.ariefzuhri.blu.data.source.remote.response.VideoItem;
 import com.ariefzuhri.blu.data.source.remote.response.VideosResponse;
+import com.ariefzuhri.blu.utils.AppExecutors;
+import com.ariefzuhri.blu.utils.FilterFavorite;
+import com.ariefzuhri.blu.vo.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -39,18 +49,20 @@ public class CatalogRepository implements CatalogDataSource {
 
     private volatile static CatalogRepository INSTANCE = null;
 
+    private final AppExecutors appExecutors;
+    private final LocalDataSource localDataSource;
     private final RemoteDataSource remoteDataSource;
 
-    private CatalogRepository (@NonNull RemoteDataSource remoteDataSource){
+    private CatalogRepository (@NonNull RemoteDataSource remoteDataSource, LocalDataSource localDataSource, AppExecutors appExecutors){
+        this.appExecutors = appExecutors;
+        this.localDataSource = localDataSource;
         this.remoteDataSource = remoteDataSource;
     }
 
-    public static CatalogRepository getInstance(RemoteDataSource remoteDataSource){
+    public static CatalogRepository getInstance(RemoteDataSource remoteDataSource, LocalDataSource localDataSource, AppExecutors appExecutors){
         if (INSTANCE == null){
             synchronized (CatalogRepository.class){
-                if (INSTANCE == null){
-                    INSTANCE = new CatalogRepository(remoteDataSource);
-                }
+                INSTANCE = new CatalogRepository(remoteDataSource, localDataSource, appExecutors);
             }
         }
         return INSTANCE;
@@ -217,16 +229,6 @@ public class CatalogRepository implements CatalogDataSource {
     }
 
     @Override
-    public MutableLiveData<List<GenreEntity>> getGenres(String mediaType) {
-        MutableLiveData<List<GenreEntity>> result = new MutableLiveData<>();
-        remoteDataSource.getGenres(mediaType, response -> {
-            List<GenreEntity> genreList = genreResponseToGenreList(response);
-            result.postValue(genreList);
-        });
-        return result;
-    }
-
-    @Override
     public MutableLiveData<List<TrailerEntity>> getVideos(String mediaType, int mediaId) {
         MutableLiveData<List<TrailerEntity>> result = new MutableLiveData<>();
         remoteDataSource.getVideos(mediaType, mediaId, response -> {
@@ -244,6 +246,62 @@ public class CatalogRepository implements CatalogDataSource {
             result.postValue(credit);
         });
         return result;
+    }
+
+    @Override
+    public LiveData<PagedList<FavoriteWithGenres>> getAllFavoriteWithGenres(FilterFavorite filter) {
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(4)
+                .setPageSize(4)
+                .build();
+        return new LivePagedListBuilder<>(localDataSource.getAllFavoriteWithGenres(filter), config).build();
+    }
+
+    @Override
+    public LiveData<FavoriteWithGenres> getFavoriteWithGenresById(int id, String type) {
+        return localDataSource.getFavoriteWithGenresById(id, type);
+    }
+
+    @Override
+    public void insertFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.insertFavorite(favorite));
+    }
+
+    @Override
+    public void updateFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.updateFavorite(favorite));
+    }
+
+    @Override
+    public void deleteFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.deleteFavorite(favorite));
+    }
+
+    @Override
+    public LiveData<Resource<List<GenreEntity>>> getGenres() {
+        return new NetworkBoundResource<List<GenreEntity>, GenresResponse>(appExecutors) {
+            @Override
+            protected LiveData<List<GenreEntity>> loadFromDB() {
+                return localDataSource.getGenres();
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<GenreEntity> data) {
+                return (data == null) || (data.size() == 0);
+            }
+
+            @Override
+            protected LiveData<ApiResponse<GenresResponse>> createCall() {
+                return remoteDataSource.getGenres();
+            }
+
+            @Override
+            protected void saveCallResult(GenresResponse data) {
+                List<GenreEntity> genreList = genreResponseToGenreList(data);
+                localDataSource.insertGenres(genreList);
+            }
+        }.asLiveData();
     }
 
     /* Untuk konversi */

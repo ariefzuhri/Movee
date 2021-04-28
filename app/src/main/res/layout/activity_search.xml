@@ -14,7 +14,8 @@
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.BLU.AppBarOverlay"
-        app:elevation="8dp">
+        app:elevation="8dp"
+        android:background="@color/blue">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -49,8 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_back"
-                        tools:ignore="ContentDescription"
-                        app:elevation="8dp"/>
+                        tools:ignore="ContentDescription"/>
 
                     <TextView
                         android:id="@+id/tv_header"

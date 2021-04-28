@@ -1,4 +1,4 @@
-package com.ariefzuhri.blu.data;
+package com.ariefzuhri.blu.data.source.remote.entity;
 
 public class TrailerEntity {
 

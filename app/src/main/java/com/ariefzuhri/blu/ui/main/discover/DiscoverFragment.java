@@ -15,7 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.ariefzuhri.blu.R;
-import com.ariefzuhri.blu.data.MediaEntity;
+import com.ariefzuhri.blu.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.blu.databinding.FragmentDiscoverBinding;
 import com.ariefzuhri.blu.ui.main.home.MediaAdapter;
 import com.ariefzuhri.blu.ui.search.SearchActivity;
@@ -77,10 +77,16 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
             viewModel = new ViewModelProvider(this, factory).get(DiscoverViewModel.class);
             viewModel.setPage(1);
-            viewModel.getMovieGenres().observe(getViewLifecycleOwner(),
-                    result -> movieAdapter.setGenreList(result));
-            viewModel.getTVGenres().observe(getViewLifecycleOwner(),
-                    result -> tvAdapter.setGenreList(result));
+            viewModel.getGenres().observe(getViewLifecycleOwner(),
+                    result -> {
+                        if (result != null) {
+                            switch (result.status) {
+                                case LOADING: break;
+                                case SUCCESS: movieAdapter.setGenreList(result.data); break;
+                                case ERROR: break;
+                            }
+                        }
+                    });
 
             binding.chipGroup.setOnCheckedChangeListener(this);
             binding.chipPopular.setChecked(true);
@@ -157,11 +163,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
 
     private void setMovieList(List<MediaEntity> result){
         movieAdapter.setData(result);
+        if (!result.isEmpty()) binding.rvMovie.scrollToPosition(0);
         shimmerMovie.hide();
     }
 
     private void setTVList(List<MediaEntity> result){
         tvAdapter.setData(result);
+        if (!result.isEmpty()) binding.rvTv.scrollToPosition(0);
         shimmerTV.hide();
     }
 }
