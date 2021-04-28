@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
@@ -58,10 +59,14 @@ import static com.ariefzuhri.blu.utils.DateHelper.getDateWithoutYear;
 import static com.ariefzuhri.blu.utils.DateHelper.getYearOfDate;
 
 public class DetailMediaActivity extends AppCompatActivity implements View.OnClickListener {
+
+    private final String TAG = getClass().getSimpleName();
+
     private ActivityDetailMediaBinding activityBinding;
     private ContentDetailMediaBinding contentBinding;
 
     private DetailMediaViewModel viewModel;
+    private FavoriteEntity favoriteInDb;
     private Intent trailerIntent;
     private MediaEntity media;
 
@@ -148,14 +153,9 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         viewModel.getFavoriteWithGenres().observe(this, result -> {
             isFavorite = result != null;
             setFavoriteState(isFavorite);
-
-            // Update favorit di database jika data satu nilai atribut yang tidak sama
-            if (result != null){ // = favorit
-                FavoriteEntity favoriteInDb = result.favorite;
+            if (isFavorite) {
+                favoriteInDb = result.favorite;
                 favoriteInDb.setGenres(result.genres);
-                FavoriteEntity updatedFavorite = createFavoriteObject(media);
-                boolean equalsObjects = equalsFavoriteObjects(favoriteInDb, updatedFavorite);
-                if (!equalsObjects) viewModel.updateFavorite(updatedFavorite);
             }
         });
 
@@ -328,23 +328,25 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     }
 
     private boolean equalsFavoriteObjects(FavoriteEntity o1, FavoriteEntity o2){
-        boolean equals = o1.getId().equals(o2.getId()) &&
+        return o1.getId().equals(o2.getId()) &&
                 o1.getType().equals(o2.getType()) &&
                 o1.getTitle().equals(o2.getTitle()) &&
                 o1.getPoster().equals(o2.getPoster()) &&
                 o1.getScoreAverage() == o2.getScoreAverage() &&
                 o1.getStartDate().equals(o2.getStartDate()) &&
                 o1.getGenres().size() == o2.getGenres().size();
+    }
 
-        if (equals) {
-            for (int i = 0; i < o1.getGenres().size(); i++){
-                if (!o1.getGenres().get(i).getId().equals(o2.getGenres().get(i).getId())) {
-                    equals = false;
-                    break;
-                }
-            }
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        // Update favorit di database jika ada satu nilai atribut yang tidak sama
+        if (isFavorite && favoriteInDb != null){
+            FavoriteEntity updatedFavorite = createFavoriteObject(media);
+            boolean equalsObjects = equalsFavoriteObjects(favoriteInDb, updatedFavorite);
+            Log.d(TAG, "equalsFavoriteObjects: " + equalsObjects);
+            if (!equalsObjects) viewModel.updateFavorite(updatedFavorite);
+            else Log.d(TAG, "favoriteInDb not need updated");
         }
-
-        return equals;
     }
 }

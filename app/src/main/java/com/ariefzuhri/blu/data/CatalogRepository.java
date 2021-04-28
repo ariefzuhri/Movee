@@ -288,7 +288,7 @@ public class CatalogRepository implements CatalogDataSource {
 
             @Override
             protected Boolean shouldFetch(List<GenreEntity> data) {
-                return (data == null) || (data.size() == 0);
+                return (data == null) || (data.size() < 27);
             }
 
             @Override
