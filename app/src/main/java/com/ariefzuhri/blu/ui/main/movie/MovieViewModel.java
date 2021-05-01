@@ -15,14 +15,14 @@ public class MovieViewModel extends ViewModel {
 
     private final CatalogRepository repository;
 
-    private int page;
+    private int trendingPage;
 
     public MovieViewModel(CatalogRepository repository){
         this.repository = repository;
     }
 
-    public void setPage(int page){
-        this.page = page;
+    public void setTrendingPage(int trendingPage){
+        this.trendingPage = trendingPage;
     }
 
     private MutableLiveData<List<MediaEntity>> nowPlaying;
@@ -30,12 +30,12 @@ public class MovieViewModel extends ViewModel {
     private LiveData<Resource<List<GenreEntity>>> genres;
 
     public LiveData<List<MediaEntity>> getNowPlaying() {
-        if (nowPlaying == null) nowPlaying = repository.getMovieNowPlaying(page);
+        if (nowPlaying == null) nowPlaying = repository.getMovieNowPlaying(1);
         return nowPlaying;
     }
 
     public LiveData<List<MediaEntity>> getTrending(){
-        if (trending == null) trending = repository.getMovieTrending(page);
+        if (trending == null) trending = repository.getMovieTrending(trendingPage);
         return trending;
     }
 

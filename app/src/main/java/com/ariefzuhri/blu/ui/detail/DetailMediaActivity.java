@@ -120,14 +120,14 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(DetailMediaViewModel.class);
-        viewModel.setPage(1);
 
         Bundle bundle = getIntent().getExtras();
         if (bundle != null){
             String mediaType = bundle.getString(EXTRA_MEDIA_TYPE);
             int mediaId = bundle.getInt(EXTRA_MEDIA_ID);
-            viewModel.setMediaType(mediaType);
-            viewModel.setMediaId(mediaId);
+
+            viewModel.setMedia(mediaType, mediaId);
+
             viewModel.getMediaDetails().observe(this, this::populateMedia);
             viewModel.getCredits().observe(this, result -> {});
             viewModel.getGenres().observe(this, resultGenre -> {

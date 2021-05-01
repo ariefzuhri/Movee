@@ -15,14 +15,14 @@ public class TVViewModel extends ViewModel {
 
     private final CatalogRepository repository;
 
-    private int page;
+    private int trendingPage;
 
     public TVViewModel(CatalogRepository repository){
         this.repository = repository;
     }
 
-    public void setPage(int page){
-        this.page = page;
+    public void setTrendingPage(int trendingPage){
+        this.trendingPage = trendingPage;
     }
 
     private MutableLiveData<List<MediaEntity>> onTheAir;
@@ -30,12 +30,12 @@ public class TVViewModel extends ViewModel {
     private LiveData<Resource<List<GenreEntity>>> genres;
 
     public LiveData<List<MediaEntity>> getOnTheAir() {
-        if (onTheAir == null) onTheAir = repository.getTVOnTheAir(page);
+        if (onTheAir == null) onTheAir = repository.getTVOnTheAir(1);
         return onTheAir;
     }
 
     public LiveData<List<MediaEntity>> getTrending(){
-        if (trending == null) trending = repository.getTVTrending(page);
+        if (trending == null) trending = repository.getTVTrending(trendingPage);
         return trending;
     }
 

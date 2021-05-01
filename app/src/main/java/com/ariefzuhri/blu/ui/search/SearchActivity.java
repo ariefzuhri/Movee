@@ -39,7 +39,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         binding.fabBack.setOnClickListener(view -> onBackPressed());
 
-        binding.recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        binding.recyclerView.setLayoutManager(layoutManager);
         binding.recyclerView.setHasFixedSize(true);
         adapter = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.recyclerView.setAdapter(adapter);
@@ -49,7 +50,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
-        viewModel.setPage(1);
+        //viewModel.setPage(1);
 
         viewModel.getHeader().observe(this, header -> binding.tvHeader.setText(header));
         viewModel.getGenres().observe(this, result -> {

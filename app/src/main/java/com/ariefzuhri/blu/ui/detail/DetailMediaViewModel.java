@@ -22,7 +22,6 @@ public class DetailMediaViewModel extends ViewModel {
 
     private final CatalogRepository repository;
 
-    private int page;
     private String mediaType;
     private int mediaId;
 
@@ -30,15 +29,8 @@ public class DetailMediaViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    public void setPage(int page) {
-        this.page = page;
-    }
-
-    public void setMediaType(String mediaType) {
+    public void setMedia(String mediaType, int mediaId) {
         this.mediaType = mediaType;
-    }
-
-    public void setMediaId(int mediaId) {
         this.mediaId = mediaId;
     }
 
@@ -73,9 +65,9 @@ public class DetailMediaViewModel extends ViewModel {
     public LiveData<List<MediaEntity>> getRecommendations(){
         if (recommendations == null) {
             if (mediaType.equals(MEDIA_TYPE_MOVIE)){
-                recommendations = repository.getMovieRecommendations(mediaId, page);
+                recommendations = repository.getMovieRecommendations(mediaId, 1);
             } else if (mediaType.equals(MEDIA_TYPE_TV)){
-                recommendations = repository.getTVRecommendations(mediaId, page);
+                recommendations = repository.getTVRecommendations(mediaId, 1);
             }
         }
         return recommendations;
