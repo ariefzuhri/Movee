@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:fitsSystemWindows="true"
-        android:theme="@style/Theme.BLU.AppBarOverlay"
+        android:theme="@style/Theme.Movee.AppBarOverlay"
         app:elevation="0dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
@@ -37,7 +37,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/Theme.BLU.PopupOverlay"
+                app:popupTheme="@style/Theme.Movee.PopupOverlay"
                 app:title="@null"
                 app:contentInsetEnd="0dp"
                 app:contentInsetStart="0dp">
@@ -102,7 +102,7 @@
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:text="@string/trailer"
-        app:icon="@drawable/ic_play"
+        app:icon="@drawable/ic_trailer"
         app:iconGravity="textStart"
         app:iconPadding="4dp"
         app:layout_anchorGravity="bottom"

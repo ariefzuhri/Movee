@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         app:layout_collapseMode="pin"
-        app:popupTheme="@style/Theme.BLU.PopupOverlay"
+        app:popupTheme="@style/Theme.Movee.PopupOverlay"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"
         android:background="@color/blue"

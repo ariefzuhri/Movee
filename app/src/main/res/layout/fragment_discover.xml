@@ -64,28 +64,32 @@
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/popular" />
+                    android:text="@string/popular"
+                    android:textAppearance="@style/MyTextAppearance" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_upcoming"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/upcoming" />
+                    android:text="@string/upcoming"
+                    android:textAppearance="@style/MyTextAppearance" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_latest_release"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/latest_release" />
+                    android:text="@string/latest_release"
+                    android:textAppearance="@style/MyTextAppearance" />
 
                 <com.google.android.material.chip.Chip
                     android:id="@+id/chip_top_rated"
                     style="@style/Widget.MaterialComponents.Chip.Choice"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/top_rated" />
+                    android:text="@string/top_rated"
+                    android:textAppearance="@style/MyTextAppearance" />
             </com.google.android.material.chip.ChipGroup>
         </HorizontalScrollView>
 

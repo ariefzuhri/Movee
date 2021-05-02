@@ -65,21 +65,24 @@
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/all" />
+                        android:text="@string/all"
+                        android:textAppearance="@style/MyTextAppearance" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_movie"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/movie" />
+                        android:text="@string/movie"
+                        android:textAppearance="@style/MyTextAppearance" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/chip_tv"
                         style="@style/Widget.MaterialComponents.Chip.Choice"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/tv" />
+                        android:text="@string/tv"
+                        android:textAppearance="@style/MyTextAppearance" />
                 </com.google.android.material.chip.ChipGroup>
             </HorizontalScrollView>
 
@@ -91,6 +94,39 @@
                 android:paddingHorizontal="16dp"
                 android:paddingBottom="48dp"
                 android:layout_below="@+id/sv_list"/>
+
+            <LinearLayout
+                android:id="@+id/layout_empty"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_centerInParent="true"
+                android:layout_below="@+id/view_background"
+                android:gravity="center"
+                android:layout_marginTop="42dp">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_empty_favorite_128"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="It's empty"
+                    android:textStyle="bold"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/font_nm"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="4dp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Looks like you don't have anything in your list"
+                    android:textColor="@color/gray_dark"
+                    android:textSize="@dimen/font_nm"/>
+            </LinearLayout>
         </RelativeLayout>
     </androidx.core.widget.NestedScrollView>
 
