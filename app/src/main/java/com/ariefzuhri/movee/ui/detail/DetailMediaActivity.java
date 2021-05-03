@@ -19,6 +19,7 @@ import com.ariefzuhri.movee.ui.main.home.MediaAdapter;
 import com.ariefzuhri.movee.ui.search.SearchActivity;
 import com.ariefzuhri.movee.utils.ShimmerHelper;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
+import com.ariefzuhri.movee.vo.Status;
 import com.google.android.flexbox.FlexDirection;
 import com.google.android.flexbox.FlexboxLayoutManager;
 import com.google.android.flexbox.JustifyContent;
@@ -128,7 +129,13 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
 
             viewModel.setMedia(mediaType, mediaId);
 
-            viewModel.getMediaDetails().observe(this, this::populateMedia);
+            viewModel.getMediaDetails().observe(this, result -> {
+                if (result.status == Status.SUCCESS) {
+                    if (result.data != null) {
+                        populateMedia(result.data);
+                    }
+                }
+            });
             viewModel.getCredits().observe(this, result -> {});
             viewModel.getGenres().observe(this, resultGenre -> {
                 if (resultGenre != null) {
@@ -136,8 +143,14 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                         case LOADING: break;
                         case SUCCESS:
                             viewModel.getRecommendations().observe(this, resultMedia -> {
-                                populateRecommendations(resultGenre.data, resultMedia);
-                                shimmerRecommendation.hide();
+                                if (resultMedia != null){
+                                    if (resultMedia.status == Status.SUCCESS) {
+                                        if (resultMedia.data != null) {
+                                            populateRecommendations(resultGenre.data, resultMedia.data);
+                                            shimmerRecommendation.hide();
+                                        }
+                                    }
+                                }
                             });
                             break;
                         case ERROR: break;
@@ -154,8 +167,10 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             isFavorite = result != null;
             setFavoriteState(isFavorite);
             if (isFavorite) {
-                favoriteInDb = result.favorite;
-                favoriteInDb.setGenres(result.genres);
+                if (result != null) {
+                    favoriteInDb = result.favorite;
+                    favoriteInDb.setGenres(result.genres);
+                }
             }
         });
 
@@ -217,8 +232,12 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         genreAdapter.setData(genreStringList);
 
         viewModel.getTrailers().observe(this, result -> {
-            media.setTrailer(result);
-            initTrailerIntent();
+            if (result.status == Status.SUCCESS) {
+                if (result.data != null) {
+                    media.setTrailer(result.data);
+                    initTrailerIntent();
+                }
+            }
         });
     }
 

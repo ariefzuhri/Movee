@@ -19,6 +19,7 @@ import com.ariefzuhri.movee.ui.main.home.MediaAdapter;
 import com.ariefzuhri.movee.ui.search.SearchActivity;
 import com.ariefzuhri.movee.utils.ShimmerHelper;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
+import com.ariefzuhri.movee.vo.Status;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -77,13 +78,25 @@ public class MovieFragment extends Fragment {
                 }
 
                 viewModel.getNowPlaying().observe(getViewLifecycleOwner(), resultMovie -> {
-                    adapterHoriz.setData(resultMovie);
-                    shimmerHoriz.hide();
+                    if (resultMovie != null){
+                        if (resultMovie.status == Status.SUCCESS){
+                            adapterHoriz.setData(resultMovie.data);
+                            shimmerHoriz.hide();
+                        }
+                    }
                 });
 
                 viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
-                    adapterVert.setData(resultMovie);
-                    shimmerVert.hide();
+                    if (resultMovie != null){
+                        switch (resultMovie.status){
+                            case LOADING: break;
+                            case SUCCESS:
+                                adapterVert.setData(resultMovie.data);
+                                shimmerVert.hide();
+                                break;
+                            case ERROR: break;
+                        }
+                    }
                 });
             });
         }

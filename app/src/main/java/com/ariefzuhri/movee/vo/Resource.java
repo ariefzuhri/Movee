@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
 
+import static com.ariefzuhri.movee.vo.Status.EMPTY;
 import static com.ariefzuhri.movee.vo.Status.ERROR;
 import static com.ariefzuhri.movee.vo.Status.LOADING;
 import static com.ariefzuhri.movee.vo.Status.SUCCESS;
@@ -31,6 +32,10 @@ public class Resource<T> {
 
     public static <T> Resource<T> success(@Nullable T data) {
         return new Resource<>(SUCCESS, data, null);
+    }
+
+    public static <T> Resource<T> empty(String msg, @Nullable T data) {
+        return new Resource<>(EMPTY, data, msg);
     }
 
     public static <T> Resource<T> error(String msg, @Nullable T data) {

@@ -15,9 +15,11 @@ import com.ariefzuhri.movee.databinding.ActivitySearchBinding;
 import com.ariefzuhri.movee.ui.main.home.MediaAdapter;
 import com.ariefzuhri.movee.utils.ShimmerHelper;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
+import com.ariefzuhri.movee.vo.Resource;
 
 import java.util.List;
 
+import static com.ariefzuhri.movee.utils.AppUtils.showToast;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_QUERY_TYPE;
@@ -45,13 +47,13 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         adapter = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.recyclerView.setAdapter(adapter);
 
-        shimmer = new ShimmerHelper(this, binding.shimmer, binding.recyclerView);
-        shimmer.show();
+        shimmer = new ShimmerHelper(this, binding.shimmer, binding.recyclerView, binding.layoutEmpty);
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
         viewModel.setPage(1);
 
+        viewModel.getSearchResult().observe(this, observer);
         viewModel.getHeader().observe(this, header -> binding.tvHeader.setText(header));
         viewModel.getGenres().observe(this, result -> {
             if (result != null) {
@@ -69,29 +71,29 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
             binding.searchView.setQuery(query, true);
             performQuery(query);
         } else if (intent.hasExtra(EXTRA_QUERY_TYPE)){
-            int type = intent.getIntExtra(EXTRA_QUERY_TYPE, 0);
-            viewModel.setQueryType(type);
             if (intent.hasExtra(EXTRA_MEDIA_ID)){ // Untuk rekomendasi
                 int mediaId = intent.getIntExtra(EXTRA_MEDIA_ID, 0);
                 viewModel.setMediaId(mediaId);
             }
-            viewModel.getSearchResult().observe(this, observer);
+            int type = intent.getIntExtra(EXTRA_QUERY_TYPE, 0);
+            viewModel.setQueryType(type);
         }
 
         binding.searchView.setOnQueryTextListener(this);
         binding.swipeRefreshLayout.setOnRefreshListener(() ->
-                viewModel.getSearchResult().observe(this, observer));
+                binding.swipeRefreshLayout.setRefreshing(false));
     }
 
     @Override
     public boolean onQueryTextSubmit(String query) {
-        //boolean hasSubmittedQuery = binding.tvHeader.getText().toString().equals(getString(R.string.search));
         binding.searchView.clearFocus();
-        if (adapter.getItemCount() == 0){
+        boolean hasSubmittedQuery = getIntent().hasExtra(EXTRA_QUERY) &&
+                !query.equals(getIntent().getStringExtra(EXTRA_QUERY));
+        if (adapter.getItemCount() == 0 && !hasSubmittedQuery){
             binding.scrollView.scrollTo(0, 0);
             binding.appBar.setExpanded(true);
             performQuery(query);
-        } else {
+        } else { // Jika sudah ada data di adapter, kita buka activity baru
             Intent intent = new Intent(this, SearchActivity.class);
             intent.putExtra(EXTRA_QUERY, query);
             startActivity(intent);
@@ -106,17 +108,31 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
 
     private void performQuery(String query){
         binding.tvHeader.setText(R.string.search);
-        viewModel.setQueryType(QUERY_TYPE_MULTI_SEARCH);
         viewModel.setQuery(query);
-        viewModel.getSearchResult().observe(this, observer);
+        viewModel.setQueryType(QUERY_TYPE_MULTI_SEARCH);
     }
 
-    private final Observer<List<MediaEntity>> observer = new Observer<List<MediaEntity>>() {
+    private final Observer<Resource<List<MediaEntity>>> observer = new Observer<Resource<List<MediaEntity>>>() {
         @Override
-        public void onChanged(List<MediaEntity> result) {
-            adapter.setData(result);
-            shimmer.hide();
-            binding.swipeRefreshLayout.setRefreshing(false);
+        public void onChanged(Resource<List<MediaEntity>> result) {
+            if (result != null){
+                switch (result.status) {
+                    case SUCCESS:
+                        adapter.setData(result.data);
+                        shimmer.hide(false);
+                        binding.swipeRefreshLayout.setRefreshing(false);
+                        break;
+                    case EMPTY:
+                        shimmer.hide(true);
+                        break;
+                    case ERROR:
+                        showToast(getApplicationContext(), "Wkwk");
+                        break;
+                    case LOADING:
+                        shimmer.show();
+                        break;
+                }
+            }
         }
     };
 }

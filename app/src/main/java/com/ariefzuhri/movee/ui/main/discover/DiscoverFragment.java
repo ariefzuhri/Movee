@@ -21,6 +21,7 @@ import com.ariefzuhri.movee.ui.main.home.MediaAdapter;
 import com.ariefzuhri.movee.ui.search.SearchActivity;
 import com.ariefzuhri.movee.utils.ShimmerHelper;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
+import com.ariefzuhri.movee.vo.Status;
 import com.google.android.material.chip.ChipGroup;
 
 import org.jetbrains.annotations.NotNull;
@@ -101,22 +102,64 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         if (checkedId == R.id.chip_popular) {
             binding.tvMovie.setText(R.string.popular);
             binding.tvTv.setText(R.string.popular);
-            viewModel.getMoviePopular().observe(getViewLifecycleOwner(), this::setMovieList);
-            viewModel.getTVPopular().observe(getViewLifecycleOwner(), this::setTVList);
+            viewModel.getMoviePopular().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setMovieList(result.data);
+                    }
+                }
+            });
+            viewModel.getTVPopular().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setTVList(result.data);
+                    }
+                }
+            });
         } else if (checkedId == R.id.chip_upcoming) {
             binding.tvMovie.setText(R.string.upcoming);
-            viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(), this::setMovieList);
+            viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setMovieList(result.data);
+                    }
+                }
+            });
             binding.layoutTv.setVisibility(View.INVISIBLE);
         } else if (checkedId == R.id.chip_latest_release) {
             binding.tvMovie.setText(R.string.latest_release);
             binding.tvTv.setText(R.string.latest_release);
-            viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(), this::setMovieList);
-            viewModel.getTVLatestRelease().observe(getViewLifecycleOwner(), this::setTVList);
+            viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setMovieList(result.data);
+                    }
+                }
+            });
+            viewModel.getTVLatestRelease().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setTVList(result.data);
+                    }
+                }
+            });
         } else if (checkedId == R.id.chip_top_rated) {
             binding.tvMovie.setText(R.string.top_rated);
             binding.tvTv.setText(R.string.top_rated);
-            viewModel.getMovieTopRated().observe(getViewLifecycleOwner(), this::setMovieList);
-            viewModel.getTVTopRated().observe(getViewLifecycleOwner(), this::setTVList);
+            viewModel.getMovieTopRated().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setMovieList(result.data);
+                    }
+                }
+            });
+            viewModel.getTVTopRated().observe(getViewLifecycleOwner(), result -> {
+                if (result != null){
+                    if (result.status == Status.SUCCESS){
+                        setTVList(result.data);
+                    }
+                }
+            });
         }
     }
 

@@ -19,46 +19,46 @@ public class DiscoverViewModel extends ViewModel {
         this.repository = repository;
     }
 
-    private MutableLiveData<List<MediaEntity>> moviePopular;
-    private MutableLiveData<List<MediaEntity>> tvPopular;
-    private MutableLiveData<List<MediaEntity>> movieUpcoming;
-    private MutableLiveData<List<MediaEntity>> movieLatestRelease;
-    private MutableLiveData<List<MediaEntity>> tvLatestRelease;
-    private MutableLiveData<List<MediaEntity>> movieTopRated;
-    private MutableLiveData<List<MediaEntity>> tvTopRated;
+    private MutableLiveData<Resource<List<MediaEntity>>> moviePopular;
+    private MutableLiveData<Resource<List<MediaEntity>>> tvPopular;
+    private MutableLiveData<Resource<List<MediaEntity>>> movieUpcoming;
+    private MutableLiveData<Resource<List<MediaEntity>>> movieLatestRelease;
+    private MutableLiveData<Resource<List<MediaEntity>>> tvLatestRelease;
+    private MutableLiveData<Resource<List<MediaEntity>>> movieTopRated;
+    private MutableLiveData<Resource<List<MediaEntity>>> tvTopRated;
     private LiveData<Resource<List<GenreEntity>>> genres;
 
-    public LiveData<List<MediaEntity>> getMoviePopular(){
+    public LiveData<Resource<List<MediaEntity>>> getMoviePopular(){
         if (moviePopular == null) moviePopular = repository.getMoviePopular(1);
         return moviePopular;
     }
 
-    public LiveData<List<MediaEntity>> getTVPopular(){
+    public LiveData<Resource<List<MediaEntity>>> getTVPopular(){
         if (tvPopular == null) tvPopular = repository.getTVPopular(1);
         return tvPopular;
     }
 
-    public LiveData<List<MediaEntity>> getMovieUpcoming(){
+    public LiveData<Resource<List<MediaEntity>>> getMovieUpcoming(){
         if (movieUpcoming == null) movieUpcoming = repository.getMovieUpcoming(1);
         return movieUpcoming;
     }
 
-    public LiveData<List<MediaEntity>> getMovieLatestRelease(){
+    public LiveData<Resource<List<MediaEntity>>> getMovieLatestRelease(){
         if (movieLatestRelease == null) movieLatestRelease = repository.getMovieLatestRelease(1);
         return movieLatestRelease;
     }
 
-    public LiveData<List<MediaEntity>> getTVLatestRelease(){
+    public LiveData<Resource<List<MediaEntity>>> getTVLatestRelease(){
         if (tvLatestRelease == null) tvLatestRelease = repository.getTVLatestRelease(1);
         return tvLatestRelease;
     }
 
-    public LiveData<List<MediaEntity>> getMovieTopRated(){
+    public LiveData<Resource<List<MediaEntity>>> getMovieTopRated(){
         if (movieTopRated == null) movieTopRated = repository.getMovieTopRated(1);
         return movieTopRated;
     }
 
-    public LiveData<List<MediaEntity>> getTVTopRated(){
+    public LiveData<Resource<List<MediaEntity>>> getTVTopRated(){
         if (tvTopRated == null) tvTopRated = repository.getTVTopRated(1);
         return tvTopRated;
     }

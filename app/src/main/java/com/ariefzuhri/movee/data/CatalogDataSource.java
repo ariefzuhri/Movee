@@ -16,41 +16,41 @@ import com.ariefzuhri.movee.vo.Resource;
 import java.util.List;
 
 public interface CatalogDataSource {
-    MutableLiveData<List<MediaEntity>> getMultiSearch(String query, int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMultiSearch(String query, int page);
 
-    MutableLiveData<MediaEntity> getMovieDetails(int movieId);
+    MutableLiveData<Resource<MediaEntity>> getMovieDetails(int movieId);
 
-    MutableLiveData<MediaEntity> getTVDetails(int tvId);
+    MutableLiveData<Resource<MediaEntity>> getTVDetails(int tvId);
 
-    MutableLiveData<List<MediaEntity>> getMovieTrending(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieTrending(int page);
 
-    MutableLiveData<List<MediaEntity>> getTVTrending(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVTrending(int page);
 
-    MutableLiveData<List<MediaEntity>> getMovieLatestRelease(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieLatestRelease(int page);
 
-    MutableLiveData<List<MediaEntity>> getTVLatestRelease(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVLatestRelease(int page);
 
-    MutableLiveData<List<MediaEntity>> getMovieNowPlaying(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieNowPlaying(int page);
 
-    MutableLiveData<List<MediaEntity>> getTVOnTheAir(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVOnTheAir(int page);
 
-    MutableLiveData<List<MediaEntity>> getMovieUpcoming(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieUpcoming(int page);
 
-    MutableLiveData<List<MediaEntity>> getMovieTopRated(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieTopRated(int page);
 
-    MutableLiveData<List<MediaEntity>> getTVTopRated(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVTopRated(int page);
 
-    MutableLiveData<List<MediaEntity>> getMoviePopular(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMoviePopular(int page);
 
-    MutableLiveData<List<MediaEntity>> getTVPopular(int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVPopular(int page);
 
-    MutableLiveData<List<MediaEntity>> getMovieRecommendations(int movieId, int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getMovieRecommendations(int movieId, int page);
 
-    MutableLiveData<List<MediaEntity>> getTVRecommendations(int tvId, int page);
+    MutableLiveData<Resource<List<MediaEntity>>> getTVRecommendations(int tvId, int page);
 
-    MutableLiveData<List<TrailerEntity>> getVideos(String mediaType, int mediaId);
+    MutableLiveData<Resource<List<TrailerEntity>>> getVideos(String mediaType, int mediaId);
 
-    MutableLiveData<CreditsEntity> getCredits(String mediaType, int mediaId);
+    MutableLiveData<Resource<CreditsEntity>> getCredits(String mediaType, int mediaId);
 
     LiveData<PagedList<FavoriteWithGenres>> getAllFavoriteWithGenres(FilterFavorite filter);
 

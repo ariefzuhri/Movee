@@ -25,16 +25,16 @@ public class MovieViewModel extends ViewModel {
         this.trendingPage = trendingPage;
     }
 
-    private MutableLiveData<List<MediaEntity>> nowPlaying;
-    private MutableLiveData<List<MediaEntity>> trending;
+    private MutableLiveData<Resource<List<MediaEntity>>> nowPlaying;
+    private MutableLiveData<Resource<List<MediaEntity>>> trending;
     private LiveData<Resource<List<GenreEntity>>> genres;
 
-    public LiveData<List<MediaEntity>> getNowPlaying() {
+    public LiveData<Resource<List<MediaEntity>>> getNowPlaying() {
         if (nowPlaying == null) nowPlaying = repository.getMovieNowPlaying(1);
         return nowPlaying;
     }
 
-    public LiveData<List<MediaEntity>> getTrending(){
+    public LiveData<Resource<List<MediaEntity>>> getTrending(){
         if (trending == null) trending = repository.getMovieTrending(trendingPage);
         return trending;
     }

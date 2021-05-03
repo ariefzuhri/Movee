@@ -48,7 +48,12 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MultiSearchResponse> call, @NotNull Response<MultiSearchResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMultiSearchReceived(response.body());
+                        MultiSearchResponse bodyResponse = response.body();
+                        if (bodyResponse.getTotalResults() > 0) {
+                            callback.onMultiSearchReceived(ApiResponse.success(response.body()));
+                        } else {
+                            callback.onMultiSearchReceived(ApiResponse.empty(null, response.body()));
+                        }
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -69,7 +74,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieDetailsResponse> call, @NotNull Response<MovieDetailsResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieDetailsReceived(response.body());
+                        callback.onMovieDetailsReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -90,7 +95,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVDetailsResponse> call, @NotNull Response<TVDetailsResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVDetailsReceived(response.body());
+                        callback.onTVDetailsReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -111,7 +116,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieTrendingReceived(response.body());
+                        callback.onMovieTrendingReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -132,7 +137,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVTrendingReceived(response.body());
+                        callback.onTVTrendingReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -153,7 +158,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieLatestReleaseReceived(response.body());
+                        callback.onMovieLatestReleaseReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -174,7 +179,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVLatestReleaseReceived(response.body());
+                        callback.onTVLatestReleaseReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -195,7 +200,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieNowPlayingReceived(response.body());
+                        callback.onMovieNowPlayingReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -216,7 +221,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVOnTheAirReceived(response.body());
+                        callback.onTVOnTheAirReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -237,7 +242,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieUpcomingReceived(response.body());
+                        callback.onMovieUpcomingReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -258,7 +263,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieTopRatedReceived(response.body());
+                        callback.onMovieTopRatedReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -279,7 +284,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVTopRatedReceived(response.body());
+                        callback.onTVTopRatedReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -300,7 +305,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMoviePopularReceived(response.body());
+                        callback.onMoviePopularReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -321,7 +326,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVPopularReceived(response.body());
+                        callback.onTVPopularReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -342,7 +347,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MovieResponse> call, @NotNull Response<MovieResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onMovieRecommendationsReceived(response.body());
+                        callback.onMovieRecommendationsReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -363,7 +368,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<TVResponse> call, @NotNull Response<TVResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onTVRecommendationsReceived(response.body());
+                        callback.onTVRecommendationsReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -432,7 +437,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<VideosResponse> call, @NotNull Response<VideosResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onVideosReceived(response.body());
+                        callback.onVideosReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -453,7 +458,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<CreditsResponse> call, @NotNull Response<CreditsResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        callback.onCreditsReceived(response.body());
+                        callback.onCreditsReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());
@@ -467,74 +472,74 @@ public class RemoteDataSource {
     }
 
     public interface LoadMultiSearchCallback{
-        void onMultiSearchReceived(MultiSearchResponse multiSearchResponse);
+        void onMultiSearchReceived(ApiResponse<MultiSearchResponse> multiSearchResponse);
     }
 
     public interface LoadMovieDetailsCallback{
-        void onMovieDetailsReceived(MovieDetailsResponse movieDetailsResponse);
+        void onMovieDetailsReceived(ApiResponse<MovieDetailsResponse> movieDetailsResponse);
     }
 
     public interface LoadTVDetailsCallback{
-        void onTVDetailsReceived(TVDetailsResponse tvDetailsResponse);
+        void onTVDetailsReceived(ApiResponse<TVDetailsResponse> tvDetailsResponse);
     }
 
     public interface LoadMovieTrendingCallback{
-        void onMovieTrendingReceived(MovieResponse movieResponse);
+        void onMovieTrendingReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVTrendingCallback{
-        void onTVTrendingReceived(TVResponse tvResponse);
+        void onTVTrendingReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadMovieLatestReleaseCallback{
-        void onMovieLatestReleaseReceived(MovieResponse movieResponse);
+        void onMovieLatestReleaseReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVLatestReleaseCallback{
-        void onTVLatestReleaseReceived(TVResponse tvResponse);
+        void onTVLatestReleaseReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadMovieNowPlayingCallback{
-        void onMovieNowPlayingReceived(MovieResponse movieResponse);
+        void onMovieNowPlayingReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVOnTheAirCallback{
-        void onTVOnTheAirReceived(TVResponse tvResponse);
+        void onTVOnTheAirReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadMovieUpcomingCallback{
-        void onMovieUpcomingReceived(MovieResponse movieResponse);
+        void onMovieUpcomingReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadMovieTopRatedCallback{
-        void onMovieTopRatedReceived(MovieResponse movieResponse);
+        void onMovieTopRatedReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVTopRatedCallback{
-        void onTVTopRatedReceived(TVResponse tvResponse);
+        void onTVTopRatedReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadMoviePopularCallback{
-        void onMoviePopularReceived(MovieResponse movieResponse);
+        void onMoviePopularReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVPopularCallback{
-        void onTVPopularReceived(TVResponse tvResponse);
+        void onTVPopularReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadMovieRecommendationsCallback{
-        void onMovieRecommendationsReceived(MovieResponse movieResponse);
+        void onMovieRecommendationsReceived(ApiResponse<MovieResponse> movieResponse);
     }
 
     public interface LoadTVRecommendationsCallback{
-        void onTVRecommendationsReceived(TVResponse tvResponse);
+        void onTVRecommendationsReceived(ApiResponse<TVResponse> tvResponse);
     }
 
     public interface LoadVideosCallback{
-        void onVideosReceived(VideosResponse videosResponse);
+        void onVideosReceived(ApiResponse<VideosResponse> videosResponse);
     }
 
     public interface LoadCreditsCallback{
-        void onCreditsReceived(CreditsResponse creditsResponse);
+        void onCreditsReceived(ApiResponse<CreditsResponse> creditsResponse);
     }
 }

@@ -2,7 +2,7 @@ package com.ariefzuhri.movee.utils;
 
 import android.content.Context;
 import android.view.View;
-import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -16,7 +16,7 @@ public class ShimmerHelper {
     private final Context context;
     private final ShimmerFrameLayout shimmer;
     private final RecyclerView recyclerView;
-    private ImageView imgEmpty;
+    private LinearLayout layoutEmpty;
 
     public ShimmerHelper(Context context, ShimmerFrameLayout shimmer, RecyclerView recyclerView){
         this.context = context;
@@ -25,11 +25,11 @@ public class ShimmerHelper {
         initOnClickListener();
     }
 
-    public ShimmerHelper(Context context, ShimmerFrameLayout shimmer, RecyclerView recyclerView, ImageView imgEmpty){
+    public ShimmerHelper(Context context, ShimmerFrameLayout shimmer, RecyclerView recyclerView, LinearLayout layoutEmpty){
         this.context = context;
         this.shimmer = shimmer;
         this.recyclerView = recyclerView;
-        this.imgEmpty = imgEmpty;
+        this.layoutEmpty = layoutEmpty;
         initOnClickListener();
     }
 
@@ -41,12 +41,19 @@ public class ShimmerHelper {
         shimmer.startShimmer();
         shimmer.setVisibility(View.VISIBLE);
         recyclerView.setVisibility(View.INVISIBLE);
-        if (imgEmpty != null) imgEmpty.setVisibility(View.GONE);
+        if (layoutEmpty != null) layoutEmpty.setVisibility(View.INVISIBLE);
     }
 
     public void hide(){
         shimmer.stopShimmer();
         shimmer.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
+    }
+
+    public void hide(boolean isEmpty){
+        shimmer.stopShimmer();
+        shimmer.setVisibility(View.GONE);
+        recyclerView.setVisibility(View.VISIBLE);
+        if (layoutEmpty != null && !isEmpty) layoutEmpty.setVisibility(View.VISIBLE);
     }
 }

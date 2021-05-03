@@ -25,16 +25,16 @@ public class TVViewModel extends ViewModel {
         this.trendingPage = trendingPage;
     }
 
-    private MutableLiveData<List<MediaEntity>> onTheAir;
-    private MutableLiveData<List<MediaEntity>> trending;
+    private MutableLiveData<Resource<List<MediaEntity>>> onTheAir;
+    private MutableLiveData<Resource<List<MediaEntity>>> trending;
     private LiveData<Resource<List<GenreEntity>>> genres;
 
-    public LiveData<List<MediaEntity>> getOnTheAir() {
+    public LiveData<Resource<List<MediaEntity>>> getOnTheAir() {
         if (onTheAir == null) onTheAir = repository.getTVOnTheAir(1);
         return onTheAir;
     }
 
-    public LiveData<List<MediaEntity>> getTrending(){
+    public LiveData<Resource<List<MediaEntity>>> getTrending(){
         if (trending == null) trending = repository.getTVTrending(trendingPage);
         return trending;
     }

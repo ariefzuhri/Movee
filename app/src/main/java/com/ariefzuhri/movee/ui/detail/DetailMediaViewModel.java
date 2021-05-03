@@ -34,14 +34,14 @@ public class DetailMediaViewModel extends ViewModel {
         this.mediaId = mediaId;
     }
 
-    private MutableLiveData<MediaEntity> mediaDetails;
-    private MutableLiveData<List<TrailerEntity>> trailers;
-    private MutableLiveData<CreditsEntity> credits;
-    private MutableLiveData<List<MediaEntity>> recommendations;
+    private MutableLiveData<Resource<MediaEntity>> mediaDetails;
+    private MutableLiveData<Resource<List<TrailerEntity>>> trailers;
+    private MutableLiveData<Resource<CreditsEntity>> credits;
+    private MutableLiveData<Resource<List<MediaEntity>>> recommendations;
     private LiveData<Resource<List<GenreEntity>>> genres;
     private LiveData<FavoriteWithGenres> favoriteWithGenres;
 
-    public LiveData<MediaEntity> getMediaDetails(){
+    public LiveData<Resource<MediaEntity>> getMediaDetails(){
         if (mediaDetails == null) {
             if (mediaType.equals(MEDIA_TYPE_MOVIE)){
                 mediaDetails = repository.getMovieDetails(mediaId);
@@ -52,17 +52,17 @@ public class DetailMediaViewModel extends ViewModel {
         return mediaDetails;
     }
 
-    public LiveData<List<TrailerEntity>> getTrailers(){
+    public LiveData<Resource<List<TrailerEntity>>> getTrailers(){
         if (trailers == null) trailers = repository.getVideos(mediaType, mediaId);
         return trailers;
     }
 
-    public LiveData<CreditsEntity> getCredits(){
+    public LiveData<Resource<CreditsEntity>> getCredits(){
         if (credits == null) credits = repository.getCredits(mediaType, mediaId);
         return credits;
     }
 
-    public LiveData<List<MediaEntity>> getRecommendations(){
+    public LiveData<Resource<List<MediaEntity>>> getRecommendations(){
         if (recommendations == null) {
             if (mediaType.equals(MEDIA_TYPE_MOVIE)){
                 recommendations = repository.getMovieRecommendations(mediaId, 1);
