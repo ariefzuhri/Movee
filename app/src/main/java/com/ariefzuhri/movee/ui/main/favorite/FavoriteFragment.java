@@ -66,10 +66,8 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
                 adapter.submitList(result);
                 editAdapter.submitList(result);
 
-                if (result.isEmpty())
-                    binding.layoutEmpty.setVisibility(View.VISIBLE);
-                else
-                    binding.layoutEmpty.setVisibility(View.INVISIBLE);
+                if (result.isEmpty()) binding.layoutEmpty.setVisibility(View.VISIBLE);
+                else binding.layoutEmpty.setVisibility(View.INVISIBLE);
             });
 
             binding.fabOption.setMenuListener(new SimpleMenuListenerAdapter() {

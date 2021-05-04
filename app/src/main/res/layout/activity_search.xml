@@ -50,7 +50,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:src="@drawable/ic_back"
-                        tools:ignore="ContentDescription"/>
+                        android:contentDescription="@string/back" />
 
                     <TextView
                         android:id="@+id/tv_header"
@@ -71,7 +71,7 @@
             style="@style/SearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="Search movies or tv shows..."
+            app:queryHint="@string/search_hint"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
             android:inputType="textCapWords"/>
@@ -119,12 +119,13 @@
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_search_result_128"/>
+                        android:src="@drawable/ic_empty_search_result_128"
+                        android:contentDescription="@string/empty_search_result_title" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="No result found"
+                        android:text="@string/empty_search_result_title"
                         android:textStyle="bold"
                         android:textColor="@color/gray_dark"
                         android:textSize="@dimen/font_nm"
@@ -134,7 +135,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="We couldn't find the title you were looking for."
+                        android:text="@string/empty_search_result_desc"
                         android:textColor="@color/gray_dark"
                         android:textSize="@dimen/font_nm"/>
                 </LinearLayout>

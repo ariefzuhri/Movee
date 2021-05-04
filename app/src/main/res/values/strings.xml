@@ -28,14 +28,12 @@
     <string name="now_playing">Watch now</string>
     <string name="trending">Trends today</string>
     <string name="discover">Discover</string>
-    <string name="trending_movies">Trending movies</string>
     <string name="latest_release_movies">Latest release movies</string>
     <string name="now_playing_movies">Watch now</string>
     <string name="upcoming_movies">Upcoming movies</string>
     <string name="top_rated_movies">Top rated movies</string>
     <string name="popular_movies">Popular movies</string>
     <string name="recommendations_movies">Recommendations</string>
-    <string name="trending_tv_shows">Trending tv shows</string>
     <string name="latest_release_tv_shows">Latest release tv shows</string>
     <string name="on_the_air_tv_shows">On the air tv shows</string>
     <string name="top_rated_tv_shows">Top rated tv shows</string>
@@ -62,4 +60,10 @@
     <string name="apply">Apply</string>
     <string name="release_date">Release date</string>
     <string name="success_remove">Removed successfully</string>
+    <string name="empty_search_result_title">No result found</string>
+    <string name="empty_search_result_desc">We couldn\'t find the title you were looking for.</string>
+    <string name="empty_favorite_title">It\'s empty</string>
+    <string name="empty_favorite_desc">Looks like you don\'t have anything in your list</string>
+    <string name="back">Back</string>
+    <string name="search_hint">Search movies or tv shows...</string>
 </resources>

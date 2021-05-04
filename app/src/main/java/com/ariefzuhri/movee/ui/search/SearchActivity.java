@@ -16,10 +16,10 @@ import com.ariefzuhri.movee.ui.main.home.MediaAdapter;
 import com.ariefzuhri.movee.utils.ShimmerHelper;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
 import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.vo.Status;
 
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.AppUtils.showToast;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_QUERY;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_QUERY_TYPE;
@@ -48,6 +48,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         binding.recyclerView.setAdapter(adapter);
 
         shimmer = new ShimmerHelper(this, binding.shimmer, binding.recyclerView, binding.layoutEmpty);
+        shimmer.show();
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
         viewModel = new ViewModelProvider(this, factory).get(SearchViewModel.class);
@@ -57,10 +58,8 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         viewModel.getHeader().observe(this, header -> binding.tvHeader.setText(header));
         viewModel.getGenres().observe(this, result -> {
             if (result != null) {
-                switch (result.status) {
-                    case LOADING: break;
-                    case SUCCESS: adapter.setGenreList(result.data); break;
-                    case ERROR: break;
+                if (result.status == Status.SUCCESS){
+                    adapter.setGenreList(result.data);
                 }
             }
         });
@@ -116,21 +115,10 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         @Override
         public void onChanged(Resource<List<MediaEntity>> result) {
             if (result != null){
-                switch (result.status) {
-                    case SUCCESS:
-                        adapter.setData(result.data);
-                        shimmer.hide(false);
-                        binding.swipeRefreshLayout.setRefreshing(false);
-                        break;
-                    case EMPTY:
-                        shimmer.hide(true);
-                        break;
-                    case ERROR:
-                        showToast(getApplicationContext(), "Wkwk");
-                        break;
-                    case LOADING:
-                        shimmer.show();
-                        break;
+                if (result.status == Status.SUCCESS) {
+                    adapter.setData(result.data);
+                    shimmer.hide(adapter.getItemCount() == 0);
+                    binding.swipeRefreshLayout.setRefreshing(false);
                 }
             }
         }

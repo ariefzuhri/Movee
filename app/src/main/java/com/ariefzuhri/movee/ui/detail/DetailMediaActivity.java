@@ -116,7 +116,8 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         contentBinding.tvViewMoreSynopsis.setOnClickListener(this);
         contentBinding.tvViewMoreRecommendation.setOnClickListener(this);
 
-        ShimmerHelper shimmerRecommendation = new ShimmerHelper(this, contentBinding.shimmerRecommendation, contentBinding.rvRecommendation);
+        ShimmerHelper shimmerRecommendation = new ShimmerHelper(this,
+                contentBinding.shimmerRecommendation, contentBinding.rvRecommendation);
         shimmerRecommendation.show();
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());
@@ -139,21 +140,17 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
             viewModel.getCredits().observe(this, result -> {});
             viewModel.getGenres().observe(this, resultGenre -> {
                 if (resultGenre != null) {
-                    switch (resultGenre.status) {
-                        case LOADING: break;
-                        case SUCCESS:
-                            viewModel.getRecommendations().observe(this, resultMedia -> {
-                                if (resultMedia != null){
-                                    if (resultMedia.status == Status.SUCCESS) {
-                                        if (resultMedia.data != null) {
-                                            populateRecommendations(resultGenre.data, resultMedia.data);
-                                            shimmerRecommendation.hide();
-                                        }
+                    if (resultGenre.status == Status.SUCCESS) {
+                        viewModel.getRecommendations().observe(this, resultMedia -> {
+                            if (resultMedia != null){
+                                if (resultMedia.status == Status.SUCCESS) {
+                                    if (resultMedia.data != null) {
+                                        populateRecommendations(resultGenre.data, resultMedia.data);
+                                        shimmerRecommendation.hide();
                                     }
                                 }
-                            });
-                            break;
-                        case ERROR: break;
+                            }
+                        });
                     }
                 }
             });

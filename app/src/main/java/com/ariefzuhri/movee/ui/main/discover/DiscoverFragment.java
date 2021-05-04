@@ -80,10 +80,8 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             viewModel.getGenres().observe(getViewLifecycleOwner(),
                     result -> {
                         if (result != null) {
-                            switch (result.status) {
-                                case LOADING: break;
-                                case SUCCESS: movieAdapter.setGenreList(result.data); break;
-                                case ERROR: break;
+                            if (result.status == Status.SUCCESS){
+                                movieAdapter.setGenreList(result.data);
                             }
                         }
                     });

@@ -67,13 +67,9 @@ public class MovieFragment extends Fragment {
             viewModel.setTrendingPage(1);
             viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
                 if (result != null) {
-                    switch (result.status) {
-                        case LOADING: break;
-                        case SUCCESS:
-                            adapterHoriz.setGenreList(result.data);
-                            adapterVert.setGenreList(result.data);
-                            break;
-                        case ERROR: break;
+                    if (result.status == Status.SUCCESS) {
+                        adapterHoriz.setGenreList(result.data);
+                        adapterVert.setGenreList(result.data);
                     }
                 }
 
@@ -88,13 +84,9 @@ public class MovieFragment extends Fragment {
 
                 viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
                     if (resultMovie != null){
-                        switch (resultMovie.status){
-                            case LOADING: break;
-                            case SUCCESS:
-                                adapterVert.setData(resultMovie.data);
-                                shimmerVert.hide();
-                                break;
-                            case ERROR: break;
+                        if (resultMovie.status == Status.SUCCESS){
+                            adapterVert.setData(resultMovie.data);
+                            shimmerVert.hide();
                         }
                     }
                 });

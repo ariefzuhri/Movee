@@ -72,16 +72,8 @@ public class CatalogRepository implements CatalogDataSource {
     public MutableLiveData<Resource<List<MediaEntity>>> getMultiSearch(String query, int page) {
         MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMultiSearch(query, page, response -> {
-            List<MediaEntity> mediaList = new ArrayList<>();
-            switch (response.status){
-                case SUCCESS:
-                    mediaList = multiSearchResponseToMediaList(response.body);
-                    result.postValue(Resource.success(mediaList));
-                    break;
-                case EMPTY:
-                    result.postValue(Resource.empty(response.message, mediaList));
-                    break;
-            }
+            List<MediaEntity> mediaList = multiSearchResponseToMediaList(response.body);
+            result.postValue(Resource.success(mediaList));
         });
         return result;
     }

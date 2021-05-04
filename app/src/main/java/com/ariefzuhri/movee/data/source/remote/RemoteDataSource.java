@@ -48,12 +48,7 @@ public class RemoteDataSource {
             public void onResponse(@NotNull Call<MultiSearchResponse> call, @NotNull Response<MultiSearchResponse> response) {
                 if (response.isSuccessful()){
                     if (response.body() != null){
-                        MultiSearchResponse bodyResponse = response.body();
-                        if (bodyResponse.getTotalResults() > 0) {
-                            callback.onMultiSearchReceived(ApiResponse.success(response.body()));
-                        } else {
-                            callback.onMultiSearchReceived(ApiResponse.empty(null, response.body()));
-                        }
+                        callback.onMultiSearchReceived(ApiResponse.success(response.body()));
                         EspressoIdlingResource.decrement();
                     }
                 } else Log.e(TAG, "onFailure: " + response.message());

@@ -108,12 +108,13 @@
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:src="@drawable/ic_empty_favorite_128"/>
+                    android:src="@drawable/ic_empty_favorite_128"
+                    android:contentDescription="@string/empty_favorite_title" />
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="It's empty"
+                    android:text="@string/empty_favorite_title"
                     android:textStyle="bold"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/font_nm"
@@ -123,7 +124,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Looks like you don't have anything in your list"
+                    android:text="@string/empty_favorite_desc"
                     android:textColor="@color/gray_dark"
                     android:textSize="@dimen/font_nm"/>
             </LinearLayout>

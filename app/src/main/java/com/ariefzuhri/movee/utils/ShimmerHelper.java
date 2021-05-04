@@ -54,6 +54,6 @@ public class ShimmerHelper {
         shimmer.stopShimmer();
         shimmer.setVisibility(View.GONE);
         recyclerView.setVisibility(View.VISIBLE);
-        if (layoutEmpty != null && !isEmpty) layoutEmpty.setVisibility(View.VISIBLE);
+        if (layoutEmpty != null && isEmpty) layoutEmpty.setVisibility(View.VISIBLE);
     }
 }
