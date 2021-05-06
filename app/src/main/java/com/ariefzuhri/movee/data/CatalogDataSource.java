@@ -52,9 +52,9 @@ public interface CatalogDataSource {
 
     MutableLiveData<Resource<CreditsEntity>> getCredits(String mediaType, int mediaId);
 
-    LiveData<PagedList<FavoriteWithGenres>> getAllFavoriteWithGenres(FilterFavorite filter);
+    LiveData<PagedList<FavoriteWithGenres>> getFavorites(FilterFavorite filter);
 
-    LiveData<FavoriteWithGenres> getFavoriteWithGenresById(int id, String type);
+    LiveData<FavoriteWithGenres> getFavorite(int id, String type);
 
     void insertFavorite(FavoriteEntity favorite);
 

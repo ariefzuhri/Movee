@@ -58,12 +58,11 @@ public class SearchViewModel extends AndroidViewModel {
         this.queryType.setValue(queryType);
     }
 
-    private MutableLiveData<String> header;
+    private final MutableLiveData<String> header = new MutableLiveData<>();
     private LiveData<Resource<List<MediaEntity>>> searchResult;
     private LiveData<Resource<List<GenreEntity>>> genres;
 
     public LiveData<String> getHeader(){
-        if (header == null) header = new MutableLiveData<>();
         return header;
     }
 

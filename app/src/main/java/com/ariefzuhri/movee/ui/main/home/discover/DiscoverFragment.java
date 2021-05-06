@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.discover;
+package com.ariefzuhri.movee.ui.main.home.discover;
 
 import android.content.Intent;
 import android.os.Bundle;

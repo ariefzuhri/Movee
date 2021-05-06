@@ -36,6 +36,11 @@ public class JsonHelper {
         }
     }
 
+    public GenresResponse loadGenres(){
+        String fileName = "dummy_genres.json";
+        return new Gson().fromJson(parsingFileToString(fileName), GenresResponse.class);
+    }
+
     public CreditsResponse loadMovieCredits(){
         String fileName = "dummy_movie_credits.json";
         return new Gson().fromJson(parsingFileToString(fileName), CreditsResponse.class);
@@ -44,11 +49,6 @@ public class JsonHelper {
     public MovieDetailsResponse loadMovieDetails(){
         String fileName = "dummy_movie_details.json";
         return new Gson().fromJson(parsingFileToString(fileName), MovieDetailsResponse.class);
-    }
-
-    public GenresResponse loadMovieGenres(){
-        String fileName = "dummy_movie_genres.json";
-        return new Gson().fromJson(parsingFileToString(fileName), GenresResponse.class);
     }
 
     public MovieResponse loadMovieLatestRelease(){
@@ -104,11 +104,6 @@ public class JsonHelper {
     public TVDetailsResponse loadTVDetails(){
         String fileName = "dummy_tv_details.json";
         return new Gson().fromJson(parsingFileToString(fileName), TVDetailsResponse.class);
-    }
-
-    public GenresResponse loadTVGenres(){
-        String fileName = "dummy_tv_genres.json";
-        return new Gson().fromJson(parsingFileToString(fileName), GenresResponse.class);
     }
 
     public TVResponse loadTVLatestRelease(){

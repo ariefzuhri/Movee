@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.discover;
+package com.ariefzuhri.movee.ui.main.home.discover;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

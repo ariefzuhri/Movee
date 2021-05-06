@@ -15,6 +15,7 @@
         app:popupTheme="@style/Theme.Movee.PopupOverlay"
         app:title="@string/app_name"
         app:titleTextColor="@color/white"
+        app:titleTextAppearance="@style/ToolbarTitleTextAppearance"
         android:background="@color/blue"
         android:layout_alignParentTop="true"/>
 

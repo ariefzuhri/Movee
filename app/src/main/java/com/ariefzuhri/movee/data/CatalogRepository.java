@@ -72,8 +72,10 @@ public class CatalogRepository implements CatalogDataSource {
     public MutableLiveData<Resource<List<MediaEntity>>> getMultiSearch(String query, int page) {
         MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMultiSearch(query, page, response -> {
-            List<MediaEntity> mediaList = multiSearchResponseToMediaList(response.body);
-            result.postValue(Resource.success(mediaList));
+            if (response.body != null) {
+                List<MediaEntity> mediaList = multiSearchResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
@@ -283,7 +285,7 @@ public class CatalogRepository implements CatalogDataSource {
     }
 
     @Override
-    public LiveData<PagedList<FavoriteWithGenres>> getAllFavoriteWithGenres(FilterFavorite filter) {
+    public LiveData<PagedList<FavoriteWithGenres>> getFavorites(FilterFavorite filter) {
         PagedList.Config config = new PagedList.Config.Builder()
                 .setEnablePlaceholders(false)
                 .setInitialLoadSizeHint(4)
@@ -293,7 +295,7 @@ public class CatalogRepository implements CatalogDataSource {
     }
 
     @Override
-    public LiveData<FavoriteWithGenres> getFavoriteWithGenresById(int id, String type) {
+    public LiveData<FavoriteWithGenres> getFavorite(int id, String type) {
         return localDataSource.getFavoriteWithGenresById(id, type);
     }
 

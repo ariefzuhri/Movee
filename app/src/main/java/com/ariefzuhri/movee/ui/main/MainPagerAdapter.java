@@ -5,9 +5,9 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import com.ariefzuhri.movee.ui.main.favorite.FavoriteFragment;
-import com.ariefzuhri.movee.ui.main.discover.DiscoverFragment;
-import com.ariefzuhri.movee.ui.main.movie.MovieFragment;
+import com.ariefzuhri.movee.ui.main.home.favorite.FavoriteFragment;
+import com.ariefzuhri.movee.ui.main.home.discover.DiscoverFragment;
+import com.ariefzuhri.movee.ui.main.home.movie.MovieFragment;
 import com.ariefzuhri.movee.ui.main.home.tv.TVFragment;
 
 public class MainPagerAdapter extends FragmentPagerAdapter {

@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.favorite;
+package com.ariefzuhri.movee.ui.main.home.favorite;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
@@ -7,9 +7,6 @@ import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
@@ -75,31 +72,24 @@ public class FavoriteAdapter extends PagedListAdapter<FavoriteWithGenres, Favori
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        private final TextView tvScore, tvReleaseYear, tvTitle, tvGenre;
-        private final ImageView imgPoster;
-        private final ImageButton ibRemove;
+        private final ItemMediaGridBinding binding;
 
         public ViewHolder(@NonNull ItemMediaGridBinding binding) {
             super(binding.getRoot());
-            tvScore = binding.tvScore;
-            tvReleaseYear = binding.tvReleaseYear;
-            tvTitle = binding.tvTitle;
-            imgPoster = binding.imgPoster;
-            tvGenre = binding.tvGenre;
-            ibRemove = binding.ibRemove;
+            this.binding = binding;
         }
 
         public void bind(FavoriteWithGenres favoriteWithGenres) {
             FavoriteEntity favorite = favoriteWithGenres.favorite;
 
-            loadImage(itemView.getContext(), IMAGE_SIZE_NORMAL, favorite.getPoster(), imgPoster);
-            tvScore.setText(String.valueOf(favorite.getScoreAverage()));
-            tvReleaseYear.setText(getYearOfDate(favorite.getStartDate()));
-            tvTitle.setText(favorite.getTitle());
+            loadImage(itemView.getContext(), IMAGE_SIZE_NORMAL, favorite.getPoster(), binding.imgPoster);
+            binding.tvScore.setText(String.valueOf(favorite.getScoreAverage()));
+            binding.tvReleaseYear.setText(getYearOfDate(favorite.getStartDate()));
+            binding.tvTitle.setText(favorite.getTitle());
 
             List<String> genres = new ArrayList<>();
             for (GenreEntity genre : favoriteWithGenres.genres) genres.add(genre.getName());
-            tvGenre.setText(TextUtils.join(", ", genres));
+            binding.tvGenre.setText(TextUtils.join(", ", genres));
 
             itemView.setOnClickListener(view -> {
                 Intent intent = new Intent(view.getContext(), DetailMediaActivity.class);
@@ -110,8 +100,8 @@ public class FavoriteAdapter extends PagedListAdapter<FavoriteWithGenres, Favori
 
             boolean editView = listener != null;
             if (editView) {
-                ibRemove.setVisibility(View.VISIBLE);
-                ibRemove.setOnClickListener(view ->
+                binding.ibRemove.setVisibility(View.VISIBLE);
+                binding.ibRemove.setOnClickListener(view ->
                         new AlertDialog.Builder(view.getContext())
                                 .setTitle(R.string.remove_favorite)
                                 .setMessage(view.getResources().getString(

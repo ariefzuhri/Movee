@@ -9,9 +9,9 @@ import androidx.lifecycle.ViewModelProvider;
 import com.ariefzuhri.movee.data.CatalogRepository;
 import com.ariefzuhri.movee.di.Injection;
 import com.ariefzuhri.movee.ui.detail.DetailMediaViewModel;
-import com.ariefzuhri.movee.ui.main.favorite.FavoriteViewModel;
-import com.ariefzuhri.movee.ui.main.discover.DiscoverViewModel;
-import com.ariefzuhri.movee.ui.main.movie.MovieViewModel;
+import com.ariefzuhri.movee.ui.main.home.favorite.FavoriteViewModel;
+import com.ariefzuhri.movee.ui.main.home.discover.DiscoverViewModel;
+import com.ariefzuhri.movee.ui.main.home.movie.MovieViewModel;
 import com.ariefzuhri.movee.ui.main.home.tv.TVViewModel;
 import com.ariefzuhri.movee.ui.search.SearchViewModel;
 

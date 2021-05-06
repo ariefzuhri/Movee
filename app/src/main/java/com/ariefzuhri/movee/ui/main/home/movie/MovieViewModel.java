@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.movie;
+package com.ariefzuhri.movee.ui.main.home.movie;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;

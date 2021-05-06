@@ -160,7 +160,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private void populateMedia(MediaEntity media){
         this.media = media;
 
-        viewModel.getFavoriteWithGenres().observe(this, result -> {
+        viewModel.getFavorite().observe(this, result -> {
             isFavorite = result != null;
             setFavoriteState(isFavorite);
             if (isFavorite) {

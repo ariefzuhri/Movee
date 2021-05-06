@@ -32,6 +32,8 @@ public class RecyclerViewItemCountAssertion implements ViewAssertion {
         if (noViewFoundException != null) throw noViewFoundException;
         RecyclerView recyclerView = (RecyclerView) view;
         RecyclerView.Adapter adapter = recyclerView.getAdapter();
-        assertThat(adapter.getItemCount(), matcher);
+        if (adapter != null) {
+            assertThat(adapter.getItemCount(), matcher);
+        }
     }
 }

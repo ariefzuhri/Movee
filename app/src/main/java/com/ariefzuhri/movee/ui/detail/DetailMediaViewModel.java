@@ -39,7 +39,7 @@ public class DetailMediaViewModel extends ViewModel {
     private MutableLiveData<Resource<CreditsEntity>> credits;
     private MutableLiveData<Resource<List<MediaEntity>>> recommendations;
     private LiveData<Resource<List<GenreEntity>>> genres;
-    private LiveData<FavoriteWithGenres> favoriteWithGenres;
+    private LiveData<FavoriteWithGenres> favorite;
 
     public LiveData<Resource<MediaEntity>> getMediaDetails(){
         if (mediaDetails == null) {
@@ -90,9 +90,9 @@ public class DetailMediaViewModel extends ViewModel {
         repository.deleteFavorite(favorite);
     }
 
-    public LiveData<FavoriteWithGenres> getFavoriteWithGenres(){
-        if (favoriteWithGenres == null) favoriteWithGenres =
-                repository.getFavoriteWithGenresById(mediaId, mediaType);
-        return favoriteWithGenres;
+    public LiveData<FavoriteWithGenres> getFavorite(){
+        if (favorite == null) favorite =
+                repository.getFavorite(mediaId, mediaType);
+        return favorite;
     }
 }

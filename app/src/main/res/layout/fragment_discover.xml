@@ -7,7 +7,7 @@
     style="@style/ScrollView"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.discover.DiscoverFragment">
+    tools:context=".ui.main.home.discover.DiscoverFragment">
 
     <LinearLayout
         android:layout_width="match_parent"

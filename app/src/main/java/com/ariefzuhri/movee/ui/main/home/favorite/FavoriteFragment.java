@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.favorite;
+package com.ariefzuhri.movee.ui.main.home.favorite;
 
 import android.os.Bundle;
 
@@ -49,10 +49,10 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.rvMedia.setLayoutManager(new GridLayoutManager(getContext(), 2));
-        binding.rvMedia.setHasFixedSize(false);
+        binding.recyclerView.setLayoutManager(new GridLayoutManager(getContext(), 2));
+        binding.recyclerView.setHasFixedSize(false);
         adapter = new FavoriteAdapter();
-        binding.rvMedia.setAdapter(adapter);
+        binding.recyclerView.setAdapter(adapter);
 
         editAdapter = new FavoriteAdapter(this);
         editView = false;
@@ -75,8 +75,8 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
                 public boolean onMenuItemSelected(MenuItem item) {
                     int itemId = item.getItemId();
                     if (itemId == R.id.fab_edit) {
-                        if (editView) binding.rvMedia.setAdapter(adapter);
-                        else binding.rvMedia.setAdapter(editAdapter);
+                        if (editView) binding.recyclerView.setAdapter(adapter);
+                        else binding.recyclerView.setAdapter(editAdapter);
                         editView = !editView;
                     } else if (itemId == R.id.fab_filter) {
                         Bundle bundle = new Bundle();
@@ -89,7 +89,7 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
                 }
             });
 
-            binding.cgList.setOnCheckedChangeListener(this);
+            binding.cgCategory.setOnCheckedChangeListener(this);
         }
     }
 

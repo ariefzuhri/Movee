@@ -26,6 +26,10 @@
  * - Memastikan rv_recommendation berisi lebih dari atau sama dengan 0 item
  * - Memastikan Button untuk trailer dalam keadaan tampil
  * - Memastikan Button untuk trailer dapat diklik
+ * - Memastikan Button untuk favorit dalam keadaan tampil
+ * - Memastikan Button untuk favorit dapat diklik
+ * - Memastikan Button untuk back dalam keadaan tampil
+ * - Memastikan Button untuk back dapat diklik
  *
  * Menampilkan detail tv:
  * - Memberi tindakan klik pada menu movie di bottom navigation bar
@@ -43,6 +47,10 @@
  * - Memastikan rv_recommendation berisi lebih dari atau sama dengan 0 item
  * - Memastikan Button untuk trailer dalam keadaan tampil
  * - Memastikan Button untuk trailer dapat diklik
+ * - Memastikan Button untuk favorit dalam keadaan tampil
+ * - Memastikan Button untuk favorit dapat diklik
+ * - Memastikan Button untuk back dalam keadaan tampil
+ * - Memastikan Button untuk back dapat diklik
  *
  * Menampilkan discover:
  * - Memberi tindakan klik pada menu discover di bottom navigation bar
@@ -82,7 +90,36 @@
  * - Memberi tindakan klik pada search_view pada hasil pencarian
  * - Memberi tindakan mengetik string "maquia" dan menekan enter pada search view yang ada pada hasil pencarian
  * - Memastikan recycler_view pada hasil pencarian dalam keadaan tampil
- * - Memastikan recycler_view pada hasil pencarian berisi lebih dari atau sama dengan 1 item */
+ * - Memastikan recycler_view pada hasil pencarian berisi lebih dari atau sama dengan 1 item
+ *
+ * Menampilkan favorit:
+ * - Memberi tindakan klik pada menu movie
+ * - Memberi tindakan klik pada data pertama di rv_vert menu movie
+ * - Memastikan fab_favorite dalam keadaan tampil
+ * - Memberi tindakan klik pada fab_favorite
+ * - Memastikan fab_back dalam keadaan tampil
+ * - Memberi tindakan klik pada fab_back
+ * - Memberi tindakan klik pada menu tv
+ * - Memberi tindakan klik pada data pertama di rv_vert menu tv
+ * - Memastikan fab_favorite dalam keadaan tampil
+ * - Memberi tindakan klik pada fab_favorite
+ * - Memastikan fab_back dalam keadaan tampil
+ * - Memberi tindakan klik pada fab_back
+ * - Memberi tindakan klik pada menu favorite
+ * - Memastikan chip_all pada menu favorit dalam keadaan tampil
+ * - Memberi tindakan klik pada chip_all
+ * - Memastikan recycler_view pada menu favorit dalam keadaan tampil
+ * - Memastikan recycler_view berisi lebih dari atau sama dengan 0 item
+ * - Memastikan chip_movie pada menu favorit dalam keadaan tampil
+ * - Memberi tindakan klik pada chip_movie
+ * - Memastikan recycler_view pada menu favorit dalam keadaan tampil
+ * - Memastikan recycler_view berisi lebih dari atau sama dengan 0 item
+ * - Memastikan chip_tv pada menu favorit dalam keadaan tampil
+ * - Memberi tindakan klik pada chip_tv
+ * - Memastikan recycler_view pada menu favorit dalam keadaan tampil
+ * - Memastikan recycler_view berisi lebih dari atau sama dengan 0 item
+ * - Memastikan fab_option pada menu favorit dalam keadaan tampil
+ * - Memberi tindakan klik pada fab_option */
 package com.ariefzuhri.movee.ui.main;
 
 import android.view.KeyEvent;
@@ -169,6 +206,10 @@ public class MainActivityTest {
         onView(withId(R.id.rv_recommendation)).check(withItemCount(greaterThanOrEqualTo(0)));
         onView(withId(R.id.btn_trailer)).check(matches(isDisplayed()));
         onView(withId(R.id.btn_trailer)).check(matches(isClickable()));
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_favorite)).check(matches(isClickable()));
+        onView(withId(R.id.fab_back)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_back)).check(matches(isClickable()));
     }
 
     @Test
@@ -190,6 +231,10 @@ public class MainActivityTest {
         onView(withId(R.id.tv_synopsis)).check(matches(withEffectiveVisibility(VISIBLE)));
         onView(withId(R.id.btn_trailer)).check(matches(isDisplayed()));
         onView(withId(R.id.btn_trailer)).check(matches(isClickable()));
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_favorite)).check(matches(isClickable()));
+        onView(withId(R.id.fab_back)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_back)).check(matches(isClickable()));
     }
 
     @Test
@@ -242,4 +287,44 @@ public class MainActivityTest {
         onView(withId(R.id.recycler_view)).check(withItemCount(greaterThanOrEqualTo(1)));
     }
 
+    @Test
+    public void loadFavorite(){
+        onView(withId(R.id.menu_movie)).perform(click());
+        onView(allOf(withId(R.id.rv_vert), isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_favorite)).perform(click());
+        onView(withId(R.id.fab_back)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_back)).perform(click());
+
+        onView(withId(R.id.menu_tv)).perform(click());
+        onView(allOf(withId(R.id.rv_vert), isDisplayed()))
+                .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
+
+        onView(withId(R.id.fab_favorite)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_favorite)).perform(click());
+        onView(withId(R.id.fab_back)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_back)).perform(click());
+
+        onView(withId(R.id.menu_favorite)).perform(click());
+
+        onView(withId(R.id.chip_all)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withId(R.id.chip_all)).perform(click());
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.recycler_view)).check(withItemCount(greaterThanOrEqualTo(0)));
+
+        onView(withId(R.id.chip_movie)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withId(R.id.chip_movie)).perform(click());
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.recycler_view)).check(withItemCount(greaterThanOrEqualTo(0)));
+
+        onView(withId(R.id.chip_tv)).perform(scrollTo()).check(matches(isDisplayed()));
+        onView(withId(R.id.chip_tv)).perform(click());
+        onView(withId(R.id.recycler_view)).check(matches(isDisplayed()));
+        onView(withId(R.id.recycler_view)).check(withItemCount(greaterThanOrEqualTo(0)));
+
+        onView(withId(R.id.fab_option)).check(matches(isDisplayed()));
+        onView(withId(R.id.fab_option)).perform(click());
+    }
 }

@@ -12,8 +12,8 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">@color/blue</item>
         <!-- Customize your theme here. -->
-        <item name="fontFamily">@font/poppins_regular</item>
-        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
         <item name="android:textColorPrimary">@color/black</item>
         <item name="android:textColorSecondary">@color/gray_dark</item>
         <item name="android:textSize">@dimen/font_nm</item>
@@ -71,8 +71,8 @@
     </style>
 
     <style name="MyTextAppearance">
-        <item name="fontFamily">@font/poppins_regular</item>
-        <item name="android:fontFamily">@font/poppins_regular</item>
+        <item name="fontFamily">@font/poppins</item>
+        <item name="android:fontFamily">@font/poppins</item>
     </style>
 
     <style name="RecyclerView">
@@ -98,5 +98,11 @@
         <item name="android:textColorPrimary">@color/white</item>
         <item name="android:textColorHint">@color/gray</item>
         <item name="android:tint">@color/white</item>
+    </style>
+
+    <style name="ToolbarTitleTextAppearance">
+        <item name="fontFamily">@font/quantify</item>
+        <item name="android:fontFamily">@font/quantify</item>
+        <item name="android:textSize">@dimen/font_lg</item>
     </style>
 </resources>

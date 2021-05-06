@@ -1,8 +1,15 @@
 package com.ariefzuhri.movee.data;
 
 import androidx.annotation.NonNull;
+import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
+import androidx.paging.LivePagedListBuilder;
+import androidx.paging.PagedList;
 
+import com.ariefzuhri.movee.data.source.local.LocalDataSource;
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.movee.data.source.remote.ApiResponse;
 import com.ariefzuhri.movee.data.source.remote.RemoteDataSource;
 import com.ariefzuhri.movee.data.source.remote.entity.AiredDateEntity;
 import com.ariefzuhri.movee.data.source.remote.entity.CastEntity;
@@ -28,6 +35,9 @@ import com.ariefzuhri.movee.data.source.remote.response.TVItem;
 import com.ariefzuhri.movee.data.source.remote.response.TVResponse;
 import com.ariefzuhri.movee.data.source.remote.response.VideoItem;
 import com.ariefzuhri.movee.data.source.remote.response.VideosResponse;
+import com.ariefzuhri.movee.utils.AppExecutors;
+import com.ariefzuhri.movee.utils.FilterFavorite;
+import com.ariefzuhri.movee.vo.Resource;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,200 +47,286 @@ import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 
 public class FakeCatalogRepository implements CatalogDataSource {
 
+    private final AppExecutors appExecutors;
+    private final LocalDataSource localDataSource;
     private final RemoteDataSource remoteDataSource;
 
-    public FakeCatalogRepository(@NonNull RemoteDataSource remoteDataSource){
+    public FakeCatalogRepository (@NonNull RemoteDataSource remoteDataSource, LocalDataSource localDataSource, AppExecutors appExecutors){
+        this.appExecutors = appExecutors;
+        this.localDataSource = localDataSource;
         this.remoteDataSource = remoteDataSource;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMultiSearch(String query, int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMultiSearch(String query, int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMultiSearch(query, page, response -> {
-            List<MediaEntity> mediaList = multiSearchResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = multiSearchResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<MediaEntity> getMovieDetails(int movieId) {
-        MutableLiveData<MediaEntity> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<MediaEntity>> getMovieDetails(int movieId) {
+        MutableLiveData<Resource<MediaEntity>> result = new MutableLiveData<>();
         remoteDataSource.getMovieDetails(movieId, response -> {
-            MediaEntity media = movieDetailsResponseToMedia(response);
-            result.postValue(media);
+            if (response.body != null) {
+                MediaEntity media = movieDetailsResponseToMedia(response.body);
+                result.postValue(Resource.success(media));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<MediaEntity> getTVDetails(int tvId) {
-        MutableLiveData<MediaEntity> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<MediaEntity>> getTVDetails(int tvId) {
+        MutableLiveData<Resource<MediaEntity>> result = new MutableLiveData<>();
         remoteDataSource.getTVDetails(tvId, response -> {
-            MediaEntity media = tvDetailsResponseToMedia(response);
-            result.postValue(media);
+            if (response.body != null) {
+                MediaEntity media = tvDetailsResponseToMedia(response.body);
+                result.postValue(Resource.success(media));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieTrending(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieTrending(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieTrending(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVTrending(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVTrending(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVTrending(page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieLatestRelease(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieLatestRelease(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieLatestRelease(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVLatestRelease(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVLatestRelease(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVLatestRelease(page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieNowPlaying(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieNowPlaying(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieNowPlaying(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVOnTheAir(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVOnTheAir(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVOnTheAir(page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieUpcoming(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieUpcoming(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieUpcoming(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieTopRated(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieTopRated(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieTopRated(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVTopRated(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVTopRated(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVTopRated(page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMoviePopular(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMoviePopular(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMoviePopular(page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVPopular(int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVPopular(int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVPopular(page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getMovieRecommendations(int movieId, int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getMovieRecommendations(int movieId, int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getMovieRecommendations(movieId, page, response -> {
-            List<MediaEntity> mediaList = movieResponseToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = movieResponseToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<MediaEntity>> getTVRecommendations(int tvId, int page) {
-        MutableLiveData<List<MediaEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<MediaEntity>>> getTVRecommendations(int tvId, int page) {
+        MutableLiveData<Resource<List<MediaEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getTVRecommendations(tvId, page, response -> {
-            List<MediaEntity> mediaList = tvResponsesToMediaList(response);
-            result.postValue(mediaList);
+            if (response.body != null) {
+                List<MediaEntity> mediaList = tvResponsesToMediaList(response.body);
+                result.postValue(Resource.success(mediaList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<List<GenreEntity>> getGenres(String mediaType) {
-        MutableLiveData<List<GenreEntity>> result = new MutableLiveData<>();
-        remoteDataSource.getGenres(mediaType, response -> {
-            List<GenreEntity> genreList = genreResponseToGenreList(response);
-            result.postValue(genreList);
-        });
-        return result;
-    }
-
-    @Override
-    public MutableLiveData<List<TrailerEntity>> getVideos(String mediaType, int mediaId) {
-        MutableLiveData<List<TrailerEntity>> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<List<TrailerEntity>>> getVideos(String mediaType, int mediaId) {
+        MutableLiveData<Resource<List<TrailerEntity>>> result = new MutableLiveData<>();
         remoteDataSource.getVideos(mediaType, mediaId, response -> {
-            List<TrailerEntity> trailerList = videosResponseToTrailerList(response);
-            result.postValue(trailerList);
+            if (response.body != null) {
+                List<TrailerEntity> trailerList = videosResponseToTrailerList(response.body);
+                result.postValue(Resource.success(trailerList));
+            }
         });
         return result;
     }
 
     @Override
-    public MutableLiveData<CreditsEntity> getCredits(String mediaType, int mediaId) {
-        MutableLiveData<CreditsEntity> result = new MutableLiveData<>();
+    public MutableLiveData<Resource<CreditsEntity>> getCredits(String mediaType, int mediaId) {
+        MutableLiveData<Resource<CreditsEntity>> result = new MutableLiveData<>();
         remoteDataSource.getCredits(mediaType, mediaId, response -> {
-            CreditsEntity credit = creditsResponseToCredit(response);
-            result.postValue(credit);
+            if (response.body != null) {
+                CreditsEntity credit = creditsResponseToCredit(response.body);
+                result.postValue(Resource.success(credit));
+            }
         });
         return result;
+    }
+
+    @Override
+    public LiveData<PagedList<FavoriteWithGenres>> getFavorites(FilterFavorite filter) {
+        PagedList.Config config = new PagedList.Config.Builder()
+                .setEnablePlaceholders(false)
+                .setInitialLoadSizeHint(4)
+                .setPageSize(4)
+                .build();
+        return new LivePagedListBuilder<>(localDataSource.getAllFavoriteWithGenres(filter), config).build();
+    }
+
+    @Override
+    public LiveData<FavoriteWithGenres> getFavorite(int id, String type) {
+        return localDataSource.getFavoriteWithGenresById(id, type);
+    }
+
+    @Override
+    public void insertFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.insertFavorite(favorite));
+    }
+
+    @Override
+    public void updateFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.updateFavorite(favorite));
+    }
+
+    @Override
+    public void deleteFavorite(FavoriteEntity favorite) {
+        appExecutors.diskIO().execute(() -> localDataSource.deleteFavorite(favorite));
+    }
+
+    @Override
+    public LiveData<Resource<List<GenreEntity>>> getGenres() {
+        return new NetworkBoundResource<List<GenreEntity>, GenresResponse>(appExecutors) {
+            @Override
+            protected LiveData<List<GenreEntity>> loadFromDB() {
+                return localDataSource.getGenres();
+            }
+
+            @Override
+            protected Boolean shouldFetch(List<GenreEntity> data) {
+                return (data == null) || (data.size() < 27);
+            }
+
+            @Override
+            protected LiveData<ApiResponse<GenresResponse>> createCall() {
+                return remoteDataSource.getGenres();
+            }
+
+            @Override
+            protected void saveCallResult(GenresResponse data) {
+                List<GenreEntity> genreList = genreResponseToGenreList(data);
+                localDataSource.insertGenres(genreList);
+            }
+        }.asLiveData();
     }
 
     /* Untuk konversi */
@@ -262,7 +358,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
                 item.getOverview());
     }
 
-    public List<MediaEntity> movieResponseToMediaList(MovieResponse response){
+    private List<MediaEntity> movieResponseToMediaList(MovieResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (MovieItem movie : response.getResults()){
             mediaList.add(movieItemToMedia(movie));
@@ -270,7 +366,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    public List<MediaEntity> tvResponsesToMediaList(TVResponse response){
+    private List<MediaEntity> tvResponsesToMediaList(TVResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (TVItem tv : response.getResults()){
             mediaList.add(tvItemToMedia(tv));
@@ -278,7 +374,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    public List<MediaEntity> multiSearchResponseToMediaList(MultiSearchResponse response){
+    private List<MediaEntity> multiSearchResponseToMediaList(MultiSearchResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (SearchResultItem searchResult : response.getResults()){
             if (searchResult.getMediaType().equals(MEDIA_TYPE_MOVIE)){
@@ -310,7 +406,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    public MediaEntity movieDetailsResponseToMedia(MovieDetailsResponse response){
+    private MediaEntity movieDetailsResponseToMedia(MovieDetailsResponse response){
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -334,7 +430,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
                 null);
     }
 
-    public MediaEntity tvDetailsResponseToMedia(TVDetailsResponse response){
+    private MediaEntity tvDetailsResponseToMedia(TVDetailsResponse response){
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -374,7 +470,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return genreList;
     }
 
-    public List<GenreEntity> genreResponseToGenreList(GenresResponse response){
+    private List<GenreEntity> genreResponseToGenreList(GenresResponse response){
         List<GenreEntity> genreList = new ArrayList<>();
         for (GenreItem genre : response.getGenres()) {
             genreList.add(new GenreEntity(genre.getId(), genre.getName()));
@@ -382,7 +478,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return genreList;
     }
 
-    public List<TrailerEntity> videosResponseToTrailerList(VideosResponse response){
+    private List<TrailerEntity> videosResponseToTrailerList(VideosResponse response){
         List<TrailerEntity> trailerList = new ArrayList<>();
         for (VideoItem video : response.getResults()) {
             trailerList.add(new TrailerEntity(video.getId(),
@@ -395,7 +491,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
         return trailerList;
     }
 
-    public CreditsEntity creditsResponseToCredit(CreditsResponse response){
+    private CreditsEntity creditsResponseToCredit(CreditsResponse response){
         List<CastEntity> castList = new ArrayList<>();
         for (CastItem cast : response.getCast()) {
             castList.add(new CastEntity(cast.getId(),

@@ -1,5 +1,7 @@
 package com.ariefzuhri.movee.utils;
 
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
 import com.ariefzuhri.movee.data.source.remote.entity.AiredDateEntity;
 import com.ariefzuhri.movee.data.source.remote.entity.CastEntity;
 import com.ariefzuhri.movee.data.source.remote.entity.CreditsEntity;
@@ -34,6 +36,7 @@ import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 
 public class DataDummy {
+
     public static CreditsEntity generateDummyMovieCredits(){
         List<CastEntity> castList = new ArrayList<>();
         castList.add(new CastEntity(1835721,
@@ -195,7 +198,7 @@ public class DataDummy {
         );
     }
 
-    public static List<GenreEntity> generateDummyMovieGenres(){
+    public static List<GenreEntity> generateDummyGenres(){
         List<GenreEntity> genreList = new ArrayList<>();
         genreList.add(new GenreEntity(28, "Action"));
         genreList.add(new GenreEntity(12, "Adventure"));
@@ -216,6 +219,14 @@ public class DataDummy {
         genreList.add(new GenreEntity(53, "Thriller"));
         genreList.add(new GenreEntity(10752, "War"));
         genreList.add(new GenreEntity(37, "Western"));
+        genreList.add(new GenreEntity(10759, "Action & Adventure"));
+        genreList.add(new GenreEntity(10762, "Kids"));
+        genreList.add(new GenreEntity(10763, "News"));
+        genreList.add(new GenreEntity(10764, "Reality"));
+        genreList.add(new GenreEntity(10765, "Sci-Fi & Fantasy"));
+        genreList.add(new GenreEntity(10766, "Soap"));
+        genreList.add(new GenreEntity(10767, "Talk"));
+        genreList.add(new GenreEntity(10768, "War & Politics"));
         return genreList;
     }
 
@@ -583,27 +594,6 @@ public class DataDummy {
         );
     }
 
-    public static List<GenreEntity> generateDummyTVGenres(){
-        List<GenreEntity> genreList = new ArrayList<>();
-        genreList.add(new GenreEntity(10759, "Action & Adventure"));
-        genreList.add(new GenreEntity(16, "Animation"));
-        genreList.add(new GenreEntity(35, "Comedy"));
-        genreList.add(new GenreEntity(80, "Crime"));
-        genreList.add(new GenreEntity(99, "Documentary"));
-        genreList.add(new GenreEntity(18, "Drama"));
-        genreList.add(new GenreEntity(10751, "Family"));
-        genreList.add(new GenreEntity(10762, "Kids"));
-        genreList.add(new GenreEntity(9648, "Mystery"));
-        genreList.add(new GenreEntity(10763, "News"));
-        genreList.add(new GenreEntity(10764, "Reality"));
-        genreList.add(new GenreEntity(10765, "Sci-Fi & Fantasy"));
-        genreList.add(new GenreEntity(10766, "Soap"));
-        genreList.add(new GenreEntity(10767, "Talk"));
-        genreList.add(new GenreEntity(10768, "War & Politics"));
-        genreList.add(new GenreEntity(37, "Western"));
-        return genreList;
-    }
-
     public static List<MediaEntity> generateDummyTVLatestRelease(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(120424,
@@ -727,6 +717,23 @@ public class DataDummy {
                 "4GDVEl3qw2M")
         );
         return trailerList;
+    }
+
+    public static FavoriteWithGenres generateDummyFavorite(MediaEntity media) {
+        FavoriteEntity favorite = new FavoriteEntity(media.getId(),
+                media.getType(),
+                media.getTitle(),
+                media.getPoster(),
+                media.getScoreAverage(),
+                media.getAiredDate().getStartDate(),
+                media.getGenres());
+        return new FavoriteWithGenres(favorite, favorite.getGenres());
+    }
+
+    public static List<FavoriteWithGenres> generateDummyFavorites(List<MediaEntity> mediaList) {
+        List<FavoriteWithGenres> favorites = new ArrayList<>();
+        for (MediaEntity media : mediaList) favorites.add(generateDummyFavorite(media));
+        return favorites;
     }
 
     public static CreditsResponse generateRemoteDummyMovieCredits(){
@@ -887,7 +894,7 @@ public class DataDummy {
         );
     }
 
-    public static GenresResponse generateRemoteDummyMovieGenres(){
+    public static GenresResponse generateRemoteDummyGenres(){
         List<GenreItem> results = new ArrayList<>();
         results.add(new GenreItem(28, "Action"));
         results.add(new GenreItem(12, "Adventure"));
@@ -908,6 +915,14 @@ public class DataDummy {
         results.add(new GenreItem(53, "Thriller"));
         results.add(new GenreItem(10752, "War"));
         results.add(new GenreItem(37, "Western"));
+        results.add(new GenreItem(10759, "Action & Adventure"));
+        results.add(new GenreItem(10762, "Kids"));
+        results.add(new GenreItem(10763, "News"));
+        results.add(new GenreItem(10764, "Reality"));
+        results.add(new GenreItem(10765, "Sci-Fi & Fantasy"));
+        results.add(new GenreItem(10766, "Soap"));
+        results.add(new GenreItem(10767, "Talk"));
+        results.add(new GenreItem(10768, "War & Politics"));
         return new GenresResponse(results);
     }
 
@@ -1268,27 +1283,6 @@ public class DataDummy {
                 new ArrayList<>(Collections.singletonList(23)),
                 "Surrounded by a forest and a gated entrance, the Grace Field House is inhabited by orphans happily living together as one big family, looked after by their \"Mama,\" Isabella. Although they are required to take tests daily, the children are free to spend their time as they see fit, usually playing outside, as long as they do not venture too far from the orphanage — a rule they are expected to follow no matter what. However, all good times must come to an end, as every few months, a child is adopted and sent to live with their new family... never to be heard from again.\n\nHowever, the three oldest siblings have their suspicions about what is actually happening at the orphanage, and they are about to discover the cruel fate that awaits the children living at Grace Field, including the twisted nature of their beloved Mama."
         );
-    }
-
-    public static GenresResponse generateRemoteDummyTVGenres(){
-        List<GenreItem> genres = new ArrayList<>();
-        genres.add(new GenreItem(10759, "Action & Adventure"));
-        genres.add(new GenreItem(16, "Animation"));
-        genres.add(new GenreItem(35, "Comedy"));
-        genres.add(new GenreItem(80, "Crime"));
-        genres.add(new GenreItem(99, "Documentary"));
-        genres.add(new GenreItem(18, "Drama"));
-        genres.add(new GenreItem(10751, "Family"));
-        genres.add(new GenreItem(10762, "Kids"));
-        genres.add(new GenreItem(9648, "Mystery"));
-        genres.add(new GenreItem(10763, "News"));
-        genres.add(new GenreItem(10764, "Reality"));
-        genres.add(new GenreItem(10765, "Sci-Fi & Fantasy"));
-        genres.add(new GenreItem(10766, "Soap"));
-        genres.add(new GenreItem(10767, "Talk"));
-        genres.add(new GenreItem(10768, "War & Politics"));
-        genres.add(new GenreItem(37, "Western"));
-        return new GenresResponse(genres);
     }
 
     public static TVResponse generateRemoteDummyTVLatestRelease(){

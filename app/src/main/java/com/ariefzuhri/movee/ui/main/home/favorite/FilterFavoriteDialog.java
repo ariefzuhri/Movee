@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.favorite;
+package com.ariefzuhri.movee.ui.main.home.favorite;
 
 import android.app.AlertDialog;
 import android.app.Dialog;

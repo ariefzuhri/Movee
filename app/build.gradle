@@ -35,9 +35,11 @@ android {
         viewBinding true
     }
 
-    /*testOptions {
-        unitTests.returnDefaultValues = true
-    }*/
+    testOptions {
+        unitTests {
+            includeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
@@ -63,6 +65,7 @@ dependencies {
     androidTestImplementation "androidx.test:rules:$androidTestVersion"
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
     implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    testImplementation "org.robolectric:robolectric:$robolectricVersion"
 
     // Data storage
     implementation "androidx.room:room-runtime:$roomRuntimeVersion"

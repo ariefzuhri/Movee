@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.favorite;
+package com.ariefzuhri.movee.ui.main.home.favorite;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
@@ -15,11 +15,12 @@ public class FavoriteViewModel extends ViewModel {
 
     private final CatalogRepository repository;
 
-    private MutableLiveData<FilterFavorite> filter;
+    private final MutableLiveData<FilterFavorite> filter = new MutableLiveData<>();
     private LiveData<PagedList<FavoriteWithGenres>> favorites;
 
     public FavoriteViewModel(CatalogRepository repository){
         this.repository = repository;
+        setFilter(new FilterFavorite());
     }
 
     public void setFilter(FilterFavorite filter) {
@@ -27,15 +28,11 @@ public class FavoriteViewModel extends ViewModel {
     }
 
     public LiveData<FilterFavorite> getFilter(){
-        if (filter == null) {
-            filter = new MutableLiveData<>();
-            filter.setValue(new FilterFavorite());
-        }
         return filter;
     }
 
     public LiveData<PagedList<FavoriteWithGenres>> getFavorites(){
-        if (favorites == null) favorites = Transformations.switchMap(filter, repository::getAllFavoriteWithGenres);
+        if (favorites == null) favorites = Transformations.switchMap(filter, repository::getFavorites);
         return favorites;
     }
 

@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.movie;
+package com.ariefzuhri.movee.ui.main.home.movie;
 
 import android.content.Intent;
 import android.os.Bundle;

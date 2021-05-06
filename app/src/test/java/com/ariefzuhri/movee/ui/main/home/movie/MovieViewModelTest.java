@@ -1,4 +1,4 @@
-package com.ariefzuhri.movee.ui.main.movie;
+package com.ariefzuhri.movee.ui.main.home.movie;
 
 import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
@@ -9,6 +9,7 @@ import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.movee.data.CatalogRepository;
 import com.ariefzuhri.movee.utils.DataDummy;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
+import com.ariefzuhri.movee.vo.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -19,13 +20,13 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
 public class MovieViewModelTest {
+
     private MovieViewModel viewModel;
 
     private final int page = 1;
@@ -37,70 +38,67 @@ public class MovieViewModelTest {
     private CatalogRepository catalogRepository;
 
     @Mock
-    private Observer<List<MediaEntity>> mediaEntitiesObserver;
+    private Observer<Resource<List<MediaEntity>>> mediaEntitiesObserver;
 
     @Mock
-    private Observer<List<GenreEntity>> genresObserver;
+    private Observer<Resource<List<GenreEntity>>> genreEntitiesObserver;
 
     @Before
     public void setUp(){
         viewModel = new MovieViewModel(catalogRepository);
-        viewModel.setPage(page);
+        viewModel.setTrendingPage(page);
     }
 
     @Test
     public void getNowPlaying() {
         List<MediaEntity> dummyMovieNowPlaying = DataDummy.generateDummyMovieNowPlaying();
-
-        MutableLiveData<List<MediaEntity>> nowPlaying = new MutableLiveData<>();
-        nowPlaying.setValue(dummyMovieNowPlaying);
+        MutableLiveData<Resource<List<MediaEntity>>> nowPlaying = new MutableLiveData<>();
+        nowPlaying.setValue(Resource.success(dummyMovieNowPlaying));
 
         when(catalogRepository.getMovieNowPlaying(page)).thenReturn(nowPlaying);
-        List<MediaEntity> movieEntities = LiveDataTestUtil.getValue(viewModel.getNowPlaying());
+        Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getNowPlaying());
         verify(catalogRepository).getMovieNowPlaying(page);
-        assertNotNull(movieEntities);
+        assertNotNull(movieEntities.data);
 
     /*Satu test case itu bisa dipisah menjadi 2 (dua) test case berbeda, pertama untuk menguji
     (assertion) nilai yang didapat dari repository saat fungsi getCourses yang ada di viewModel
     dipanggil dan yang kedua adalah pengujian untuk melakukan verifikasi jika nilai dari observer
     berbeda.*/
-        assertEquals(dummyMovieNowPlaying.size(), movieEntities.size());
+        assertEquals(dummyMovieNowPlaying.size(), movieEntities.data.size());
 
         viewModel.getNowPlaying().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(dummyMovieNowPlaying);
+        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieNowPlaying));
     }
 
     @Test
     public void getTrending() {
         List<MediaEntity> dummyMovieTrending = DataDummy.generateDummyMovieTrending();
-
-        MutableLiveData<List<MediaEntity>> trending = new MutableLiveData<>();
-        trending.setValue(dummyMovieTrending);
+        MutableLiveData<Resource<List<MediaEntity>>> trending = new MutableLiveData<>();
+        trending.setValue(Resource.success(dummyMovieTrending));
 
         when(catalogRepository.getMovieTrending(page)).thenReturn(trending);
-        List<MediaEntity> movieEntities = LiveDataTestUtil.getValue(viewModel.getTrending());
+        Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getTrending());
         verify(catalogRepository).getMovieTrending(page);
-        assertNotNull(movieEntities);
-        assertEquals(dummyMovieTrending.size(), movieEntities.size());
+        assertNotNull(movieEntities.data);
+        assertEquals(dummyMovieTrending.size(), movieEntities.data.size());
 
         viewModel.getTrending().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(dummyMovieTrending);
+        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieTrending));
     }
 
     @Test
     public void getGenres() {
-        List<GenreEntity> dummyGenres = DataDummy.generateDummyMovieGenres();
+        List<GenreEntity> dummyGenres = DataDummy.generateDummyGenres();
+        MutableLiveData<Resource<List<GenreEntity>>> movieGenres = new MutableLiveData<>();
+        movieGenres.setValue(Resource.success(dummyGenres));
 
-        MutableLiveData<List<GenreEntity>> genres = new MutableLiveData<>();
-        genres.setValue(dummyGenres);
+        when(catalogRepository.getGenres()).thenReturn(movieGenres);
+        Resource<List<GenreEntity>> movieGenreEntities = LiveDataTestUtil.getValue(viewModel.getGenres());
+        verify(catalogRepository).getGenres();
+        assertNotNull(movieGenreEntities.data);
+        assertEquals(dummyGenres.size(), movieGenreEntities.data.size());
 
-        when(catalogRepository.getGenres(MEDIA_TYPE_MOVIE)).thenReturn(genres);
-        List<GenreEntity> movieGenreEntities = LiveDataTestUtil.getValue(viewModel.getGenres());
-        verify(catalogRepository).getGenres(MEDIA_TYPE_MOVIE);
-        assertNotNull(movieGenreEntities);
-        assertEquals(dummyGenres.size(), movieGenreEntities.size());
-
-        viewModel.getGenres().observeForever(genresObserver);
-        verify(genresObserver).onChanged(dummyGenres);
+        viewModel.getGenres().observeForever(genreEntitiesObserver);
+        verify(genreEntitiesObserver).onChanged(Resource.success(dummyGenres));
     }
 }
