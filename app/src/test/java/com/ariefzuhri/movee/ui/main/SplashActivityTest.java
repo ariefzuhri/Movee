@@ -1,6 +1,5 @@
 package com.ariefzuhri.movee.ui.main;
 
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.core.content.res.ResourcesCompat;

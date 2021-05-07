@@ -52,49 +52,55 @@ public class TVViewModelTest {
 
     @Test
     public void getOnTheAir() {
-        List<MediaEntity> dummyTVOnTheAir = DataDummy.generateDummyTVOnTheAir();
+        Resource<List<MediaEntity>> dummyTVOnTheAir = Resource.success(DataDummy.generateDummyTVOnTheAir());
         MutableLiveData<Resource<List<MediaEntity>>> onTheAir = new MutableLiveData<>();
-        onTheAir.setValue(Resource.success(dummyTVOnTheAir));
+        onTheAir.setValue(dummyTVOnTheAir);
 
         when(catalogRepository.getTVOnTheAir(page)).thenReturn(onTheAir);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getOnTheAir());
         verify(catalogRepository).getTVOnTheAir(page);
+
+        assertNotNull(dummyTVOnTheAir.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVOnTheAir.size(), tvEntities.data.size());
+        assertEquals(dummyTVOnTheAir.data.size(), tvEntities.data.size());
 
         viewModel.getOnTheAir().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVOnTheAir));
+        verify(mediaEntitiesObserver).onChanged(dummyTVOnTheAir);
     }
 
     @Test
     public void getTrending() {
-        List<MediaEntity> dummyTVTrending = DataDummy.generateDummyTVTrending();
+        Resource<List<MediaEntity>> dummyTVTrending = Resource.success(DataDummy.generateDummyTVTrending());
         MutableLiveData<Resource<List<MediaEntity>>> trending = new MutableLiveData<>();
-        trending.setValue(Resource.success(dummyTVTrending));
+        trending.setValue(dummyTVTrending);
 
         when(catalogRepository.getTVTrending(page)).thenReturn(trending);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getTrending());
         verify(catalogRepository).getTVTrending(page);
+
+        assertNotNull(dummyTVTrending.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVTrending.size(), tvEntities.data.size());
+        assertEquals(dummyTVTrending.data.size(), tvEntities.data.size());
 
         viewModel.getTrending().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVTrending));
+        verify(mediaEntitiesObserver).onChanged(dummyTVTrending);
     }
 
     @Test
     public void getGenres() {
-        List<GenreEntity> dummyGenres = DataDummy.generateDummyGenres();
+        Resource<List<GenreEntity>> dummyGenres = Resource.success(DataDummy.generateDummyGenres());
         MutableLiveData<Resource<List<GenreEntity>>> movieGenres = new MutableLiveData<>();
-        movieGenres.setValue(Resource.success(dummyGenres));
+        movieGenres.setValue(dummyGenres);
 
         when(catalogRepository.getGenres()).thenReturn(movieGenres);
         Resource<List<GenreEntity>> movieGenreEntities = LiveDataTestUtil.getValue(viewModel.getGenres());
         verify(catalogRepository).getGenres();
+
+        assertNotNull(dummyGenres.data);
         assertNotNull(movieGenreEntities.data);
-        assertEquals(dummyGenres.size(), movieGenreEntities.data.size());
+        assertEquals(dummyGenres.data.size(), movieGenreEntities.data.size());
 
         viewModel.getGenres().observeForever(genreEntitiesObserver);
-        verify(genreEntitiesObserver).onChanged(Resource.success(dummyGenres));
+        verify(genreEntitiesObserver).onChanged(dummyGenres);
     }
 }

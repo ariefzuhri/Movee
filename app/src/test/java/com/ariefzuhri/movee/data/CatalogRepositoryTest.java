@@ -6,6 +6,7 @@ import androidx.paging.DataSource;
 import androidx.paging.PagedList;
 
 import com.ariefzuhri.movee.data.source.local.LocalDataSource;
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
 import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
 import com.ariefzuhri.movee.data.source.remote.ApiResponse;
 import com.ariefzuhri.movee.data.source.remote.RemoteDataSource;
@@ -26,6 +27,7 @@ import com.ariefzuhri.movee.utils.DataDummy;
 import com.ariefzuhri.movee.utils.FilterFavorite;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
 import com.ariefzuhri.movee.utils.PagedListUtil;
+import com.ariefzuhri.movee.utils.TestExecutor;
 import com.ariefzuhri.movee.vo.Resource;
 
 import org.junit.Rule;
@@ -40,7 +42,9 @@ import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.doAnswer;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -54,6 +58,7 @@ public class CatalogRepositoryTest {
     private final AppExecutors appExecutors = mock(AppExecutors.class);
 
     private final FakeCatalogRepository catalogRepository = new FakeCatalogRepository(remote, local, appExecutors);
+    private final AppExecutors testExecutors = new AppExecutors(new TestExecutor(), new TestExecutor(), new TestExecutor());
 
     private final MovieDetailsResponse movieDetailsResponse = DataDummy.generateRemoteDummyMovieDetails();
     private final int movieId = movieDetailsResponse.getId();
@@ -74,7 +79,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMultiSearch(eq(query), eq(page), any(RemoteDataSource.LoadMultiSearchCallback.class));
 
         Resource<List<MediaEntity>> mediaEntities = LiveDataTestUtil.getValue(catalogRepository.getMultiSearch(query, page));
-
         verify(remote).getMultiSearch(eq(query), eq(page), any(RemoteDataSource.LoadMultiSearchCallback.class));
 
         assertNotNull(mediaEntities.data);
@@ -90,7 +94,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieDetails(eq(movieId), any(RemoteDataSource.LoadMovieDetailsCallback.class));
 
         Resource<MediaEntity> movieDetailsEntity = LiveDataTestUtil.getValue(catalogRepository.getMovieDetails(movieId));
-
         verify(remote).getMovieDetails(eq(movieId), any(RemoteDataSource.LoadMovieDetailsCallback.class));
 
         assertNotNull(movieDetailsEntity.data);
@@ -119,7 +122,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVDetails(eq(tvId), any(RemoteDataSource.LoadTVDetailsCallback.class));
 
         Resource<MediaEntity> tvDetailsEntity = LiveDataTestUtil.getValue(catalogRepository.getTVDetails(tvId));
-
         verify(remote).getTVDetails(eq(tvId), any(RemoteDataSource.LoadTVDetailsCallback.class));
 
         assertNotNull(tvDetailsEntity.data);
@@ -151,7 +153,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieTrending(eq(page), any(RemoteDataSource.LoadMovieTrendingCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieTrending(page));
-
         verify(remote).getMovieTrending(eq(page), any(RemoteDataSource.LoadMovieTrendingCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -169,7 +170,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVTrending(eq(page), any(RemoteDataSource.LoadTVTrendingCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVTrending(page));
-
         verify(remote).getTVTrending(eq(page), any(RemoteDataSource.LoadTVTrendingCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -187,7 +187,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieLatestRelease(eq(page), any(RemoteDataSource.LoadMovieLatestReleaseCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieLatestRelease(page));
-
         verify(remote).getMovieLatestRelease(eq(page), any(RemoteDataSource.LoadMovieLatestReleaseCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -205,7 +204,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVLatestRelease(eq(page), any(RemoteDataSource.LoadTVLatestReleaseCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVLatestRelease(page));
-
         verify(remote).getTVLatestRelease(eq(page), any(RemoteDataSource.LoadTVLatestReleaseCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -223,7 +221,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieNowPlaying(eq(page), any(RemoteDataSource.LoadMovieNowPlayingCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieNowPlaying(page));
-
         verify(remote).getMovieNowPlaying(eq(page), any(RemoteDataSource.LoadMovieNowPlayingCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -241,7 +238,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVOnTheAir(eq(page), any(RemoteDataSource.LoadTVOnTheAirCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVOnTheAir(page));
-
         verify(remote).getTVOnTheAir(eq(page), any(RemoteDataSource.LoadTVOnTheAirCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -259,7 +255,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieUpcoming(eq(page), any(RemoteDataSource.LoadMovieUpcomingCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieUpcoming(page));
-
         verify(remote).getMovieUpcoming(eq(page), any(RemoteDataSource.LoadMovieUpcomingCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -277,7 +272,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieTopRated(eq(page), any(RemoteDataSource.LoadMovieTopRatedCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieTopRated(page));
-
         verify(remote).getMovieTopRated(eq(page), any(RemoteDataSource.LoadMovieTopRatedCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -295,7 +289,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVTopRated(eq(page), any(RemoteDataSource.LoadTVTopRatedCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVTopRated(page));
-
         verify(remote).getTVTopRated(eq(page), any(RemoteDataSource.LoadTVTopRatedCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -313,7 +306,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMoviePopular(eq(page), any(RemoteDataSource.LoadMoviePopularCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMoviePopular(page));
-
         verify(remote).getMoviePopular(eq(page), any(RemoteDataSource.LoadMoviePopularCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -331,7 +323,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVPopular(eq(page), any(RemoteDataSource.LoadTVPopularCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVPopular(page));
-
         verify(remote).getTVPopular(eq(page), any(RemoteDataSource.LoadTVPopularCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -349,7 +340,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getMovieRecommendations(eq(movieId), eq(page), any(RemoteDataSource.LoadMovieRecommendationsCallback.class));
 
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(catalogRepository.getMovieRecommendations(movieId, page));
-
         verify(remote).getMovieRecommendations(eq(movieId), eq(page), any(RemoteDataSource.LoadMovieRecommendationsCallback.class));
 
         assertNotNull(movieEntities.data);
@@ -367,7 +357,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getTVRecommendations(eq(tvId), eq(page), any(RemoteDataSource.LoadTVRecommendationsCallback.class));
 
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(catalogRepository.getTVRecommendations(tvId, page));
-
         verify(remote).getTVRecommendations(eq(tvId), eq(page), any(RemoteDataSource.LoadTVRecommendationsCallback.class));
 
         assertNotNull(tvEntities.data);
@@ -383,7 +372,6 @@ public class CatalogRepositoryTest {
         when(local.getGenres()).thenReturn(dummyGenres);
 
         Resource<List<GenreEntity>> genreEntities = LiveDataTestUtil.getValue(catalogRepository.getGenres());
-
         verify(local).getGenres();
 
         assertNotNull(genreEntities.data);
@@ -402,7 +390,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getVideos(eq(MEDIA_TYPE_MOVIE), eq(movieId), any(RemoteDataSource.LoadVideosCallback.class));
 
         Resource<List<TrailerEntity>> movieTrailerEntities = LiveDataTestUtil.getValue(catalogRepository.getVideos(MEDIA_TYPE_MOVIE, movieId));
-
         verify(remote).getVideos(eq(MEDIA_TYPE_MOVIE), eq(movieId), any(RemoteDataSource.LoadVideosCallback.class));
 
         assertNotNull(movieTrailerEntities.data);
@@ -415,7 +402,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getVideos(eq(MEDIA_TYPE_TV), eq(tvId), any(RemoteDataSource.LoadVideosCallback.class));
 
         Resource<List<TrailerEntity>> tvTrailerEntities = LiveDataTestUtil.getValue(catalogRepository.getVideos(MEDIA_TYPE_TV, tvId));
-
         verify(remote).getVideos(eq(MEDIA_TYPE_TV), eq(tvId), any(RemoteDataSource.LoadVideosCallback.class));
 
         assertNotNull(tvTrailerEntities.data);
@@ -434,7 +420,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getCredits(eq(MEDIA_TYPE_MOVIE), eq(movieId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         Resource<CreditsEntity> movieCreditsEntity = LiveDataTestUtil.getValue(catalogRepository.getCredits(MEDIA_TYPE_MOVIE, movieId));
-
         verify(remote).getCredits(eq(MEDIA_TYPE_MOVIE), eq(movieId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         assertNotNull(movieCreditsEntity.data);
@@ -448,7 +433,6 @@ public class CatalogRepositoryTest {
         }).when(remote).getCredits(eq(MEDIA_TYPE_TV), eq(tvId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         Resource<CreditsEntity> tvCreditsEntity = LiveDataTestUtil.getValue(catalogRepository.getCredits(MEDIA_TYPE_TV, tvId));
-
         verify(remote).getCredits(eq(MEDIA_TYPE_TV), eq(tvId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         assertNotNull(tvCreditsEntity.data);
@@ -456,6 +440,7 @@ public class CatalogRepositoryTest {
         assertEquals(tvCreditsResponse.getCrew().size(), tvCreditsEntity.data.getCrew().size());
     }
 
+    @SuppressWarnings("unchecked")
     @Test
     public void getFavorites() {
         TVResponse tvResponse = DataDummy.generateRemoteDummyTVTopRated();
@@ -468,6 +453,7 @@ public class CatalogRepositoryTest {
         Resource<PagedList<FavoriteWithGenres>> favoriteEntities = Resource.success(PagedListUtil
                 .mockPagedList(DataDummy.generateDummyFavorites(DataDummy.generateDummyTVTopRated())));
         verify(local).getAllFavoriteWithGenres(filter);
+
         assertNotNull(favoriteEntities.data);
         assertEquals(tvResponse.getResults().size(), favoriteEntities.data.size());
     }
@@ -480,6 +466,7 @@ public class CatalogRepositoryTest {
 
         FavoriteWithGenres favoriteEntity = LiveDataTestUtil.getValue(catalogRepository.getFavorite(tvId, MEDIA_TYPE_TV));
         verify(local).getFavoriteWithGenresById(tvId, MEDIA_TYPE_TV);
+
         assertNotNull(favoriteEntity);
         assertEquals(Integer.valueOf(tvDetailsResponse.getId()), favoriteEntity.favorite.getId());
         assertEquals(tvDetailsResponse.getName(), favoriteEntity.favorite.getTitle());
@@ -487,5 +474,44 @@ public class CatalogRepositoryTest {
         assertEquals(tvDetailsResponse.getVoteAverage(), favoriteEntity.favorite.getScoreAverage(), 0);
         assertEquals(tvDetailsResponse.getFirstAirDate(), favoriteEntity.favorite.getStartDate());
         assertEquals(tvDetailsResponse.getGenres().size(), favoriteEntity.genres.size());
+    }
+
+    @Test
+    public void insertFavorite(){
+        FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
+        FavoriteEntity favorite = dummyFavorite.favorite;
+        favorite.setGenres(dummyFavorite.genres);
+
+        when(appExecutors.diskIO()).thenReturn(testExecutors.diskIO());
+        doNothing().when(local).insertFavorite(favorite);
+
+        catalogRepository.insertFavorite(favorite);
+        verify(local, times(1)).insertFavorite(favorite);
+    }
+
+    @Test
+    public void updateFavorite(){
+        FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
+        FavoriteEntity favorite = dummyFavorite.favorite;
+        favorite.setGenres(dummyFavorite.genres);
+
+        when(appExecutors.diskIO()).thenReturn(testExecutors.diskIO());
+        doNothing().when(local).updateFavorite(favorite);
+
+        catalogRepository.updateFavorite(favorite);
+        verify(local, times(1)).updateFavorite(favorite);
+    }
+
+    @Test
+    public void deleteFavorite() {
+        FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
+        FavoriteEntity favorite = dummyFavorite.favorite;
+        favorite.setGenres(dummyFavorite.genres);
+
+        when(appExecutors.diskIO()).thenReturn(testExecutors.diskIO());
+        doNothing().when(local).deleteFavorite(favorite);
+
+        catalogRepository.deleteFavorite(favorite);
+        verify(local, times(1)).deleteFavorite(favorite);
     }
 }

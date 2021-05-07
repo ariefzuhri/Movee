@@ -77,194 +77,215 @@ public class SearchViewModelTest {
         String query = "the promised neverland";
         viewModel.setQuery(query);
 
-        List<MediaEntity> dummyMultiSearch = DataDummy.generateDummyMultiSearch();
+        Resource<List<MediaEntity>> dummyMultiSearch = Resource.success(DataDummy.generateDummyMultiSearch());
         MutableLiveData<Resource<List<MediaEntity>>> multiSearch = new MutableLiveData<>();
-        multiSearch.setValue(Resource.success(dummyMultiSearch));
+        multiSearch.setValue(dummyMultiSearch);
 
         when(catalogRepository.getMultiSearch(query, page)).thenReturn(multiSearch);
         Resource<List<MediaEntity>> mediaEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMultiSearch(query, page);
+
+        assertNotNull(dummyMultiSearch.data);
         assertNotNull(mediaEntities.data);
-        assertEquals(dummyMultiSearch.size(), mediaEntities.data.size());
+        assertEquals(dummyMultiSearch.data.size(), mediaEntities.data.size());
     }
 
     @Test
     public void getGenres() {
-        List<GenreEntity> dummyGenres = DataDummy.generateDummyGenres();
+        Resource<List<GenreEntity>> dummyGenres = Resource.success(DataDummy.generateDummyGenres());
         MutableLiveData<Resource<List<GenreEntity>>> movieGenres = new MutableLiveData<>();
-        movieGenres.setValue(Resource.success(dummyGenres));
+        movieGenres.setValue(dummyGenres);
 
         when(catalogRepository.getGenres()).thenReturn(movieGenres);
         Resource<List<GenreEntity>> movieGenreEntities = LiveDataTestUtil.getValue(viewModel.getGenres());
         verify(catalogRepository).getGenres();
+
+        assertNotNull(dummyGenres.data);
         assertNotNull(movieGenreEntities.data);
-        assertEquals(dummyGenres.size(), movieGenreEntities.data.size());
+        assertEquals(dummyGenres.data.size(), movieGenreEntities.data.size());
 
         viewModel.getGenres().observeForever(genreEntitiesObserver);
-        verify(genreEntitiesObserver).onChanged(Resource.success(dummyGenres));
+        verify(genreEntitiesObserver).onChanged(dummyGenres);
     }
 
     @Test
     public void getMovieLatestRelease() {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_LATEST_RELEASE);
 
-        List<MediaEntity> dummyMovieLatestRelease = DataDummy.generateDummyMovieLatestRelease();
+        Resource<List<MediaEntity>> dummyMovieLatestRelease = Resource.success(DataDummy.generateDummyMovieLatestRelease());
         MutableLiveData<Resource<List<MediaEntity>>> movieLatestRelease = new MutableLiveData<>();
-        movieLatestRelease.setValue(Resource.success(dummyMovieLatestRelease));
+        movieLatestRelease.setValue(dummyMovieLatestRelease);
 
         when(catalogRepository.getMovieLatestRelease(page)).thenReturn(movieLatestRelease);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMovieLatestRelease(page);
+
+        assertNotNull(dummyMovieLatestRelease.data);
         assertNotNull(movieEntities.data);
-        assertEquals(dummyMovieLatestRelease.size(), movieEntities.data.size());
+        assertEquals(dummyMovieLatestRelease.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieLatestRelease));
+        verify(mediaEntitiesObserver).onChanged(dummyMovieLatestRelease);
     }
 
     @Test
     public void getTVLatestRelease() {
         viewModel.setQueryType(QUERY_TYPE_TV_LATEST_RELEASE);
 
-        List<MediaEntity> dummyTVLatestRelease = DataDummy.generateDummyTVLatestRelease();
+        Resource<List<MediaEntity>> dummyTVLatestRelease = Resource.success(DataDummy.generateDummyTVLatestRelease());
         MutableLiveData<Resource<List<MediaEntity>>> tvLatestRelease = new MutableLiveData<>();
-        tvLatestRelease.setValue(Resource.success(dummyTVLatestRelease));
+        tvLatestRelease.setValue(dummyTVLatestRelease);
 
         when(catalogRepository.getTVLatestRelease(page)).thenReturn(tvLatestRelease);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getTVLatestRelease(page);
+
+        assertNotNull(dummyTVLatestRelease.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVLatestRelease.size(), tvEntities.data.size());
+        assertEquals(dummyTVLatestRelease.data.size(), tvEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVLatestRelease));
+        verify(mediaEntitiesObserver).onChanged(dummyTVLatestRelease);
     }
 
     @Test
     public void getMovieNowPlaying() {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_NOW_PLAYING);
 
-        List<MediaEntity> dummyMovieNowPlaying = DataDummy.generateDummyMovieNowPlaying();
+        Resource<List<MediaEntity>> dummyMovieNowPlaying = Resource.success(DataDummy.generateDummyMovieNowPlaying());
         MutableLiveData<Resource<List<MediaEntity>>> nowPlaying = new MutableLiveData<>();
-        nowPlaying.setValue(Resource.success(dummyMovieNowPlaying));
+        nowPlaying.setValue(dummyMovieNowPlaying);
 
         when(catalogRepository.getMovieNowPlaying(page)).thenReturn(nowPlaying);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMovieNowPlaying(page);
-        assertNotNull(movieEntities.data);
 
-        assertEquals(dummyMovieNowPlaying.size(), movieEntities.data.size());
+        assertNotNull(dummyMovieNowPlaying.data);
+        assertNotNull(movieEntities.data);
+        assertEquals(dummyMovieNowPlaying.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieNowPlaying));
+        verify(mediaEntitiesObserver).onChanged(dummyMovieNowPlaying);
     }
 
     @Test
     public void getTVOnTheAir() {
         viewModel.setQueryType(QUERY_TYPE_TV_ON_THE_AIR);
 
-        List<MediaEntity> dummyTVOnTheAir = DataDummy.generateDummyTVOnTheAir();
+        Resource<List<MediaEntity>> dummyTVOnTheAir = Resource.success(DataDummy.generateDummyTVOnTheAir());
         MutableLiveData<Resource<List<MediaEntity>>> onTheAir = new MutableLiveData<>();
-        onTheAir.setValue(Resource.success(dummyTVOnTheAir));
+        onTheAir.setValue(dummyTVOnTheAir);
 
         when(catalogRepository.getTVOnTheAir(page)).thenReturn(onTheAir);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getTVOnTheAir(page);
+
+        assertNotNull(dummyTVOnTheAir.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVOnTheAir.size(), tvEntities.data.size());
+        assertEquals(dummyTVOnTheAir.data.size(), tvEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVOnTheAir));
+        verify(mediaEntitiesObserver).onChanged(dummyTVOnTheAir);
     }
 
     @Test
     public void getMovieUpcoming() {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_UPCOMING);
 
-        List<MediaEntity> dummyMovieUpcoming = DataDummy.generateDummyMovieUpcoming();
+        Resource<List<MediaEntity>> dummyMovieUpcoming = Resource.success(DataDummy.generateDummyMovieUpcoming());
         MutableLiveData<Resource<List<MediaEntity>>> movieUpcoming = new MutableLiveData<>();
-        movieUpcoming.setValue(Resource.success(dummyMovieUpcoming));
+        movieUpcoming.setValue(dummyMovieUpcoming);
 
         when(catalogRepository.getMovieUpcoming(page)).thenReturn(movieUpcoming);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMovieUpcoming(page);
+
+        assertNotNull(dummyMovieUpcoming.data);
         assertNotNull(movieEntities.data);
-        assertEquals(dummyMovieUpcoming.size(), movieEntities.data.size());
+        assertEquals(dummyMovieUpcoming.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieUpcoming));
+        verify(mediaEntitiesObserver).onChanged(dummyMovieUpcoming);
     }
 
     @Test
     public void getMovieTopRated() {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_TOP_RATED);
 
-        List<MediaEntity> dummyMovieTopRated = DataDummy.generateDummyMovieTopRated();
+        Resource<List<MediaEntity>> dummyMovieTopRated = Resource.success(DataDummy.generateDummyMovieTopRated());
         MutableLiveData<Resource<List<MediaEntity>>> movieTopRated = new MutableLiveData<>();
-        movieTopRated.setValue(Resource.success(dummyMovieTopRated));
+        movieTopRated.setValue(dummyMovieTopRated);
 
         when(catalogRepository.getMovieTopRated(page)).thenReturn(movieTopRated);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMovieTopRated(page);
+
+        assertNotNull(dummyMovieTopRated.data);
         assertNotNull(movieEntities.data);
-        assertEquals(dummyMovieTopRated.size(), movieEntities.data.size());
+        assertEquals(dummyMovieTopRated.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieTopRated));
+        verify(mediaEntitiesObserver).onChanged(dummyMovieTopRated);
     }
 
     @Test
     public void getTVTopRated() {
         viewModel.setQueryType(QUERY_TYPE_TV_TOP_RATED);
 
-        List<MediaEntity> dummyTVTopRated = DataDummy.generateDummyTVTopRated();
+        Resource<List<MediaEntity>> dummyTVTopRated = Resource.success(DataDummy.generateDummyTVTopRated());
         MutableLiveData<Resource<List<MediaEntity>>> tvTopRated = new MutableLiveData<>();
-        tvTopRated.setValue(Resource.success(dummyTVTopRated));
+        tvTopRated.setValue(dummyTVTopRated);
 
         when(catalogRepository.getTVTopRated(page)).thenReturn(tvTopRated);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getTVTopRated(page);
+
+        assertNotNull(dummyTVTopRated.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVTopRated.size(), tvEntities.data.size());
+        assertEquals(dummyTVTopRated.data.size(), tvEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success((dummyTVTopRated)));
+        verify(mediaEntitiesObserver).onChanged(dummyTVTopRated);
     }
 
     @Test
     public void getMoviePopular() {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_POPULAR);
 
-        List<MediaEntity> dummyMoviePopular = DataDummy.generateDummyMoviePopular();
+        Resource<List<MediaEntity>> dummyMoviePopular = Resource.success(DataDummy.generateDummyMoviePopular());
         MutableLiveData<Resource<List<MediaEntity>>> moviePopular = new MutableLiveData<>();
-        moviePopular.setValue(Resource.success(dummyMoviePopular));
+        moviePopular.setValue(dummyMoviePopular);
 
         when(catalogRepository.getMoviePopular(page)).thenReturn(moviePopular);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMoviePopular(page);
+
+        assertNotNull(dummyMoviePopular.data);
         assertNotNull(movieEntities.data);
-        assertEquals(dummyMoviePopular.size(), movieEntities.data.size());
+        assertEquals(dummyMoviePopular.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMoviePopular));
+        verify(mediaEntitiesObserver).onChanged(dummyMoviePopular);
     }
 
     @Test
     public void getTVPopular() {
         viewModel.setQueryType(QUERY_TYPE_TV_POPULAR);
 
-        List<MediaEntity> dummyTVPopular = DataDummy.generateDummyTVPopular();
+        Resource<List<MediaEntity>> dummyTVPopular = Resource.success(DataDummy.generateDummyTVPopular());
         MutableLiveData<Resource<List<MediaEntity>>> tvPopular = new MutableLiveData<>();
-        tvPopular.setValue(Resource.success(dummyTVPopular));
+        tvPopular.setValue(dummyTVPopular);
 
         when(catalogRepository.getTVPopular(page)).thenReturn(tvPopular);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getTVPopular(page);
+
+        assertNotNull(dummyTVPopular.data);
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVPopular.size(), tvEntities.data.size());
+        assertEquals(dummyTVPopular.data.size(), tvEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVPopular));
+        verify(mediaEntitiesObserver).onChanged(dummyTVPopular);
     }
 
     @Test
@@ -272,18 +293,20 @@ public class SearchViewModelTest {
         viewModel.setQueryType(QUERY_TYPE_MOVIE_RECOMMENDATIONS);
         viewModel.setMediaId(movieId);
 
-        List<MediaEntity> dummyMovieRecommendations = DataDummy.generateDummyMovieRecommendations();
+        Resource<List<MediaEntity>> dummyMovieRecommendations = Resource.success(DataDummy.generateDummyMovieRecommendations());
         MutableLiveData<Resource<List<MediaEntity>>> movieRecommendations = new MutableLiveData<>();
-        movieRecommendations.setValue(Resource.success(dummyMovieRecommendations));
+        movieRecommendations.setValue(dummyMovieRecommendations);
 
         when(catalogRepository.getMovieRecommendations(movieId, page)).thenReturn(movieRecommendations);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getMovieRecommendations(movieId, page);
+
+        assertNotNull(dummyMovieRecommendations.data);
         assertNotNull(movieEntities.data);
-        assertEquals(dummyMovieRecommendations.size(), movieEntities.data.size());
+        assertEquals(dummyMovieRecommendations.data.size(), movieEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyMovieRecommendations));
+        verify(mediaEntitiesObserver).onChanged(dummyMovieRecommendations);
     }
 
     @Test
@@ -291,17 +314,19 @@ public class SearchViewModelTest {
         viewModel.setQueryType(QUERY_TYPE_TV_RECOMMENDATIONS);
         viewModel.setMediaId(tvId);
 
-        List<MediaEntity> dummyTVRecommendations = DataDummy.generateDummyTVRecommendations();
+        Resource<List<MediaEntity>> dummyTVRecommendations = Resource.success(DataDummy.generateDummyTVRecommendations());
         MutableLiveData<Resource<List<MediaEntity>>> tvRecommendations = new MutableLiveData<>();
-        tvRecommendations.setValue(Resource.success(dummyTVRecommendations));
+        tvRecommendations.setValue(dummyTVRecommendations);
 
         when(catalogRepository.getTVRecommendations(tvId, page)).thenReturn(tvRecommendations);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getSearchResult());
         verify(catalogRepository).getTVRecommendations(tvId, page);
+
         assertNotNull(tvEntities.data);
-        assertEquals(dummyTVRecommendations.size(), tvEntities.data.size());
+        assertNotNull(dummyTVRecommendations.data);
+        assertEquals(dummyTVRecommendations.data.size(), tvEntities.data.size());
 
         viewModel.getSearchResult().observeForever(mediaEntitiesObserver);
-        verify(mediaEntitiesObserver).onChanged(Resource.success(dummyTVRecommendations));
+        verify(mediaEntitiesObserver).onChanged(dummyTVRecommendations);
     }
 }

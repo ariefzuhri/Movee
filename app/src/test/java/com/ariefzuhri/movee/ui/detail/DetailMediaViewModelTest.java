@@ -4,6 +4,7 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
 import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
 import com.ariefzuhri.movee.data.source.remote.entity.CreditsEntity;
 import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
@@ -26,6 +27,7 @@ import java.util.List;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 import static org.junit.Assert.*;
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
@@ -78,6 +80,7 @@ public class DetailMediaViewModelTest {
         when(catalogRepository.getMovieDetails(movieId)).thenReturn(movieDetails);
         Resource<MediaEntity> movieEntity = LiveDataTestUtil.getValue(viewModel.getMediaDetails());
         verify(catalogRepository).getMovieDetails(movieId);
+
         assertNotNull(movieEntity.data);
         assertEquals(dummyMovieDetails.getId(), movieEntity.data.getId());
         assertEquals(dummyMovieDetails.getTitle(), movieEntity.data.getTitle());
@@ -110,6 +113,7 @@ public class DetailMediaViewModelTest {
         when(catalogRepository.getTVDetails(tvId)).thenReturn(tvDetails);
         Resource<MediaEntity> tvEntity = LiveDataTestUtil.getValue(viewModel.getMediaDetails());
         verify(catalogRepository).getTVDetails(tvId);
+
         assertNotNull(tvEntity.data);
         assertEquals(dummyTVDetails.getId(), tvEntity.data.getId());
         assertEquals(dummyTVDetails.getTitle(), tvEntity.data.getTitle());
@@ -136,72 +140,80 @@ public class DetailMediaViewModelTest {
     public void getMovieVideos() {
         viewModel.setMedia(MEDIA_TYPE_MOVIE, movieId);
 
-        List<TrailerEntity> dummyMovieVideos = DataDummy.generateDummyMovieVideos();
+        Resource<List<TrailerEntity>> dummyMovieVideos = Resource.success(DataDummy.generateDummyMovieVideos());
         MutableLiveData<Resource<List<TrailerEntity>>> movieVideos = new MutableLiveData<>();
-        movieVideos.setValue(Resource.success(dummyMovieVideos));
+        movieVideos.setValue(dummyMovieVideos);
 
         when(catalogRepository.getVideos(MEDIA_TYPE_MOVIE, movieId)).thenReturn(movieVideos);
         Resource<List<TrailerEntity>> movieTrailerEntities = LiveDataTestUtil.getValue(viewModel.getTrailers());
         verify(catalogRepository).getVideos(MEDIA_TYPE_MOVIE, movieId);
+
+        assertNotNull(dummyMovieVideos.data);
         assertNotNull(movieTrailerEntities.data);
-        assertEquals(dummyMovieVideos.size(), movieTrailerEntities.data.size());
+        assertEquals(dummyMovieVideos.data.size(), movieTrailerEntities.data.size());
 
         viewModel.getTrailers().observeForever(trailerEntitiesObserver);
-        verify(trailerEntitiesObserver).onChanged(Resource.success(dummyMovieVideos));
+        verify(trailerEntitiesObserver).onChanged(dummyMovieVideos);
     }
 
     @Test
     public void getTVVideos() {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
-        List<TrailerEntity> dummyTVVideos = DataDummy.generateDummyTVVideos();
+        Resource<List<TrailerEntity>> dummyTVVideos = Resource.success(DataDummy.generateDummyTVVideos());
         MutableLiveData<Resource<List<TrailerEntity>>> tvVideos = new MutableLiveData<>();
-        tvVideos.setValue(Resource.success(dummyTVVideos));
+        tvVideos.setValue(dummyTVVideos);
 
         when(catalogRepository.getVideos(MEDIA_TYPE_TV, tvId)).thenReturn(tvVideos);
         Resource<List<TrailerEntity>> tvTrailerEntities = LiveDataTestUtil.getValue(viewModel.getTrailers());
         verify(catalogRepository).getVideos(MEDIA_TYPE_TV, tvId);
+
+        assertNotNull(dummyTVVideos.data);
         assertNotNull(tvTrailerEntities.data);
-        assertEquals(dummyTVVideos.size(), tvTrailerEntities.data.size());
+        assertEquals(dummyTVVideos.data.size(), tvTrailerEntities.data.size());
 
         viewModel.getTrailers().observeForever(trailerEntitiesObserver);
-        verify(trailerEntitiesObserver).onChanged(Resource.success(dummyTVVideos));
+        verify(trailerEntitiesObserver).onChanged(dummyTVVideos);
     }
 
     @Test
     public void getMovieCredits() {
         viewModel.setMedia(MEDIA_TYPE_MOVIE, movieId);
 
-        CreditsEntity dummyMovieCredits = DataDummy.generateDummyMovieCredits();
+        Resource<CreditsEntity> dummyMovieCredits = Resource.success(DataDummy.generateDummyMovieCredits());
         MutableLiveData<Resource<CreditsEntity>> movieCredits = new MutableLiveData<>();
-        movieCredits.setValue(Resource.success(dummyMovieCredits));
+        movieCredits.setValue(dummyMovieCredits);
 
         when(catalogRepository.getCredits(MEDIA_TYPE_MOVIE, movieId)).thenReturn(movieCredits);
         Resource<CreditsEntity> movieCreditsEntity = LiveDataTestUtil.getValue(viewModel.getCredits());
         verify(catalogRepository).getCredits(MEDIA_TYPE_MOVIE, movieId);
+
+        assertNotNull(dummyMovieCredits.data);
         assertNotNull(movieCreditsEntity.data);
-        assertEquals(dummyMovieCredits, movieCreditsEntity.data);
+        assertEquals(dummyMovieCredits.data, movieCreditsEntity.data);
 
         viewModel.getCredits().observeForever(creditsEntityObserver);
-        verify(creditsEntityObserver).onChanged(Resource.success(dummyMovieCredits));
+        verify(creditsEntityObserver).onChanged(dummyMovieCredits);
     }
 
     @Test
     public void getTVCredits() {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
-        CreditsEntity dummyTVCredits = DataDummy.generateDummyTVCredits();
+        Resource<CreditsEntity> dummyTVCredits = Resource.success(DataDummy.generateDummyTVCredits());
         MutableLiveData<Resource<CreditsEntity>> tvCredits = new MutableLiveData<>();
-        tvCredits.setValue(Resource.success(dummyTVCredits));
+        tvCredits.setValue(dummyTVCredits);
 
         when(catalogRepository.getCredits(MEDIA_TYPE_TV, tvId)).thenReturn(tvCredits);
         Resource<CreditsEntity> tvCreditsEntity = LiveDataTestUtil.getValue(viewModel.getCredits());
         verify(catalogRepository).getCredits(MEDIA_TYPE_TV, tvId);
+
+        assertNotNull(dummyTVCredits.data);
         assertNotNull(tvCreditsEntity.data);
-        assertEquals(dummyTVCredits, tvCreditsEntity.data);
+        assertEquals(dummyTVCredits.data, tvCreditsEntity.data);
 
         viewModel.getCredits().observeForever(creditsEntityObserver);
-        verify(creditsEntityObserver).onChanged(Resource.success(dummyTVCredits));
+        verify(creditsEntityObserver).onChanged(dummyTVCredits);
     }
 
     @Test
@@ -215,6 +227,7 @@ public class DetailMediaViewModelTest {
         when(catalogRepository.getMovieRecommendations(movieId, page)).thenReturn(movieRecommendations);
         Resource<List<MediaEntity>> movieEntities = LiveDataTestUtil.getValue(viewModel.getRecommendations());
         verify(catalogRepository).getMovieRecommendations(movieId, page);
+
         assertNotNull(dummyMovieRecommendations.data);
         assertNotNull(movieEntities.data);
         assertEquals(dummyMovieRecommendations.data.size(), movieEntities.data.size());
@@ -234,6 +247,7 @@ public class DetailMediaViewModelTest {
         when(catalogRepository.getTVRecommendations(tvId, page)).thenReturn(tvRecommendations);
         Resource<List<MediaEntity>> tvEntities = LiveDataTestUtil.getValue(viewModel.getRecommendations());
         verify(catalogRepository).getTVRecommendations(tvId, page);
+
         assertNotNull(tvEntities.data);
         assertNotNull(dummyTVRecommendations.data);
         assertEquals(dummyTVRecommendations.data.size(), tvEntities.data.size());
@@ -283,5 +297,47 @@ public class DetailMediaViewModelTest {
 
         viewModel.getFavorite().observeForever(favoriteEntitiesObserver);
         verify(favoriteEntitiesObserver).onChanged(dummyFavorite);
+    }
+
+    @Test
+    public void insertFavorite(){
+        viewModel.setMedia(MEDIA_TYPE_TV, tvId);
+
+        FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
+        FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
+        dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
+
+        doNothing().when(catalogRepository).insertFavorite(dummyFavorite);
+
+        catalogRepository.insertFavorite(dummyFavorite);
+        verify(catalogRepository).insertFavorite(dummyFavorite);
+    }
+
+    @Test
+    public void updateFavorite(){
+        viewModel.setMedia(MEDIA_TYPE_TV, tvId);
+
+        FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
+        FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
+        dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
+
+        doNothing().when(catalogRepository).updateFavorite(dummyFavorite);
+
+        catalogRepository.updateFavorite(dummyFavorite);
+        verify(catalogRepository).updateFavorite(dummyFavorite);
+    }
+
+    @Test
+    public void deleteFavorite() {
+        viewModel.setMedia(MEDIA_TYPE_TV, tvId);
+
+        FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
+        FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
+        dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
+
+        doNothing().when(catalogRepository).deleteFavorite(dummyFavorite);
+
+        catalogRepository.deleteFavorite(dummyFavorite);
+        verify(catalogRepository).deleteFavorite(dummyFavorite);
     }
 }
