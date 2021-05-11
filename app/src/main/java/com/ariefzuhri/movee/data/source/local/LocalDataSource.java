@@ -37,16 +37,13 @@ public class LocalDataSource {
         return catalogDao.getFavoriteWithGenresById(id, type);
     }
 
-    public void insertFavorite(FavoriteEntity favorite) {
-        catalogDao.insertFavoriteAndFavoriteGenreJoin(favorite);
+    public void setFavorite(FavoriteEntity favorite, boolean state) {
+        if (state) catalogDao.insertFavoriteAndFavoriteGenreJoin(favorite);
+        else catalogDao.deleteFavorite(favorite);
     }
 
     public void updateFavorite(FavoriteEntity favorite) {
         catalogDao.updateFavoriteAndFavoriteGenreJoin(favorite);
-    }
-
-    public void deleteFavorite(FavoriteEntity favorite) {
-        catalogDao.deleteFavorite(favorite);
     }
 
     public LiveData<List<GenreEntity>> getGenres() {

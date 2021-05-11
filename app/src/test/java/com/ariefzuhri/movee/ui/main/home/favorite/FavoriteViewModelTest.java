@@ -76,9 +76,9 @@ public class FavoriteViewModelTest {
         FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
         dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
 
-        doNothing().when(catalogRepository).deleteFavorite(dummyFavorite);
+        doNothing().when(catalogRepository).setFavorite(dummyFavorite, false);
 
-        catalogRepository.deleteFavorite(dummyFavorite);
-        verify(catalogRepository).deleteFavorite(dummyFavorite);
+        viewModel.deleteFavorite(dummyFavorite);
+        verify(catalogRepository).setFavorite(dummyFavorite, false);
     }
 }

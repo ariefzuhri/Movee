@@ -83,27 +83,26 @@ public class DetailMediaViewModel extends ViewModel {
         return genres;
     }
 
-    public void updateFavorite(FavoriteWithGenres favoriteInDb, FavoriteEntity updatedFavorite){
-        // Update favorit di database jika ada satu nilai atribut yang tidak sama
-        boolean state = favoriteInDb != null;
+    public void updateFavorite(FavoriteWithGenres favoriteWithGenresInDb, final FavoriteEntity updatedFavorite){
+        boolean state = favoriteWithGenresInDb != null;
         if (state){
-            FavoriteEntity favorite = favoriteInDb.favorite;
-            favorite.setGenres(favoriteInDb.genres);
+            FavoriteEntity favoriteInDb = favoriteWithGenresInDb.favorite;
+            favoriteInDb.setGenres(favoriteWithGenresInDb.genres);
 
-            boolean equalsObjects = equalsFavoriteObjects(favorite, updatedFavorite);
+            // Update favorit di database jika ada satu nilai atribut yang tidak sama
+            boolean equalsObjects = equalsFavoriteObjects(favoriteInDb, updatedFavorite);
             Log.d(TAG, "equalsFavoriteObjects: " + equalsObjects);
-            if (!equalsObjects) repository.updateFavorite(favorite);
+            if (!equalsObjects) repository.updateFavorite(updatedFavorite);
             else Log.d(TAG, "favorite in db not need updated");
         }
     }
 
-    public void setFavorite(FavoriteEntity favorite, boolean state) {
-        boolean newSate = !state;
-        if (newSate) repository.insertFavorite(favorite);
-        else repository.deleteFavorite(favorite);
+    public void setFavorite(FavoriteEntity favorite, boolean currentState) {
+        boolean newSate = !currentState;
+        repository.setFavorite(favorite, newSate);
     }
 
-    public void setFavorite(LiveData<FavoriteWithGenres> favorite) {
+    public void setFavoriteLiveData(LiveData<FavoriteWithGenres> favorite) {
         this.favorite = favorite;
     }
 

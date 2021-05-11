@@ -37,6 +37,6 @@ public class FavoriteViewModel extends ViewModel {
     }
 
     public void deleteFavorite(FavoriteEntity favorite) {
-        repository.deleteFavorite(favorite);
+        repository.setFavorite(favorite, false);
     }
 }

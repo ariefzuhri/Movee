@@ -56,11 +56,9 @@ public interface CatalogDataSource {
 
     LiveData<FavoriteWithGenres> getFavorite(int id, String type);
 
-    void insertFavorite(FavoriteEntity favorite);
+    void setFavorite(FavoriteEntity favorite, boolean state);
 
     void updateFavorite(FavoriteEntity favorite);
-
-    void deleteFavorite(FavoriteEntity favorite);
 
     LiveData<Resource<List<GenreEntity>>> getGenres();
 }

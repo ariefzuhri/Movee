@@ -289,18 +289,13 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @Override
-    public void insertFavorite(FavoriteEntity favorite) {
-        appExecutors.diskIO().execute(() -> localDataSource.insertFavorite(favorite));
+    public void setFavorite(FavoriteEntity favorite, boolean state) {
+        appExecutors.diskIO().execute(() -> localDataSource.setFavorite(favorite, state));
     }
 
     @Override
     public void updateFavorite(FavoriteEntity favorite) {
         appExecutors.diskIO().execute(() -> localDataSource.updateFavorite(favorite));
-    }
-
-    @Override
-    public void deleteFavorite(FavoriteEntity favorite) {
-        appExecutors.diskIO().execute(() -> localDataSource.deleteFavorite(favorite));
     }
 
     @Override

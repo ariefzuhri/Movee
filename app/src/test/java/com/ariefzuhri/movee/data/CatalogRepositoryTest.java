@@ -477,16 +477,16 @@ public class CatalogRepositoryTest {
     }
 
     @Test
-    public void insertFavorite(){
+    public void setFavorite(){
         FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
         FavoriteEntity favorite = dummyFavorite.favorite;
         favorite.setGenres(dummyFavorite.genres);
 
         when(appExecutors.diskIO()).thenReturn(testExecutors.diskIO());
-        doNothing().when(local).insertFavorite(favorite);
+        doNothing().when(local).setFavorite(favorite, true);
 
-        catalogRepository.insertFavorite(favorite);
-        verify(local, times(1)).insertFavorite(favorite);
+        catalogRepository.setFavorite(favorite, true);
+        verify(local, times(1)).setFavorite(favorite, true);
     }
 
     @Test
@@ -500,18 +500,5 @@ public class CatalogRepositoryTest {
 
         catalogRepository.updateFavorite(favorite);
         verify(local, times(1)).updateFavorite(favorite);
-    }
-
-    @Test
-    public void deleteFavorite() {
-        FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
-        FavoriteEntity favorite = dummyFavorite.favorite;
-        favorite.setGenres(dummyFavorite.genres);
-
-        when(appExecutors.diskIO()).thenReturn(testExecutors.diskIO());
-        doNothing().when(local).deleteFavorite(favorite);
-
-        catalogRepository.deleteFavorite(favorite);
-        verify(local, times(1)).deleteFavorite(favorite);
     }
 }

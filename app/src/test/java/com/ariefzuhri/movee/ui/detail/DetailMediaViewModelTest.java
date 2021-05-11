@@ -22,13 +22,14 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 import static org.junit.Assert.*;
-import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
 import static org.mockito.Mockito.when;
 
 @RunWith(MockitoJUnitRunner.class)
@@ -300,17 +301,23 @@ public class DetailMediaViewModelTest {
     }
 
     @Test
-    public void insertFavorite(){
+    public void setFavorite(){
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
         FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
+
+        MutableLiveData<FavoriteWithGenres> favorite = new MutableLiveData<>();
+        favorite.setValue(null);
+        when(catalogRepository.getFavorite(tvId, MEDIA_TYPE_TV)).thenReturn(favorite);
+        viewModel.setFavoriteLiveData(catalogRepository.getFavorite(tvId, MEDIA_TYPE_TV));
+        FavoriteWithGenres favoriteEntity = LiveDataTestUtil.getValue(viewModel.getFavorite());
+
         FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
         dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
+        viewModel.setFavorite(dummyFavorite, favoriteEntity != null);
+        verify(catalogRepository).setFavorite(dummyFavorite, true);
 
-        doNothing().when(catalogRepository).insertFavorite(dummyFavorite);
-
-        catalogRepository.insertFavorite(dummyFavorite);
-        verify(catalogRepository).insertFavorite(dummyFavorite);
+        verifyNoMoreInteractions(favoriteEntitiesObserver);
     }
 
     @Test
@@ -318,26 +325,24 @@ public class DetailMediaViewModelTest {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
         FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
+
+        MutableLiveData<FavoriteWithGenres> favorite = new MutableLiveData<>();
+        favorite.setValue(new FavoriteWithGenres(new FavoriteEntity(dummyFavoriteWithGenres.favorite.getId(),
+                dummyFavoriteWithGenres.favorite.getType(),
+                dummyFavoriteWithGenres.favorite.getTitle(),
+                dummyFavoriteWithGenres.favorite.getPoster(),
+                dummyFavoriteWithGenres.favorite.getScoreAverage(),
+                dummyFavoriteWithGenres.favorite.getStartDate(),
+                new ArrayList<>()), new ArrayList<>()));
+        when(catalogRepository.getFavorite(tvId, MEDIA_TYPE_TV)).thenReturn(favorite);
+        viewModel.setFavoriteLiveData(catalogRepository.getFavorite(tvId, MEDIA_TYPE_TV));
+        FavoriteWithGenres favoriteEntityInDb = LiveDataTestUtil.getValue(viewModel.getFavorite());
+
         FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
         dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
-
-        doNothing().when(catalogRepository).updateFavorite(dummyFavorite);
-
-        catalogRepository.updateFavorite(dummyFavorite);
+        viewModel.updateFavorite(favoriteEntityInDb, dummyFavorite);
         verify(catalogRepository).updateFavorite(dummyFavorite);
-    }
 
-    @Test
-    public void deleteFavorite() {
-        viewModel.setMedia(MEDIA_TYPE_TV, tvId);
-
-        FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
-        FavoriteEntity dummyFavorite = dummyFavoriteWithGenres.favorite;
-        dummyFavorite.setGenres(dummyFavoriteWithGenres.genres);
-
-        doNothing().when(catalogRepository).deleteFavorite(dummyFavorite);
-
-        catalogRepository.deleteFavorite(dummyFavorite);
-        verify(catalogRepository).deleteFavorite(dummyFavorite);
+        verifyNoMoreInteractions(favoriteEntitiesObserver);
     }
 }
