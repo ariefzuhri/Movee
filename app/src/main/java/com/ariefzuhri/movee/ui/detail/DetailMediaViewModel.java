@@ -1,5 +1,7 @@
 package com.ariefzuhri.movee.ui.detail;
 
+import android.util.Log;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
@@ -15,10 +17,13 @@ import com.ariefzuhri.movee.vo.Resource;
 
 import java.util.List;
 
+import static com.ariefzuhri.movee.utils.AppUtils.equalsFavoriteObjects;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 
 public class DetailMediaViewModel extends ViewModel {
+
+    private final String TAG = getClass().getSimpleName();
 
     private final CatalogRepository repository;
 
@@ -78,16 +83,28 @@ public class DetailMediaViewModel extends ViewModel {
         return genres;
     }
 
-    public void insertFavorite(FavoriteEntity favorite){
-        repository.insertFavorite(favorite);
+    public void updateFavorite(FavoriteWithGenres favoriteInDb, FavoriteEntity updatedFavorite){
+        // Update favorit di database jika ada satu nilai atribut yang tidak sama
+        boolean state = favoriteInDb != null;
+        if (state){
+            FavoriteEntity favorite = favoriteInDb.favorite;
+            favorite.setGenres(favoriteInDb.genres);
+
+            boolean equalsObjects = equalsFavoriteObjects(favorite, updatedFavorite);
+            Log.d(TAG, "equalsFavoriteObjects: " + equalsObjects);
+            if (!equalsObjects) repository.updateFavorite(favorite);
+            else Log.d(TAG, "favorite in db not need updated");
+        }
     }
 
-    public void updateFavorite(FavoriteEntity favorite){
-        repository.updateFavorite(favorite);
+    public void setFavorite(FavoriteEntity favorite, boolean state) {
+        boolean newSate = !state;
+        if (newSate) repository.insertFavorite(favorite);
+        else repository.deleteFavorite(favorite);
     }
 
-    public void deleteFavorite(FavoriteEntity favorite) {
-        repository.deleteFavorite(favorite);
+    public void setFavorite(LiveData<FavoriteWithGenres> favorite) {
+        this.favorite = favorite;
     }
 
     public LiveData<FavoriteWithGenres> getFavorite(){

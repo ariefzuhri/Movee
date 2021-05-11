@@ -64,7 +64,8 @@ public class MovieFragment extends Fragment {
         if (getActivity() != null){
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
             viewModel = new ViewModelProvider(this, factory).get(MovieViewModel.class);
-            viewModel.setTrendingPage(1);
+            int trendingPage = 1;
+            viewModel.setTrendingPage(trendingPage);
             viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
                 if (result != null) {
                     if (result.status == Status.SUCCESS) {
@@ -99,4 +100,8 @@ public class MovieFragment extends Fragment {
             startActivity(intent);
         });
     }
+
+    /*trendingPage++;
+    viewModel.setTrendingPage(trendingPage);
+    Log.d(getClass().getSimpleName(), "Current page: " + trendingPage);*/
 }

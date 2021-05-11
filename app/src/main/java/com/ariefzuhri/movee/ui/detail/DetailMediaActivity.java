@@ -4,12 +4,12 @@ import android.content.Intent;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 
 import com.ariefzuhri.movee.R;
 import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
 import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
 import com.ariefzuhri.movee.data.source.remote.entity.TrailerEntity;
 import com.ariefzuhri.movee.databinding.ActivityDetailMediaBinding;
@@ -61,17 +61,13 @@ import static com.ariefzuhri.movee.utils.DateHelper.getYearOfDate;
 
 public class DetailMediaActivity extends AppCompatActivity implements View.OnClickListener {
 
-    private final String TAG = getClass().getSimpleName();
-
     private ActivityDetailMediaBinding activityBinding;
     private ContentDetailMediaBinding contentBinding;
 
     private DetailMediaViewModel viewModel;
-    private FavoriteEntity favoriteInDb;
+    private FavoriteWithGenres favorite;
     private Intent trailerIntent;
     private MediaEntity media;
-
-    private boolean isFavorite;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -160,16 +156,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private void populateMedia(MediaEntity media){
         this.media = media;
 
-        viewModel.getFavorite().observe(this, result -> {
-            isFavorite = result != null;
-            setFavoriteState(isFavorite);
-            if (isFavorite) {
-                if (result != null) {
-                    favoriteInDb = result.favorite;
-                    favoriteInDb.setGenres(result.genres);
-                }
-            }
-        });
+        viewModel.getFavorite().observe(this, this::setFavoriteState);
 
         activityBinding.tvToolbarTitle.setText(media.getTitle());
         loadImage(this, IMAGE_SIZE_HIGH, media.getCover() == null ? media.getPoster() : media.getCover(), activityBinding.imgCover);
@@ -238,6 +225,19 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         });
     }
 
+    private void setFavoriteState(FavoriteWithGenres resultFavorite){
+        this.favorite = resultFavorite;
+
+        boolean state = favorite != null;
+        if (state) {
+            activityBinding.fabFavorite.setImageDrawable(ContextCompat
+                    .getDrawable(this, R.drawable.ic_bookmark));
+        } else {
+            activityBinding.fabFavorite.setImageDrawable(ContextCompat
+                    .getDrawable(this, R.drawable.ic_bookmark_outline));
+        }
+    }
+
     private void initTrailerIntent() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String backupKey = "";
@@ -285,7 +285,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         if (id == R.id.fab_back) {
             onBackPressed();
         } else if (id == R.id.fab_favorite) {
-            if (media != null) setFavorite(media, isFavorite);
+            if (media != null) setFavorite(media, favorite != null);
             else showToast(this, getString(R.string.toast_data_loading));
         } else if (id == R.id.ib_more_title) {
             if (media != null) showToast(this, media.getTitle());
@@ -301,6 +301,21 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
+    private void setFavorite(MediaEntity media, boolean state) {
+        FavoriteEntity favorite = createFavoriteObject(media);
+        viewModel.setFavorite(favorite, state);
+    }
+
+    private FavoriteEntity createFavoriteObject(MediaEntity media){
+        return new FavoriteEntity(media.getId(),
+                media.getType(),
+                media.getTitle(),
+                media.getPoster(),
+                media.getScoreAverage(),
+                media.getAiredDate().getStartDate(),
+                media.getGenres());
+    }
+
     private void viewMoreRecommendations(MediaEntity media){
         if (media != null) {
             Intent intent = new Intent(this, SearchActivity.class);
@@ -314,55 +329,9 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void setFavorite(MediaEntity media, boolean isFavorite) {
-        FavoriteEntity favorite = createFavoriteObject(media);
-
-        boolean addFavorite = !isFavorite;
-        if (addFavorite) viewModel.insertFavorite(favorite);
-        else viewModel.deleteFavorite(favorite);
-        setFavoriteState(isFavorite);
-    }
-
-    private void setFavoriteState(boolean state){
-        if (state) {
-            activityBinding.fabFavorite.setImageDrawable(ContextCompat
-                    .getDrawable(this, R.drawable.ic_bookmark));
-        } else {
-            activityBinding.fabFavorite.setImageDrawable(ContextCompat
-                    .getDrawable(this, R.drawable.ic_bookmark_outline));
-        }
-    }
-
-    private FavoriteEntity createFavoriteObject(MediaEntity media){
-        return new FavoriteEntity(media.getId(),
-                media.getType(),
-                media.getTitle(),
-                media.getPoster(),
-                media.getScoreAverage(),
-                media.getAiredDate().getStartDate(),
-                media.getGenres());
-    }
-
-    private boolean equalsFavoriteObjects(FavoriteEntity o1, FavoriteEntity o2){
-        return o1.getId().equals(o2.getId()) &&
-                o1.getType().equals(o2.getType()) &&
-                o1.getTitle().equals(o2.getTitle()) &&
-                o1.getPoster().equals(o2.getPoster()) &&
-                o1.getScoreAverage() == o2.getScoreAverage() &&
-                o1.getStartDate().equals(o2.getStartDate()) &&
-                o1.getGenres().size() == o2.getGenres().size();
-    }
-
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Update favorit di database jika ada satu nilai atribut yang tidak sama
-        if (isFavorite && favoriteInDb != null){
-            FavoriteEntity updatedFavorite = createFavoriteObject(media);
-            boolean equalsObjects = equalsFavoriteObjects(favoriteInDb, updatedFavorite);
-            Log.d(TAG, "equalsFavoriteObjects: " + equalsObjects);
-            if (!equalsObjects) viewModel.updateFavorite(updatedFavorite);
-            else Log.d(TAG, "favoriteInDb not need updated");
-        }
+        if (media != null) viewModel.updateFavorite(favorite, createFavoriteObject(media));
     }
 }

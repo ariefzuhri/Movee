@@ -64,7 +64,8 @@ public class TVFragment extends Fragment {
         if (getActivity() != null){
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
             viewModel = new ViewModelProvider(this, factory).get(TVViewModel.class);
-            viewModel.setTrendingPage(1);
+            int trendingPage = 1;
+            viewModel.setTrendingPage(trendingPage);
             viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
                 if (result != null) {
                     if (result.status == Status.SUCCESS) {

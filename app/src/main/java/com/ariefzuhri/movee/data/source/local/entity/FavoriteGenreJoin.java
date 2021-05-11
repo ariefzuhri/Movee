@@ -40,6 +40,7 @@ public class FavoriteGenreJoin {
     @ColumnInfo(name = "favoriteType")
     private final String favoriteType;
 
+    @SuppressWarnings("unused")
     public FavoriteGenreJoin(@NonNull String favoriteUid, @NonNull Integer genreId, @NonNull Integer favoriteId, @NonNull String favoriteType) {
         this.favoriteUid = favoriteUid;
         this.genreId = genreId;
