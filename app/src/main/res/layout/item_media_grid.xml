@@ -37,7 +37,7 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintDimensionRatio="2:3"
-                    tools:ignore="ContentDescription" />
+                    android:contentDescription="@string/poster"/>
 
                 <TextView
                     android:id="@+id/tv_score"

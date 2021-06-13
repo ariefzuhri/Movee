@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -29,8 +28,8 @@
                 android:id="@+id/img_poster"
                 android:layout_width="90dp"
                 android:layout_height="135dp"
-                tools:ignore="ContentDescription"
-                android:src="@color/gray"/>
+                android:src="@color/gray"
+                android:contentDescription="@string/poster" />
         </androidx.cardview.widget.CardView>
 
         <LinearLayout
