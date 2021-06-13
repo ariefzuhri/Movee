@@ -56,8 +56,8 @@ public class MovieFragment extends Fragment {
         MediaAdapter adapterVert = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.rvVert.setAdapter(adapterVert);
 
-        ShimmerHelper shimmerHoriz = new ShimmerHelper(getContext(), binding.shimmerHoriz, binding.rvHoriz);
-        ShimmerHelper shimmerVert = new ShimmerHelper(getContext(), binding.shimmerVert, binding.rvVert);
+        ShimmerHelper shimmerHoriz = new ShimmerHelper(binding.shimmerHoriz, binding.rvHoriz);
+        ShimmerHelper shimmerVert = new ShimmerHelper(binding.shimmerVert, binding.rvVert);
         shimmerHoriz.show();
         shimmerVert.show();
 
@@ -77,8 +77,10 @@ public class MovieFragment extends Fragment {
                 viewModel.getNowPlaying().observe(getViewLifecycleOwner(), resultMovie -> {
                     if (resultMovie != null){
                         if (resultMovie.status == Status.SUCCESS){
-                            adapterHoriz.setData(resultMovie.data);
-                            shimmerHoriz.hide();
+                            if (resultMovie.data != null) {
+                                adapterHoriz.setData(resultMovie.data);
+                                shimmerHoriz.hide(resultMovie.data.isEmpty());
+                            }
                         }
                     }
                 });
@@ -86,8 +88,10 @@ public class MovieFragment extends Fragment {
                 viewModel.getTrending().observe(getViewLifecycleOwner(), resultMovie -> {
                     if (resultMovie != null){
                         if (resultMovie.status == Status.SUCCESS){
-                            adapterVert.setData(resultMovie.data);
-                            shimmerVert.hide();
+                            if (resultMovie.data != null) {
+                                adapterVert.setData(resultMovie.data);
+                                shimmerVert.hide(resultMovie.data.isEmpty());
+                            }
                         }
                     }
                 });

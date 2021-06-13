@@ -56,8 +56,8 @@ import static com.ariefzuhri.movee.utils.Constants.TV_STATUS_RETURNING_SERIES;
 import static com.ariefzuhri.movee.utils.Constants.VIDEO_SITE_YOUTUBE;
 import static com.ariefzuhri.movee.utils.Constants.VIDEO_TYPE_TEASER;
 import static com.ariefzuhri.movee.utils.Constants.VIDEO_TYPE_TRAILER;
-import static com.ariefzuhri.movee.utils.DateHelper.getDateWithoutYear;
-import static com.ariefzuhri.movee.utils.DateHelper.getYearOfDate;
+import static com.ariefzuhri.movee.utils.DateUtils.getDateWithoutYear;
+import static com.ariefzuhri.movee.utils.DateUtils.getYearOfDate;
 
 public class DetailMediaActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -112,7 +112,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         contentBinding.tvViewMoreSynopsis.setOnClickListener(this);
         contentBinding.tvViewMoreRecommendation.setOnClickListener(this);
 
-        ShimmerHelper shimmerRecommendation = new ShimmerHelper(this,
+        ShimmerHelper shimmerRecommendation = new ShimmerHelper(
                 contentBinding.shimmerRecommendation, contentBinding.rvRecommendation);
         shimmerRecommendation.show();
 
@@ -142,7 +142,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                                 if (resultMedia.status == Status.SUCCESS) {
                                     if (resultMedia.data != null) {
                                         populateRecommendations(resultGenre.data, resultMedia.data);
-                                        shimmerRecommendation.hide();
+                                        shimmerRecommendation.hide(resultMedia.data.isEmpty());
                                     }
                                 }
                             }

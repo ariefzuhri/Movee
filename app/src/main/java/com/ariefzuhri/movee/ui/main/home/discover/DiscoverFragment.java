@@ -71,8 +71,8 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         tvAdapter = new MediaAdapter(ORIENTATION_TYPE_HORIZONTAL);
         binding.rvTv.setAdapter(tvAdapter);
 
-        shimmerMovie = new ShimmerHelper(getContext(), binding.shimmerMovie, binding.rvMovie);
-        shimmerTV = new ShimmerHelper(getContext(), binding.shimmerTv, binding.rvTv);
+        shimmerMovie = new ShimmerHelper(binding.shimmerMovie, binding.rvMovie);
+        shimmerTV = new ShimmerHelper(binding.shimmerTv, binding.rvTv);
 
         if (getActivity() != null){
             ViewModelFactory factory = ViewModelFactory.getInstance(getActivity().getApplication());
@@ -204,12 +204,12 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
     private void setMovieList(List<MediaEntity> result){
         movieAdapter.setData(result);
         if (!result.isEmpty()) binding.rvMovie.scrollToPosition(0);
-        shimmerMovie.hide();
+        shimmerMovie.hide(result.isEmpty());
     }
 
     private void setTVList(List<MediaEntity> result){
         tvAdapter.setData(result);
         if (!result.isEmpty()) binding.rvTv.scrollToPosition(0);
-        shimmerTV.hide();
+        shimmerTV.hide(result.isEmpty());
     }
 }

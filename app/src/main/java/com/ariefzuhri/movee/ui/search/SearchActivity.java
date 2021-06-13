@@ -47,7 +47,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         adapter = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.recyclerView.setAdapter(adapter);
 
-        shimmer = new ShimmerHelper(this, binding.shimmer, binding.recyclerView, binding.layoutEmpty);
+        shimmer = new ShimmerHelper(binding.shimmer, binding.recyclerView, binding.layoutEmpty);
         shimmer.show();
 
         ViewModelFactory factory = ViewModelFactory.getInstance(getApplication());

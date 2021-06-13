@@ -24,7 +24,7 @@ import static com.ariefzuhri.movee.utils.Constants.EXTRA_MEDIA_ID;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_MEDIA_TYPE;
 import static com.ariefzuhri.movee.utils.Constants.IMAGE_SIZE_NORMAL;
 import static com.ariefzuhri.movee.utils.Constants.ORIENTATION_TYPE_VERTICAL;
-import static com.ariefzuhri.movee.utils.DateHelper.getYearOfDate;
+import static com.ariefzuhri.movee.utils.DateUtils.getYearOfDate;
 
 public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> {
 

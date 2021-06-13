@@ -26,7 +26,7 @@ import retrofit2.Response;
 import static com.ariefzuhri.movee.BuildConfig.TMDB_API_KEY;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
-import static com.ariefzuhri.movee.utils.DateHelper.getCurrentDate;
+import static com.ariefzuhri.movee.utils.DateUtils.getCurrentDate;
 
 public class RemoteDataSource {
 

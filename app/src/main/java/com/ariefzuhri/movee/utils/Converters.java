@@ -11,13 +11,13 @@ import java.util.List;
 public class Converters {
 
     @TypeConverter
-    public static List<String> fromString(String value) {
+    public static List<String> toList(String value) {
         Type listType = new TypeToken<List<String>>() {}.getType();
         return new Gson().fromJson(value, listType);
     }
 
     @TypeConverter
-    public static String fromArrayList(List<String> list) {
+    public static String toString(List<String> list) {
         Gson gson = new Gson();
         return gson.toJson(list);
     }

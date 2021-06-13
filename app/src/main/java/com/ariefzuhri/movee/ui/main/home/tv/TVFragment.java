@@ -56,8 +56,8 @@ public class TVFragment extends Fragment {
         MediaAdapter adapterVert = new MediaAdapter(ORIENTATION_TYPE_VERTICAL);
         binding.rvVert.setAdapter(adapterVert);
 
-        ShimmerHelper shimmerHoriz = new ShimmerHelper(getContext(), binding.shimmerHoriz, binding.rvHoriz);
-        ShimmerHelper shimmerVert = new ShimmerHelper(getContext(), binding.shimmerVert, binding.rvVert);
+        ShimmerHelper shimmerHoriz = new ShimmerHelper(binding.shimmerHoriz, binding.rvHoriz);
+        ShimmerHelper shimmerVert = new ShimmerHelper(binding.shimmerVert, binding.rvVert);
         shimmerHoriz.show();
         shimmerVert.show();
 
@@ -77,8 +77,10 @@ public class TVFragment extends Fragment {
                 viewModel.getOnTheAir().observe(getViewLifecycleOwner(), resultTV -> {
                     if (resultTV != null){
                         if (resultTV.status == Status.SUCCESS){
-                            adapterHoriz.setData(resultTV.data);
-                            shimmerHoriz.hide();
+                            if (resultTV.data != null) {
+                                adapterHoriz.setData(resultTV.data);
+                                shimmerHoriz.hide(resultTV.data.isEmpty());
+                            }
                         }
                     }
                 });
@@ -86,8 +88,10 @@ public class TVFragment extends Fragment {
                 viewModel.getTrending().observe(getViewLifecycleOwner(), resultTV -> {
                     if (resultTV != null){
                         if (resultTV.status == Status.SUCCESS){
-                            adapterVert.setData(resultTV.data);
-                            shimmerVert.hide();
+                            if (resultTV.data != null) {
+                                adapterVert.setData(resultTV.data);
+                                shimmerVert.hide(resultTV.data.isEmpty());
+                            }
                         }
                     }
                 });
