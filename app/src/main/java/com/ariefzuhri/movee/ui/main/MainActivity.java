@@ -1,6 +1,7 @@
 package com.ariefzuhri.movee.ui.main;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
 import android.os.Bundle;
 import android.view.WindowManager;
@@ -18,10 +19,15 @@ public class MainActivity extends AppCompatActivity {
         setSupportActionBar(binding.toolbar);
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        MainPagerAdapter pagerAdapter = new MainPagerAdapter(getSupportFragmentManager());
+        MainPagerAdapter pagerAdapter = new MainPagerAdapter(this);
         binding.viewPager.setAdapter(pagerAdapter);
-
-        binding.bottomBar.setupBubbleTabBar(binding.viewPager);
+        binding.viewPager.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                binding.bottomBar.setSelected(position, false);
+            }
+        });
         binding.bottomBar.addBubbleListener(id -> {
             if (id == R.id.menu_movie) {
                 binding.viewPager.setCurrentItem(0);
