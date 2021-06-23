@@ -82,6 +82,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
                         if (result != null) {
                             if (result.status == Status.SUCCESS){
                                 movieAdapter.submitGenreList(result.data);
+                                tvAdapter.submitGenreList(result.data);
                             }
                         }
                     });
