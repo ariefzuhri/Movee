@@ -25,7 +25,7 @@ public class MediaEntity implements Parcelable {
     private List<GenreEntity> genres;
     private int runtime;
     private final String synopsis;
-    private List<TrailerEntity> trailer;
+    private List<TrailerEntity> trailers;
 
     public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, AiredDateEntity airedDate, List<Integer> genreIds, String synopsis) {
         this.id = id;
@@ -41,7 +41,7 @@ public class MediaEntity implements Parcelable {
         this.synopsis = synopsis;
     }
 
-    public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, int episodes, String status, AiredDateEntity airedDate, List<StudioEntity> studios, List<GenreEntity> genres, int runtime, String synopsis, List<TrailerEntity> trailer) {
+    public MediaEntity(int id, String title, String poster, String cover, double scoreAverage, int scoreCount, double popularity, String type, int episodes, String status, AiredDateEntity airedDate, List<StudioEntity> studios, List<GenreEntity> genres, int runtime, String synopsis, List<TrailerEntity> trailers) {
         this.id = id;
         this.title = title;
         this.poster = poster;
@@ -57,7 +57,7 @@ public class MediaEntity implements Parcelable {
         this.genres = genres;
         this.runtime = runtime;
         this.synopsis = synopsis;
-        this.trailer = trailer;
+        this.trailers = trailers;
     }
 
     protected MediaEntity(Parcel in) {
@@ -172,11 +172,11 @@ public class MediaEntity implements Parcelable {
         return synopsis;
     }
 
-    public List<TrailerEntity> getTrailer() {
-        return trailer;
+    public List<TrailerEntity> getTrailers() {
+        return trailers;
     }
 
-    public void setTrailer(List<TrailerEntity> trailer) {
-        this.trailer = trailer;
+    public void setTrailers(List<TrailerEntity> trailers) {
+        this.trailers = trailers;
     }
 }

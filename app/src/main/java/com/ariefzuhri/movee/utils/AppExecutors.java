@@ -10,6 +10,7 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 
 // Untuk berpindah thread yang nantinya akan digunakan di kelas NetworkBoundResource
+@SuppressWarnings("unused")
 public class AppExecutors {
 
     private static final int THREAD_COUNT = 3;

@@ -69,8 +69,8 @@ public class MovieFragment extends Fragment {
             viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
                 if (result != null) {
                     if (result.status == Status.SUCCESS) {
-                        adapterHoriz.setGenreList(result.data);
-                        adapterVert.setGenreList(result.data);
+                        adapterHoriz.submitGenreList(result.data);
+                        adapterVert.submitGenreList(result.data);
                     }
                 }
 
@@ -78,7 +78,7 @@ public class MovieFragment extends Fragment {
                     if (resultMovie != null){
                         if (resultMovie.status == Status.SUCCESS){
                             if (resultMovie.data != null) {
-                                adapterHoriz.setData(resultMovie.data);
+                                adapterHoriz.submitList(resultMovie.data);
                                 shimmerHoriz.hide(resultMovie.data.isEmpty());
                             }
                         }
@@ -89,7 +89,7 @@ public class MovieFragment extends Fragment {
                     if (resultMovie != null){
                         if (resultMovie.status == Status.SUCCESS){
                             if (resultMovie.data != null) {
-                                adapterVert.setData(resultMovie.data);
+                                adapterVert.submitList(resultMovie.data);
                                 shimmerVert.hide(resultMovie.data.isEmpty());
                             }
                         }

@@ -36,14 +36,15 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
         ORIENTATION_TYPE = orientationType;
     }
 
-    public void setGenreList(List<GenreEntity> genreList){
-        this.genreList.clear();
-        this.genreList.addAll(genreList);
-    }
-
-    public void setData(List<MediaEntity> mediaList){
+    public void submitList(List<MediaEntity> mediaList){
         this.mediaList.clear();
         this.mediaList.addAll(mediaList);
+        notifyDataSetChanged();
+    }
+
+    public void submitGenreList(List<GenreEntity> genreList){
+        this.genreList.clear();
+        this.genreList.addAll(genreList);
         notifyDataSetChanged();
     }
 

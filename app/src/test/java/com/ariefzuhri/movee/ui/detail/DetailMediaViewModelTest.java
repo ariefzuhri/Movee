@@ -98,7 +98,7 @@ public class DetailMediaViewModelTest {
         assertEquals(dummyMovieDetails.getGenres(), movieEntity.data.getGenres());
         assertEquals(dummyMovieDetails.getRuntime(), movieEntity.data.getRuntime());
         assertEquals(dummyMovieDetails.getSynopsis(), movieEntity.data.getSynopsis());
-        assertEquals(dummyMovieDetails.getTrailer(), movieEntity.data.getTrailer());
+        assertEquals(dummyMovieDetails.getTrailers(), movieEntity.data.getTrailers());
 
         viewModel.getMediaDetails().observeForever(mediaEntityObserver);
         verify(mediaEntityObserver).onChanged(Resource.success(dummyMovieDetails));
@@ -131,7 +131,7 @@ public class DetailMediaViewModelTest {
         assertEquals(dummyTVDetails.getGenres(), tvEntity.data.getGenres());
         assertEquals(dummyTVDetails.getRuntime(), tvEntity.data.getRuntime());
         assertEquals(dummyTVDetails.getSynopsis(), tvEntity.data.getSynopsis());
-        assertEquals(dummyTVDetails.getTrailer(), tvEntity.data.getTrailer());
+        assertEquals(dummyTVDetails.getTrailers(), tvEntity.data.getTrailers());
 
         viewModel.getMediaDetails().observeForever(mediaEntityObserver);
         verify(mediaEntityObserver).onChanged(Resource.success(dummyTVDetails));

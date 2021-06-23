@@ -67,6 +67,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private DetailMediaViewModel viewModel;
     private FavoriteWithGenres favorite;
     private Intent trailerIntent;
+    private MediaAdapter adapterRecommendation;
     private MediaEntity media;
 
     @Override
@@ -105,6 +106,8 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                     }
                 });
 
+        adapterRecommendation = new MediaAdapter(ORIENTATION_TYPE_HORIZONTAL);
+
         activityBinding.fabBack.setOnClickListener(this);
         activityBinding.fabFavorite.setOnClickListener(this);
         contentBinding.ibMoreTitle.setOnClickListener(this);
@@ -123,7 +126,6 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         if (bundle != null){
             String mediaType = bundle.getString(EXTRA_MEDIA_TYPE);
             int mediaId = bundle.getInt(EXTRA_MEDIA_ID);
-
             viewModel.setMedia(mediaType, mediaId);
 
             viewModel.getMediaDetails().observe(this, result -> {
@@ -134,19 +136,21 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
                 }
             });
             viewModel.getCredits().observe(this, result -> {});
+            viewModel.getFavorite().observe(this, this::setFavoriteState);
             viewModel.getGenres().observe(this, resultGenre -> {
                 if (resultGenre != null) {
                     if (resultGenre.status == Status.SUCCESS) {
-                        viewModel.getRecommendations().observe(this, resultMedia -> {
-                            if (resultMedia != null){
-                                if (resultMedia.status == Status.SUCCESS) {
-                                    if (resultMedia.data != null) {
-                                        populateRecommendations(resultGenre.data, resultMedia.data);
-                                        shimmerRecommendation.hide(resultMedia.data.isEmpty());
-                                    }
-                                }
-                            }
-                        });
+                        adapterRecommendation.submitGenreList(resultGenre.data);
+                    }
+                }
+            });
+            viewModel.getRecommendations().observe(this, resultMedia -> {
+                if (resultMedia != null){
+                    if (resultMedia.status == Status.SUCCESS) {
+                        if (resultMedia.data != null) {
+                            populateRecommendations(resultMedia.data);
+                            shimmerRecommendation.hide(resultMedia.data.isEmpty());
+                        }
                     }
                 }
             });
@@ -155,8 +159,6 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
 
     private void populateMedia(MediaEntity media){
         this.media = media;
-
-        viewModel.getFavorite().observe(this, this::setFavoriteState);
 
         activityBinding.tvToolbarTitle.setText(media.getTitle());
         loadImage(this, IMAGE_SIZE_HIGH, media.getCover() == null ? media.getPoster() : media.getCover(), activityBinding.imgCover);
@@ -218,7 +220,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         viewModel.getTrailers().observe(this, result -> {
             if (result.status == Status.SUCCESS) {
                 if (result.data != null) {
-                    media.setTrailer(result.data);
+                    media.setTrailers(result.data);
                     initTrailerIntent();
                 }
             }
@@ -241,8 +243,8 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     private void initTrailerIntent() {
         Intent intent = new Intent(Intent.ACTION_VIEW);
         String backupKey = "";
-        if (!media.getTrailer().isEmpty()){
-            for (TrailerEntity trailer : media.getTrailer()){
+        if (!media.getTrailers().isEmpty()){
+            for (TrailerEntity trailer : media.getTrailers()){
                 if (trailer.getSite().equals(VIDEO_SITE_YOUTUBE)){
                     if (trailer.getType().equals(VIDEO_TYPE_TRAILER) || trailer.getType().equals(VIDEO_TYPE_TEASER)){
                         intent.setData(Uri.parse(BASE_URL_YOUTUBE + trailer.getKey()));
@@ -265,17 +267,15 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         trailerIntent = intent;
     }
 
-    private void populateRecommendations(List<GenreEntity> genreList, List<MediaEntity> mediaList) {
+    private void populateRecommendations(List<MediaEntity> mediaList) {
         if (mediaList.isEmpty()){
             contentBinding.layoutRecommendation.setVisibility(View.GONE);
         } else {
             contentBinding.rvRecommendation.setLayoutManager(new LinearLayoutManager(this,
                     LinearLayoutManager.HORIZONTAL, false));
             contentBinding.rvRecommendation.setHasFixedSize(true);
-            MediaAdapter adapter = new MediaAdapter(ORIENTATION_TYPE_HORIZONTAL);
-            contentBinding.rvRecommendation.setAdapter(adapter);
-            adapter.setGenreList(genreList);
-            adapter.setData(mediaList);
+            contentBinding.rvRecommendation.setAdapter(adapterRecommendation);
+            adapterRecommendation.submitList(mediaList);
         }
     }
 

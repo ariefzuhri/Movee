@@ -2,6 +2,7 @@ package com.ariefzuhri.movee.utils;
 
 public interface Constants {
     String BASE_URL_YOUTUBE = "https://youtu.be/";
+    String BASE_URL_TMDB = "https://api.themoviedb.org/3/";
     String BASE_URL_TMDB_IMAGE = "https://image.tmdb.org/t/p/";
 
     String EXTRA_BOOKMARK_FILTER = "extra_favorite_filter";

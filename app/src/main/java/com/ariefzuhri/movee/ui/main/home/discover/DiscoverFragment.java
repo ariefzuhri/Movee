@@ -81,7 +81,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
                     result -> {
                         if (result != null) {
                             if (result.status == Status.SUCCESS){
-                                movieAdapter.setGenreList(result.data);
+                                movieAdapter.submitGenreList(result.data);
                             }
                         }
                     });
@@ -202,13 +202,13 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
     }
 
     private void setMovieList(List<MediaEntity> result){
-        movieAdapter.setData(result);
+        movieAdapter.submitList(result);
         if (!result.isEmpty()) binding.rvMovie.scrollToPosition(0);
         shimmerMovie.hide(result.isEmpty());
     }
 
     private void setTVList(List<MediaEntity> result){
-        tvAdapter.setData(result);
+        tvAdapter.submitList(result);
         if (!result.isEmpty()) binding.rvTv.scrollToPosition(0);
         shimmerTV.hide(result.isEmpty());
     }

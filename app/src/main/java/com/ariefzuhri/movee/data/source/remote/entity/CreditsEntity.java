@@ -5,24 +5,24 @@ import java.util.List;
 public class CreditsEntity {
 
     private final int id;
-    private final List<CastEntity> cast;
-    private final List<CrewEntity> crew;
+    private final List<CastEntity> casts;
+    private final List<CrewEntity> crews;
 
-    public CreditsEntity(int id, List<CastEntity> cast, List<CrewEntity> crew) {
+    public CreditsEntity(int id, List<CastEntity> casts, List<CrewEntity> crews) {
         this.id = id;
-        this.cast = cast;
-        this.crew = crew;
+        this.casts = casts;
+        this.crews = crews;
     }
 
     public int getId(){
         return id;
     }
 
-    public List<CastEntity> getCast(){
-        return cast;
+    public List<CastEntity> getCasts(){
+        return casts;
     }
 
-    public List<CrewEntity> getCrew(){
-        return crew;
+    public List<CrewEntity> getCrews(){
+        return crews;
     }
 }

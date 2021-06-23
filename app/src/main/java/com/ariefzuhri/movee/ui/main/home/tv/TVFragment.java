@@ -69,8 +69,8 @@ public class TVFragment extends Fragment {
             viewModel.getGenres().observe(getViewLifecycleOwner(), result -> {
                 if (result != null) {
                     if (result.status == Status.SUCCESS) {
-                        adapterHoriz.setGenreList(result.data);
-                        adapterVert.setGenreList(result.data);
+                        adapterHoriz.submitGenreList(result.data);
+                        adapterVert.submitGenreList(result.data);
                     }
                 }
 
@@ -78,7 +78,7 @@ public class TVFragment extends Fragment {
                     if (resultTV != null){
                         if (resultTV.status == Status.SUCCESS){
                             if (resultTV.data != null) {
-                                adapterHoriz.setData(resultTV.data);
+                                adapterHoriz.submitList(resultTV.data);
                                 shimmerHoriz.hide(resultTV.data.isEmpty());
                             }
                         }
@@ -89,7 +89,7 @@ public class TVFragment extends Fragment {
                     if (resultTV != null){
                         if (resultTV.status == Status.SUCCESS){
                             if (resultTV.data != null) {
-                                adapterVert.setData(resultTV.data);
+                                adapterVert.submitList(resultTV.data);
                                 shimmerVert.hide(resultTV.data.isEmpty());
                             }
                         }

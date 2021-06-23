@@ -5,7 +5,10 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import static com.ariefzuhri.movee.utils.Constants.BASE_URL_TMDB;
+
 public class ApiConfig {
+
     public static ApiService getApiService(){
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.BODY);
@@ -15,7 +18,7 @@ public class ApiConfig {
                 .build();
 
         Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl("https://api.themoviedb.org/3/")
+                .baseUrl(BASE_URL_TMDB)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build();

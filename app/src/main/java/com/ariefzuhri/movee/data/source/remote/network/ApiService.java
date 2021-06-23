@@ -15,7 +15,7 @@ import retrofit2.http.Path;
 import retrofit2.http.Query;
 
 public interface ApiService {
-    /* Pencarian */
+
     @GET("search/multi")
     Call<MultiSearchResponse> getMultiSearch(
             @Query("api_key") String apiKey,
@@ -23,7 +23,6 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Detail */
     @GET("movie/{movie_id}")
     Call<MovieDetailsResponse> getMovieDetails(
             @Path("movie_id") int movieId,
@@ -36,7 +35,6 @@ public interface ApiService {
             @Query("api_key") String apiKey
     );
 
-    /* Trending hari ini */
     @GET("trending/movie/day")
     Call<MovieResponse> getMovieTrending(
             @Query("api_key") String apiKey,
@@ -49,7 +47,6 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Rilis hari ini */
     @GET("discover/movie")
     Call<MovieResponse> getMovieLatestRelease(
             @Query("api_key") String apiKey,
@@ -66,7 +63,6 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Sedang tayang */
     @GET("movie/now_playing")
     Call<MovieResponse> getMovieNowPlaying(
             @Query("api_key") String apiKey,
@@ -79,14 +75,12 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Mendatang */
     @GET("movie/upcoming")
     Call<MovieResponse> getMovieUpcoming(
             @Query("api_key") String apiKey,
             @Query("page") int page
     );
 
-    /* Teratas */
     @GET("movie/top_rated")
     Call<MovieResponse> getMovieTopRated(
             @Query("api_key") String apiKey,
@@ -99,7 +93,6 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Populer */
     @GET("movie/popular")
     Call<MovieResponse> getMoviePopular(
             @Query("api_key") String apiKey,
@@ -112,7 +105,6 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Rekomendasi */
     @GET("movie/{movie_id}/recommendations")
     Call<MovieResponse> getMovieRecommendations(
             @Path("movie_id") int movieId,
@@ -127,14 +119,12 @@ public interface ApiService {
             @Query("page") int page
     );
 
-    /* Genre */
     @GET("genre/{media_type}/list")
     Call<GenresResponse> getGenres(
             @Path("media_type") String mediaType,
             @Query("api_key") String apiKey
     );
 
-    /* VideoItem */
     @GET("{media_type}/{media_id}/videos")
     Call<VideosResponse> getVideos(
             @Path("media_type") String mediaType,
@@ -142,7 +132,6 @@ public interface ApiService {
             @Query("api_key") String apiKey
     );
 
-    /* Kredit */
     @GET("{media_type}/{media_id}/credits")
     Call<CreditsResponse> getCredits(
             @Path("media_type") String mediaType,

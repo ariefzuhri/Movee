@@ -59,7 +59,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         viewModel.getGenres().observe(this, result -> {
             if (result != null) {
                 if (result.status == Status.SUCCESS){
-                    adapter.setGenreList(result.data);
+                    adapter.submitGenreList(result.data);
                 }
             }
         });
@@ -116,7 +116,7 @@ public class SearchActivity extends AppCompatActivity implements SearchView.OnQu
         public void onChanged(Resource<List<MediaEntity>> result) {
             if (result != null){
                 if (result.status == Status.SUCCESS) {
-                    adapter.setData(result.data);
+                    adapter.submitList(result.data);
                     shimmer.hide(adapter.getItemCount() == 0);
                     binding.swipeRefreshLayout.setRefreshing(false);
                 }
