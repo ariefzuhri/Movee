@@ -98,7 +98,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
 
         public void bind(@NotNull MediaEntity media) {
             loadImage(itemView.getContext(), IMAGE_SIZE_NORMAL, media.getPoster(), imgPoster);
-            tvScore.setText(String.valueOf(media.getScoreAverage()));
+            tvScore.setText(String.valueOf((double) Math.round(media.getScoreAverage() * 10) / 10));
             tvReleaseYear.setText(getYearOfDate(media.getAiredDate().getStartDate()));
             tvTitle.setText(media.getTitle());
             tvGenre.setText(TextUtils.join(", ", getGenreList(media)));
