@@ -9,6 +9,8 @@ import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
 
+import org.jetbrains.annotations.NotNull;
+
 import static com.ariefzuhri.movee.utils.Constants.BASE_URL_TMDB_IMAGE;
 
 public class AppUtils {
@@ -37,6 +39,7 @@ public class AppUtils {
                 .into(imageView);
     }
 
+    @NotNull
     private static RequestOptions myGlideOptions(){
         return RequestOptions.placeholderOf(R.drawable.ic_no_pic)
                 .error(R.drawable.ic_no_pic);

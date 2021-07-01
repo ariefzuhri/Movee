@@ -10,6 +10,7 @@ import com.ariefzuhri.movee.R;
 import com.ariefzuhri.movee.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

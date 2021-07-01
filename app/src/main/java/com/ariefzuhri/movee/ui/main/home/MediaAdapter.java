@@ -16,6 +16,8 @@ import com.ariefzuhri.movee.databinding.ItemMediaVertBinding;
 import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
 import com.ariefzuhri.movee.ui.detail.DetailMediaActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -94,7 +96,7 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
             tvGenre = binding.tvGenre;
         }
 
-        public void bind(MediaEntity media) {
+        public void bind(@NotNull MediaEntity media) {
             loadImage(itemView.getContext(), IMAGE_SIZE_NORMAL, media.getPoster(), imgPoster);
             tvScore.setText(String.valueOf(media.getScoreAverage()));
             tvReleaseYear.setText(getYearOfDate(media.getAiredDate().getStartDate()));
@@ -109,7 +111,8 @@ public class MediaAdapter extends RecyclerView.Adapter<MediaAdapter.ViewHolder> 
             });
         }
 
-        private List<String> getGenreList(MediaEntity media){
+        @NotNull
+        private List<String> getGenreList(@NotNull MediaEntity media){
             List<String> thisMediaGenreList = new ArrayList<>();
             for (int thisMediaGenreId : media.getGenreIds()){
                 for (GenreEntity genre : genreList){

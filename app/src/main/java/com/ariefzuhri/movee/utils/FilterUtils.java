@@ -2,12 +2,17 @@ package com.ariefzuhri.movee.utils;
 
 import androidx.sqlite.db.SimpleSQLiteQuery;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
 import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 
 public class FilterUtils {
 
-    public static SimpleSQLiteQuery getFilteredFavoriteQuery(FilterFavorite filter) {
+    @NotNull
+    @Contract("_ -> new")
+    public static SimpleSQLiteQuery getFilteredFavoriteQuery(@NotNull FilterFavorite filter) {
         StringBuilder simpleQuery = new StringBuilder().append("SELECT * FROM favoriteEntities");
 
         if (!filter.isShowAllMediaType()) {

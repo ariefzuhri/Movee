@@ -39,6 +39,9 @@ import com.ariefzuhri.movee.utils.AppExecutors;
 import com.ariefzuhri.movee.utils.FilterFavorite;
 import com.ariefzuhri.movee.vo.Resource;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -336,7 +339,9 @@ public class CatalogRepository implements CatalogDataSource {
     }
 
     /* Untuk konversi */
-    private MediaEntity movieItemToMedia(MovieItem item){
+    @NotNull
+    @Contract("_ -> new")
+    private MediaEntity movieItemToMedia(@NotNull MovieItem item){
         return new MediaEntity(item.getId(),
                 item.getTitle(),
                 item.getPosterPath(),
@@ -350,7 +355,9 @@ public class CatalogRepository implements CatalogDataSource {
                 item.getOverview());
     }
 
-    private MediaEntity tvItemToMedia(TVItem item){
+    @NotNull
+    @Contract("_ -> new")
+    private MediaEntity tvItemToMedia(@NotNull TVItem item){
         return new MediaEntity(item.getId(),
                 item.getName(),
                 item.getPosterPath(),
@@ -364,7 +371,8 @@ public class CatalogRepository implements CatalogDataSource {
                 item.getOverview());
     }
 
-    private List<MediaEntity> movieResponseToMediaList(MovieResponse response){
+    @NotNull
+    private List<MediaEntity> movieResponseToMediaList(@NotNull MovieResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (MovieItem movie : response.getResults()){
             mediaList.add(movieItemToMedia(movie));
@@ -372,7 +380,8 @@ public class CatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    private List<MediaEntity> tvResponsesToMediaList(TVResponse response){
+    @NotNull
+    private List<MediaEntity> tvResponsesToMediaList(@NotNull TVResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (TVItem tv : response.getResults()){
             mediaList.add(tvItemToMedia(tv));
@@ -380,7 +389,8 @@ public class CatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    private List<MediaEntity> multiSearchResponseToMediaList(MultiSearchResponse response){
+    @NotNull
+    private List<MediaEntity> multiSearchResponseToMediaList(@NotNull MultiSearchResponse response){
         List<MediaEntity> mediaList = new ArrayList<>();
         for (SearchResultItem searchResult : response.getResults()){
             if (searchResult.getMediaType().equals(MEDIA_TYPE_MOVIE)){
@@ -412,7 +422,8 @@ public class CatalogRepository implements CatalogDataSource {
         return mediaList;
     }
 
-    private MediaEntity movieDetailsResponseToMedia(MovieDetailsResponse response){
+    @NotNull
+    private MediaEntity movieDetailsResponseToMedia(@NotNull MovieDetailsResponse response){
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -436,7 +447,8 @@ public class CatalogRepository implements CatalogDataSource {
                 null);
     }
 
-    private MediaEntity tvDetailsResponseToMedia(TVDetailsResponse response){
+    @NotNull
+    private MediaEntity tvDetailsResponseToMedia(@NotNull TVDetailsResponse response){
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -460,7 +472,8 @@ public class CatalogRepository implements CatalogDataSource {
                 null);
     }
 
-    private List<StudioEntity> productionCompaniesItemToStudioList(List<ProductionCompanyItem> items){
+    @NotNull
+    private List<StudioEntity> productionCompaniesItemToStudioList(@NotNull List<ProductionCompanyItem> items){
         List<StudioEntity> studioList = new ArrayList<>();
         for (ProductionCompanyItem studio : items){
             studioList.add(new StudioEntity(studio.getId(), studio.getName(), studio.getLogoPath()));
@@ -468,7 +481,8 @@ public class CatalogRepository implements CatalogDataSource {
         return studioList;
     }
 
-    private List<GenreEntity> genresItemToGenreList(List<GenreItem> items){
+    @NotNull
+    private List<GenreEntity> genresItemToGenreList(@NotNull List<GenreItem> items){
         List<GenreEntity> genreList = new ArrayList<>();
         for (GenreItem genre : items){
             genreList.add(new GenreEntity(genre.getId(), genre.getName()));
@@ -476,7 +490,8 @@ public class CatalogRepository implements CatalogDataSource {
         return genreList;
     }
 
-    private List<GenreEntity> genreResponseToGenreList(GenresResponse response){
+    @NotNull
+    private List<GenreEntity> genreResponseToGenreList(@NotNull GenresResponse response){
         List<GenreEntity> genreList = new ArrayList<>();
         for (GenreItem genre : response.getGenres()) {
             genreList.add(new GenreEntity(genre.getId(), genre.getName()));
@@ -484,7 +499,8 @@ public class CatalogRepository implements CatalogDataSource {
         return genreList;
     }
 
-    private List<TrailerEntity> videosResponseToTrailerList(VideosResponse response){
+    @NotNull
+    private List<TrailerEntity> videosResponseToTrailerList(@NotNull VideosResponse response){
         List<TrailerEntity> trailerList = new ArrayList<>();
         for (VideoItem video : response.getResults()) {
             trailerList.add(new TrailerEntity(video.getId(),
@@ -497,7 +513,9 @@ public class CatalogRepository implements CatalogDataSource {
         return trailerList;
     }
 
-    private CreditsEntity creditsResponseToCredit(CreditsResponse response){
+    @NotNull
+    @Contract("_ -> new")
+    private CreditsEntity creditsResponseToCredit(@NotNull CreditsResponse response){
         List<CastEntity> castList = new ArrayList<>();
         for (CastItem cast : response.getCast()) {
             castList.add(new CastEntity(cast.getId(),

@@ -14,6 +14,8 @@ import com.ariefzuhri.movee.R;
 import com.ariefzuhri.movee.utils.FilterFavorite;
 import com.ariefzuhri.movee.databinding.DialogFilterFavoriteBinding;
 
+import org.jetbrains.annotations.NotNull;
+
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_BOOKMARK_FILTER;
 
 public class FilterFavoriteDialog extends DialogFragment implements View.OnClickListener {
@@ -49,7 +51,7 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
         return dialog;
     }
 
-    private void setCheckedChip(FilterFavorite filter) {
+    private void setCheckedChip(@NotNull FilterFavorite filter) {
         binding.chipTitle.setChecked(filter.isSortedByTitle());
         binding.chipRating.setChecked(filter.isSortedByRating());
         binding.chipReleaseDate.setChecked(filter.isSortedByReleaseDate());
@@ -59,7 +61,7 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NotNull View view) {
         int id = view.getId();
         if (id == R.id.btn_apply){
             filter.setSortedByTitle(binding.chipTitle.isChecked());

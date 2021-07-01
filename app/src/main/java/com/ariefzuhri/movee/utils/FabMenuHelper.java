@@ -19,7 +19,7 @@ public class FabMenuHelper {
     private Animation fromBottom;
     private Animation toBottom;
 
-    public FabMenuHelper(Context context, FloatingActionButton parent, FloatingActionButton... child) {
+    public FabMenuHelper(Context context, FloatingActionButton parent, @NotNull FloatingActionButton... child) {
         for (FloatingActionButton c : child) c.setVisibility(View.INVISIBLE);
         initializeAnimation(context);
         initializeOnClickListener(parent, child);

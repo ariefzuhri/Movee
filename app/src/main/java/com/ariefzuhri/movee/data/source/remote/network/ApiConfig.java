@@ -1,5 +1,7 @@
 package com.ariefzuhri.movee.data.source.remote.network;
 
+import org.jetbrains.annotations.NotNull;
+
 import okhttp3.OkHttpClient;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
@@ -9,6 +11,7 @@ import static com.ariefzuhri.movee.utils.Constants.BASE_URL_TMDB;
 
 public class ApiConfig {
 
+    @NotNull
     public static ApiService getApiService(){
         HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
                 .setLevel(HttpLoggingInterceptor.Level.BODY);

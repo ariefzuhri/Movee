@@ -1,5 +1,8 @@
 package com.ariefzuhri.movee.utils;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import java.text.DateFormat;
 import java.text.DateFormatSymbols;
 import java.text.ParseException;
@@ -12,12 +15,14 @@ public class DateUtils {
 
     public static final String DATE_FORMAT = "yyyy-MM-dd";
 
+    @NotNull
     public static String getCurrentDate(){
         DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());
         Date date = new Date();
         return dateFormat.format(date);
     }
 
+    @NotNull
     public static String getDateWithoutYear(String date){
         if (date == null) return "N/A";
         Date formattedDate = stringToDate(date);
@@ -30,6 +35,7 @@ public class DateUtils {
         } else return "N/A";
     }
 
+    @NotNull
     public static String getYearOfDate(String date){
         if (date == null) return "N/A";
         Date formattedDate = stringToDate(date);
@@ -40,6 +46,7 @@ public class DateUtils {
         } else return "N/A";
     }
 
+    @Nullable
     private static Date stringToDate(String date) {
         try {
             DateFormat dateFormat = new SimpleDateFormat(DATE_FORMAT, Locale.getDefault());

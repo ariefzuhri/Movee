@@ -27,6 +27,9 @@ import com.ariefzuhri.movee.data.source.remote.response.TVResponse;
 import com.ariefzuhri.movee.data.source.remote.response.VideoItem;
 import com.ariefzuhri.movee.data.source.remote.response.VideosResponse;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -37,6 +40,8 @@ import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
 
 public class DataDummy {
 
+    @NotNull
+    @Contract(" -> new")
     public static CreditsEntity generateDummyMovieCredits(){
         List<CastEntity> castList = new ArrayList<>();
         castList.add(new CastEntity(1835721,
@@ -167,6 +172,8 @@ public class DataDummy {
         );
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MediaEntity generateDummyMovieDetails(){
         List<GenreEntity> genreList = new ArrayList<>();
         genreList.add(new GenreEntity(16, "Animation"));
@@ -198,6 +205,7 @@ public class DataDummy {
         );
     }
 
+    @NotNull
     public static List<GenreEntity> generateDummyGenres(){
         List<GenreEntity> genreList = new ArrayList<>();
         genreList.add(new GenreEntity(28, "Action"));
@@ -230,6 +238,7 @@ public class DataDummy {
         return genreList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieLatestRelease(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(798141,
@@ -247,6 +256,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieNowPlaying(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(527774,
@@ -264,6 +274,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMoviePopular(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(791373,
@@ -281,6 +292,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieRecommendations(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(242828,
@@ -298,6 +310,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieTopRated(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(724089,
@@ -315,6 +328,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieTrending(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(791373,
@@ -332,6 +346,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMovieUpcoming(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(791373,
@@ -349,6 +364,7 @@ public class DataDummy {
         return movieList;
     }
 
+    @NotNull
     public static List<TrailerEntity> generateDummyMovieVideos(){
         List<TrailerEntity> trailerList = new ArrayList<>();
         trailerList.add(new TrailerEntity("5c60047dc3a3683ccf8f9487",
@@ -360,6 +376,7 @@ public class DataDummy {
         return trailerList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyMultiSearch(){
         List<MediaEntity> movieList = new ArrayList<>();
         movieList.add(new MediaEntity(83097,
@@ -388,6 +405,8 @@ public class DataDummy {
         );
         return movieList;
     }
+    @NotNull
+    @Contract(" -> new")
     public static CreditsEntity generateDummyTVCredits(){
         List<CastEntity> castList = new ArrayList<>();
         castList.add(new CastEntity(1254135,
@@ -562,6 +581,8 @@ public class DataDummy {
         );
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MediaEntity generateDummyTVDetails(){
         List<GenreEntity> genreList = new ArrayList<>();
         genreList.add(new GenreEntity(16, "Animation"));
@@ -594,6 +615,7 @@ public class DataDummy {
         );
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVLatestRelease(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(120424,
@@ -611,6 +633,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVOnTheAir(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(88396,
@@ -628,6 +651,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVPopular(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(88396,
@@ -645,6 +669,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVRecommendations(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(72636,
@@ -662,6 +687,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVTopRated(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(100,
@@ -679,6 +705,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<MediaEntity> generateDummyTVTrending(){
         List<MediaEntity> tvList = new ArrayList<>();
         tvList.add(new MediaEntity(88396,
@@ -696,6 +723,7 @@ public class DataDummy {
         return tvList;
     }
 
+    @NotNull
     public static List<TrailerEntity> generateDummyTVVideos(){
         List<TrailerEntity> trailerList = new ArrayList<>();
         trailerList.add(new TrailerEntity("5c3224cec3a3680b8ca6c045",
@@ -719,7 +747,8 @@ public class DataDummy {
         return trailerList;
     }
 
-    public static FavoriteWithGenres generateDummyFavorite(MediaEntity media) {
+    @NotNull
+    public static FavoriteWithGenres generateDummyFavorite(@NotNull MediaEntity media) {
         FavoriteEntity favorite = new FavoriteEntity(media.getId(),
                 media.getType(),
                 media.getTitle(),
@@ -730,12 +759,15 @@ public class DataDummy {
         return new FavoriteWithGenres(favorite, favorite.getGenres());
     }
 
-    public static List<FavoriteWithGenres> generateDummyFavorites(List<MediaEntity> mediaList) {
+    @NotNull
+    public static List<FavoriteWithGenres> generateDummyFavorites(@NotNull List<MediaEntity> mediaList) {
         List<FavoriteWithGenres> favorites = new ArrayList<>();
         for (MediaEntity media : mediaList) favorites.add(generateDummyFavorite(media));
         return favorites;
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static CreditsResponse generateRemoteDummyMovieCredits(){
         List<CastItem> cast = new ArrayList<>();
         cast.add(new CastItem(1835721,
@@ -866,6 +898,8 @@ public class DataDummy {
         );
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieDetailsResponse generateRemoteDummyMovieDetails(){
         List<GenreItem> genreList = new ArrayList<>();
         genreList.add(new GenreItem(16, "Animation"));
@@ -894,6 +928,8 @@ public class DataDummy {
         );
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static GenresResponse generateRemoteDummyGenres(){
         List<GenreItem> results = new ArrayList<>();
         results.add(new GenreItem(28, "Action"));
@@ -926,6 +962,8 @@ public class DataDummy {
         return new GenresResponse(results);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieLatestRelease(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(798141,
@@ -942,6 +980,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieNowPlaying(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(527774,
@@ -958,6 +998,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMoviePopular(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(791373,
@@ -974,6 +1016,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieRecommendations(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(242828,
@@ -990,6 +1034,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieTopRated(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(724089,
@@ -1006,6 +1052,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieTrending(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(791373,
@@ -1022,6 +1070,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MovieResponse generateRemoteDummyMovieUpcoming(){
         List<MovieItem> results = new ArrayList<>();
         results.add(new MovieItem(791373,
@@ -1038,6 +1088,8 @@ public class DataDummy {
         return new MovieResponse(1, 16, results, 303);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static VideosResponse generateRemoteDummyMovieVideos(){
         List<VideoItem> results = new ArrayList<>();
         results.add(new VideoItem("5c60047dc3a3683ccf8f9487",
@@ -1049,6 +1101,8 @@ public class DataDummy {
         return new VideosResponse(476292, results);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static MultiSearchResponse generateRemoteDummyMultiSearch(){
         List<SearchResultItem> results = new ArrayList<>();
         results.add(new SearchResultItem(83097,
@@ -1082,6 +1136,8 @@ public class DataDummy {
         return new MultiSearchResponse(1, 1, results, 2);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static CreditsResponse generateRemoteDummyTVCredits(){
         List<CastItem> cast = new ArrayList<>();
         cast.add(new CastItem(1254135,
@@ -1253,6 +1309,8 @@ public class DataDummy {
         return new CreditsResponse(83097, cast, crew);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVDetailsResponse generateRemoteDummyTVDetails(){
         List<GenreItem> genres = new ArrayList<>();
         genres.add(new GenreItem(16, "Animation"));
@@ -1285,6 +1343,8 @@ public class DataDummy {
         );
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVLatestRelease(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(120424,
@@ -1301,6 +1361,8 @@ public class DataDummy {
         return new TVResponse(1, 1, results, 4);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVOnTheAir(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(88396,
@@ -1317,6 +1379,8 @@ public class DataDummy {
         return new TVResponse(1, 42, results, 821);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVPopular(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(88396,
@@ -1333,6 +1397,8 @@ public class DataDummy {
         return new TVResponse(1, 500, results, 10000);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVRecommendations(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(72636,
@@ -1349,6 +1415,8 @@ public class DataDummy {
         return new TVResponse(1, 2, results, 40);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVTopRated(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(100,
@@ -1365,6 +1433,8 @@ public class DataDummy {
         return new TVResponse(1, 86, results, 1712);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static TVResponse generateRemoteDummyTVTrending(){
         List<TVItem> results = new ArrayList<>();
         results.add(new TVItem(88396,
@@ -1381,6 +1451,8 @@ public class DataDummy {
         return new TVResponse(1, 1000, results, 20000);
     }
 
+    @NotNull
+    @Contract(" -> new")
     public static VideosResponse generateRemoteDummyTVVideos(){
         List<VideoItem> results = new ArrayList<>();
         results.add(new VideoItem("5c3224cec3a3680b8ca6c045",

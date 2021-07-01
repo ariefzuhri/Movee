@@ -20,6 +20,8 @@ import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
 import com.ariefzuhri.movee.databinding.ItemMediaGridBinding;
 import com.ariefzuhri.movee.ui.detail.DetailMediaActivity;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -79,7 +81,7 @@ public class FavoriteAdapter extends PagedListAdapter<FavoriteWithGenres, Favori
             this.binding = binding;
         }
 
-        public void bind(FavoriteWithGenres favoriteWithGenres) {
+        public void bind(@NotNull FavoriteWithGenres favoriteWithGenres) {
             FavoriteEntity favorite = favoriteWithGenres.favorite;
 
             loadImage(itemView.getContext(), IMAGE_SIZE_NORMAL, favorite.getPoster(), binding.imgPoster);

@@ -12,6 +12,8 @@ import com.ariefzuhri.movee.data.source.remote.response.TVResponse;
 import com.ariefzuhri.movee.data.source.remote.response.VideosResponse;
 import com.google.gson.Gson;
 
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -22,6 +24,7 @@ public class JsonHelper {
         this.context = context;
     }
 
+    @Nullable
     @SuppressWarnings("ResultOfMethodCallIgnored")
     private String parsingFileToString(String fileName){
         try {

@@ -30,6 +30,9 @@ import androidx.core.widget.NestedScrollView;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -157,7 +160,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         }
     }
 
-    private void populateMedia(MediaEntity media){
+    private void populateMedia(@NotNull MediaEntity media){
         this.media = media;
 
         activityBinding.tvToolbarTitle.setText(media.getTitle());
@@ -267,7 +270,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         trailerIntent = intent;
     }
 
-    private void populateRecommendations(List<MediaEntity> mediaList) {
+    private void populateRecommendations(@NotNull List<MediaEntity> mediaList) {
         if (mediaList.isEmpty()){
             contentBinding.layoutRecommendation.setVisibility(View.GONE);
         } else {
@@ -280,7 +283,7 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NotNull View view) {
         int id = view.getId();
         if (id == R.id.fab_back) {
             onBackPressed();
@@ -306,7 +309,9 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
         viewModel.setFavorite(favorite, state);
     }
 
-    private FavoriteEntity createFavoriteObject(MediaEntity media){
+    @NotNull
+    @Contract("_ -> new")
+    private FavoriteEntity createFavoriteObject(@NotNull MediaEntity media){
         return new FavoriteEntity(media.getId(),
                 media.getType(),
                 media.getTitle(),

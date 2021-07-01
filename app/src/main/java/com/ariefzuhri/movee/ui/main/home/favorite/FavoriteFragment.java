@@ -96,7 +96,7 @@ public class FavoriteFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
-    public void onFilterApplied(FilterFavorite filter) {
+    public void onFilterApplied(@NotNull FilterFavorite filter) {
         if (filter.isShowAllMediaType()) binding.chipAll.setChecked(true);
         else if (filter.isShowMovieOnly()) binding.chipMovie.setChecked(true);
         else if (filter.isShowTVOnly()) binding.chipTv.setChecked(true);
@@ -110,7 +110,7 @@ public class FavoriteFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NotNull View view) {
         int itemId = view.getId();
         if (itemId == R.id.fab_edit) {
             if (editView) binding.recyclerView.setAdapter(adapter);

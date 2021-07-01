@@ -3,6 +3,7 @@ package com.ariefzuhri.movee.vo;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.Objects;
@@ -29,14 +30,20 @@ public class Resource<T> {
         this.message = message;
     }
 
+    @NotNull
+    @Contract(value = "_ -> new", pure = true)
     public static <T> Resource<T> success(@Nullable T data) {
         return new Resource<>(SUCCESS, data, null);
     }
 
+    @NotNull
+    @Contract(value = "_, _ -> new", pure = true)
     public static <T> Resource<T> error(String msg, @Nullable T data) {
         return new Resource<>(ERROR, data, msg);
     }
 
+    @NotNull
+    @Contract(value = "_ -> new", pure = true)
     public static <T> Resource<T> loading(@Nullable T data) {
         return new Resource<>(LOADING, data, null);
     }

@@ -177,7 +177,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
     }
 
     @Override
-    public void onClick(View view) {
+    public void onClick(@NotNull View view) {
         Intent intent = new Intent(getContext(), SearchActivity.class);
         int id = view.getId();
         if (id == R.id.tv_view_more_movie){

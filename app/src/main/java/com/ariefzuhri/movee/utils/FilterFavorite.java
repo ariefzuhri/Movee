@@ -3,6 +3,9 @@ package com.ariefzuhri.movee.utils;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import org.jetbrains.annotations.Contract;
+import org.jetbrains.annotations.NotNull;
+
 public class FilterFavorite implements Parcelable {
 
     private boolean sortedByTitle;
@@ -21,7 +24,7 @@ public class FilterFavorite implements Parcelable {
         this.showTVOnly = false;
     }
 
-    protected FilterFavorite(Parcel in) {
+    protected FilterFavorite(@NotNull Parcel in) {
         sortedByTitle = in.readByte() != 0;
         sortedByRating = in.readByte() != 0;
         sortedByReleaseDate = in.readByte() != 0;
@@ -31,7 +34,7 @@ public class FilterFavorite implements Parcelable {
     }
 
     @Override
-    public void writeToParcel(Parcel dest, int flags) {
+    public void writeToParcel(@NotNull Parcel dest, int flags) {
         dest.writeByte((byte) (sortedByTitle ? 1 : 0));
         dest.writeByte((byte) (sortedByRating ? 1 : 0));
         dest.writeByte((byte) (sortedByReleaseDate ? 1 : 0));
@@ -46,11 +49,15 @@ public class FilterFavorite implements Parcelable {
     }
 
     public static final Creator<FilterFavorite> CREATOR = new Creator<FilterFavorite>() {
+        @NotNull
+        @Contract("_ -> new")
         @Override
         public FilterFavorite createFromParcel(Parcel in) {
             return new FilterFavorite(in);
         }
 
+        @NotNull
+        @Contract(value = "_ -> new", pure = true)
         @Override
         public FilterFavorite[] newArray(int size) {
             return new FilterFavorite[size];

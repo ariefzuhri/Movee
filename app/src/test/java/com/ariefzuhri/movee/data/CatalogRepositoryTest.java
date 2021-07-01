@@ -423,8 +423,8 @@ public class CatalogRepositoryTest {
         verify(remote).getCredits(eq(MEDIA_TYPE_MOVIE), eq(movieId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         assertNotNull(movieCreditsEntity.data);
-        assertEquals(movieCreditsResponse.getCast().size(), movieCreditsEntity.data.getCast().size());
-        assertEquals(movieCreditsResponse.getCrew().size(), movieCreditsEntity.data.getCrew().size());
+        assertEquals(movieCreditsResponse.getCast().size(), movieCreditsEntity.data.getCasts().size());
+        assertEquals(movieCreditsResponse.getCrew().size(), movieCreditsEntity.data.getCrews().size());
 
         doAnswer(invocation -> {
             ((RemoteDataSource.LoadCreditsCallback) invocation.getArguments()[2])
@@ -436,8 +436,8 @@ public class CatalogRepositoryTest {
         verify(remote).getCredits(eq(MEDIA_TYPE_TV), eq(tvId), any(RemoteDataSource.LoadCreditsCallback.class));
 
         assertNotNull(tvCreditsEntity.data);
-        assertEquals(tvCreditsResponse.getCast().size(), tvCreditsEntity.data.getCast().size());
-        assertEquals(tvCreditsResponse.getCrew().size(), tvCreditsEntity.data.getCrew().size());
+        assertEquals(tvCreditsResponse.getCast().size(), tvCreditsEntity.data.getCasts().size());
+        assertEquals(tvCreditsResponse.getCrew().size(), tvCreditsEntity.data.getCrews().size());
     }
 
     @SuppressWarnings("unchecked")
