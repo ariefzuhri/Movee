@@ -94,10 +94,8 @@ dependencies {
     annotationProcessor "com.github.bumptech.glide:compiler:$glideVersion"
 
     // Bottom navbar, edit text, fab menu, flexbox, rounded image, shimmer
-    implementation "com.fxn769:bubbletabbar:$bubbleTabBarVersion"
-    implementation "com.libizo:customedittext:$customEditTextVersion"
-    implementation "io.github.yavski:fab-speed-dial:$fabSpeedDialVersion"
-    implementation "com.google.android:flexbox:$flexboxVersion"
+    implementation "io.ak1:bubbletabbar:$bubbleTabBarVersion"
+    implementation "com.google.android.flexbox:flexbox:$flexboxVersion"
     implementation "com.makeramen:roundedimageview:$roundedImageViewVersion"
     implementation "com.facebook.shimmer:shimmer:$shimmerVersion"
 }

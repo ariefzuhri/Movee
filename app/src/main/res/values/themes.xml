@@ -59,10 +59,19 @@
     <style name="FloatingActionButton">
         <item name="borderWidth">0dp</item>
         <item name="pressedTranslationZ">0dp</item>
-        <item name="fabSize">mini</item>
         <item name="elevation">8dp</item>
+    </style>
+
+    <style name="FloatingActionButton.Mini">
+        <item name="fabSize">mini</item>
         <item name="android:backgroundTint">@color/white</item>
         <item name="tint">@color/blue</item>
+    </style>
+
+    <style name="FloatingActionButton.Normal">
+        <item name="fabSize">normal</item>
+        <item name="android:backgroundTint">@color/blue</item>
+        <item name="tint">@color/white</item>
     </style>
 
     <style name="ImageView">

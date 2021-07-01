@@ -27,7 +27,7 @@
         android:overScrollMode="never"
         android:layout_below="@+id/toolbar"/>
 
-    <com.fxn.BubbleTabBar
+    <io.ak1.BubbleTabBar
         android:id="@+id/bottom_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

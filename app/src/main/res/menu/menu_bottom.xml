@@ -8,24 +8,24 @@
         android:id="@+id/menu_movie"
         android:icon="@drawable/ic_movie"
         android:title="@string/movie"
-        android:iconTint="@color/blue"
+        android:color="@color/blue"
         android:checked="true" />
 
     <item
         android:id="@+id/menu_tv"
         android:icon="@drawable/ic_tv"
         android:title="@string/tv"
-        android:iconTint="@color/blue" />
+        android:color="@color/blue" />
 
     <item
         android:id="@+id/menu_discover"
         android:icon="@drawable/ic_discover"
         android:title="@string/discover"
-        android:iconTint="@color/blue" />
+        android:color="@color/blue" />
 
     <item
         android:id="@+id/menu_favorite"
         android:icon="@drawable/ic_bookmark"
         android:title="@string/favorite"
-        android:iconTint="@color/blue" />
+        android:color="@color/blue" />
 </menu>

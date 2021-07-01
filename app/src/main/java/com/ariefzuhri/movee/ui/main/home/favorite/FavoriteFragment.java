@@ -9,12 +9,12 @@ import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.ariefzuhri.movee.R;
 import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.utils.FabMenuHelper;
 import com.ariefzuhri.movee.utils.FilterFavorite;
 import com.ariefzuhri.movee.databinding.FragmentFavoriteBinding;
 import com.ariefzuhri.movee.viewmodel.ViewModelFactory;
@@ -22,12 +22,10 @@ import com.google.android.material.chip.ChipGroup;
 
 import org.jetbrains.annotations.NotNull;
 
-import io.github.yavski.fabspeeddial.SimpleMenuListenerAdapter;
-
 import static com.ariefzuhri.movee.utils.AppUtils.showToast;
 import static com.ariefzuhri.movee.utils.Constants.EXTRA_BOOKMARK_FILTER;
 
-public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedChangeListener, FilterFavoriteDialog.FavoriteFilterDialogListener, FavoriteAdapter.FavoriteAdapterListener {
+public class FavoriteFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedChangeListener, FilterFavoriteDialog.FavoriteFilterDialogListener, FavoriteAdapter.FavoriteAdapterListener {
 
     private FilterFavorite filter;
     private FavoriteViewModel viewModel;
@@ -70,24 +68,9 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
                 else binding.layoutEmpty.setVisibility(View.INVISIBLE);
             });
 
-            binding.fabOption.setMenuListener(new SimpleMenuListenerAdapter() {
-                @Override
-                public boolean onMenuItemSelected(MenuItem item) {
-                    int itemId = item.getItemId();
-                    if (itemId == R.id.fab_edit) {
-                        if (editView) binding.recyclerView.setAdapter(adapter);
-                        else binding.recyclerView.setAdapter(editAdapter);
-                        editView = !editView;
-                    } else if (itemId == R.id.fab_filter) {
-                        Bundle bundle = new Bundle();
-                        bundle.putParcelable(EXTRA_BOOKMARK_FILTER, filter);
-                        FilterFavoriteDialog dialog = new FilterFavoriteDialog();
-                        dialog.setArguments(bundle);
-                        dialog.show(getChildFragmentManager(), dialog.getTag());
-                    }
-                    return true;
-                }
-            });
+            new FabMenuHelper(getContext(), binding.fabOption, binding.fabEdit, binding.fabFilter);
+            binding.fabEdit.setOnClickListener(this);
+            binding.fabFilter.setOnClickListener(this);
 
             binding.cgCategory.setOnCheckedChangeListener(this);
         }
@@ -124,5 +107,21 @@ public class FavoriteFragment extends Fragment implements ChipGroup.OnCheckedCha
     public void onFavoriteRemoved(FavoriteEntity favorite) {
         viewModel.deleteFavorite(favorite);
         showToast(getContext(), getString(R.string.success_remove));
+    }
+
+    @Override
+    public void onClick(View view) {
+        int itemId = view.getId();
+        if (itemId == R.id.fab_edit) {
+            if (editView) binding.recyclerView.setAdapter(adapter);
+            else binding.recyclerView.setAdapter(editAdapter);
+            editView = !editView;
+        } else if (itemId == R.id.fab_filter) {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable(EXTRA_BOOKMARK_FILTER, filter);
+            FilterFavoriteDialog dialog = new FilterFavoriteDialog();
+            dialog.setArguments(bundle);
+            dialog.show(getChildFragmentManager(), dialog.getTag());
+        }
     }
 }

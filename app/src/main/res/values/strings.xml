@@ -66,4 +66,5 @@
     <string name="empty_favorite_desc">Looks like you don\'t have anything in your list</string>
     <string name="back">Back</string>
     <string name="search_hint">Search movies or tv shows…</string>
+    <string name="edit_filter">Edit and filter</string>
 </resources>
