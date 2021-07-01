@@ -70,7 +70,7 @@ dependencies {
     androidTestImplementation "androidx.test:runner:$androidTestVersion"
     androidTestImplementation "androidx.test:rules:$androidTestVersion"
     testImplementation "androidx.arch.core:core-testing:$androidCoreTestVersion"
-    implementation "androidx.test.espresso:espresso-idling-resource:$idleResourceVersion"
+    implementation "androidx.test.espresso:espresso-idling-resource:$espressoVersion"
     testImplementation "org.robolectric:robolectric:$robolectricVersion"
 
     // Data storage
