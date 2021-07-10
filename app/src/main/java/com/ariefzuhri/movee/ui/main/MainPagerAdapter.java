@@ -14,6 +14,8 @@ import org.jetbrains.annotations.NotNull;
 
 public class MainPagerAdapter extends FragmentStateAdapter {
 
+    private static final int TRANSACTION_SCREENS_NUMBER = 4;
+
     public MainPagerAdapter(@NonNull FragmentActivity fragmentActivity) {
         super(fragmentActivity);
     }
@@ -27,12 +29,12 @@ public class MainPagerAdapter extends FragmentStateAdapter {
             case 1: return new TVFragment();
             case 2: return new DiscoverFragment();
             case 3: return new FavoriteFragment();
-            default: return new Fragment();
+            default: throw new IllegalStateException("Invalid adapter position");
         }
     }
 
     @Override
     public int getItemCount() {
-        return 4;
+        return TRANSACTION_SCREENS_NUMBER;
     }
 }

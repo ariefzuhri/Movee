@@ -10,7 +10,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
-import com.ariefzuhri.movee.R;
 import com.ariefzuhri.movee.utils.FilterFavorite;
 import com.ariefzuhri.movee.databinding.DialogFilterFavoriteBinding;
 
@@ -63,7 +62,7 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
     @Override
     public void onClick(@NotNull View view) {
         int id = view.getId();
-        if (id == R.id.btn_apply){
+        if (id == binding.btnApply.getId()){
             filter.setSortedByTitle(binding.chipTitle.isChecked());
             filter.setSortedByRating(binding.chipRating.isChecked());
             filter.setSortedByReleaseDate(binding.chipReleaseDate.isChecked());
@@ -73,10 +72,10 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
 
             listener.onFilterApplied(filter);
             dialog.dismiss();
-        } else if (id == R.id.tv_reset){
+        } else if (id == binding.tvReset.getId()){
             filter = new FilterFavorite();
             setCheckedChip(filter);
-        } else if (id == R.id.btn_cancel || id == R.id.ib_close){
+        } else if (id == binding.btnCancel.getId() || id == binding.ibClose.getId()){
             dialog.dismiss();
         }
     }

@@ -79,15 +79,15 @@ public class FavoriteFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onCheckedChanged(ChipGroup group, int checkedId) {
         if (filter == null) return;
-        if (checkedId == R.id.chip_all) {
+        if (checkedId == binding.chipAll.getId()) {
             filter.setShowAllMediaType(true);
             filter.setShowMovieOnly(false);
             filter.setShowTVOnly(false);
-        } else if (checkedId == R.id.chip_movie) {
+        } else if (checkedId == binding.chipMovie.getId()) {
             filter.setShowAllMediaType(false);
             filter.setShowMovieOnly(true);
             filter.setShowTVOnly(false);
-        } else if (checkedId == R.id.chip_tv) {
+        } else if (checkedId == binding.chipTv.getId()) {
             filter.setShowAllMediaType(false);
             filter.setShowMovieOnly(false);
             filter.setShowTVOnly(true);
@@ -112,11 +112,11 @@ public class FavoriteFragment extends Fragment implements View.OnClickListener, 
     @Override
     public void onClick(@NotNull View view) {
         int itemId = view.getId();
-        if (itemId == R.id.fab_edit) {
+        if (itemId == binding.fabEdit.getId()) {
             if (editView) binding.recyclerView.setAdapter(adapter);
             else binding.recyclerView.setAdapter(editAdapter);
             editView = !editView;
-        } else if (itemId == R.id.fab_filter) {
+        } else if (itemId == binding.fabFilter.getId()) {
             Bundle bundle = new Bundle();
             bundle.putParcelable(EXTRA_BOOKMARK_FILTER, filter);
             FilterFavoriteDialog dialog = new FilterFavoriteDialog();

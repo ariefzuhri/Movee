@@ -98,7 +98,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
         shimmerMovie.show();
         shimmerTV.show();
         binding.layoutTv.setVisibility(View.VISIBLE);
-        if (checkedId == R.id.chip_popular) {
+        if (checkedId == binding.chipPopular.getId()) {
             binding.tvMovie.setText(R.string.popular);
             binding.tvTv.setText(R.string.popular);
             viewModel.getMoviePopular().observe(getViewLifecycleOwner(), result -> {
@@ -115,7 +115,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
                     }
                 }
             });
-        } else if (checkedId == R.id.chip_upcoming) {
+        } else if (checkedId == binding.chipUpcoming.getId()) {
             binding.tvMovie.setText(R.string.upcoming);
             viewModel.getMovieUpcoming().observe(getViewLifecycleOwner(), result -> {
                 if (result != null){
@@ -125,7 +125,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
                 }
             });
             binding.layoutTv.setVisibility(View.INVISIBLE);
-        } else if (checkedId == R.id.chip_latest_release) {
+        } else if (checkedId == binding.chipLatestRelease.getId()) {
             binding.tvMovie.setText(R.string.latest_release);
             binding.tvTv.setText(R.string.latest_release);
             viewModel.getMovieLatestRelease().observe(getViewLifecycleOwner(), result -> {
@@ -142,7 +142,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
                     }
                 }
             });
-        } else if (checkedId == R.id.chip_top_rated) {
+        } else if (checkedId == binding.chipTopRated.getId()) {
             binding.tvMovie.setText(R.string.top_rated);
             binding.tvTv.setText(R.string.top_rated);
             viewModel.getMovieTopRated().observe(getViewLifecycleOwner(), result -> {
@@ -180,7 +180,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
     public void onClick(@NotNull View view) {
         Intent intent = new Intent(getContext(), SearchActivity.class);
         int id = view.getId();
-        if (id == R.id.tv_view_more_movie){
+        if (id == binding.tvViewMoreMovie.getId()){
             if (binding.chipPopular.isChecked()) {
                 intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_MOVIE_POPULAR);
             } else if (binding.chipUpcoming.isChecked()) {
@@ -190,7 +190,7 @@ public class DiscoverFragment extends Fragment implements View.OnClickListener, 
             } else if (binding.chipTopRated.isChecked()) {
                 intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_MOVIE_TOP_RATED);
             }
-        } else if (id == R.id.tv_view_more_tv){
+        } else if (id == binding.tvViewMoreTv.getId()){
             if (binding.chipPopular.isChecked()) {
                 intent.putExtra(EXTRA_QUERY_TYPE, QUERY_TYPE_TV_POPULAR);
             } else if (binding.chipLatestRelease.isChecked()) {

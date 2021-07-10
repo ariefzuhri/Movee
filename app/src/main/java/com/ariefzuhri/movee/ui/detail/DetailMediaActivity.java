@@ -285,21 +285,21 @@ public class DetailMediaActivity extends AppCompatActivity implements View.OnCli
     @Override
     public void onClick(@NotNull View view) {
         int id = view.getId();
-        if (id == R.id.fab_back) {
+        if (id == activityBinding.fabBack.getId()) {
             onBackPressed();
-        } else if (id == R.id.fab_favorite) {
+        } else if (id == activityBinding.fabFavorite.getId()) {
             if (media != null) setFavorite(media, favorite != null);
             else showToast(this, getString(R.string.toast_data_loading));
-        } else if (id == R.id.ib_more_title) {
+        } else if (id == contentBinding.ibMoreTitle.getId()) {
             if (media != null) showToast(this, media.getTitle());
             else showToast(this, getString(R.string.toast_data_loading));
-        } else if (id == R.id.btn_trailer) {
+        } else if (id == activityBinding.btnTrailer.getId()) {
             if (trailerIntent != null) startActivity(trailerIntent);
             else showToast(this, getString(R.string.toast_data_loading));
-        } else if (id == R.id.tv_view_more_synopsis) {
+        } else if (id == contentBinding.tvViewMoreSynopsis.getId()) {
             contentBinding.tvSynopsis.setMaxLines(Integer.MAX_VALUE);
             contentBinding.tvViewMoreSynopsis.setVisibility(View.GONE);
-        } else if (id == R.id.tv_view_more_recommendation) {
+        } else if (id == contentBinding.tvViewMoreRecommendation.getId()) {
             viewMoreRecommendations(media);
         }
     }
