@@ -9,12 +9,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 import static com.ariefzuhri.movee.core.utils.Constants.BASE_URL_TMDB;
 
+import com.ariefzuhri.movee.BuildConfig;
+
 public class ApiConfig {
 
     @NotNull
     public static ApiService getApiService() {
-        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor()
-                .setLevel(HttpLoggingInterceptor.Level.BODY);
+        HttpLoggingInterceptor loggingInterceptor = new HttpLoggingInterceptor();
+        if (BuildConfig.DEBUG) {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.BODY);
+        } else {
+            loggingInterceptor.setLevel(HttpLoggingInterceptor.Level.NONE);
+        }
 
         OkHttpClient client = new OkHttpClient.Builder()
                 .addInterceptor(loggingInterceptor)
