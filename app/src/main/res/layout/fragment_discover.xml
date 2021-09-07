@@ -138,12 +138,17 @@
                     <include layout="@layout/layout_media_horiz_placeholder" />
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_movie"
-                    style="@style/RecyclerView"
+                <com.ariefzuhri.movee.core.ui.custom.NestedScrollableHost
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp" />
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_movie"
+                        style="@style/RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp" />
+                </com.ariefzuhri.movee.core.ui.custom.NestedScrollableHost>
             </FrameLayout>
         </LinearLayout>
 
@@ -194,12 +199,17 @@
                     <include layout="@layout/layout_media_horiz_placeholder" />
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rv_tv"
-                    style="@style/RecyclerView"
+                <com.ariefzuhri.movee.core.ui.custom.NestedScrollableHost
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:paddingHorizontal="16dp" />
+                    android:layout_height="wrap_content">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rv_tv"
+                        style="@style/RecyclerView"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingHorizontal="16dp" />
+                </com.ariefzuhri.movee.core.ui.custom.NestedScrollableHost>
             </FrameLayout>
         </LinearLayout>
     </LinearLayout>
