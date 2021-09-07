@@ -55,9 +55,6 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
         binding.chipTitle.setChecked(filter.isSortedByTitle());
         binding.chipRating.setChecked(filter.isSortedByRating());
         binding.chipReleaseDate.setChecked(filter.isSortedByReleaseDate());
-        binding.chipAll.setChecked(filter.isShowAllMediaType());
-        binding.chipMovie.setChecked(filter.isShowMovieOnly());
-        binding.chipTv.setChecked(filter.isShowTVOnly());
     }
 
     @Override
@@ -67,9 +64,6 @@ public class FilterFavoriteDialog extends DialogFragment implements View.OnClick
             filter.setSortedByTitle(binding.chipTitle.isChecked());
             filter.setSortedByRating(binding.chipRating.isChecked());
             filter.setSortedByReleaseDate(binding.chipReleaseDate.isChecked());
-            filter.setShowAllMediaType(binding.chipAll.isChecked());
-            filter.setShowMovieOnly(binding.chipMovie.isChecked());
-            filter.setShowTVOnly(binding.chipTv.isChecked());
 
             listener.onFilterApplied(filter);
             dialog.dismiss();

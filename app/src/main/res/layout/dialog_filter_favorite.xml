@@ -84,52 +84,6 @@
             android:textAppearance="@style/MyTextAppearance" />
     </com.google.android.material.chip.ChipGroup>
 
-    <TextView
-        android:id="@+id/tv_category"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:text="@string/category"
-        android:textSize="@dimen/font_sm"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cg_sort" />
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/cg_category"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:chipSpacing="8dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@+id/tv_category"
-        app:layout_constraintTop_toBottomOf="@+id/tv_category"
-        app:selectionRequired="true"
-        app:singleSelection="true">
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_all"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/all"
-            android:textAppearance="@style/MyTextAppearance" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_movie"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/movie"
-            android:textAppearance="@style/MyTextAppearance" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/chip_tv"
-            style="@style/Widget.MaterialComponents.Chip.Choice"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/tv"
-            android:textAppearance="@style/MyTextAppearance" />
-    </com.google.android.material.chip.ChipGroup>
-
     <LinearLayout
         android:id="@+id/lyt_button"
         android:layout_width="0dp"
@@ -141,7 +95,7 @@
         android:orientation="horizontal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/cg_category">
+        app:layout_constraintTop_toBottomOf="@+id/cg_sort">
 
         <Button
             android:id="@+id/btn_cancel"
