@@ -4,16 +4,17 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
-import com.ariefzuhri.movee.data.source.remote.entity.CreditsEntity;
-import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.TrailerEntity;
-import com.ariefzuhri.movee.data.CatalogRepository;
-import com.ariefzuhri.movee.utils.DataDummy;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.movee.core.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.TrailerEntity;
+import com.ariefzuhri.movee.core.data.repository.CatalogRepository;
+import com.ariefzuhri.movee.core.utils.DataDummy;
+import com.ariefzuhri.movee.detail.DetailMediaViewModel;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
-import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.core.data.repository.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -25,8 +26,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_MOVIE;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_TV;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -67,7 +68,7 @@ public class DetailMediaViewModelTest {
     private Observer<FavoriteWithGenres> favoriteEntitiesObserver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         viewModel = new DetailMediaViewModel(catalogRepository);
     }
 
@@ -276,7 +277,7 @@ public class DetailMediaViewModelTest {
     }
 
     @Test
-    public void getFavorite(){
+    public void getFavorite() {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
         FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(dummyTVDetails);
@@ -301,7 +302,7 @@ public class DetailMediaViewModelTest {
     }
 
     @Test
-    public void setFavorite(){
+    public void setFavorite() {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
         FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);
@@ -321,7 +322,7 @@ public class DetailMediaViewModelTest {
     }
 
     @Test
-    public void updateFavorite(){
+    public void updateFavorite() {
         viewModel.setMedia(MEDIA_TYPE_TV, tvId);
 
         FavoriteWithGenres dummyFavoriteWithGenres = DataDummy.generateDummyFavorite(dummyTVDetails);

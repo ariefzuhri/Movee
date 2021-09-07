@@ -6,47 +6,48 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
-import com.ariefzuhri.movee.data.source.local.LocalDataSource;
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
-import com.ariefzuhri.movee.data.source.remote.ApiResponse;
-import com.ariefzuhri.movee.data.source.remote.RemoteDataSource;
-import com.ariefzuhri.movee.data.source.remote.entity.AiredDateEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.CastEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.CreditsEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.CrewEntity;
-import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.StudioEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.TrailerEntity;
-import com.ariefzuhri.movee.data.source.remote.response.CastItem;
-import com.ariefzuhri.movee.data.source.remote.response.CreditsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.CrewItem;
-import com.ariefzuhri.movee.data.source.remote.response.GenreItem;
-import com.ariefzuhri.movee.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MovieDetailsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MovieItem;
-import com.ariefzuhri.movee.data.source.remote.response.MovieResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MultiSearchResponse;
-import com.ariefzuhri.movee.data.source.remote.response.ProductionCompanyItem;
-import com.ariefzuhri.movee.data.source.remote.response.SearchResultItem;
-import com.ariefzuhri.movee.data.source.remote.response.TVDetailsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.TVItem;
-import com.ariefzuhri.movee.data.source.remote.response.TVResponse;
-import com.ariefzuhri.movee.data.source.remote.response.VideoItem;
-import com.ariefzuhri.movee.data.source.remote.response.VideosResponse;
-import com.ariefzuhri.movee.utils.AppExecutors;
-import com.ariefzuhri.movee.utils.FilterFavorite;
-import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.core.data.repository.CatalogDataSource;
+import com.ariefzuhri.movee.core.data.repository.NetworkBoundResource;
+import com.ariefzuhri.movee.core.data.source.local.LocalDataSource;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.movee.core.data.source.remote.network.ApiResponse;
+import com.ariefzuhri.movee.core.data.source.remote.RemoteDataSource;
+import com.ariefzuhri.movee.core.data.source.remote.entity.AiredDateEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.CastEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.CrewEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.StudioEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.TrailerEntity;
+import com.ariefzuhri.movee.core.data.source.remote.response.CastItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.CreditsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.CrewItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.GenreItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.GenresResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MovieDetailsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MovieItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.MovieResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MultiSearchResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.ProductionCompanyItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.SearchResultItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.TVDetailsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.TVItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.TVResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.VideoItem;
+import com.ariefzuhri.movee.core.data.source.remote.response.VideosResponse;
+import com.ariefzuhri.movee.core.utils.AppExecutors;
+import com.ariefzuhri.movee.core.utils.FilterFavorite;
+import com.ariefzuhri.movee.core.data.repository.Resource;
 
-import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_MOVIE;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_TV;
 
 public class FakeCatalogRepository implements CatalogDataSource {
 
@@ -54,7 +55,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     private final LocalDataSource localDataSource;
     private final RemoteDataSource remoteDataSource;
 
-    public FakeCatalogRepository (@NonNull RemoteDataSource remoteDataSource, LocalDataSource localDataSource, AppExecutors appExecutors){
+    public FakeCatalogRepository(@NonNull RemoteDataSource remoteDataSource, LocalDataSource localDataSource, AppExecutors appExecutors) {
         this.appExecutors = appExecutors;
         this.localDataSource = localDataSource;
         this.remoteDataSource = remoteDataSource;
@@ -329,8 +330,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
 
     /* Untuk konversi */
     @NotNull
-    @Contract("_ -> new")
-    private MediaEntity movieItemToMedia(@NotNull MovieItem item){
+    private MediaEntity movieItemToMedia(@NotNull MovieItem item) {
         return new MediaEntity(item.getId(),
                 item.getTitle(),
                 item.getPosterPath(),
@@ -345,8 +345,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    @Contract("_ -> new")
-    private MediaEntity tvItemToMedia(@NotNull TVItem item){
+    private MediaEntity tvItemToMedia(@NotNull TVItem item) {
         return new MediaEntity(item.getId(),
                 item.getName(),
                 item.getPosterPath(),
@@ -361,28 +360,28 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    private List<MediaEntity> movieResponseToMediaList(@NotNull MovieResponse response){
+    private List<MediaEntity> movieResponseToMediaList(@NotNull MovieResponse response) {
         List<MediaEntity> mediaList = new ArrayList<>();
-        for (MovieItem movie : response.getResults()){
+        for (MovieItem movie : response.getResults()) {
             mediaList.add(movieItemToMedia(movie));
         }
         return mediaList;
     }
 
     @NotNull
-    private List<MediaEntity> tvResponsesToMediaList(@NotNull TVResponse response){
+    private List<MediaEntity> tvResponsesToMediaList(@NotNull TVResponse response) {
         List<MediaEntity> mediaList = new ArrayList<>();
-        for (TVItem tv : response.getResults()){
+        for (TVItem tv : response.getResults()) {
             mediaList.add(tvItemToMedia(tv));
         }
         return mediaList;
     }
 
     @NotNull
-    private List<MediaEntity> multiSearchResponseToMediaList(@NotNull MultiSearchResponse response){
+    private List<MediaEntity> multiSearchResponseToMediaList(@NotNull MultiSearchResponse response) {
         List<MediaEntity> mediaList = new ArrayList<>();
-        for (SearchResultItem searchResult : response.getResults()){
-            if (searchResult.getMediaType().equals(MEDIA_TYPE_MOVIE)){
+        for (SearchResultItem searchResult : response.getResults()) {
+            if (searchResult.getMediaType().equals(MEDIA_TYPE_MOVIE)) {
                 mediaList.add(new MediaEntity(searchResult.getId(),
                         searchResult.getTitle(),
                         searchResult.getPosterPath(),
@@ -394,7 +393,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
                         new AiredDateEntity(searchResult.getReleaseDate()),
                         searchResult.getGenreIds(),
                         searchResult.getOverview()));
-            } else if (searchResult.getMediaType().equals(MEDIA_TYPE_TV)){
+            } else if (searchResult.getMediaType().equals(MEDIA_TYPE_TV)) {
                 mediaList.add(new MediaEntity(searchResult.getId(),
                         searchResult.getName(),
                         searchResult.getPosterPath(),
@@ -412,7 +411,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    private MediaEntity movieDetailsResponseToMedia(@NotNull MovieDetailsResponse response){
+    private MediaEntity movieDetailsResponseToMedia(@NotNull MovieDetailsResponse response) {
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -437,7 +436,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    private MediaEntity tvDetailsResponseToMedia(@NotNull TVDetailsResponse response){
+    private MediaEntity tvDetailsResponseToMedia(@NotNull TVDetailsResponse response) {
         List<GenreEntity> genreList = genresItemToGenreList(response.getGenres());
         List<StudioEntity> studioList = productionCompaniesItemToStudioList(
                 response.getProductionCompanies()
@@ -462,25 +461,25 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    private List<StudioEntity> productionCompaniesItemToStudioList(@NotNull List<ProductionCompanyItem> items){
+    private List<StudioEntity> productionCompaniesItemToStudioList(@NotNull List<ProductionCompanyItem> items) {
         List<StudioEntity> studioList = new ArrayList<>();
-        for (ProductionCompanyItem studio : items){
+        for (ProductionCompanyItem studio : items) {
             studioList.add(new StudioEntity(studio.getId(), studio.getName(), studio.getLogoPath()));
         }
         return studioList;
     }
 
     @NotNull
-    private List<GenreEntity> genresItemToGenreList(@NotNull List<GenreItem> items){
+    private List<GenreEntity> genresItemToGenreList(@NotNull List<GenreItem> items) {
         List<GenreEntity> genreList = new ArrayList<>();
-        for (GenreItem genre : items){
+        for (GenreItem genre : items) {
             genreList.add(new GenreEntity(genre.getId(), genre.getName()));
         }
         return genreList;
     }
 
     @NotNull
-    private List<GenreEntity> genreResponseToGenreList(@NotNull GenresResponse response){
+    private List<GenreEntity> genreResponseToGenreList(@NotNull GenresResponse response) {
         List<GenreEntity> genreList = new ArrayList<>();
         for (GenreItem genre : response.getGenres()) {
             genreList.add(new GenreEntity(genre.getId(), genre.getName()));
@@ -489,7 +488,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    private List<TrailerEntity> videosResponseToTrailerList(@NotNull VideosResponse response){
+    private List<TrailerEntity> videosResponseToTrailerList(@NotNull VideosResponse response) {
         List<TrailerEntity> trailerList = new ArrayList<>();
         for (VideoItem video : response.getResults()) {
             trailerList.add(new TrailerEntity(video.getId(),
@@ -503,8 +502,7 @@ public class FakeCatalogRepository implements CatalogDataSource {
     }
 
     @NotNull
-    @Contract("_ -> new")
-    private CreditsEntity creditsResponseToCredit(@NotNull CreditsResponse response){
+    private CreditsEntity creditsResponseToCredit(@NotNull CreditsResponse response) {
         List<CastEntity> castList = new ArrayList<>();
         for (CastItem cast : response.getCast()) {
             castList.add(new CastEntity(cast.getId(),

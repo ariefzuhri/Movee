@@ -1,4 +1,5 @@
-/* Skenario Instrument Testing
+/*
+ * Skenario Instrument Testing
  *
  * Menampilkan data movie:
  * - Memberi tindakan klik pada menu movie di bottom navigation bar
@@ -119,7 +120,9 @@
  * - Memastikan recycler_view pada menu favorit dalam keadaan tampil
  * - Memastikan recycler_view berisi lebih dari atau sama dengan 0 item
  * - Memastikan fab_option pada menu favorit dalam keadaan tampil
- * - Memberi tindakan klik pada fab_option */
+ * - Memberi tindakan klik pada fab_option
+ */
+
 package com.ariefzuhri.movee.ui.main;
 
 import android.view.KeyEvent;
@@ -131,7 +134,8 @@ import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.matcher.ViewMatchers;
 
 import com.ariefzuhri.movee.R;
-import com.ariefzuhri.movee.utils.EspressoIdlingResource;
+import com.ariefzuhri.movee.core.utils.EspressoIdlingResource;
+import com.ariefzuhri.movee.main.MainActivity;
 
 import org.junit.After;
 import org.junit.Before;
@@ -159,7 +163,7 @@ import static org.hamcrest.Matchers.greaterThanOrEqualTo;
 public class MainActivityTest {
 
     @Before
-    public void setup(){
+    public void setup() {
         ActivityScenario.launch(MainActivity.class);
         IdlingRegistry.getInstance().register(EspressoIdlingResource.getEspressoIdlingResource());
     }
@@ -170,7 +174,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadMovies(){
+    public void loadMovies() {
         onView(withId(R.id.menu_movie)).perform(click());
         onView(allOf(withId(R.id.rv_horiz), isDescendantOfA(withId(R.id.fragment_movie))))
                 .check(withItemCount(equalTo(20)));
@@ -179,7 +183,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadTVs(){
+    public void loadTVs() {
         onView(withId(R.id.menu_tv)).perform(click());
         onView(allOf(withId(R.id.rv_horiz), isDescendantOfA(withId(R.id.fragment_tv))))
                 .check(withItemCount(equalTo(20)));
@@ -188,7 +192,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadDetailMovie(){
+    public void loadDetailMovie() {
         onView(withId(R.id.menu_movie)).perform(click());
         onView(allOf(withId(R.id.rv_vert), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
@@ -213,7 +217,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadDetailTV(){
+    public void loadDetailTV() {
         onView(withId(R.id.menu_tv)).perform(click());
         onView(allOf(withId(R.id.rv_vert), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));
@@ -238,7 +242,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadDiscover(){
+    public void loadDiscover() {
         onView(withId(R.id.menu_discover)).perform(click());
         onView(withId(R.id.chip_group)).check(matches(isDisplayed()));
 
@@ -271,7 +275,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadSearch(){
+    public void loadSearch() {
         onView(withId(R.id.menu_discover)).perform(click());
         onView(withId(R.id.search_view)).check(matches(isDisplayed()));
         onView(withId(R.id.search_view)).perform(click());
@@ -288,7 +292,7 @@ public class MainActivityTest {
     }
 
     @Test
-    public void loadFavorite(){
+    public void loadFavorite() {
         onView(withId(R.id.menu_movie)).perform(click());
         onView(allOf(withId(R.id.rv_vert), isDisplayed()))
                 .perform(RecyclerViewActions.actionOnItemAtPosition(0, click()));

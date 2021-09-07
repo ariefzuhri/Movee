@@ -17,7 +17,6 @@ public class RecyclerViewItemCountAssertion implements ViewAssertion {
     private final Matcher<Integer> matcher;
 
     @NotNull
-    @Contract("_ -> new")
     public static RecyclerViewItemCountAssertion withItemCount(int expectedCount) {
         return withItemCount(is(expectedCount));
     }

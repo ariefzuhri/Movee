@@ -1,21 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.search.SearchActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".search.SearchActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/blue"
         android:fitsSystemWindows="true"
         android:theme="@style/Theme.Movee.AppBarOverlay"
-        app:elevation="8dp"
-        android:background="@color/blue">
+        app:elevation="8dp">
 
         <com.google.android.material.appbar.CollapsingToolbarLayout
             android:id="@+id/toolbar_layout"
@@ -30,38 +29,38 @@
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Theme.Movee.PopupOverlay"
-                app:title="@null"
-                app:contentInsetEnd="0dp"
-                app:contentInsetStart="0dp">
+                app:title="@null">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal"
                     android:background="@color/blue"
-                    android:paddingHorizontal="16dp"
-                    android:gravity="center_vertical">
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="16dp">
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab_back"
                         style="@style/FloatingActionButton.Mini"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_back"
-                        android:contentDescription="@string/back" />
+                        android:contentDescription="@string/back"
+                        android:src="@drawable/ic_back" />
 
                     <TextView
                         android:id="@+id/tv_header"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="@dimen/font_md"
-                        android:textColor="@color/white"
-                        android:text="@string/loading"
                         android:layout_marginStart="16dp"
+                        android:ellipsize="end"
                         android:maxLines="1"
-                        android:ellipsize="end"/>
+                        android:text="@string/loading"
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/font_md" />
                 </LinearLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -71,10 +70,10 @@
             style="@style/SearchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:queryHint="@string/search_hint"
             android:layout_marginHorizontal="16dp"
             android:layout_marginVertical="8dp"
-            android:inputType="textCapWords"/>
+            android:inputType="textCapWords"
+            app:queryHint="@string/search_hint" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
@@ -98,7 +97,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:padding="16dp">
-                    <include layout="@layout/shimmer_layout_media_vert"/>
+
+                    <include layout="@layout/layout_media_vert_placeholder" />
                 </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <androidx.recyclerview.widget.RecyclerView
@@ -106,40 +106,41 @@
                     style="@style/RecyclerView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="16dp"/>
+                    android:padding="16dp" />
 
                 <LinearLayout
-                    android:id="@+id/layout_empty"
+                    android:id="@+id/lyt_empty"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
+                    android:layout_marginVertical="42dp"
                     android:gravity="center"
-                    android:layout_marginVertical="42dp">
+                    android:orientation="vertical">
 
                     <ImageView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:src="@drawable/ic_empty_search_result_128"
-                        android:contentDescription="@string/empty_search_result_title" />
+                        android:contentDescription="@string/empty_search_result_title"
+                        android:src="@drawable/ic_empty_search_result_128" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="4dp"
                         android:text="@string/empty_search_result_title"
-                        android:textStyle="bold"
                         android:textColor="@color/gray_dark"
                         android:textSize="@dimen/font_nm"
-                        android:layout_marginTop="16dp"
-                        android:layout_marginBottom="4dp"/>
+                        android:textStyle="bold" />
 
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/empty_search_result_desc"
                         android:textColor="@color/gray_dark"
-                        android:textSize="@dimen/font_nm"/>
+                        android:textSize="@dimen/font_nm" />
                 </LinearLayout>
             </FrameLayout>
         </androidx.core.widget.NestedScrollView>
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

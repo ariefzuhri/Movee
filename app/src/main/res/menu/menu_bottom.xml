@@ -1,31 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android"
     tools:targetApi="o">
 
     <item
         android:id="@+id/menu_movie"
-        android:icon="@drawable/ic_movie"
-        android:title="@string/movie"
+        android:checked="true"
         android:color="@color/blue"
-        android:checked="true" />
+        android:icon="@drawable/ic_menu_movie"
+        android:title="@string/movie" />
 
     <item
         android:id="@+id/menu_tv"
-        android:icon="@drawable/ic_tv"
-        android:title="@string/tv"
-        android:color="@color/blue" />
+        android:color="@color/blue"
+        android:icon="@drawable/ic_menu_tv"
+        android:title="@string/tv" />
 
     <item
         android:id="@+id/menu_discover"
-        android:icon="@drawable/ic_discover"
-        android:title="@string/discover"
-        android:color="@color/blue" />
+        android:color="@color/blue"
+        android:icon="@drawable/ic_menu_discover"
+        android:title="@string/discover" />
 
     <item
         android:id="@+id/menu_favorite"
-        android:icon="@drawable/ic_bookmark"
-        android:title="@string/favorite"
-        android:color="@color/blue" />
+        android:color="@color/blue"
+        android:icon="@drawable/ic_menu_favorite"
+        android:title="@string/favorite" />
 </menu>

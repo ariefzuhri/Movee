@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.home.favorite.FavoriteFragment">
+    tools:context=".main.favorite.FavoriteFragment">
 
     <androidx.core.widget.NestedScrollView
         style="@style/ScrollView"
@@ -43,7 +42,7 @@
                 android:text="@string/favorite"
                 android:textColor="@color/white"
                 android:textSize="@dimen/font_nm"
-                app:drawableStartCompat="@drawable/ic_bookmark" />
+                app:drawableStartCompat="@drawable/ic_favorite" />
 
             <HorizontalScrollView
                 android:id="@+id/sv_category"
@@ -100,7 +99,7 @@
                 android:paddingBottom="48dp" />
 
             <LinearLayout
-                android:id="@+id/layout_empty"
+                android:id="@+id/lyt_empty"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@+id/view_background"
@@ -113,7 +112,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:contentDescription="@string/empty_favorite_title"
-                    android:src="@drawable/ic_empty_favorite_128" />
+                    android:src="@drawable/ic_empty_favorite_86_108" />
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -178,4 +177,5 @@
         app:layout_constraintBottom_toTopOf="@+id/fab_filter"
         app:layout_constraintEnd_toEndOf="@+id/fab_option"
         app:layout_constraintStart_toStartOf="@+id/fab_option" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

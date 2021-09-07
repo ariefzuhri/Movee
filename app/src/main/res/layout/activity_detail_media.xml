@@ -1,11 +1,10 @@
-<androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.detail.DetailMediaActivity"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    tools:context=".detail.DetailMediaActivity">
 
     <com.google.android.material.appbar.AppBarLayout
         android:id="@+id/app_bar"
@@ -19,9 +18,9 @@
             android:id="@+id/toolbar_layout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:background="@color/blue"
             android:fitsSystemWindows="true"
             app:contentScrim="@color/blue"
-            android:background="@color/blue"
             app:layout_scrollFlags="scroll|exitUntilCollapsed"
             app:toolbarId="@+id/toolbar">
 
@@ -31,17 +30,17 @@
                 android:layout_width="match_parent"
                 android:layout_height="240dp"
                 android:contentDescription="@string/cover"
-                app:layout_collapseMode="parallax"/>
+                app:layout_collapseMode="parallax" />
 
             <androidx.appcompat.widget.Toolbar
                 android:id="@+id/toolbar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:contentInsetEnd="0dp"
+                app:contentInsetStart="0dp"
                 app:layout_collapseMode="pin"
                 app:popupTheme="@style/Theme.Movee.PopupOverlay"
-                app:title="@null"
-                app:contentInsetEnd="0dp"
-                app:contentInsetStart="0dp">
+                app:title="@null">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -52,37 +51,37 @@
                         style="@style/FloatingActionButton.Mini"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:src="@drawable/ic_back"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentStart="true"
-                        android:contentDescription="@string/back" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginStart="16dp"
+                        android:contentDescription="@string/back"
+                        android:src="@drawable/ic_back" />
 
                     <TextView
                         android:id="@+id/tv_toolbar_title"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:layout_marginHorizontal="16dp"
+                        android:layout_toStartOf="@+id/fab_favorite"
+                        android:layout_toEndOf="@+id/fab_back"
+                        android:ellipsize="end"
+                        android:maxLines="1"
                         android:text="@string/loading"
                         android:textColor="@color/white"
-                        android:textStyle="bold"
                         android:textSize="@dimen/font_md"
-                        android:layout_toEndOf="@+id/fab_back"
-                        android:layout_toStartOf="@+id/fab_favorite"
-                        android:maxLines="1"
-                        android:ellipsize="end"
-                        android:layout_marginHorizontal="16dp"
-                        android:layout_centerVertical="true"/>
+                        android:textStyle="bold" />
 
                     <com.google.android.material.floatingactionbutton.FloatingActionButton
                         android:id="@+id/fab_favorite"
                         style="@style/FloatingActionButton.Mini"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="16dp"
-                        android:src="@drawable/ic_bookmark_outline"
-                        android:layout_centerVertical="true"
                         android:layout_alignParentEnd="true"
-                        android:contentDescription="@string/favorite" />
+                        android:layout_centerVertical="true"
+                        android:layout_marginEnd="16dp"
+                        android:contentDescription="@string/favorite"
+                        android:src="@drawable/ic_unfavorite" />
                 </RelativeLayout>
             </androidx.appcompat.widget.Toolbar>
         </com.google.android.material.appbar.CollapsingToolbarLayout>
@@ -90,23 +89,24 @@
         <View
             android:layout_width="match_parent"
             android:layout_height="32dp"
-            android:background="@drawable/bg_content_detail"/>
+            android:background="@drawable/lyt_detail_media" />
     </com.google.android.material.appbar.AppBarLayout>
 
     <include
-        android:id="@+id/content_detail_media"
-        layout="@layout/content_detail_media" />
+        android:id="@+id/lyt_detail_media"
+        layout="@layout/layout_detail_media" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btn_trailer"
         style="@style/Button.Red"
         android:layout_width="match_parent"
         android:layout_height="60dp"
+        android:layout_gravity="bottom"
+        android:layout_margin="0dp"
         android:text="@string/trailer"
         app:icon="@drawable/ic_trailer"
         app:iconGravity="textStart"
         app:iconPadding="4dp"
-        app:layout_anchorGravity="bottom"
-        android:layout_gravity="bottom"
-        android:layout_margin="0dp"/>
+        app:layout_anchorGravity="bottom" />
+
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

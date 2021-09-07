@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.cardview.widget.CardView
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+    app:cardBackgroundColor="@android:color/transparent"
     app:cardCornerRadius="0dp"
     app:cardElevation="0dp"
     app:cardUseCompatPadding="true"
-    app:contentPadding="8dp"
-    app:cardBackgroundColor="@android:color/transparent">
+    app:contentPadding="8dp">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -31,24 +30,24 @@
                     style="@style/ImageView"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
+                    android:contentDescription="@string/poster"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintDimensionRatio="2:3"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintDimensionRatio="2:3"
-                    android:contentDescription="@string/poster"/>
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/tv_score"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_score"
+                    android:background="@drawable/lyt_score"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:paddingHorizontal="8dp"
                     android:text="@string/loading_number"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_sm"
-                    android:maxLines="1"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -56,13 +55,13 @@
                     android:id="@+id/tv_release_year"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="@drawable/bg_release_year"
+                    android:background="@drawable/lyt_release_year"
                     android:gravity="center"
+                    android:maxLines="1"
                     android:paddingHorizontal="8dp"
                     android:text="@string/loading_number"
                     android:textColor="@color/white"
                     android:textSize="@dimen/font_sm"
-                    android:maxLines="1"
                     app:layout_constraintEnd_toStartOf="@+id/tv_score"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,11 +72,11 @@
                     android:layout_marginStart="4dp"
                     android:layout_marginTop="4dp"
                     android:background="@android:color/transparent"
+                    android:contentDescription="@string/remove_favorite"
                     android:src="@drawable/ic_delete_36"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
                     android:visibility="invisible"
-                    android:contentDescription="@string/remove_favorite" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
@@ -85,24 +84,25 @@
             android:id="@+id/tv_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
             android:text="@string/loading"
             android:textColor="@color/black"
             android:textSize="@dimen/font_sm"
-            android:textStyle="bold"
-            android:lines="2"
-            android:maxLines="2"
-            android:ellipsize="end"
-            android:layout_marginTop="4dp"/>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/tv_genre"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
+            android:lines="2"
+            android:maxLines="2"
             android:text="@string/loading"
             android:textColor="@color/gray_dark"
-            android:textSize="@dimen/font_xs"
-            android:maxLines="2"
-            android:lines="2"
-            android:ellipsize="end" />
+            android:textSize="@dimen/font_xs" />
     </LinearLayout>
+
 </androidx.cardview.widget.CardView>

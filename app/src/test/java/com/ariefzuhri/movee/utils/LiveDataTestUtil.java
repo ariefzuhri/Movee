@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import java.util.concurrent.CountDownLatch;
 import java.util.concurrent.TimeUnit;
 
-// Membantu untuk mendapatkan value dari LiveData
+// Help to get value from LiveData
 public class LiveDataTestUtil {
 
     @SuppressWarnings("unchecked")

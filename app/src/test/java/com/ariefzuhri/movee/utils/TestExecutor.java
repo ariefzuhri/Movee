@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.util.concurrent.Executor;
 
-// Buat implementasi class dari Executor agar bisa dijalankan pada thread yang sama
+// Create a class implementation of Executor so that it can run on the same thread
 public class TestExecutor implements Executor {
 
     @Override

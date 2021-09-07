@@ -6,12 +6,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
-import com.ariefzuhri.movee.data.CatalogRepository;
-import com.ariefzuhri.movee.utils.DataDummy;
+import com.ariefzuhri.movee.core.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.movee.core.data.repository.CatalogRepository;
+import com.ariefzuhri.movee.core.utils.DataDummy;
+import com.ariefzuhri.movee.search.SearchViewModel;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
-import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.core.data.repository.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -22,18 +23,18 @@ import org.mockito.junit.MockitoJUnitRunner;
 
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_LATEST_RELEASE;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_NOW_PLAYING;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_POPULAR;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_RECOMMENDATIONS;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_TOP_RATED;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MOVIE_UPCOMING;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_MULTI_SEARCH;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_TV_LATEST_RELEASE;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_TV_ON_THE_AIR;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_TV_POPULAR;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_TV_RECOMMENDATIONS;
-import static com.ariefzuhri.movee.utils.Constants.QUERY_TYPE_TV_TOP_RATED;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_LATEST_RELEASE;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_NOW_PLAYING;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_POPULAR;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_RECOMMENDATIONS;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_TOP_RATED;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MOVIE_UPCOMING;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_MULTI_SEARCH;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_TV_LATEST_RELEASE;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_TV_ON_THE_AIR;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_TV_POPULAR;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_TV_RECOMMENDATIONS;
+import static com.ariefzuhri.movee.core.utils.Constants.QUERY_TYPE_TV_TOP_RATED;
 import static org.junit.Assert.*;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -65,7 +66,7 @@ public class SearchViewModelTest {
     private Observer<Resource<List<GenreEntity>>> genreEntitiesObserver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         viewModel = new SearchViewModel(application, catalogRepository);
         viewModel.setPage(page);
     }

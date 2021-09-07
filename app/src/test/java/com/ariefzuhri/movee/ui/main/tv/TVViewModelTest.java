@@ -4,13 +4,13 @@ import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 
-import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
-import com.ariefzuhri.movee.data.CatalogRepository;
-import com.ariefzuhri.movee.ui.main.home.tv.TVViewModel;
-import com.ariefzuhri.movee.utils.DataDummy;
+import com.ariefzuhri.movee.core.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.movee.core.data.repository.CatalogRepository;
+import com.ariefzuhri.movee.main.tv.TVViewModel;
+import com.ariefzuhri.movee.core.utils.DataDummy;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
-import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.core.data.repository.Resource;
 
 import org.junit.Before;
 import org.junit.Rule;
@@ -45,7 +45,7 @@ public class TVViewModelTest {
     private Observer<Resource<List<GenreEntity>>> genreEntitiesObserver;
 
     @Before
-    public void setUp(){
+    public void setUp() {
         viewModel = new TVViewModel(catalogRepository);
         viewModel.setTrendingPage(page);
     }

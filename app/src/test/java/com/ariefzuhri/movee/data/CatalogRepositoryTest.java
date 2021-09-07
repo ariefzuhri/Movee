@@ -5,38 +5,38 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.paging.DataSource;
 import androidx.paging.PagedList;
 
-import com.ariefzuhri.movee.data.source.local.LocalDataSource;
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteEntity;
-import com.ariefzuhri.movee.data.source.local.entity.FavoriteWithGenres;
-import com.ariefzuhri.movee.data.source.remote.ApiResponse;
-import com.ariefzuhri.movee.data.source.remote.RemoteDataSource;
-import com.ariefzuhri.movee.data.source.remote.entity.CreditsEntity;
-import com.ariefzuhri.movee.data.source.local.entity.GenreEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.MediaEntity;
-import com.ariefzuhri.movee.data.source.remote.entity.TrailerEntity;
-import com.ariefzuhri.movee.data.source.remote.response.CreditsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.GenresResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MovieDetailsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MovieResponse;
-import com.ariefzuhri.movee.data.source.remote.response.MultiSearchResponse;
-import com.ariefzuhri.movee.data.source.remote.response.TVDetailsResponse;
-import com.ariefzuhri.movee.data.source.remote.response.TVResponse;
-import com.ariefzuhri.movee.data.source.remote.response.VideosResponse;
-import com.ariefzuhri.movee.utils.AppExecutors;
-import com.ariefzuhri.movee.utils.DataDummy;
-import com.ariefzuhri.movee.utils.FilterFavorite;
+import com.ariefzuhri.movee.core.data.source.local.LocalDataSource;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.FavoriteWithGenres;
+import com.ariefzuhri.movee.core.data.source.remote.network.ApiResponse;
+import com.ariefzuhri.movee.core.data.source.remote.RemoteDataSource;
+import com.ariefzuhri.movee.core.data.source.remote.entity.CreditsEntity;
+import com.ariefzuhri.movee.core.data.source.local.entity.GenreEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.MediaEntity;
+import com.ariefzuhri.movee.core.data.source.remote.entity.TrailerEntity;
+import com.ariefzuhri.movee.core.data.source.remote.response.CreditsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.GenresResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MovieDetailsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MovieResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.MultiSearchResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.TVDetailsResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.TVResponse;
+import com.ariefzuhri.movee.core.data.source.remote.response.VideosResponse;
+import com.ariefzuhri.movee.core.utils.AppExecutors;
+import com.ariefzuhri.movee.core.utils.DataDummy;
+import com.ariefzuhri.movee.core.utils.FilterFavorite;
 import com.ariefzuhri.movee.utils.LiveDataTestUtil;
 import com.ariefzuhri.movee.utils.PagedListUtil;
 import com.ariefzuhri.movee.utils.TestExecutor;
-import com.ariefzuhri.movee.vo.Resource;
+import com.ariefzuhri.movee.core.data.repository.Resource;
 
 import org.junit.Rule;
 import org.junit.Test;
 
 import java.util.List;
 
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_MOVIE;
-import static com.ariefzuhri.movee.utils.Constants.MEDIA_TYPE_TV;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_MOVIE;
+import static com.ariefzuhri.movee.core.utils.Constants.MEDIA_TYPE_TV;
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
 import static org.mockito.ArgumentMatchers.any;
@@ -58,7 +58,7 @@ public class CatalogRepositoryTest {
     private final AppExecutors appExecutors = mock(AppExecutors.class);
 
     private final FakeCatalogRepository catalogRepository = new FakeCatalogRepository(remote, local, appExecutors);
-    private final AppExecutors testExecutors = new AppExecutors(new TestExecutor(), new TestExecutor(), new TestExecutor());
+    private final AppExecutors testExecutors = new AppExecutors(new TestExecutor(), new TestExecutor());
 
     private final MovieDetailsResponse movieDetailsResponse = DataDummy.generateRemoteDummyMovieDetails();
     private final int movieId = movieDetailsResponse.getId();
@@ -477,7 +477,7 @@ public class CatalogRepositoryTest {
     }
 
     @Test
-    public void setFavorite(){
+    public void setFavorite() {
         FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
         FavoriteEntity favorite = dummyFavorite.favorite;
         favorite.setGenres(dummyFavorite.genres);
@@ -490,7 +490,7 @@ public class CatalogRepositoryTest {
     }
 
     @Test
-    public void updateFavorite(){
+    public void updateFavorite() {
         FavoriteWithGenres dummyFavorite = DataDummy.generateDummyFavorite(DataDummy.generateDummyTVDetails());
         FavoriteEntity favorite = dummyFavorite.favorite;
         favorite.setGenres(dummyFavorite.genres);
