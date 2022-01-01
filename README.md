@@ -3,7 +3,7 @@
 [![GitHub release][release-shield]][release-url]
 [![MIT License][license-shield]][license-url]
 
-<a><img src="https://i.imgur.com/HMYw4wp.png" /></a>
+<a><img src="https://i.imgur.com/HMYw4wp.png"/></a>
 
 **Movee, powered by [TMDb](https://developers.themoviedb.org/), will help you discover your new movies and tv shows.** Movee demonstrates the use of modern design approaches, [Android Jetpack](https://developer.android.com/jetpack), to make app robust. This app was developed as a capstone project in Dicoding's [Belajar Android Jetpack Pro](https://www.dicoding.com/academies/129) (Learn Android Jetpack Pro) class.
 
@@ -12,10 +12,13 @@ Check out the [release page](https://github.com/ariefzuhri/Movee/releases) and d
 
 ## Architecture and Tech-stack
 - [MVVM architecture pattern](https://developer.android.com/jetpack/guide#recommended-app-arch)
-- [Android Architecture Components](https://developer.android.com/jetpack/androidx/explorer), specifically [Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [Material Components](https://material.io/develop/android), and [Paging](https://developer.android.com/topic/libraries/architecture/paging)
+- [Android Architecture Components](https://developer.android.com/jetpack/androidx/explorer), specifically [Room](https://developer.android.com/topic/libraries/architecture/room), [ViewModel](https://developer.android.com/topic/libraries/architecture/viewmodel), [LiveData](https://developer.android.com/topic/libraries/architecture/livedata), [Material Components](https://material.io/develop/android), and [Paging](https://developer.android.com/topic/libraries/architecture/paging)
+- [JUnit](https://developer.android.com/training/testing/local-tests), local unit testing framework
+- [Mockito](https://github.com/mockito/mockito), mocking framework for unit tests
+- [Espresso](https://developer.android.com/training/testing/instrumented-tests), Android UI testing framework (including [idling resource](https://developer.android.com/training/testing/espresso/idling-resource))
 - [Retrofit](https://github.com/square/retrofit), REST client framework
 - [Gson](https://github.com/google/gson), parsing the JSON format
-- [OkHttp](https://github.com/square/okhttp), HTTP inspector
+- [OkHttp Logging Interceptor](https://github.com/square/okhttp/tree/master/okhttp-logging-interceptor), HTTP inspector
 - [BubbleTabBar](https://github.com/akshay2211/BubbleTabBar), bottom navigation bar
 - [Glide](https://github.com/bumptech/glide), image loading and caching
 - [FlexboxLayout](https://github.com/google/flexbox-layout), flexbox layout
